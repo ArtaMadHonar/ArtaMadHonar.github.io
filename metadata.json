@@ -1,0 +1,8 @@
+{
+  "name": "استودیو آرتا ماد هنر | Arta Mad Honar Studio",
+  "description": "استودیو پیشگام آرتا ماد هنر؛ پیشرو در تولید انیمیشن‌های ۳D سینمایی با پایپلاین هوش مصنوعی، تیزرهای تبلیغاتی هایپررئال، جلوه‌های بصری، ویدیو مپینگ و اکوسیستم وب۳.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

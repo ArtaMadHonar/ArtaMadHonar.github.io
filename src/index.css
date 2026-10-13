@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-fa: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-en: 'Plus Jakarta Sans', sans-serif;
+}
+
+:root {
+  --font-fa: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-en: 'Plus Jakarta Sans', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-fa);
+    font-feature-settings: "ss01" 1, "locl" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FBF9F5;
+    color: #18181B;
+    overflow-x: hidden;
+    font-family: var(--font-fa);
+    font-feature-settings: "ss01" 1, "locl" 1, "calt" 1;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FBF9F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #EAE6DF;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D8D2C7;
+}
+
+/* Font utilities mapped to requested variables */
+.font-fa {
+  font-family: var(--font-fa);
+  font-feature-settings: "ss01" 1, "locl" 1;
+}
+
+.font-en {
+  font-family: var(--font-en);
+  letter-spacing: -0.015em;
+}
+
+.font-soft {
+  font-family: var(--font-fa);
+  font-feature-settings: "ss01" 1, "locl" 1;
+}
+
+.latin-soft {
+  font-family: var(--font-en);
+  letter-spacing: -0.015em;
+}
+
+.farsi-nums {
+  font-family: var(--font-fa);
+  font-feature-settings: "ss01" 1, "locl" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes slideProgressAnim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-slide-progress {
+  animation-name: slideProgressAnim;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
