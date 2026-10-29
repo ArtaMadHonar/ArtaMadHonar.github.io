@@ -19,21 +19,32 @@ import { TeamMemberModal } from './components/TeamMemberModal';
 import { ProjectInquiryModal } from './components/ProjectInquiryModal';
 import { SELECTED_WORKS, ProjectWork, TeamMember } from './data/studioData';
 
-const parseDomainFromHash = (): string | null => {
+const parseDomainFromLocation = (): string | null => {
   if (typeof window === 'undefined') return null;
-  const hash = window.location.hash || '';
-  if (hash.startsWith('#/domain/')) {
-    const id = hash.replace('#/domain/', '').trim();
-    const exists = SELECTED_WORKS.some((w) => w.id === id);
-    return exists ? id : null;
+
+  // 1. Check clean pathname first (e.g. /commercial-cgi)
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, '').trim();
+  if (pathname) {
+    const segments = pathname.split('/');
+    const lastSegment = segments[segments.length - 1];
+    const matchByPath = SELECTED_WORKS.find((w) => w.id === lastSegment);
+    if (matchByPath) return matchByPath.id;
   }
+
+  // 2. Fallback support for hash if present
+  const hash = (window.location.hash || '').replace(/^#\/?(domain\/)?/, '').trim();
+  if (hash) {
+    const matchByHash = SELECTED_WORKS.find((w) => w.id === hash);
+    if (matchByHash) return matchByHash.id;
+  }
+
   return null;
 };
 
 export default function App() {
-  // Active dedicated domain page state (synced with URL hash for GitHub Pages)
+  // Active dedicated domain page state (clean URL path e.g. /commercial-cgi)
   const [activeDomainId, setActiveDomainId] = useState<string | null>(() =>
-    parseDomainFromHash()
+    parseDomainFromLocation()
   );
 
   // Modal states
@@ -44,31 +55,37 @@ export default function App() {
   const [activeMember, setActiveMember] = useState<TeamMember | null>(null);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const domainId = parseDomainFromHash();
+    const handleRouteChange = () => {
+      const domainId = parseDomainFromLocation();
       setActiveDomainId(domainId);
       if (domainId) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
+    };
   }, []);
 
   const handleOpenDomainPage = useCallback((domainId: string) => {
-    window.location.hash = `/domain/${domainId}`;
+    try {
+      window.history.pushState({ domainId }, '', `/${domainId}`);
+    } catch {
+      // Fallback in restricted iframe environments if pushState is blocked
+    }
     setActiveDomainId(domainId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const handleBackToHome = useCallback((targetSelector = '#works') => {
-    if (window.location.hash.startsWith('#/domain/')) {
-      window.history.pushState(
-        '',
-        document.title,
-        window.location.pathname + window.location.search
-      );
+    try {
+      window.history.pushState({}, document.title, '/');
+    } catch {
+      // Fallback in restricted iframe environments
     }
     setActiveDomainId(null);
 
