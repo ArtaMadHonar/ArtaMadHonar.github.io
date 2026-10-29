@@ -91,17 +91,21 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             id: 'default-members',
             title: 'اعضای تیم',
             isHead: false,
+            headIds: [],
             memberIds: domain.relatedMemberIds || [],
           },
         ]
   )
     .map((group) => ({
       ...group,
+      heads: (group.headIds || [])
+        .map((id) => TEAM_MEMBERS.find((m) => m.id === id))
+        .filter((m): m is TeamMember => Boolean(m)),
       members: group.memberIds
         .map((id) => TEAM_MEMBERS.find((m) => m.id === id))
         .filter((m): m is TeamMember => Boolean(m)),
     }))
-    .filter((group) => group.members.length > 0);
+    .filter((group) => group.heads.length > 0 || group.members.length > 0);
 
   const galleryItems = domain.galleryItems || [];
   const hasCategorizedVideos = galleryItems.some((item) => Boolean(item.category && item.embedUrl));
@@ -491,78 +495,202 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               </h2>
             </div>
 
-            <div className="space-y-12">
-              {resolvedTeamGroups.map((group) => (
-                <div key={group.id} className="space-y-7">
-                  {/* Group Category Label (e.g., هد دپارتمان / اعضای تیم) */}
-                  <div className="flex items-center justify-center gap-4">
-                    <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
-                    <span
-                      className={`text-xs sm:text-sm font-bold ${
-                        group.isHead ? 'text-[#3E777A]' : 'text-[#434846]'
+            <div className="space-y-14">
+              {resolvedTeamGroups.map((group, groupIdx) => {
+                // Case A: Sub-division with its own Head(s) + Members (e.g., Animation's 3 sub-divisions)
+                if (group.heads.length > 0) {
+                  return (
+                    <div
+                      key={group.id}
+                      className={`space-y-10 ${
+                        groupIdx > 0 ? 'pt-12 border-t border-[#DCD6C8]/80' : ''
                       }`}
                     >
-                      {group.title}
-                    </span>
-                    <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
-                  </div>
+                      {/* Sub-Division Title (e.g., بخش کارگردانی / بخش فنی / بخش هنری) */}
+                      <div className="flex items-center justify-center gap-4">
+                        <span className="h-px w-14 sm:w-24 bg-[#3E777A]/35" />
+                        <h3 className="text-base sm:text-xl font-black text-[#1E2424]">
+                          {group.title}
+                        </h3>
+                        <span className="h-px w-14 sm:w-24 bg-[#3E777A]/35" />
+                      </div>
 
-                  {/* Members Row (No Cards, Only Portrait & Full Name) */}
-                  <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
-                    {group.members.map((member) => (
-                      <div
-                        key={member.id}
-                        onClick={() => onSelectMember(member)}
-                        className="group cursor-pointer flex flex-col items-center text-center"
-                      >
-                        <div
-                          className={`${
-                            group.isHead ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-24 h-24 sm:w-26 sm:h-26'
-                          } rounded-full border-2 ${
-                            group.isHead
-                              ? 'border-[#3E777A] group-hover:border-[#65B7B5]'
-                              : 'border-[#DCD6C8] group-hover:border-[#3E777A]'
-                          } mb-3.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0`}
-                        >
-                          {member.imageUrl ? (
-                            <img
-                              src={member.imageUrl}
-                              alt={member.name}
-                              referrerPolicy="no-referrer"
-                              loading="eager"
-                              decoding="sync"
-                              className="w-full h-full object-cover object-top"
-                              onError={(e) => {
-                                const target = e.currentTarget;
-                                target.style.display = 'none';
-                                const fallback = target.nextElementSibling as HTMLElement;
-                                if (fallback) fallback.style.display = 'flex';
-                              }}
-                            />
-                          ) : null}
-                          <div
-                            style={{ display: member.imageUrl ? 'none' : 'flex' }}
-                            className="flex-col items-center justify-center text-[#777A76] w-full h-full"
-                          >
-                            <User className="w-7 h-7 opacity-60 mb-0.5" />
-                            <span className="text-[10px] font-mono font-bold tracking-wider">
-                              {member.initials}
+                      {/* 1. Head of Sub-Division */}
+                      <div className="space-y-5">
+                        <div className="text-center">
+                          <span className="text-xs font-bold text-[#3E777A]">
+                            هد {group.title}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+                          {group.heads.map((head) => (
+                            <div
+                              key={`${group.id}-head-${head.id}`}
+                              onClick={() => onSelectMember(head)}
+                              className="group cursor-pointer flex flex-col items-center text-center"
+                            >
+                              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-[#3E777A] group-hover:border-[#65B7B5] mb-3.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
+                                {head.imageUrl ? (
+                                  <img
+                                    src={head.imageUrl}
+                                    alt={head.name}
+                                    referrerPolicy="no-referrer"
+                                    loading="eager"
+                                    decoding="sync"
+                                    className="w-full h-full object-cover object-top"
+                                    onError={(e) => {
+                                      const target = e.currentTarget;
+                                      target.style.display = 'none';
+                                      const fallback = target.nextElementSibling as HTMLElement;
+                                      if (fallback) fallback.style.display = 'flex';
+                                    }}
+                                  />
+                                ) : null}
+                                <div
+                                  style={{ display: head.imageUrl ? 'none' : 'flex' }}
+                                  className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                                >
+                                  <User className="w-7 h-7 opacity-60 mb-0.5" />
+                                  <span className="text-[10px] font-mono font-bold tracking-wider">
+                                    {head.initials}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <h4 className="text-base sm:text-lg font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
+                                {head.name}
+                              </h4>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* 2. Members of Sub-Division */}
+                      {group.members.length > 0 && (
+                        <div className="space-y-6">
+                          <div className="text-center">
+                            <span className="text-xs font-bold text-[#434846]">
+                              اعضای تیم
                             </span>
                           </div>
-                        </div>
+                          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
+                            {group.members.map((member) => (
+                              <div
+                                key={`${group.id}-member-${member.id}`}
+                                onClick={() => onSelectMember(member)}
+                                className="group cursor-pointer flex flex-col items-center text-center"
+                              >
+                                <div className="w-24 h-24 sm:w-26 sm:h-26 rounded-full border-2 border-[#DCD6C8] group-hover:border-[#3E777A] mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
+                                  {member.imageUrl ? (
+                                    <img
+                                      src={member.imageUrl}
+                                      alt={member.name}
+                                      referrerPolicy="no-referrer"
+                                      loading="eager"
+                                      decoding="sync"
+                                      className="w-full h-full object-cover object-top"
+                                      onError={(e) => {
+                                        const target = e.currentTarget;
+                                        target.style.display = 'none';
+                                        const fallback = target.nextElementSibling as HTMLElement;
+                                        if (fallback) fallback.style.display = 'flex';
+                                      }}
+                                    />
+                                  ) : null}
+                                  <div
+                                    style={{ display: member.imageUrl ? 'none' : 'flex' }}
+                                    className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                                  >
+                                    <User className="w-7 h-7 opacity-60 mb-0.5" />
+                                    <span className="text-[10px] font-mono font-bold tracking-wider">
+                                      {member.initials}
+                                    </span>
+                                  </div>
+                                </div>
 
-                        <h4
-                          className={`${
-                            group.isHead ? 'text-base sm:text-lg font-black' : 'text-sm sm:text-base font-bold'
-                          } text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft`}
+                                <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
+                                  {member.name}
+                                </h4>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                // Case B: Standard Group (e.g., Commercial-CGI's هد دپارتمان / اعضای تیم)
+                return (
+                  <div key={group.id} className="space-y-7">
+                    <div className="flex items-center justify-center gap-4">
+                      <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
+                      <span
+                        className={`text-xs sm:text-sm font-bold ${
+                          group.isHead ? 'text-[#3E777A]' : 'text-[#434846]'
+                        }`}
+                      >
+                        {group.title}
+                      </span>
+                      <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+                      {group.members.map((member) => (
+                        <div
+                          key={`${group.id}-${member.id}`}
+                          onClick={() => onSelectMember(member)}
+                          className="group cursor-pointer flex flex-col items-center text-center"
                         >
-                          {member.name}
-                        </h4>
-                      </div>
-                    ))}
+                          <div
+                            className={`${
+                              group.isHead ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-24 h-24 sm:w-26 sm:h-26'
+                            } rounded-full border-2 ${
+                              group.isHead
+                                ? 'border-[#3E777A] group-hover:border-[#65B7B5]'
+                                : 'border-[#DCD6C8] group-hover:border-[#3E777A]'
+                            } mb-3.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0`}
+                          >
+                            {member.imageUrl ? (
+                              <img
+                                src={member.imageUrl}
+                                alt={member.name}
+                                referrerPolicy="no-referrer"
+                                loading="eager"
+                                decoding="sync"
+                                className="w-full h-full object-cover object-top"
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  target.style.display = 'none';
+                                  const fallback = target.nextElementSibling as HTMLElement;
+                                  if (fallback) fallback.style.display = 'flex';
+                                }}
+                              />
+                            ) : null}
+                            <div
+                              style={{ display: member.imageUrl ? 'none' : 'flex' }}
+                              className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                            >
+                              <User className="w-7 h-7 opacity-60 mb-0.5" />
+                              <span className="text-[10px] font-mono font-bold tracking-wider">
+                                {member.initials}
+                              </span>
+                            </div>
+                          </div>
+
+                          <h4
+                            className={`${
+                              group.isHead ? 'text-base sm:text-lg font-black' : 'text-sm sm:text-base font-bold'
+                            } text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft`}
+                          >
+                            {member.name}
+                          </h4>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}

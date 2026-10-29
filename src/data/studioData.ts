@@ -66,6 +66,7 @@ export interface DepartmentTeamGroup {
   id: string;
   title: string;
   isHead?: boolean;
+  headIds?: string[];
   memberIds: string[];
 }
 
@@ -203,7 +204,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     isCoFounder: true,
     education: 'کارشناس علوم اجتماعی (۱۳۷۸ – ۱۳۸۱)',
     imageUrl:
-      'https://s1.uploadkon.ir/5b883526-116f-4883-bc10-b13d8034b9f8/5b883526-116f-4883-bc10-b13d8034b9f8-Mr-Rahimi.webp',
+      'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
     bio: 'معمار پایپلاین تولید و مدیر فنی هوش مصنوعی با بیش از ۲۲ سال سابقه در جلوه‌های بصری (VFX)، پس‌ازتولید سینمایی و تیزرهای تجاری.',
     fullBio:
       'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
@@ -334,7 +335,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     isCoFounder: true,
     education: 'کارشناس سینما — دانشگاه هنر تهران',
     imageUrl:
-      'https://s1.uploadkon.ir/119f851b-c260-470e-af9a-68803c9aa9ec/119f851b-c260-470e-af9a-68803c9aa9ec-Mr-Mohammadia-Mahmoud2.webp',
+      'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
     bio: 'کارگردان و نویسنده سینما و انیمیشن؛ دانش‌آموخته دانشگاه هنر تهران و کارگردان فیلم سینمایی «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران.',
     fullBio:
       'محمود محمدیان، دانش‌آموخته رشته سینما از دانشگاه هنر تهران، کارگردان و نویسنده‌ای با پیشینه متنوع در سینمای داستانی، انیمیشن بلند، مستند و تبلیغات تلویزیونی است. تجربه مستقیم او در مدیریت تصویربرداری، انیماتوری و کارگردانی، نگاهی دقیق به دکوپاژ، نورپردازی، ریتم روایی و هدایت بازیگران به آثار استودیو بخشیده و محور هدایت هنری فیلم سینمایی «روز شگفت‌انگیز» را شکل داده است.',
@@ -391,7 +392,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'LS',
     imageUrl:
-      'https://s1.uploadkon.ir/e93bca88-90cc-4c47-ba22-fd124f7330d6/e93bca88-90cc-4c47-ba22-fd124f7330d6-Salehii.webp',
+      'https://my.uploadkon.ir/d/om6pMwbv2FUcHz3ohLceOskORFgESe/ODM4NDF8cGFkZA.webp',
     bio: 'معماری و اتوماسیون جریان داده‌های رندرینگ، بهینه‌سازی موتورهای گرافیکی و یکپارچه‌سازی پایپلاین تولید.',
   },
   {
@@ -428,6 +429,36 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: 'پردازش دقیق لایه‌های گرافیکی، فینیشینگ دیجیتال، کنترل گرمای رنگ و تثبیت وفاداری استایل بصری در فریم‌های نهایی.',
   },
   {
+    id: 'aida-varasteh',
+    name: 'آیدا وارسته',
+    role: 'عضو دپارتمان کارگردانی و هنری انیمیشن',
+    roleEn: 'Animation Directing & Visual Art Specialist',
+    department: 'animation',
+    initials: 'AV',
+    imageUrl:
+      'https://my.uploadkon.ir/d/pmZPEPMDQUDRN7AF4XnCKRYrRJrBYJ/ODM3NzZ8cGFkZA.webp',
+  },
+  {
+    id: 'mahla-moein',
+    name: 'مهلا معین',
+    role: 'عضو دپارتمان کارگردانی و هنری انیمیشن',
+    roleEn: 'Animation Directing & Visual Art Specialist',
+    department: 'animation',
+    initials: 'MM',
+    imageUrl:
+      'https://my.uploadkon.ir/d/gXp0Fwi25379XaL1haeU2AWpOtSG2F/ODM3NzV8cGFkZA.webp',
+  },
+  {
+    id: 'mohammad-amin-zafari',
+    name: 'محمدامین ظفری',
+    role: 'عضو دپارتمان فنی انیمیشن',
+    roleEn: 'Animation Technical Pipeline Specialist',
+    department: 'animation',
+    initials: 'MZ',
+    imageUrl:
+      'https://my.uploadkon.ir/d/JUUOT7jej04SLRqiJu9JB04MAmcedc/ODM3ODR8cGFkZA.webp',
+  },
+  {
     id: 'khorshid-khooban',
     name: 'خورشید خوبان',
     role: 'مدیر پروژه و تولید تیزر | آهنگساز و طراح موسیقی',
@@ -435,7 +466,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'commercial',
     initials: 'KK',
     imageUrl:
-      'https://s1.uploadkon.ir/afa19693-7400-493b-a892-5b9194ecbc39/afa19693-7400-493b-a892-5b9194ecbc39-Khorshid.webp',
+      'https://my.uploadkon.ir/d/2MSL7qprCqhrn17cm69Gd5K9HkhQze/ODM4NDJ8cGFkZA.webp',
     bio: 'مدیریت دقیق زمان‌بندی دپارتمان تیزر همگام با ساخت موسیقی متن و معماری اتمسفر صوتی اختصاصی برندها.',
   },
   {
@@ -552,22 +583,46 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'mahmoud-mohammadian',
       'mehdi-mohammadian',
       'mohammad-rahimi',
-      'lotfallah-salehi',
+      'mahla-moein',
+      'aida-varasteh',
       'ali-alipour',
       'negar-baratzadeh',
+      'hanieh-samipoor',
+      'lotfallah-salehi',
+      'mohammad-amin-zafari',
+      'khorshid-khooban',
       'hilda-baghban',
     ],
     teamGroups: [
       {
-        id: 'wd-heads',
-        title: 'هد دپارتمان',
-        isHead: true,
-        memberIds: ['mahmoud-mohammadian', 'mehdi-mohammadian', 'mohammad-rahimi'],
+        id: 'wd-directing',
+        title: 'بخش کارگردانی',
+        headIds: ['mahmoud-mohammadian'],
+        memberIds: ['mahla-moein', 'aida-varasteh', 'ali-alipour'],
       },
       {
-        id: 'wd-members',
-        title: 'اعضای تیم',
-        memberIds: ['lotfallah-salehi', 'ali-alipour', 'negar-baratzadeh', 'hilda-baghban'],
+        id: 'wd-technical',
+        title: 'بخش فنی',
+        headIds: ['mehdi-mohammadian'],
+        memberIds: [
+          'ali-alipour',
+          'negar-baratzadeh',
+          'hanieh-samipoor',
+          'lotfallah-salehi',
+          'mohammad-amin-zafari',
+        ],
+      },
+      {
+        id: 'wd-artistic',
+        title: 'بخش هنری',
+        headIds: ['mohammad-rahimi'],
+        memberIds: [
+          'negar-baratzadeh',
+          'khorshid-khooban',
+          'hilda-baghban',
+          'mahla-moein',
+          'aida-varasteh',
+        ],
       },
     ],
     galleryItems: [
