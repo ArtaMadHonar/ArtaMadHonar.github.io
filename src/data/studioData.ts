@@ -36,12 +36,18 @@ export interface CharacterConcept {
 export interface DomainGalleryItem {
   id: string;
   title: string;
+  titleEn?: string;
   subtitle: string;
   description: string;
   badge?: string;
+  category?: 'AI Assisted' | 'Making of' | 'Editorial' | 'Sound Design' | '2D' | 'Showreel';
   imageUrl?: string;
   fallbackImageUrl?: string;
   videoUrl?: string;
+  previewVideoUrl?: string;
+  embedUrl?: string;
+  externalUrl?: string;
+  platform?: 'youtube' | 'vimeo';
   canvasType?:
     | 'hero-showreel'
     | 'wonderful-day'
@@ -627,24 +633,213 @@ export const SELECTED_WORKS: ProjectWork[] = [
     ],
     galleryItems: [
       {
-        id: 'cgi-moeini',
-        title: 'تیزر تبلیغاتی و رندرینگ محصول تجاری',
-        subtitle: 'Commercial CGI & Product Visualization',
-        badge: 'تیزر تبلیغاتی',
+        id: 'cgi-01-kmc-shadow',
+        title: 'تیزر تبلیغاتی خودرو KMC Shadow',
+        titleEn: 'KMC Shadow',
+        subtitle: 'AI Assisted Commercial Film · Automotive CGI',
+        category: 'AI Assisted',
+        badge: 'تولید ترکیبی AI و CGI',
         description:
-          'کارگردانی هنری، نورپردازی استودیویی، شبیه‌سازی متریال و کامپوزیت نهایی برای معرفی محصول با استاندارد پخش تلویزیونی.',
-        imageUrl:
-          'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp',
-        canvasType: 'commercial-cgi',
+          'تیزر سینمایی معرفی خودرو KMC Shadow با کارگردانی هنری نور و سایه، شبیه‌سازی محیط و یکپارچه‌سازی پایپلاین هوش مصنوعی مولد با کامپوزیت حرفه‌ای.',
+        imageUrl: 'https://3earstudio.com/thumbnails/kmc-shadow.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/JI81cPnvoFU/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/kmc-shadow-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/JI81cPnvoFU?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/JI81cPnvoFU',
+        platform: 'youtube',
       },
       {
-        id: 'cgi-sound-edit',
-        title: 'تدوین ریتمیک، طراحی صدا (SFX) و موسیقی اختصاصی برند',
-        subtitle: 'Bespoke Audio Architecture, Foley & Commercial Editing',
-        badge: 'صدا و پس‌ازتولید',
+        id: 'cgi-02-sadra',
+        title: 'فیلم تبلیغاتی و هویت بصری SADRA',
+        titleEn: 'SADRA',
+        subtitle: 'AI Assisted Brand Film & Visual Storytelling',
+        category: 'AI Assisted',
+        badge: 'تولید ترکیبی AI و CGI',
         description:
-          'آهنگسازی اختصاصی، طراحی بافت‌های صوتی هایپررئال (Foley & SFX) و تدوین دقیق برای درگیرسازی حسی مخاطب در کمپین‌های تبلیغاتی.',
-        canvasType: 'hero-showreel',
+          'روایت تصویری و تیزر تبلیغاتی برند صدرا (SADRA) با بهره‌گیری از گردش‌کار ترکیبی هوش مصنوعی، اصلاح رنگ سینمایی و طراحی فضای بصری متمایز.',
+        imageUrl: 'https://3earstudio.com/thumbnails/sadra.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/7UYXnPXlpSY/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/sadra-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/7UYXnPXlpSY?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/7UYXnPXlpSY',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-03-moeini-pour',
+        title: 'تیزر تبلیغاتی برند معینی‌پور (Moeini Pour)',
+        titleEn: 'Moeini Pour',
+        subtitle: 'Luxury Product Film & AI Assisted Visuals',
+        category: 'AI Assisted',
+        badge: 'تولید ترکیبی AI و CGI',
+        description:
+          'خلق اتمسفر لوکس، کارگردانی هنری محصول و اجرای جلوه‌های بصری با ترکیب تکنیک‌های CGI و هوش مصنوعی برای کمپین تبلیغاتی برند معینی‌پور.',
+        imageUrl:
+          'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp',
+        fallbackImageUrl: 'https://3earstudio.com/thumbnails/moeini-pour.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/moeini-pour-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/TXuGBz6Qg8I?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/TXuGBz6Qg8I',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-04-sorfe-making-of',
+        title: 'پشت‌صحنه و مراحل تولید موزیک‌ویدیو «سرفه»',
+        titleEn: '"SORFE" Music Video',
+        subtitle: 'Making of · VFX Breakdown & Production Pipeline',
+        category: 'Making of',
+        badge: 'پشت‌صحنه و مراحل ساخت',
+        description:
+          'نمایش لایه‌به‌لایه مراحل ساخت، کامپوزیت، جلوه‌های بصری و فرآیند پس‌ازتولید موزیک‌ویدیو «سرفه» از ایده اولیه تا خروجی نهایی.',
+        imageUrl: 'https://3earstudio.com/thumbnails/sorfe.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/Zm9FOwcllmI/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/sorfe-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/Zm9FOwcllmI?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/Zm9FOwcllmI',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-05-mardomak',
+        title: 'تیزر تبلیغاتی اکسسوری مردمک (Mardomak Accessories)',
+        titleEn: 'Mardomak Accessories',
+        subtitle: 'Commercial Editorial · Fashion & Accessories',
+        category: 'Editorial',
+        badge: 'تدوین و کارگردانی بصری',
+        description:
+          'تدوین ریتمیک، ضرباهنگ بصری پویا و پرداخت رنگ و نور برای معرفی کالکشن برند اکسسوری مردمک متناسب با رسانه‌های دیجیتال.',
+        imageUrl: 'https://3earstudio.com/thumbnails/mardomak.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/YA57qZWrIrA/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/mardomak-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/YA57qZWrIrA?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/YA57qZWrIrA',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-06-burux-magicbox',
+        title: 'طراحی صدا و فضای صوتی Burux Magicbox',
+        titleEn: 'Burux Magicbox Sound Design',
+        subtitle: 'Bespoke Sound Design, Foley & Audio Architecture',
+        category: 'Sound Design',
+        badge: 'طراحی صدا و SFX',
+        description:
+          'معماری صوتی اختصاصی، افکت‌های صوتی دقیق (SFX & Foley) و همگام‌سازی بافت‌های شنیداری با حرکات سه‌بعدی و موشن‌گرافیک محصول.',
+        imageUrl: 'https://3earstudio.com/thumbnails/burux-magicbox-sound-design.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/burux-magicbox-sound-design-preview.mp4',
+        embedUrl:
+          'https://player.vimeo.com/video/1192792284?h=617dc49fd3&autoplay=1&title=0&byline=0&portrait=0',
+        externalUrl: 'https://player.vimeo.com/video/1192792284?h=617dc49fd3',
+        platform: 'vimeo',
+      },
+      {
+        id: 'cgi-07-football-future',
+        title: 'طراحی صدا و تدوین تیزر Football Future',
+        titleEn: 'Football Future',
+        subtitle: 'Cinematic Sound Design & Dynamic Sports Audio',
+        category: 'Sound Design',
+        badge: 'طراحی صدا و SFX',
+        description:
+          'خلق اتمسفر صوتی پرانرژی، لایه‌بندی افکت‌های محیطی استادیوم و ضرباهنگ سینمایی برای القای هیجان و آینده‌نگری در تصویر.',
+        imageUrl: 'https://3earstudio.com/thumbnails/football-future.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/HVu-3mx592c/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/football-future-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/HVu-3mx592c?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/HVu-3mx592c',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-08-cyber-car',
+        title: 'طراحی صدای هایپررئال پروژه Cyber Car',
+        titleEn: 'Cyber Car',
+        subtitle: 'Sci-Fi Automotive SFX & Acoustic Post-Production',
+        category: 'Sound Design',
+        badge: 'طراحی صدا و SFX',
+        description:
+          'طراحی بافت‌های صوتی مکانیکی، غرش موتور، افکت‌های سایبرنتیک و میکس استریو برای شبیه‌سازی حس سرعت و فناوری در فضای سه‌بعدی.',
+        imageUrl: 'https://3earstudio.com/thumbnails/cyber-car.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/eV7RHSN40Y0/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/cyber-car-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/eV7RHSN40Y0?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/eV7RHSN40Y0',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-09-no-way-back',
+        title: 'طراحی صدا و اتمسفر سینمایی No Way Back',
+        titleEn: 'No Way Back',
+        subtitle: 'Dramatic Soundscape, Foley & Tension Building',
+        category: 'Sound Design',
+        badge: 'طراحی صدا و SFX',
+        description:
+          'ساختار صوتی دراماتیک، کنترل پویایی صدا (Dynamics) و ترکیب موسیقی و افکت‌های محیطی برای تقویت تعلیق و روایت بصری اثر.',
+        imageUrl: 'https://3earstudio.com/thumbnails/no-way-back.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/4oBniNGSixA/hqdefault.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/no-way-back-preview.mp4',
+        embedUrl: 'https://www.youtube.com/embed/4oBniNGSixA?autoplay=1&rel=0',
+        externalUrl: 'https://youtu.be/4oBniNGSixA',
+        platform: 'youtube',
+      },
+      {
+        id: 'cgi-10-novin-electronic',
+        title: 'موشن‌گرافیک و تیزر دوبعدی نوین الکترونیک',
+        titleEn: 'Novin Electronic',
+        subtitle: '2D Motion Design & Corporate Visual Identity',
+        category: '2D',
+        badge: 'موشن‌گرافیک و ۲D',
+        description:
+          'طراحی گرافیک متحرک (2D Motion Graphics)، تصویرسازی برداری و انیمیت روان برای معرفی خدمات و محصولات برند نوین الکترونیک.',
+        imageUrl: 'https://3earstudio.com/thumbnails/novin.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/novin-preview.mp4',
+        embedUrl:
+          'https://player.vimeo.com/video/1188785498?h=16f5ecf8f2&autoplay=1&title=0&byline=0&portrait=0',
+        externalUrl: 'https://player.vimeo.com/video/1188785498?h=16f5ecf8f2',
+        platform: 'vimeo',
+      },
+      {
+        id: 'cgi-11-evolution-freemasonry',
+        title: 'مستند انیمیشنی و موشن‌گرافیک دوبعدی (2D Storytelling)',
+        titleEn: 'The Evolution of Freemasonry',
+        subtitle: '2D Animated Documentary & Visual Narrative',
+        category: '2D',
+        badge: 'انیمیشن و روایت ۲D',
+        description:
+          'تصویرسازی اختصاصی، کارگردانی هنری دوبعدی، کامپوزیت لایه‌های نوری و حرکت دوربین در فضای ۲.۵ بعدی برای روایت مستند تاریخی.',
+        imageUrl: 'https://3earstudio.com/thumbnails/the-evolution-of-freemasonry.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/the-evolution-of-freemasonry-preview.mp4',
+        embedUrl:
+          'https://player.vimeo.com/video/1185425680?h=8ec53b6b9d&autoplay=1&title=0&byline=0&portrait=0',
+        externalUrl: 'https://player.vimeo.com/video/1185425680?h=8ec53b6b9d',
+        platform: 'vimeo',
+      },
+      {
+        id: 'cgi-12-social-media-showreel',
+        title: 'شوریل تولیدات دیجیتال و شبکه‌های اجتماعی (Social Media Showreel)',
+        titleEn: 'Social Media Showreel',
+        subtitle: 'Showreel · Short-Form Commercials & Digital Content',
+        category: 'Showreel',
+        badge: 'شوریل رسمی (Showreel)',
+        description:
+          'گزیده‌ای از تیزرها، ویدیوهای خلاقانه و کمپین‌های تولیدشده ویژه پلتفرم‌های دیجیتال و شبکه‌های اجتماعی با ریتم تند و هویت بصری متنوع.',
+        imageUrl: 'https://3earstudio.com/thumbnails/social-media.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/social-media-preview.mp4',
+        embedUrl:
+          'https://player.vimeo.com/video/1185064470?h=3b1fb4b7d7&autoplay=1&title=0&byline=0&portrait=0',
+        externalUrl: 'https://player.vimeo.com/video/1185064470?h=3b1fb4b7d7',
+        platform: 'vimeo',
+      },
+      {
+        id: 'cgi-13-commercial-showreel',
+        title: 'شوریل جامع تیزرهای تبلیغاتی و تولیدات تجاری (Commercial Showreel)',
+        titleEn: 'Commercial Showreel',
+        subtitle: 'Showreel · Flagship Broadcast & CGI Commercials',
+        category: 'Showreel',
+        badge: 'شوریل رسمی (Showreel)',
+        description:
+          'مروری بر شاخص‌ترین تیزرهای تبلیغاتی، فیلم‌های معرفی محصول، جلوه‌های ویژه بصری و تولیدات CGI استودیو برای برندها و کسب‌وکارها.',
+        imageUrl: 'https://3earstudio.com/thumbnails/commercial.jpg',
+        previewVideoUrl: 'https://3earstudio.com/videos/commercial-preview.mp4',
+        embedUrl:
+          'https://player.vimeo.com/video/1184364258?h=61c6ba7c49&autoplay=1&title=0&byline=0&portrait=0',
+        externalUrl: 'https://player.vimeo.com/video/1184364258?h=61c6ba7c49',
+        platform: 'vimeo',
       },
     ],
   },
