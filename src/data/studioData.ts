@@ -62,6 +62,13 @@ export interface DomainGalleryItem {
     | 'character-creature';
 }
 
+export interface DepartmentTeamGroup {
+  id: string;
+  title: string;
+  isHead?: boolean;
+  memberIds: string[];
+}
+
 export interface ProjectWork {
   id: string;
   title: string;
@@ -80,6 +87,7 @@ export interface ProjectWork {
   videoUrl?: string;
   isUpcoming?: boolean;
   relatedMemberIds?: string[];
+  teamGroups?: DepartmentTeamGroup[];
   galleryItems?: DomainGalleryItem[];
 }
 
@@ -442,6 +450,16 @@ export const TEAM_MEMBERS: TeamMember[] = [
     bio: 'خلق ریتم‌های گیرا در تدوین فیلم و طراحی بافت‌های صوتی هایپررئال (Foley & SFX) جهت درگیرسازی حسی مخاطب.',
   },
   {
+    id: 'reyhaneh-saeidi',
+    name: 'ریحانه سعیدی',
+    role: 'عضو دپارتمان تبلیغات و تولیدات تصویری',
+    roleEn: 'Commercial & Creative Production Specialist',
+    department: 'commercial',
+    initials: 'RS',
+    imageUrl:
+      'https://my.uploadkon.ir/d/htwNeHjKCOsisVo4bOxSdwQkW3u0A7/ODM3MjN8cGFkZA.webp',
+  },
+  {
     id: 'nima-nekookar',
     name: 'نیما نکوکار',
     role: 'مدیر ارشد دپارتمان وب۳ و سوپروایزر NFT',
@@ -539,6 +557,19 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'negar-baratzadeh',
       'hilda-baghban',
     ],
+    teamGroups: [
+      {
+        id: 'wd-heads',
+        title: 'هد دپارتمان',
+        isHead: true,
+        memberIds: ['mahmoud-mohammadian', 'mehdi-mohammadian', 'mohammad-rahimi'],
+      },
+      {
+        id: 'wd-members',
+        title: 'اعضای تیم',
+        memberIds: ['lotfallah-salehi', 'ali-alipour', 'negar-baratzadeh', 'hilda-baghban'],
+      },
+    ],
     galleryItems: [
       {
         id: 'wd-showreel',
@@ -626,10 +657,23 @@ export const SELECTED_WORKS: ProjectWork[] = [
     tags: ['تیزرهای تبلیغاتی', 'محتوای CGI', 'فیلم معرفی محصول', 'کارگردانی هنری برند'],
     canvasType: 'commercial-cgi',
     relatedMemberIds: [
-      'mahmoud-mohammadian',
       'mohammad-rahimi',
       'khorshid-khooban',
       'hanieh-samipoor',
+      'reyhaneh-saeidi',
+    ],
+    teamGroups: [
+      {
+        id: 'cgi-head',
+        title: 'هد دپارتمان',
+        isHead: true,
+        memberIds: ['mohammad-rahimi'],
+      },
+      {
+        id: 'cgi-members',
+        title: 'اعضای تیم',
+        memberIds: ['khorshid-khooban', 'hanieh-samipoor', 'reyhaneh-saeidi'],
+      },
     ],
     galleryItems: [
       {
@@ -871,6 +915,19 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'negar-baratzadeh',
       'ali-alipour',
     ],
+    teamGroups: [
+      {
+        id: 'game-head',
+        title: 'هد دپارتمان',
+        isHead: true,
+        memberIds: ['mehdi-mohammadian'],
+      },
+      {
+        id: 'game-members',
+        title: 'اعضای تیم',
+        memberIds: ['mahmoud-mohammadian', 'negar-baratzadeh', 'ali-alipour'],
+      },
+    ],
     galleryItems: [
       {
         id: 'game-digital',
@@ -914,11 +971,24 @@ export const SELECTED_WORKS: ProjectWork[] = [
     tags: ['هوش مصنوعی و اتوماسیون', 'فناوری‌های Web3', 'توسعه محصول فناورانه', 'بهینه‌سازی گردش‌کار'],
     canvasType: 'web3-nft',
     relatedMemberIds: [
+      'nima-nekookar',
       'mohammad-rahimi',
       'lotfallah-salehi',
-      'nima-nekookar',
       'ali-ebrahimi',
       'hilda-baghban',
+    ],
+    teamGroups: [
+      {
+        id: 'web3-head',
+        title: 'هد دپارتمان',
+        isHead: true,
+        memberIds: ['nima-nekookar'],
+      },
+      {
+        id: 'web3-members',
+        title: 'اعضای تیم',
+        memberIds: ['mohammad-rahimi', 'lotfallah-salehi', 'ali-ebrahimi', 'hilda-baghban'],
+      },
     ],
     galleryItems: [
       {
@@ -967,6 +1037,19 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'mehdi-mohammadian',
       'lotfallah-salehi',
       'hanieh-samipoor',
+    ],
+    teamGroups: [
+      {
+        id: 'vfx-head',
+        title: 'هد دپارتمان',
+        isHead: true,
+        memberIds: ['mohammad-rahimi'],
+      },
+      {
+        id: 'vfx-members',
+        title: 'اعضای تیم',
+        memberIds: ['mehdi-mohammadian', 'lotfallah-salehi', 'hanieh-samipoor'],
+      },
     ],
     galleryItems: [
       {
