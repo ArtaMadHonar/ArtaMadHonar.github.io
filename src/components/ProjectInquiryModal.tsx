@@ -33,7 +33,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
       const code = `AMH-${Math.floor(100000 + Math.random() * 900000)}`;
       setSubmittedCode(code);
       setIsSubmitting(false);
-    }, 700);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -45,24 +45,27 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/60 backdrop-blur-sm overflow-y-auto">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/65 backdrop-blur-sm overflow-y-auto"
+    >
       <div
-        className="relative w-full max-w-xl bg-[#FBF9F5] text-[#18181B] rounded-2xl overflow-hidden border border-[#EAE6DF] shadow-2xl flex flex-col max-h-[92vh] my-auto"
+        className="relative w-full max-w-xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[92vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-4 sm:py-5 border-b border-[#EAE6DF] bg-white shrink-0">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 sm:py-5 border-b border-[#DCD6C8] bg-[#FAF8F4] shrink-0">
           <div>
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#71717A] block">
+            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold block">
               COLLABORATION
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-[#18181B] mt-0.5">
-              شروع همکاری و ارتباط
+            <h3 className="text-base sm:text-lg font-bold text-[#1E2424] mt-0.5">
+              شروع همکاری و ارتباط با آرتا ماد هنر
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full text-[#71717A] hover:text-[#18181B] hover:bg-stone-100 transition-colors"
+            className="p-1.5 rounded-full text-[#777A76] hover:text-[#1E2424] hover:bg-[#E5E0D4] transition-colors cursor-pointer"
             aria-label="بستن"
           >
             <X className="w-5 h-5" />
@@ -73,21 +76,21 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
         <div className="p-5 sm:p-8 overflow-y-auto flex-1">
           {submittedCode ? (
             <div className="text-center py-6 space-y-4">
-              <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <div className="w-12 h-12 mx-auto rounded-full bg-[#65B7B5]/20 text-[#3E777A] flex items-center justify-center">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-lg font-bold text-[#18181B]">
+                <h4 className="text-lg font-bold text-[#1E2424]">
                   درخواست شما با موفقیت ثبت شد
                 </h4>
-                <p className="text-xs sm:text-sm text-[#71717A] max-w-sm mx-auto leading-relaxed">
-                  تیم تولید استودیو آرتا ماد هنر در اسرع وقت جهت گفت‌وگو پیرامون پروژه با شما تماس خواهد گرفت.
+                <p className="text-xs sm:text-sm text-[#434846] max-w-sm mx-auto leading-relaxed">
+                  تیم استودیو آرتا ماد هنر در اسرع وقت جهت گفت‌وگو پیرامون پروژه با شما تماس خواهد گرفت.
                 </p>
               </div>
 
-              <div className="p-3 rounded-xl bg-white border border-[#EAE6DF] inline-block">
-                <span className="text-xs text-[#71717A] block mb-0.5">کد رهگیری:</span>
-                <span className="font-mono text-base font-bold text-[#18181B] tracking-wider">
+              <div className="p-3.5 rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] inline-block">
+                <span className="text-xs text-[#777A76] block mb-0.5">کد رهگیری:</span>
+                <span className="font-mono text-base font-bold text-[#3E777A] tracking-wider tabular-nums">
                   {submittedCode}
                 </span>
               </div>
@@ -95,7 +98,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
               <div className="pt-2">
                 <button
                   onClick={handleReset}
-                  className="px-6 py-2.5 rounded-full bg-[#18181B] text-[#FBF9F5] text-xs font-medium hover:opacity-90 transition-opacity"
+                  className="px-6 py-2.5 rounded-full bg-[#3E777A] hover:bg-[#326265] text-[#FAF8F4] text-xs font-semibold transition-colors cursor-pointer"
                 >
                   بستن
                 </button>
@@ -103,14 +106,14 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5 text-right">
-              <p className="text-xs sm:text-sm text-[#71717A] leading-relaxed">
-                لطفاً خلاصه نیازمندی‌ها و چشم‌انداز اثر خود را با ما در میان بگذارید.
+              <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
+                لطفاً خلاصه نیازمندی‌ها، نوع پروژه و چشم‌انداز اثر خود را با ما در میان بگذارید.
               </p>
 
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#18181B] mb-1.5">
-                    نام و نام‌خانوادگی / مجموعه <span className="text-red-500">*</span>
+                  <label className="block text-xs font-bold text-[#1E2424] mb-1.5">
+                    نام و نام‌خانوادگی / برند یا مجموعه <span className="text-[#3E777A]">*</span>
                   </label>
                   <input
                     type="text"
@@ -118,13 +121,13 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="نام شما یا نام برند"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#EAE6DF] text-xs sm:text-sm text-[#18181B] focus:outline-none focus:border-[#18181B] transition-colors placeholder:text-[#71717A]/50"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] text-xs sm:text-sm text-[#1E2424] focus:outline-none focus:border-[#3E777A] transition-colors placeholder:text-[#777A76]/60"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#18181B] mb-1.5">
-                    اطلاعات تماس (شماره یا ایمیل) <span className="text-red-500">*</span>
+                  <label className="block text-xs font-bold text-[#1E2424] mb-1.5">
+                    اطلاعات تماس (شماره یا ایمیل) <span className="text-[#3E777A]">*</span>
                   </label>
                   <input
                     type="text"
@@ -132,31 +135,31 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     placeholder="۰۹۱۲... یا email@domain.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#EAE6DF] text-xs sm:text-sm text-[#18181B] focus:outline-none focus:border-[#18181B] transition-colors placeholder:text-[#71717A]/50 dir-ltr text-right"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] text-xs sm:text-sm text-[#1E2424] focus:outline-none focus:border-[#3E777A] transition-colors placeholder:text-[#777A76]/60 dir-ltr text-right"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#18181B] mb-1.5">
-                    حوزه پروژه:
+                  <label className="block text-xs font-bold text-[#1E2424] mb-1.5">
+                    حوزه فعالیت مورد نظر:
                   </label>
                   <select
                     value={projectId}
                     onChange={(e) => setProjectId(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-white border border-[#EAE6DF] text-xs sm:text-sm text-[#18181B] focus:outline-none focus:border-[#18181B] transition-colors"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] text-xs sm:text-sm text-[#1E2424] focus:outline-none focus:border-[#3E777A] transition-colors"
                   >
                     {SELECTED_WORKS.map((work) => (
                       <option key={work.id} value={work.id}>
                         {work.title}
                       </option>
                     ))}
-                    <option value="other">سایر زمینه‌های تولید</option>
+                    <option value="other">سایر زمینه‌های همکاری</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#18181B] mb-1.5">
-                    توضیحات مختصر <span className="text-red-500">*</span>
+                  <label className="block text-xs font-bold text-[#1E2424] mb-1.5">
+                    توضیحات مختصر پروژه <span className="text-[#3E777A]">*</span>
                   </label>
                   <textarea
                     rows={4}
@@ -164,7 +167,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="هدف، فضا و زمان‌بندی مورد انتظار..."
-                    className="w-full p-3.5 rounded-xl bg-white border border-[#EAE6DF] text-xs sm:text-sm text-[#18181B] focus:outline-none focus:border-[#18181B] transition-colors placeholder:text-[#71717A]/50 resize-none leading-relaxed"
+                    className="w-full p-3.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] text-xs sm:text-sm text-[#1E2424] focus:outline-none focus:border-[#3E777A] transition-colors placeholder:text-[#777A76]/60 resize-none leading-relaxed"
                   />
                 </div>
               </div>
@@ -173,9 +176,9 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-2.5 rounded-full bg-[#18181B] hover:opacity-90 disabled:opacity-50 text-[#FBF9F5] text-xs sm:text-sm font-medium transition-opacity"
+                  className="px-6 py-2.5 rounded-full bg-[#3E777A] hover:bg-[#326265] disabled:opacity-50 text-[#FAF8F4] text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
                 >
-                  {isSubmitting ? 'در حال ارسال...' : 'ارسال پیام'}
+                  {isSubmitting ? 'در حال ثبت...' : 'ارسال درخواست همکاری'}
                 </button>
               </div>
             </form>

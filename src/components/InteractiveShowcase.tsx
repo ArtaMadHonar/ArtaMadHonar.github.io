@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, CheckCircle2, Sparkles, Box, Film, Video, Gamepad2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { SELECTED_WORKS, ProjectWork } from '../data/studioData';
 import { VisualArtCanvas } from './VisualArtCanvas';
 
@@ -7,7 +7,6 @@ interface InteractiveShowcaseProps {
   onSelectProject: (project: ProjectWork) => void;
 }
 
-// Preload project posters into browser cache
 if (typeof window !== 'undefined') {
   SELECTED_WORKS.forEach((w) => {
     if (w.imageUrl) {
@@ -23,12 +22,12 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
   const [activeTab, setActiveTab] = useState<string>('all');
 
   const filterTabs = [
-    { id: 'all', label: 'همه آثار' },
-    { id: 'animation', label: 'انیمیشن سینمایی' },
-    { id: 'commercial', label: 'تیزرسازی و تبلیغات تجاری' },
-    { id: 'vfx', label: 'پروجکشن مپینگ و رویدادها' },
-    { id: 'web3', label: 'وب۳ و بلاکچین' },
-    { id: 'game', label: 'آزمایشگاه بازی‌سازی' },
+    { id: 'all', label: 'همه حوزه‌ها (۵)' },
+    { id: 'animation', label: '۱. انیمیشن و توسعه IP' },
+    { id: 'commercial', label: '۲. تبلیغات و CGI' },
+    { id: 'game', label: '۳. بازی‌سازی تعاملی' },
+    { id: 'web3', label: '۴. فناوری و Web3' },
+    { id: 'vfx', label: '۵. ویدئو مپینگ و رویداد' },
   ];
 
   const filteredProjects = SELECTED_WORKS.filter((item) => {
@@ -37,7 +36,10 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
   });
 
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-  const toPersianNum = (num: number) => String(num).padStart(2, '0').replace(/[0-9]/g, (w) => persianDigits[+w]);
+  const toPersianNum = (num: number) =>
+    String(num)
+      .padStart(2, '0')
+      .replace(/[0-9]/g, (w) => persianDigits[+w]);
 
   const getCanonicalDeptIndex = (project: ProjectWork, fallbackIdx: number) => {
     const canonicalIndex = SELECTED_WORKS.findIndex((w) => w.id === project.id) + 1;
@@ -45,120 +47,115 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
   };
 
   return (
-    <section id="works" className="py-20 sm:py-28 border-t border-[#EAE6DF] relative scroll-mt-20">
-      {/* Anchor for direct departments navigation */}
-      <div id="departments" className="scroll-mt-24" />
+    <section id="works" className="py-16 sm:py-20 relative scroll-mt-20">
+      <div id="departments" className="absolute -top-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
-        {/* Section Header & Interactive Filter Tabs */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#EAE6DF] pb-8">
-          <div className="space-y-2 text-right">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#71717A]">
-              PORTFOLIO & CAPABILITIES
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-[#18181B]">
-              آثار و دپارتمان‌های تخصصی استودیو
-            </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+        {/* Section Header: Two-Tier Editorial Architecture */}
+        <div className="space-y-6 border-b border-[#DCD6C8] pb-7">
+          {/* Tier 1: Title & Lead Copy */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 text-right">
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#3E777A]">
+                <span className="font-mono uppercase tracking-widest">
+                  STUDIO DOMAINS & PORTFOLIO
+                </span>
+                <span aria-hidden="true" className="text-[#777A76]">·</span>
+                <span>۵ محور تخصصی خلق و تولید</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424] tracking-tight">
+                حوزه‌های فعالیت و آثار منتخب استودیو
+              </h2>
+            </div>
+
+            <p className="text-xs sm:text-sm text-[#434846] max-w-xl leading-relaxed lg:text-left">
+              هر یک از پنج دپارتمان تخصصی استودیو دارای صفحه اختصاصی شامل گالری آثار، تصاویر، ویدیوها و معرفی اعضای متخصص همان بخش است.
+            </p>
           </div>
 
-          {/* Filter Pills with Horizontal Scroll on Mobile */}
-          <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 bg-[#F3EFEA] border border-[#EAE6DF] rounded-2xl overflow-x-auto max-w-full scrollbar-none shrink-0">
-            {filterTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-3.5 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 ${
-                  activeTab === tab.id
-                    ? 'bg-[#18181B] text-[#FAF8F5] shadow-xs'
-                    : 'text-[#52525B] hover:text-[#18181B] hover:bg-stone-200/60'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* Tier 2: Dedicated Filter Bar */}
+          <div className="flex items-center justify-between gap-4 pt-1">
+            <div className="flex items-center gap-1.5 p-1.5 bg-[#F4F0E6] border border-[#DCD6C8] rounded-2xl overflow-x-auto max-w-full scrollbar-none">
+              {filterTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-3.5 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+                    activeTab === tab.id
+                      ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
+                      : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E7E2D6]'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <span className="hidden md:inline-block text-xs text-[#777A76] whitespace-nowrap shrink-0">
+              برای ورود به صفحه اختصاصی هر دپارتمان، روی کارت کلیک کنید
+            </span>
           </div>
         </div>
 
-        {/* Gallery Cards Grid with Consistent, Orderly Studio Layout */}
-        <div className="space-y-8 sm:space-y-12">
+        {/* Compact Bento Grid (2 Top Featured Cards + 3 Bottom Cards when showing all) */}
+        <div
+          className={`grid grid-cols-1 gap-6 sm:gap-7 ${
+            activeTab === 'all' ? 'md:grid-cols-6' : 'md:grid-cols-2 lg:grid-cols-3'
+          }`}
+        >
           {filteredProjects.map((project, idx) => {
-            const isGameLab = project.isUpcoming;
             const canonicalNum = getCanonicalDeptIndex(project, idx);
+            const isTopRowBento = activeTab === 'all' && idx < 2;
+            const colSpanClass =
+              activeTab === 'all'
+                ? isTopRowBento
+                  ? 'md:col-span-3'
+                  : 'md:col-span-2'
+                : 'col-span-1';
 
             return (
               <article
                 key={project.id}
                 onClick={() => onSelectProject(project)}
-                className="group cursor-pointer rounded-3xl bg-white border border-[#EAE6DF] overflow-hidden transition-all duration-300 hover:border-[#18181B]/40 hover:shadow-xl"
+                className={`${colSpanClass} group cursor-pointer rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-[#3E777A] hover:shadow-[0_18px_45px_rgba(30,36,36,0.08)] hover:-translate-y-1`}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
-                  {/* Visual Canvas - Always Pristine 16:9 Aspect Ratio with Zero Cropping */}
-                  <div className="lg:col-span-7 w-full shrink-0">
-                    <div className="aspect-video w-full overflow-hidden bg-[#121110] relative flex items-center justify-center">
-                      <VisualArtCanvas
-                        type={project.canvasType}
-                        imageUrl={project.imageUrl}
-                        className="w-full h-full group-hover:scale-102 transition-transform duration-700"
-                        showControls={false}
-                      />
-                      {isGameLab && (
-                        <div className="absolute top-4 right-4 z-10 px-3.5 py-1 rounded-full bg-amber-400 text-stone-950 text-xs font-bold shadow-md">
-                          Coming Soon · به‌زودی
-                        </div>
-                      )}
-                    </div>
+                <div>
+                  {/* 16:9 Visual Cover */}
+                  <div className="aspect-video w-full overflow-hidden bg-[#121616] relative flex items-center justify-center border-b border-[#DCD6C8]">
+                    <VisualArtCanvas
+                      type={project.canvasType}
+                      imageUrl={project.imageUrl}
+                      className="w-full h-full group-hover:scale-103 transition-transform duration-700"
+                      showControls={false}
+                    />
                   </div>
 
-                  {/* Information Details */}
-                  <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 space-y-4 sm:space-y-5 text-right flex flex-col justify-between">
-                    {/* Header Tags & Canonical Department Index */}
-                    <div className="flex items-center justify-between text-xs text-[#71717A] border-b border-[#EAE6DF] pb-3">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-bold text-[#18181B]">{project.categoryFa}</span>
-                        <span aria-hidden="true" className="text-stone-300">·</span>
-                        <span className="font-mono text-[11px] text-[#71717A] tracking-wider">{project.subtitle}</span>
-                      </div>
-                      <span className="font-mono text-xs font-bold text-stone-800 bg-[#F3EFEA] px-2.5 py-1 rounded-full border border-[#EAE6DF]/60 shrink-0">
-                        دپارتمان {toPersianNum(canonicalNum)}
+                  {/* Concise Card Body */}
+                  <div className="p-5 sm:p-6 space-y-2.5 text-right">
+                    {/* Unboxed Metadata Row */}
+                    <div className="flex items-center justify-between text-[11px] text-[#777A76]">
+                      <span className="font-bold text-[#3E777A]">{project.categoryFa}</span>
+                      <span className="font-mono font-bold text-[#3E777A] farsi-nums">
+                        حوزه {toPersianNum(canonicalNum)}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-black text-[#18181B] group-hover:text-black transition-colors leading-snug">
-                      {project.title}
+                    <h3 className="text-base sm:text-lg font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-snug">
+                      {project.shortTitle || project.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-xs sm:text-sm text-[#52525B] leading-relaxed">
-                      {project.description}
+                    {/* Concise 2-Line Summary */}
+                    <p className="text-xs text-[#434846] leading-relaxed line-clamp-2">
+                      {project.shortSummary || project.description}
                     </p>
-
-                    {/* Key Highlights list */}
-                    <div className="space-y-2 pt-2 border-t border-[#EAE6DF]">
-                      {project.highlightsTitle && (
-                        <span className="text-xs font-bold text-[#18181B] block mb-1">
-                          {project.highlightsTitle}
-                        </span>
-                      )}
-                      {project.highlights.map((item, hIdx) => (
-                        <div key={hIdx} className="flex items-start gap-2.5 text-xs text-[#52525B]">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-stone-900 shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Link & Meta Footer */}
-                    <div className="pt-3 border-t border-[#EAE6DF] flex items-center justify-between">
-                      <span className="text-xs font-semibold text-[#18181B] group-hover:underline flex items-center gap-1.5">
-                        <span>مشاهده پرونده تخصصی این اثر</span>
-                        <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-70" />
-                      </span>
-                      <span className="text-[11px] font-mono text-[#71717A]">
-                        {project.tags?.[0] || 'استودیو آرتا ماد هنر'}
-                      </span>
-                    </div>
                   </div>
+                </div>
+
+                {/* Card Footer Action -> Enters Dedicated Page */}
+                <div className="px-5 sm:px-6 py-4 bg-[#F4F0E6]/65 border-t border-[#E5E0D4] flex items-center justify-between text-xs font-semibold text-[#3E777A]">
+                  <span>ورود به صفحه اختصاصی دپارتمان</span>
+                  <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-85 group-hover:-translate-x-1 transition-transform" />
                 </div>
               </article>
             );
@@ -168,3 +165,5 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
     </section>
   );
 };
+
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, ArrowUp, MapPin, ArrowLeft } from 'lucide-react';
+import { STUDIO_CATALOG_INFO } from '../data/studioData';
 
 interface FooterSectionProps {
   onOpenContact: () => void;
@@ -11,104 +12,120 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
   };
 
   const socialLinks = [
-    { label: 'اینستاگرام', href: '#' },
-    { label: 'تلگرام', href: '#' },
-    { label: 'لینکدین', href: '#' },
-    { label: 'یوتیوب', href: '#' },
-    { label: 'ایکس (توییتر)', href: '#' },
+    { label: 'اینستاگرام', href: '#contact' },
+    { label: 'تلگرام', href: '#contact' },
+    { label: 'لینکدین', href: '#contact' },
+    { label: 'یوتیوب', href: '#contact' },
   ];
 
   return (
-    <footer id="contact" className="border-t border-[#EAE6DF] bg-[#FBF9F5] pt-20 pb-16">
+    <footer id="contact" className="border-t border-[#DCD6C8] bg-[#EDE9DF] pt-20 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Contact Banner Card */}
-        <div className="p-6 sm:p-10 lg:p-14 rounded-3xl bg-[#18181B] text-[#FAF8F5] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-xl">
-          {/* Warm ambient background aura */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,#D97706_0%,transparent_60%)] opacity-20 pointer-events-none" />
+        {/* Contact Banner Card in Poyo Deep Teal & Warm Ochre */}
+        <div className="p-7 sm:p-10 lg:p-14 rounded-3xl bg-[#274D50] text-[#FAF8F4] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_20px_50px_rgba(39,77,80,0.18)] border border-[#3E777A]">
+          {/* Subtle Poyo Palette Ambient Glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,#65B7B5_0%,transparent_55%)] opacity-25 pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_80%,#D6B16A_0%,transparent_50%)] opacity-20 pointer-events-none" />
 
-          <div className="space-y-3 text-right max-w-xl z-10">
-            <span className="text-xs font-mono tracking-widest text-amber-300 uppercase latin-soft">
+          <div className="space-y-3 text-right max-w-2xl z-10">
+            <span className="text-xs font-mono tracking-widest text-[#D6B16A] uppercase latin-soft font-semibold">
               COLLABORATION & PRODUCTION INQUIRY
             </span>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white leading-snug font-soft">
-              آماده خلق اثری ماندگار و فراتر از مرزهای معمول هستید؟
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#FAF8F4] leading-snug font-soft">
+              آماده خلق تجربه‌ای تصویری، تیزر تبلیغاتی یا توسعه محصول مشترک هستید؟
             </h3>
-            <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-soft">
-              از تولید انیمیشن‌های سینمایی و تیزرهای محصولی سه‌بعدی لوکس تا اجرای پروجکشن مپینگ‌های زنده کنسرت و رویدادهای ملی؛ تیم آرتا ماد هنر آماده همکاری با پیشتازان است.
+            <p className="text-xs sm:text-sm text-[#EDE9DF]/90 leading-relaxed font-soft">
+              از توسعه و تولید انیمیشن و دارایی‌های فکری (IP) تا تیزرهای تبلیغاتی CGI، بازی‌سازی، راهکارهای هوش مصنوعی و ویدئو مپینگ؛ تیم آرتا ماد هنر همراه شماست.
             </p>
           </div>
 
           <div className="z-10 shrink-0 w-full md:w-auto flex justify-center md:justify-start">
             <button
               onClick={onOpenContact}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white hover:bg-stone-100 text-[#18181B] text-xs sm:text-sm font-semibold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 font-soft"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#FAF8F4] hover:bg-[#EDE9DF] text-[#1E2424] text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 font-soft cursor-pointer whitespace-nowrap"
             >
-              <span>ثبت بریف / درخواست همکاری</span>
-              <ArrowLeft className="w-4 h-4 rotate-180 opacity-70" />
+              <span>ثبت درخواست همکاری</span>
+              <ArrowLeft className="w-4 h-4 rotate-180 text-[#3E777A]" />
             </button>
           </div>
         </div>
 
         {/* Studio Info Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8 pb-12 border-b border-[#EAE6DF]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-6 pb-12 border-b border-[#DCD6C8]">
           {/* Monogram and Description */}
           <div className="md:col-span-5 space-y-4 text-right">
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-[#18181B] font-soft">
-                استودیو آرتا ماد هنر
+              <span className="text-2xl font-black text-[#1E2424] font-soft">
+                آرتا ماد هنر
               </span>
-              <span className="text-[11px] font-mono text-[#71717A] tracking-wider uppercase latin-soft">
-                STUDIO • CINEMA & DIGITAL ARTS
+              <span className="text-[11px] font-mono text-[#3E777A] tracking-wider uppercase latin-soft font-semibold mt-0.5">
+                ARTA MAD HONAR STUDIO
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-[#52525B] leading-relaxed max-w-sm">
-              پیشگام در خلق تصویر، انیمیشن‌های سه‌بعدی سینمایی با پایپلاین‌های هوش مصنوعی اختصاصی، تیزرهای تبلیغاتی نامحدود و اکوسیستم‌های وب۳.
+            <p className="text-xs sm:text-sm text-[#434846] leading-relaxed max-w-md">
+              {STUDIO_CATALOG_INFO.intro}
             </p>
-            <div className="text-xs text-[#71717A]">
-              مستقر در قطب نوآوری شرق کشور، کارخانه نوآوری مشهد
-            </div>
           </div>
 
           {/* Quick Nav Anchors */}
           <div className="md:col-span-3 space-y-3 text-right">
-            <span className="text-xs font-bold text-[#18181B] uppercase tracking-wider block">
-              ناوبری سریع
+            <span className="text-xs font-bold text-[#1E2424] block">
+              دسترسی سریع
             </span>
-            <div className="flex flex-col space-y-2 text-xs text-[#52525B]">
-              <a href="#flagship" className="hover:text-black transition-colors">انیمیشن بلند «روز شگفت‌انگیز»</a>
-              <a href="#works" className="hover:text-black transition-colors">آثار و دپارتمان‌های تخصصی</a>
-              <a href="#philosophy" className="hover:text-black transition-colors">تمایز و مانیفست R&D</a>
-              <a href="#team" className="hover:text-black transition-colors">اعضای تیم و سوپروایزرها</a>
+            <div className="flex flex-col space-y-2.5 text-xs text-[#434846]">
+              <a href="#about-studio" className="hover:text-[#3E777A] transition-colors">
+                معرفی استودیو و چشم‌انداز
+              </a>
+              <a href="#flagship" className="hover:text-[#3E777A] transition-colors">
+                انیمیشن سینمایی «روز شگفت‌انگیز»
+              </a>
+              <a href="#works" className="hover:text-[#3E777A] transition-colors">
+                حوزه‌های فعالیت ۵گانه
+              </a>
+              <a href="#philosophy" className="hover:text-[#3E777A] transition-colors">
+                توانمندی‌های کلیدی
+              </a>
+              <a href="#team" className="hover:text-[#3E777A] transition-colors">
+                هم‌بنیانگذاران و اعضای تیم
+              </a>
             </div>
           </div>
 
           {/* Contact Details & Social Links */}
           <div className="md:col-span-4 space-y-4 text-right">
-            <span className="text-xs font-bold text-[#18181B] uppercase tracking-wider block">
+            <span className="text-xs font-bold text-[#1E2424] block">
               راه‌های ارتباط مستقیم
             </span>
-            <div className="space-y-2 text-xs text-[#52525B]">
+            <div className="space-y-2.5 text-xs text-[#434846]">
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-stone-900 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#3E777A] shrink-0" />
                 <span>مشهد، بلوار کوثر، جنب میدان پژوهش، کارخانه نوآوری</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-stone-900 shrink-0" />
-                <span className="font-mono dir-ltr">info@artamadhonar.com</span>
+                <Mail className="w-4 h-4 text-[#3E777A] shrink-0" />
+                <span className="font-mono dir-ltr">info@artamad.ir</span>
               </div>
             </div>
 
             <div className="pt-2">
-              <span className="text-[11px] text-[#71717A] block mb-2">کانال‌های رسمی استودیو:</span>
-              <div className="flex flex-wrap gap-2">
+              <span className="text-[11px] text-[#777A76] block mb-2">شبکه‌های ارتباطی:</span>
+              <div className="flex flex-wrap items-center gap-3 text-xs text-[#434846]">
                 {socialLinks.map((item, idx) => (
-                  <a
-                    key={idx}
-                    href={item.href}
-                    className="px-3 py-1.5 rounded-full bg-white border border-[#EAE6DF] hover:border-[#18181B] text-[#52525B] hover:text-[#18181B] text-xs font-medium transition-colors"
-                  >
-                    {item.label}
-                  </a>
+                  <React.Fragment key={idx}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onOpenContact();
+                      }}
+                      className="hover:text-[#3E777A] font-medium transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                    {idx < socialLinks.length - 1 && (
+                      <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
+                    )}
+                  </React.Fragment>
                 ))}
               </div>
             </div>
@@ -116,18 +133,18 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
         </div>
 
         {/* Bottom Copyright & Back to Top */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#71717A]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777A76]">
           <div>
-            © استودیو آرتا ماد هنر. طراحی‌شده برای آینده سینما و هنر دیجیتال.
+            © آرتا ماد هنر (Arta Mad Honar) · تمامی حقوق محفوظ است.
           </div>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 hover:text-[#18181B] transition-colors group"
+            className="flex items-center gap-2 hover:text-[#3E777A] transition-colors group cursor-pointer"
             aria-label="بازگشت به بالای صفحه"
           >
             <span>بازگشت به بالا</span>
-            <div className="p-1.5 rounded-full bg-white border border-[#EAE6DF] group-hover:border-[#18181B] transition-colors">
+            <div className="p-1.5 rounded-full bg-[#FAF8F4] border border-[#DCD6C8] group-hover:border-[#3E777A] transition-colors">
               <ArrowUp className="w-3.5 h-3.5" />
             </div>
           </button>

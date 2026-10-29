@@ -25,19 +25,16 @@ const SLIDES: FlagshipImageSlide[] = [
     id: 'slide-3',
     url: 'https://s1.uploadkon.ir/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2-Poyogran.webp',
     fallbackUrl: 'https://my.uploadkon.ir/d/YJHLUj7EHxpdPffT3TkF4Iv7QR7Ulq/NTM0NjR8cGFkZA.webp',
-    alt: 'روز شگفت‌انگیز - شات سینمایی پوپو',
+    alt: 'روز شگفت‌انگیز - شات سینمایی پویو و پدربزرگ',
   },
   {
     id: 'slide-4',
     url: 'https://s1.uploadkon.ir/907a66af-e858-475b-866d-a2c491cead48/907a66af-e858-475b-866d-a2c491cead48-poyocactus.webp',
     fallbackUrl: 'https://my.uploadkon.ir/d/pT94wdX9g1Ii0z0tQbng2CSiIA0neX/NTM0NjN8cGFkZA.webp',
-    alt: 'روز شگفت‌انگیز - شات ۳D پوپو و کاکتوس',
+    alt: 'روز شگفت‌انگیز - شات ۳D پویو و کاکتوس',
   },
 ];
 
-// Timing configuration:
-// 5 seconds default automatic switch
-// 8 seconds if user manually interacts / changes slide
 const AUTO_SWITCH_DELAY = 5000;
 const USER_SWITCH_DELAY = 8000;
 
@@ -47,7 +44,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
   const [resetToken, setResetToken] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
-  // Preload all slides in advance
   useEffect(() => {
     SLIDES.forEach((slide) => {
       const img = new Image();
@@ -55,13 +51,9 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     });
   }, []);
 
-  // Auto slide transition effect:
-  // Runs with `currentDelay` (5000ms by default, 8000ms if user manually switched).
-  // Once an automatic transition executes, it reverts the delay back to 5000ms.
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
-      // Auto change reverts timer back to 5 seconds
       setCurrentDelay(AUTO_SWITCH_DELAY);
     }, currentDelay);
 
@@ -70,8 +62,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     };
   }, [currentIndex, currentDelay, resetToken]);
 
-  // Handler for user manual switch:
-  // Resets timer, gives 8 seconds for the upcoming switch
   const handleUserChange = useCallback((nextIndexOrFn: number | ((prev: number) => number)) => {
     setCurrentDelay(USER_SWITCH_DELAY);
     setResetToken((t) => t + 1);
@@ -93,7 +83,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     handleUserChange(idx);
   };
 
-  // Touch handlers for mobile swipe navigation
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -112,7 +101,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     touchStartX.current = null;
   };
 
-  // Helper for Persian numerals
   const toPersianNum = (num: number) => {
     const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
     return String(num).replace(/[0-9]/g, (w) => persianDigits[+w]);
@@ -122,13 +110,13 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     <div
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className={`relative group overflow-hidden select-none w-full h-full aspect-video bg-[#141210] ${className}`}
+      className={`relative group overflow-hidden select-none w-full h-full aspect-video lg:aspect-auto bg-[#121616] ${className}`}
     >
-      {/* Subtle timer progress bar indicator */}
+      {/* Subtle timer progress bar indicator in Poyo Turquoise & Warm Ochre */}
       <div className="absolute top-0 inset-x-0 h-1 bg-white/10 z-30 pointer-events-none overflow-hidden">
         <div
           key={`progress-${currentIndex}-${currentDelay}-${resetToken}`}
-          className="h-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.6)] animate-slide-progress"
+          className="h-full bg-gradient-to-r from-[#65B7B5] to-[#D6B16A] animate-slide-progress"
           style={{
             animationDuration: `${currentDelay}ms`,
           }}
@@ -145,7 +133,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            {/* Ambient blurred backdrop to eliminate harsh black borders */}
             <img
               src={slide.url}
               alt=""
@@ -153,7 +140,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
               referrerPolicy="no-referrer"
               className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-30 pointer-events-none"
             />
-            {/* Sharp foreground image */}
             <img
               src={slide.url}
               alt={slide.alt}
@@ -172,11 +158,11 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
         );
       })}
 
-      {/* Navigation Arrows (Floating Sides) */}
+      {/* Navigation Arrows */}
       <button
         onClick={handleNext}
         aria-label="تصویر بعدی"
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/45 hover:bg-black/85 text-white/90 hover:text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 hover:scale-105 shadow-xl cursor-pointer"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-[#3E777A] text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 shadow-lg cursor-pointer"
       >
         <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
@@ -184,20 +170,18 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
       <button
         onClick={handlePrev}
         aria-label="تصویر قبلی"
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-black/45 hover:bg-black/85 text-white/90 hover:text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 hover:scale-105 shadow-xl cursor-pointer"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/50 hover:bg-[#3E777A] text-white backdrop-blur-md border border-white/15 flex items-center justify-center transition-all opacity-85 group-hover:opacity-100 shadow-lg cursor-pointer"
       >
         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
-      {/* Minimal Bottom Rail: Slide Counter & Clean Indicator Dots */}
+      {/* Bottom Rail: Slide Counter & Dots */}
       <div className="absolute bottom-2.5 sm:bottom-4 inset-x-2.5 sm:inset-x-4 z-20 flex items-center justify-between pointer-events-auto">
-        {/* Persian Slide Counter Badge */}
-        <div className="text-[10px] sm:text-xs font-mono font-bold text-white/90 bg-black/60 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-white/15 shadow-md">
+        <div className="text-[10px] sm:text-xs font-mono font-bold text-white/95 bg-black/60 px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-md border border-white/15 tabular-nums">
           {toPersianNum(currentIndex + 1)} / {toPersianNum(SLIDES.length)}
         </div>
 
-        {/* Clean Indicator Dots */}
-        <div className="flex items-center gap-1.5 sm:gap-2 bg-black/50 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full backdrop-blur-md border border-white/15">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-black/50 px-2.5 sm:px-3 py-1.5 rounded-full backdrop-blur-md border border-white/15">
           {SLIDES.map((_, idx) => {
             const active = idx === currentIndex;
             return (
@@ -206,7 +190,7 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
                 onClick={(e) => handleSelectDot(idx, e)}
                 className={`transition-all rounded-full cursor-pointer ${
                   active
-                    ? 'w-5 sm:w-6 h-1.5 sm:h-2 bg-amber-400 shadow-xs'
+                    ? 'w-5 sm:w-6 h-1.5 sm:h-2 bg-[#D6B16A]'
                     : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/80'
                 }`}
                 aria-label={`اسلاید ${idx + 1}`}

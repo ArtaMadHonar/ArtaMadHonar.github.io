@@ -319,85 +319,85 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       )}
 
       {type === 'vfx-mapping' && (
-        <div className="absolute inset-0 bg-[#0A0908] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#101819] flex items-center justify-center">
           <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="laserBeam1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+                <stop offset="0%" stopColor="#D6B16A" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#D6B16A" stopOpacity="0" />
               </linearGradient>
               <linearGradient id="laserBeam2" x1="1" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#38BDF8" stopOpacity="0" />
+                <stop offset="0%" stopColor="#65B7B5" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#82B9D8" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <rect width="1200" height="675" fill="#0A0908" />
+            <rect width="1200" height="675" fill="#101819" />
 
             {/* Stadium Mega Stage Architecture */}
-            <polygon points="200,500 400,200 800,200 1000,500" stroke="#44403C" strokeWidth="2" fill="#141210" />
-            <polygon points="300,500 450,280 750,280 900,500" stroke="#F59E0B" strokeWidth="1.5" strokeOpacity="0.6" fill="#1C1815" />
-            <polygon points="400,500 500,340 700,340 800,500" stroke="#38BDF8" strokeWidth="1.5" strokeOpacity="0.5" fill="#0F172A" />
+            <polygon points="200,500 400,200 800,200 1000,500" stroke="#3E777A" strokeWidth="2" fill="#162224" />
+            <polygon points="300,500 450,280 750,280 900,500" stroke="#D6B16A" strokeWidth="1.5" strokeOpacity="0.65" fill="#1C2A2C" />
+            <polygon points="400,500 500,340 700,340 800,500" stroke="#65B7B5" strokeWidth="1.5" strokeOpacity="0.6" fill="#132326" />
 
             {/* Projection Mapping Holographic Cube on Stage */}
             <g transform="translate(600, 360)">
-              <polygon points="0,-80 70,-40 0,0 -70,-40" fill="#F59E0B" fillOpacity="0.3" stroke="#FCD34D" strokeWidth="1.5" />
-              <polygon points="-70,-40 0,0 0,80 -70,40" fill="#D97706" fillOpacity="0.4" stroke="#FCD34D" strokeWidth="1.5" />
-              <polygon points="0,0 70,-40 70,40 0,80" fill="#B45309" fillOpacity="0.5" stroke="#FCD34D" strokeWidth="1.5" />
+              <polygon points="0,-80 70,-40 0,0 -70,-40" fill="#65B7B5" fillOpacity="0.35" stroke="#EDE9DF" strokeWidth="1.5" />
+              <polygon points="-70,-40 0,0 0,80 -70,40" fill="#3E777A" fillOpacity="0.45" stroke="#EDE9DF" strokeWidth="1.5" />
+              <polygon points="0,0 70,-40 70,40 0,80" fill="#D6B16A" fillOpacity="0.5" stroke="#EDE9DF" strokeWidth="1.5" />
             </g>
 
             {/* Monumental Stage Lasers */}
             <polygon points="600,200 100,0 150,0" fill="url(#laserBeam1)" opacity="0.6" />
             <polygon points="600,200 1050,0 1100,0" fill="url(#laserBeam1)" opacity="0.6" />
-            <polygon points="500,220 0,150 0,200" fill="url(#laserBeam2)" opacity="0.4" />
-            <polygon points="700,220 1200,150 1200,200" fill="url(#laserBeam2)" opacity="0.4" />
+            <polygon points="500,220 0,150 0,200" fill="url(#laserBeam2)" opacity="0.45" />
+            <polygon points="700,220 1200,150 1200,200" fill="url(#laserBeam2)" opacity="0.45" />
 
             {/* Cheering Crowd Silhouettes */}
             <path
               d="M 0 675 Q 50 580 100 675 Q 150 570 200 675 Q 250 590 300 675 Q 350 560 400 675 Q 450 585 500 675 Q 550 570 600 675 Q 650 580 700 675 Q 750 565 800 675 Q 850 580 900 675 Q 950 570 1000 675 Q 1050 585 1100 675 Q 1150 570 1200 675 Z"
-              fill="#050505"
+              fill="#0A0F10"
             />
           </svg>
         </div>
       )}
 
       {type === 'web3-nft' && (
-        <div className="absolute inset-0 bg-[#121110] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#131C1E] flex items-center justify-center">
           <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="ethGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#627EEA" />
-                <stop offset="100%" stopColor="#E2E8F0" />
+                <stop offset="0%" stopColor="#65B7B5" />
+                <stop offset="100%" stopColor="#82B9D8" />
               </linearGradient>
             </defs>
-            <rect width="1200" height="675" fill="#141210" />
+            <rect width="1200" height="675" fill="#131C1E" />
 
             {/* Sacred Geometry Circles */}
-            <circle cx="600" cy="338" r="190" stroke="#332B25" strokeWidth="1" strokeDasharray="6 6" />
-            <circle cx="600" cy="338" r="145" stroke="#443930" strokeWidth="1.5" />
-            <circle cx="600" cy="338" r="95" stroke="#F59E0B" strokeWidth="1" opacity="0.4" />
+            <circle cx="600" cy="338" r="190" stroke="#3E777A" strokeWidth="1" strokeDasharray="6 6" opacity="0.6" />
+            <circle cx="600" cy="338" r="145" stroke="#65B7B5" strokeWidth="1.5" opacity="0.4" />
+            <circle cx="600" cy="338" r="95" stroke="#D6B16A" strokeWidth="1" opacity="0.5" />
 
             {/* Ethereum Rhombus Emblem Silhouette */}
-            <polygon points="600,198 670,318 600,358 530,318" fill="url(#ethGradient)" opacity="0.8" />
-            <polygon points="600,373 670,333 600,428 530,333" fill="url(#ethGradient)" opacity="0.6" />
+            <polygon points="600,198 670,318 600,358 530,318" fill="url(#ethGradient)" opacity="0.85" />
+            <polygon points="600,373 670,333 600,428 530,333" fill="url(#ethGradient)" opacity="0.65" />
 
             {/* Stylized 2D Collectible Character Silhouette */}
-            <circle cx="600" cy="308" r="45" fill="#FAF8F5" />
-            <path d="M 580 303 Q 600 316 620 303" stroke="#1C1917" strokeWidth="3" fill="none" strokeLinecap="round" />
-            <ellipse cx="588" cy="296" rx="4" ry="6" fill="#1C1917" />
-            <ellipse cx="612" cy="296" rx="4" ry="6" fill="#1C1917" />
+            <circle cx="600" cy="308" r="45" fill="#EDE9DF" />
+            <path d="M 580 303 Q 600 316 620 303" stroke="#1E2424" strokeWidth="3" fill="none" strokeLinecap="round" />
+            <ellipse cx="588" cy="296" rx="4" ry="6" fill="#1E2424" />
+            <ellipse cx="612" cy="296" rx="4" ry="6" fill="#1E2424" />
             {/* Horns / Sacred Crown */}
-            <path d="M 570 273 Q 550 218 540 198 Q 565 228 580 268" fill="#F59E0B" />
-            <path d="M 630 273 Q 650 218 660 198 Q 635 228 620 268" fill="#F59E0B" />
+            <path d="M 570 273 Q 550 218 540 198 Q 565 228 580 268" fill="#D6B16A" />
+            <path d="M 630 273 Q 650 218 660 198 Q 635 228 620 268" fill="#D6B16A" />
           </svg>
         </div>
       )}
 
       {type === 'game-lab' && (
-        <div className="absolute inset-0 bg-[#0F0E0D] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#11191A] flex items-center justify-center">
           <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="1200" height="675" fill="#0F0E0D" />
+            <rect width="1200" height="675" fill="#11191A" />
             {/* Game Lab Sci-Fi Portal Grid */}
-            <g stroke="#F59E0B" strokeWidth="1" opacity="0.25">
+            <g stroke="#65B7B5" strokeWidth="1" opacity="0.3">
               <line x1="0" y1="338" x2="1200" y2="338" />
               <line x1="600" y1="0" x2="600" y2="675" />
               <circle cx="600" cy="338" r="80" />
@@ -406,9 +406,9 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
             </g>
             {/* Interactive Futuristic Holographic Diamond */}
             <g transform="translate(600, 338)">
-              <polygon points="0,-90 90,0 0,90 -90,0" fill="#1C1917" stroke="#F59E0B" strokeWidth="2" />
-              <polygon points="0,-60 60,0 0,60 -60,0" fill="#F59E0B" fillOpacity="0.2" stroke="#FEF08A" strokeWidth="1.5" />
-              <circle cx="0" cy="0" r="16" fill="#FEF08A" />
+              <polygon points="0,-90 90,0 0,90 -90,0" fill="#182527" stroke="#65B7B5" strokeWidth="2" />
+              <polygon points="0,-60 60,0 0,60 -60,0" fill="#3E777A" fillOpacity="0.4" stroke="#D6B16A" strokeWidth="1.5" />
+              <circle cx="0" cy="0" r="16" fill="#D6B16A" />
             </g>
           </svg>
         </div>
@@ -559,12 +559,11 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 pointer-events-none" />
       )}
 
-      {/* Poster Mode Badge for commercial-cgi */}
+      {/* Poster Mode Caption for commercial-cgi */}
       {type === 'commercial-cgi' && (
         <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white/90 text-xs font-medium font-soft">
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span>پوستر و رندر رسمی تجاری</span>
+          <div className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white/90 text-xs font-medium font-soft">
+            <span>نمونه تولیدات تصویری و CGI</span>
           </div>
         </div>
       )}
@@ -572,10 +571,10 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       {/* Interactive Video Controls Overlay */}
       {showControls && type !== 'commercial-cgi' && (
         <div className="absolute inset-0 p-5 md:p-8 flex flex-col justify-between pointer-events-auto">
-          {/* Top Bar inside Card: simple clean tags */}
+          {/* Top Bar inside Card */}
           <div className="flex items-center justify-between text-xs text-white/90">
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white/90 text-xs font-medium font-soft">
+              <span className="text-white/90 text-xs font-medium font-soft">
                 ۴K Master Cinema
               </span>
             </div>
@@ -597,7 +596,7 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
             <button
               onClick={handlePlayToggle}
               aria-label={isPlaying ? 'توقف پخش' : 'پخش ویدیو'}
-              className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/90 hover:bg-white text-[#18181B] flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#FAF8F4]/95 hover:bg-[#FAF8F4] text-[#3E777A] flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
             >
               {isPlaying ? (
                 <Pause className="w-7 h-7" />
@@ -609,11 +608,11 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
 
           {/* Bottom Bar: Quiet timecode & title */}
           <div className="flex items-center justify-between text-xs text-white/80 pt-2 border-t border-white/10 font-soft">
-            <div className="flex items-center gap-2 font-mono text-xs tracking-wider latin-soft text-amber-400">
-              4K MASTER · WONDERFUL DAY
+            <div className="flex items-center gap-2 font-mono text-xs tracking-wider latin-soft text-[#D6B16A]">
+              A WONDERFUL DAY · 3D FEATURE
             </div>
             <div className="text-xs text-white/80">
-              «روز شگفت‌انگیز» · استودیو آرتا ماد هنر
+              «روز شگفت‌انگیز» · آرتا ماد هنر
             </div>
           </div>
         </div>

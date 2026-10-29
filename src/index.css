@@ -3,11 +3,27 @@
 @theme {
   --font-fa: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-en: 'Plus Jakarta Sans', sans-serif;
+  --color-ivory: #EDE9DF;
+  --color-ivory-light: #F6F3EC;
+  --color-ivory-card: #FAF8F4;
+  --color-turquoise: #65B7B5;
+  --color-skyblue: #82B9D8;
+  --color-deepteal: #3E777A;
+  --color-ochre: #D6B16A;
+  --color-graphite: #777A76;
+  --color-ink: #1E2424;
 }
 
 :root {
   --font-fa: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-en: 'Plus Jakarta Sans', sans-serif;
+  --poyo-ivory: #EDE9DF;
+  --poyo-turquoise: #65B7B5;
+  --poyo-sky-blue: #82B9D8;
+  --poyo-deep-teal: #3E777A;
+  --poyo-warm-ochre: #D6B16A;
+  --poyo-graphite: #777A76;
+  --poyo-ink: #1E2424;
 }
 
 @layer base {
@@ -21,34 +37,34 @@
   }
 
   body {
-    background-color: #FBF9F5;
-    color: #18181B;
+    background-color: #EDE9DF;
+    color: #1E2424;
     overflow-x: hidden;
     font-family: var(--font-fa);
     font-feature-settings: "ss01" 1, "locl" 1, "calt" 1;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle scrollbar harmonized with Warm Ivory & Graphite/Teal */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FBF9F5;
+  background: #EDE9DF;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #EAE6DF;
+  background: #C7C2B6;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D8D2C7;
+  background: #3E777A;
 }
 
-/* Font utilities mapped to requested variables */
+/* Font utilities */
 .font-fa {
   font-family: var(--font-fa);
   font-feature-settings: "ss01" 1, "locl" 1;
@@ -98,4 +114,3 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-

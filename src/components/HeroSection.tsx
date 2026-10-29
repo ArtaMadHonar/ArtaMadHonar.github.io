@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { ArrowLeft, Play, Sparkles } from 'lucide-react';
+import { ArrowLeft, Play } from 'lucide-react';
 import { HeroVideoPlayer, HeroVideoPlayerHandle } from './HeroVideoPlayer';
+import { STUDIO_CATALOG_INFO } from '../data/studioData';
 
 interface HeroSectionProps {
   onOpenShowreel: () => void;
@@ -8,7 +9,6 @@ interface HeroSectionProps {
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
-  onOpenShowreel,
   onOpenContact,
 }) => {
   const playerRef = useRef<HeroVideoPlayerHandle>(null);
@@ -18,65 +18,117 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   };
 
   return (
-    <section className="pt-12 pb-20 sm:pt-16 sm:pb-28 overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
-        {/* Editorial Text Block */}
-        <div className="space-y-6 text-right max-w-3xl mx-auto text-center sm:text-right">
-          {/* Editorial Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F3EFEA] border border-[#EAE6DF] text-xs font-medium text-[#52525B]">
-            <span className="w-1.5 h-1.5 rounded-full bg-stone-800" />
-            <span>استودیو مستقل انیمیشن، رسانه و تکنولوژی سینمایی</span>
+    <section
+      id="about-studio"
+      className="pt-8 pb-14 sm:pt-12 sm:pb-20 overflow-hidden relative scroll-mt-20"
+    >
+      {/* Subtle Watercolor & Architectural Ambient Touches from Poyo Palette */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-24 right-0 w-[32rem] h-[32rem] rounded-full bg-[#82B9D8]/15 blur-3xl"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-40 -left-24 w-[28rem] h-[28rem] rounded-full bg-[#D6B16A]/15 blur-3xl"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12 relative z-10">
+        {/* Full-Width Balanced Editorial Hero Header Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end border-b border-[#DCD6C8] pb-8 text-center sm:text-right">
+          <div className="lg:col-span-8 space-y-4">
+            {/* Unboxed Clean Kicker with Typographic Separator */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-medium text-[#3E777A]">
+              <span className="font-bold">آرتا ماد هنر</span>
+              <span aria-hidden="true" className="text-[#777A76]">·</span>
+              <span>معرفی استودیو</span>
+              <span aria-hidden="true" className="text-[#777A76]">·</span>
+              <span className="font-en text-xs text-[#777A76]">Art, Animation & Creative Technology</span>
+            </div>
+
+            {/* Dignified Display Headline */}
+            <h1 className="text-2xl sm:text-4xl lg:text-[2.6rem] font-black text-[#1E2424] tracking-tight leading-[1.35]">
+              مجموعه‌ای خلاق در تلاقی هنر و فناوری؛ تبدیل ایده‌ها به تجربه‌های تصویری و متمایز
+            </h1>
           </div>
 
-          {/* Refined Dignified Headline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-bold text-[#18181B] tracking-normal leading-[1.4] text-balance">
-            خلق سینما و هنر تصویر با تلاقی اصالت و مهندسی خلاقیت
-          </h1>
+          <div className="lg:col-span-4 space-y-5 flex flex-col items-center sm:items-start lg:items-end justify-between">
+            {/* Official Studio Intro from Catalog */}
+            <p className="text-xs sm:text-sm text-[#434846] font-normal leading-relaxed text-center sm:text-right">
+              {STUDIO_CATALOG_INFO.intro}
+            </p>
 
-          {/* Refined Harmonious Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg text-[#52525B] font-normal leading-relaxed max-w-2xl">
-            ما ادعا نمی‌کنیم هر کاری را انجام می‌دهیم؛ اما متعهدیم برای چالش‌های به‌ظاهر غیرممکن در دنیای تصویر و انیمیشن، راه‌حلی نوآورانه و بی‌بدیل خلق کنیم.
-          </p>
+            {/* Action Row */}
+            <div className="flex flex-wrap items-center justify-center sm:justify-start lg:justify-end gap-2.5 w-full">
+              <button
+                onClick={onOpenContact}
+                className="px-5 py-3 rounded-full bg-[#3E777A] hover:bg-[#326265] text-[#FAF8F4] text-xs font-semibold transition-all shadow-xs flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+              >
+                <span>شروع همکاری و ثبت پروژه</span>
+                <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-85" />
+              </button>
 
-          {/* Action Row */}
-          <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center sm:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
-            <button
-              onClick={onOpenContact}
-              className="px-6 py-3 rounded-full bg-[#18181B] hover:opacity-90 text-[#FAF8F5] text-xs sm:text-sm font-medium transition-all shadow-sm flex items-center justify-center gap-2"
-            >
-              <span>شروع همکاری و ثبت پروژه</span>
-              <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-70" />
-            </button>
-
-            <button
-              onClick={handlePlayClick}
-              className="px-5 py-3 rounded-full bg-white hover:bg-stone-50 border border-[#EAE6DF] text-[#18181B] text-xs sm:text-sm font-medium transition-all shadow-xs flex items-center justify-center gap-2"
-            >
-              <Play className="w-3.5 h-3.5 fill-current text-[#18181B]" />
-              <span>پخش تیزر سینمایی روز شگفت‌انگیز</span>
-            </button>
+              <button
+                onClick={handlePlayClick}
+                className="px-5 py-3 rounded-full bg-[#FAF8F4] hover:bg-[#F3EFE6] border border-[#D5CFC0] hover:border-[#65B7B5] text-[#1E2424] text-xs font-semibold transition-all flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer"
+              >
+                <Play className="w-3.5 h-3.5 fill-current text-[#3E777A]" />
+                <span>پخش تیزر «روز شگفت‌انگیز»</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* The Grand Hero Canvas (Wide 21:9 / 16:9 Showcase) with In-Place Video Player */}
-        <div className="space-y-4">
-          <div className="group relative rounded-3xl overflow-hidden border border-[#EAE6DF] bg-[#0C0B0A] shadow-[0_12px_40px_rgba(24,24,27,0.06)] transition-all duration-500 hover:shadow-2xl">
+        {/* The Grand Hero Video Showcase */}
+        <div className="space-y-3.5">
+          <div className="group relative rounded-3xl overflow-hidden border border-[#D5CFC0] bg-[#141818] shadow-[0_18px_50px_rgba(30,36,36,0.08)] transition-all duration-500">
             <HeroVideoPlayer ref={playerRef} className="w-full h-full" />
           </div>
 
-          {/* Metadata Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2.5 sm:gap-3 text-xs text-[#71717A] px-2 font-fa text-center sm:text-right">
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3">
-              <span className="font-semibold text-[#18181B]">تیزر رسمی انیمیشن سینمایی «روز شگفت‌انگیز»</span>
-              <span aria-hidden="true" className="text-stone-300">·</span>
-              <span className="font-mono text-[11px] font-semibold text-stone-900">4K MASTER CINEMA</span>
-              <span aria-hidden="true" className="text-stone-300 hidden sm:inline">·</span>
-              <span className="hidden sm:inline">پایپلاین اختصاصی هوش مصنوعی و CGI</span>
+          {/* Clean Unboxed Metadata Bar */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#777A76] px-2 font-fa text-center sm:text-right">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5">
+              <span className="font-bold text-[#1E2424]">انیمیشن سینمایی بلند «روز شگفت‌انگیز» (A Wonderful Day)</span>
+              <span aria-hidden="true">·</span>
+              <span className="text-[#3E777A] font-semibold">ژانر: کمدی، ماجراجویی و خانوادگی</span>
+              <span aria-hidden="true" className="hidden sm:inline">·</span>
+              <span className="hidden sm:inline">مخاطب: کودکان و خانواده</span>
             </div>
-            <div className="flex items-center gap-2 text-[11px] sm:text-xs text-stone-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              <span>آماده برای رونمایی و اکران فجر</span>
+            <div className="text-[11px] sm:text-xs text-[#777A76]">
+              <span>تولید استودیو آرتا ماد هنر · پایپلاین ترکیبی هنر و هوش مصنوعی</span>
             </div>
+          </div>
+        </div>
+
+        {/* Studio History & Vision Grid (Directly from Page 2 of the Official Catalog) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* History Card */}
+          <div className="p-7 sm:p-9 rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-3 text-right relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-[#E5E0D4] pb-3.5">
+              <h2 className="text-base sm:text-lg font-bold text-[#1E2424]">
+                تاریخچه شکل‌گیری
+              </h2>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#3E777A] font-semibold">
+                01. STUDIO HERITAGE
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
+              {STUDIO_CATALOG_INFO.history}
+            </p>
+          </div>
+
+          {/* Vision & Approach Card */}
+          <div className="p-7 sm:p-9 rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-3 text-right relative overflow-hidden">
+            <div className="flex items-center justify-between border-b border-[#E5E0D4] pb-3.5">
+              <h2 className="text-base sm:text-lg font-bold text-[#1E2424]">
+                چشم‌انداز و رویکرد بین‌المللی
+              </h2>
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#3E777A] font-semibold">
+                02. VISION & IP APPROACH
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
+              {STUDIO_CATALOG_INFO.vision}
+            </p>
           </div>
         </div>
       </div>

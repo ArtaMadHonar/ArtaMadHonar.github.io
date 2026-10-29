@@ -140,7 +140,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
         id="hero-video-player"
         onMouseMove={resetHideTimer}
         onMouseLeave={() => isPlaying && setShowControls(false)}
-        className={`relative aspect-[16/10] sm:aspect-video lg:aspect-[21/9] w-full bg-[#0C0B0A] overflow-hidden select-none group ${className}`}
+        className={`relative aspect-[16/10] sm:aspect-video lg:aspect-[21/9] w-full bg-[#121616] overflow-hidden select-none group ${className}`}
       >
         {/* HTML5 Video element */}
         <video
@@ -194,16 +194,16 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
             {/* Subtle soft dark vignette on hover */}
             <div className="absolute inset-0 z-10 bg-black/10 group-hover:bg-black/25 transition-colors duration-300 pointer-events-none" />
 
-            {/* Clean, Elegant Center Play Button */}
+            {/* Clean, Elegant Center Play Button with Warm Ochre & Turquoise Aura */}
             <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
               <div className="relative group/btn flex items-center justify-center">
-                <div className="absolute -inset-3 sm:-inset-5 rounded-full bg-amber-500/30 blur-xl group-hover:scale-125 transition-all duration-300" />
+                <div className="absolute -inset-3 sm:-inset-5 rounded-full bg-[#D6B16A]/35 blur-xl group-hover:scale-125 transition-all duration-300" />
                 <button
                   type="button"
                   aria-label="پخش تیزر سینمایی روز شگفت‌انگیز"
-                  className="relative w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-white text-stone-950 flex items-center justify-center shadow-[0_10px_35px_rgba(0,0,0,0.45)] transition-all duration-300 group-hover:scale-110 active:scale-95 border border-white/40"
+                  className="relative w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-[0_10px_35px_rgba(0,0,0,0.45)] transition-all duration-300 group-hover:scale-110 active:scale-95 border border-white/50"
                 >
-                  <Play className="w-6 h-6 sm:w-8 sm:h-8 lg:w-9 lg:h-9 translate-x-0.5 fill-current text-stone-950" />
+                  <Play className="w-6 h-6 sm:w-8 sm:h-8 lg:w-9 lg:h-9 translate-x-0.5 fill-current text-[#3E777A]" />
                 </button>
               </div>
             </div>
@@ -213,7 +213,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
         {/* Buffering Spinner */}
         {isBuffering && hasStarted && (
           <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none bg-black/20">
-            <div className="w-12 h-12 rounded-full border-2 border-white/20 border-t-amber-500 animate-spin" />
+            <div className="w-12 h-12 rounded-full border-2 border-white/20 border-t-[#D6B16A] animate-spin" />
           </div>
         )}
 
@@ -224,16 +224,16 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
             className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-colors cursor-pointer"
           >
             <div className="relative group/resume flex items-center justify-center">
-              <div className="absolute -inset-4 rounded-full bg-amber-500/25 blur-xl group-hover/resume:bg-amber-500/40 transition-all" />
+              <div className="absolute -inset-4 rounded-full bg-[#D6B16A]/30 blur-xl group-hover/resume:bg-[#D6B16A]/45 transition-all" />
               <button
                 type="button"
                 aria-label="ادامه پخش"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-stone-950 flex items-center justify-center shadow-2xl transition-transform group-hover/resume:scale-110 active:scale-95"
+                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-2xl transition-transform group-hover/resume:scale-110 active:scale-95"
               >
                 {currentTime >= duration - 0.5 ? (
-                  <RotateCcw className="w-7 h-7 sm:w-8 sm:h-8 text-stone-950" />
+                  <RotateCcw className="w-7 h-7 sm:w-8 sm:h-8 text-[#3E777A]" />
                 ) : (
-                  <Play className="w-7 h-7 sm:w-8 sm:h-8 translate-x-0.5 fill-current text-stone-950" />
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 translate-x-0.5 fill-current text-[#3E777A]" />
                 )}
               </button>
             </div>
@@ -254,13 +254,13 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
             >
               {/* Filled progress track starting from LEFT (dir="ltr") */}
               <div
-                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-[width] duration-75"
+                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#65B7B5] to-[#D6B16A] rounded-full transition-[width] duration-75"
                 style={{ width: `${progressPercent}%` }}
               />
 
               {/* Seeker Thumb moving from LEFT to RIGHT */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-white shadow-lg border-2 border-amber-500 group-hover/seek:scale-125 transition-transform"
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#FAF8F4] shadow-lg border-2 border-[#D6B16A] group-hover/seek:scale-125 transition-transform"
                 style={{ left: `${progressPercent}%` }}
               />
 
@@ -288,7 +288,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
                     e.stopPropagation();
                     togglePlay();
                   }}
-                  className="p-1 hover:text-amber-400 transition-colors"
+                  className="p-1 hover:text-[#D6B16A] transition-colors"
                   aria-label={isPlaying ? 'توقف' : 'پخش'}
                 >
                   {isPlaying ? (
@@ -301,7 +301,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
                 <button
                   type="button"
                   onClick={toggleMute}
-                  className="p-1 hover:text-amber-400 transition-colors"
+                  className="p-1 hover:text-[#D6B16A] transition-colors"
                   aria-label={isMuted ? 'فعال‌سازی صدا' : 'قطع صدا'}
                 >
                   {isMuted ? (
@@ -312,7 +312,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
                 </button>
 
                 {/* Real-time Timecode (LTR) - dynamic from video element */}
-                <div dir="ltr" className="font-mono text-[11px] sm:text-xs text-white/90">
+                <div dir="ltr" className="font-mono text-[11px] sm:text-xs text-white/90 tabular-nums">
                   <span className="font-semibold">{formatTime(currentTime)}</span>
                   <span className="mx-1 text-white/40">/</span>
                   <span className="text-white/60">{formatTime(duration)}</span>
@@ -321,13 +321,13 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
 
               {/* Title & Fullscreen Button */}
               <div className="flex items-center gap-2 sm:gap-3">
-                <span className="hidden sm:inline text-[11px] text-amber-400/90 font-fa font-medium">
+                <span className="hidden sm:inline text-[11px] text-[#D6B16A] font-fa font-medium">
                   تیزر رسمی «روز شگفت‌انگیز»
                 </span>
                 <button
                   type="button"
                   onClick={toggleFullscreen}
-                  className="p-1 hover:text-amber-400 transition-colors"
+                  className="p-1 hover:text-[#D6B16A] transition-colors"
                   aria-label="نمایش تمام‌صفحه"
                 >
                   <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
