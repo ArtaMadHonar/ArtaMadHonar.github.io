@@ -22,6 +22,7 @@ export interface TeamMember {
   education?: string;
   isCoFounder?: boolean;
   isMystery?: boolean;
+  hideFromHome?: boolean;
 }
 
 export interface CharacterConcept {
@@ -194,56 +195,63 @@ export const WONDERFUL_DAY_CATALOG = {
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    id: 'mohammad-rahimi',
-    name: 'محمد رحیمی',
-    nameEn: 'Mohamad Rahimi',
-    role: 'هم‌بنیانگذار | مدیر فنی هوش مصنوعی و معمار پایپلاین تولید',
-    roleEn: 'Co-Founder | AI Technical Director & Production Pipeline Architect',
+    id: 'mahmoud-mohammadian',
+    name: 'محمود محمدیان',
+    nameEn: 'Mahmoud Mohammadian',
+    role: 'هم‌بنیانگذار | کارگردان و نویسنده انیمیشن',
+    roleEn: 'Co-Founder | Animation Director & Screenwriter',
     department: 'leadership',
-    initials: 'MR',
+    initials: 'MM',
     isCoFounder: true,
-    education: 'کارشناس علوم اجتماعی (۱۳۷۸ – ۱۳۸۱)',
+    education: 'کارشناس سینما — دانشگاه هنر تهران',
     imageUrl:
-      'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
-    bio: 'معمار پایپلاین تولید و مدیر فنی هوش مصنوعی با بیش از ۲۲ سال سابقه در جلوه‌های بصری (VFX)، پس‌ازتولید سینمایی و تیزرهای تجاری.',
+      'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
+    bio: 'کارگردان و نویسنده سینما و انیمیشن؛ دانش‌آموخته دانشگاه هنر تهران و کارگردان فیلم سینمایی «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران.',
     fullBio:
-      'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
+      'محمود محمدیان، دانش‌آموخته رشته سینما از دانشگاه هنر تهران، کارگردان و نویسنده‌ای با پیشینه متنوع در سینمای داستانی، انیمیشن بلند، مستند و تبلیغات تلویزیونی است. تجربه مستقیم او در مدیریت تصویربرداری، انیماتوری و کارگردانی، نگاهی دقیق به دکوپاژ، نورپردازی، ریتم روایی و هدایت بازیگران به آثار استودیو بخشیده و محور هدایت هنری فیلم سینمایی «روز شگفت‌انگیز» را شکل داده است.',
     workHistory: [
       {
-        role: 'هم‌بنیانگذار و مدیر فنی هوش مصنوعی',
-        projectOrOrg: 'استودیو آرتا ماد هنر (Arta Mad Honar Studio)',
-        year: '۱۴۰۱ تاکنون',
-        detail:
-          'طراحی و هدایت پایپلاین فنی انیمیشن سینمایی بلند «روز شگفت‌انگیز» و یکپارچه‌سازی ابزارهای هوش مصنوعی مولد با فرآیندهای حرفه‌ای VFX و پس‌ازتولید.',
+        role: 'کارگردان',
+        projectOrOrg: 'فیلم انیمیشن سینمایی «روز شگفت‌انگیز» (به تهیه‌کنندگی فیلمیران)',
+        year: 'در حال تولید',
+        detail: 'هدایت هنری، کارگردانی و توسعه روایت انیمیشن بلند سینمایی استودیو آرتا ماد هنر.',
       },
       {
-        role: 'هنرمند فنی تصویر و تهیه‌کننده بصری رویدادهای بزرگ',
-        projectOrOrg: 'تولیدات مستقل و پروژه‌های صحنه‌ای',
-        year: '۱۴۰۱ تا ۱۴۰۴',
-        detail:
-          'کارگردانی فنی و تولید محتوای عظیم ویدئو مپینگ (Video Mapping) برای اجراهای بزرگ تئاتری و کنسرت‌های استادیومی به همراه ساخت تیزرهای تبلیغاتی.',
+        role: 'کارگردان',
+        projectOrOrg: 'فیلم داستانی «خطور»',
+        year: 'سینمای داستانی',
+        detail: 'کارگردانی و هدایت دراماتیک اثر.',
       },
       {
-        role: 'تدوینگر ارشد و آرتیست جلوه‌های بصری (VFX)',
-        projectOrOrg: 'آژانس تبلیغاتی بازتاب',
-        year: '۱۴۰۰ تا ۱۴۰۲',
-        detail:
-          'مدیریت کامل چرخه پس‌ازتولید، کامپوزیت، اصلاح رنگ و یکپارچه‌سازی جلوه‌های ویژه بصری برای کمپین‌های تلویزیونی برندهای ملی.',
+        role: 'انیماتور',
+        projectOrOrg: 'انیمیشن سینمایی «آقای مهربان»',
+        year: 'انیمیشن بلند سینمایی',
+        detail: 'اجرای انیمیت و بازیگری شخصیت‌ها در اولین انیمیشن بلند سه‌بعدی با رندر دوبعدی.',
       },
       {
-        role: 'کامپوزیتور ارشد (Senior Compositor)',
-        projectOrOrg: 'استودیو لیچی (Lichi Studios)',
-        year: '۱۳۹۷ تا ۱۳۹۹',
-        detail:
-          'اجرای کامپوزیت پیشرفته برای سریال انیمیشنی «Annie and Manny»؛ اثری که موفق به کسب رتبه سوم در میان ۳۰ پروژه برتر جشنواره بین‌المللی MIPJunior کن فرانسه شد.',
+        role: 'مدیر تصویربرداری',
+        projectOrOrg: 'تله‌فیلم‌های «بازگشت» و «بهترین‌های شهر»',
+        year: 'تولیدات تلویزیونی',
+        detail: 'طراحی نورپردازی، قاب‌بندی و مدیریت فیلم‌برداری.',
+      },
+      {
+        role: 'کارگردان',
+        projectOrOrg: 'مجموعه مستند «همدلی» و مستند «حاشیه شهر»',
+        year: 'سینمای مستند',
+        detail: 'پژوهش، کارگردانی و روایت‌پردازی مستندهای اجتماعی.',
+      },
+      {
+        role: 'کارگردان تیزرهای تبلیغاتی',
+        projectOrOrg: 'برندهای معتبر کشور (پخش در شبکه سراسری)',
+        year: 'تبلیغات بازرگانی',
+        detail: 'ایده‌پردازی و کارگردانی کمپین‌ها و تیزرهای تلویزیونی در مقیاس ملی.',
       },
     ],
     specialties: [
-      'معماری پایپلاین هوش مصنوعی (Sora, Veo, Kling, Midjourney)',
-      'مهندسی پرامپت و بهینه‌سازی گردش‌کار تولید',
-      'کامپوزیت پیشرفته و جلوه‌های بصری (After Effects, Maya)',
-      'تدوین، اصلاح رنگ سینمایی و طراحی صدا (DaVinci Resolve, Premiere Pro)',
-      'طراحی و اجرای ویدئو مپینگ در مقیاس کلان',
+      'کارگردانی و نویسندگی انیمیشن سینمایی',
+      'کارگردانی فیلم داستانی و مستند',
+      'طراحی دکوپاژ، نورپردازی و مدیریت تصویربرداری',
+      'کارگردانی تیزرهای تبلیغاتی شبکه سراسری',
     ],
   },
   {
@@ -325,63 +333,56 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
   },
   {
-    id: 'mahmoud-mohammadian',
-    name: 'محمود محمدیان',
-    nameEn: 'Mahmoud Mohammadian',
-    role: 'هم‌بنیانگذار | کارگردان و نویسنده انیمیشن',
-    roleEn: 'Co-Founder | Animation Director & Screenwriter',
+    id: 'mohammad-rahimi',
+    name: 'محمد رحیمی',
+    nameEn: 'Mohamad Rahimi',
+    role: 'هم‌بنیانگذار | مدیر فنی هوش مصنوعی و معمار پایپلاین تولید',
+    roleEn: 'Co-Founder | AI Technical Director & Production Pipeline Architect',
     department: 'leadership',
-    initials: 'MM',
+    initials: 'MR',
     isCoFounder: true,
-    education: 'کارشناس سینما — دانشگاه هنر تهران',
+    education: 'کارشناس علوم اجتماعی (۱۳۷۸ – ۱۳۸۱)',
     imageUrl:
-      'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
-    bio: 'کارگردان و نویسنده سینما و انیمیشن؛ دانش‌آموخته دانشگاه هنر تهران و کارگردان فیلم سینمایی «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران.',
+      'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
+    bio: 'معمار پایپلاین تولید و مدیر فنی هوش مصنوعی با بیش از ۲۲ سال سابقه در جلوه‌های بصری (VFX)، پس‌ازتولید سینمایی و تیزرهای تجاری.',
     fullBio:
-      'محمود محمدیان، دانش‌آموخته رشته سینما از دانشگاه هنر تهران، کارگردان و نویسنده‌ای با پیشینه متنوع در سینمای داستانی، انیمیشن بلند، مستند و تبلیغات تلویزیونی است. تجربه مستقیم او در مدیریت تصویربرداری، انیماتوری و کارگردانی، نگاهی دقیق به دکوپاژ، نورپردازی، ریتم روایی و هدایت بازیگران به آثار استودیو بخشیده و محور هدایت هنری فیلم سینمایی «روز شگفت‌انگیز» را شکل داده است.',
+      'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
     workHistory: [
       {
-        role: 'کارگردان',
-        projectOrOrg: 'فیلم انیمیشن سینمایی «روز شگفت‌انگیز» (به تهیه‌کنندگی فیلمیران)',
-        year: 'در حال تولید',
-        detail: 'هدایت هنری، کارگردانی و توسعه روایت انیمیشن بلند سینمایی استودیو آرتا ماد هنر.',
+        role: 'هم‌بنیانگذار و مدیر فنی هوش مصنوعی',
+        projectOrOrg: 'استودیو آرتا ماد هنر (Arta Mad Honar Studio)',
+        year: '۱۴۰۱ تاکنون',
+        detail:
+          'طراحی و هدایت پایپلاین فنی انیمیشن سینمایی بلند «روز شگفت‌انگیز» و یکپارچه‌سازی ابزارهای هوش مصنوعی مولد با فرآیندهای حرفه‌ای VFX و پس‌ازتولید.',
       },
       {
-        role: 'کارگردان',
-        projectOrOrg: 'فیلم داستانی «خطور»',
-        year: 'سینمای داستانی',
-        detail: 'کارگردانی و هدایت دراماتیک اثر.',
+        role: 'هنرمند فنی تصویر و تهیه‌کننده بصری رویدادهای بزرگ',
+        projectOrOrg: 'تولیدات مستقل و پروژه‌های صحنه‌ای',
+        year: '۱۴۰۱ تا ۱۴۰۴',
+        detail:
+          'کارگردانی فنی و تولید محتوای عظیم ویدئو مپینگ (Video Mapping) برای اجراهای بزرگ تئاتری و کنسرت‌های استادیومی به همراه ساخت تیزرهای تبلیغاتی.',
       },
       {
-        role: 'انیماتور',
-        projectOrOrg: 'انیمیشن سینمایی «آقای مهربان»',
-        year: 'انیمیشن بلند سینمایی',
-        detail: 'اجرای انیمیت و بازیگری شخصیت‌ها در اولین انیمیشن بلند سه‌بعدی با رندر دوبعدی.',
+        role: 'تدوینگر ارشد و آرتیست جلوه‌های بصری (VFX)',
+        projectOrOrg: 'آژانس تبلیغاتی بازتاب',
+        year: '۱۴۰۰ تا ۱۴۰۲',
+        detail:
+          'مدیریت کامل چرخه پس‌ازتولید، کامپوزیت، اصلاح رنگ و یکپارچه‌سازی جلوه‌های ویژه بصری برای کمپین‌های تلویزیونی برندهای ملی.',
       },
       {
-        role: 'مدیر تصویربرداری',
-        projectOrOrg: 'تله‌فیلم‌های «بازگشت» و «بهترین‌های شهر»',
-        year: 'تولیدات تلویزیونی',
-        detail: 'طراحی نورپردازی، قاب‌بندی و مدیریت فیلم‌برداری.',
-      },
-      {
-        role: 'کارگردان',
-        projectOrOrg: 'مجموعه مستند «همدلی» و مستند «حاشیه شهر»',
-        year: 'سینمای مستند',
-        detail: 'پژوهش، کارگردانی و روایت‌پردازی مستندهای اجتماعی.',
-      },
-      {
-        role: 'کارگردان تیزرهای تبلیغاتی',
-        projectOrOrg: 'برندهای معتبر کشور (پخش در شبکه سراسری)',
-        year: 'تبلیغات بازرگانی',
-        detail: 'ایده‌پردازی و کارگردانی کمپین‌ها و تیزرهای تلویزیونی در مقیاس ملی.',
+        role: 'کامپوزیتور ارشد (Senior Compositor)',
+        projectOrOrg: 'استودیو لیچی (Lichi Studios)',
+        year: '۱۳۹۷ تا ۱۳۹۹',
+        detail:
+          'اجرای کامپوزیت پیشرفته برای سریال انیمیشنی «Annie and Manny»؛ اثری که موفق به کسب رتبه سوم در میان ۳۰ پروژه برتر جشنواره بین‌المللی MIPJunior کن فرانسه شد.',
       },
     ],
     specialties: [
-      'کارگردانی و نویسندگی انیمیشن سینمایی',
-      'کارگردانی فیلم داستانی و مستند',
-      'طراحی دکوپاژ، نورپردازی و مدیریت تصویربرداری',
-      'کارگردانی تیزرهای تبلیغاتی شبکه سراسری',
+      'معماری پایپلاین هوش مصنوعی (Sora, Veo, Kling, Midjourney)',
+      'مهندسی پرامپت و بهینه‌سازی گردش‌کار تولید',
+      'کامپوزیت پیشرفته و جلوه‌های بصری (After Effects, Maya)',
+      'تدوین، اصلاح رنگ سینمایی و طراحی صدا (DaVinci Resolve, Premiere Pro)',
+      'طراحی و اجرای ویدئو مپینگ در مقیاس کلان',
     ],
   },
   {
@@ -403,7 +404,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'AA',
     imageUrl:
-      'https://s1.uploadkon.ir/8553b6d2-c72a-4672-9e8b-91e182d3a818/8553b6d2-c72a-4672-9e8b-91e182d3a818-Alipour.webp',
+      'https://my.uploadkon.ir/d/N9Ez8PuuRPcfiBHfsAH9i5aXLi1mut/ODQ3ODJ8cGFkZA.webp',
     bio: 'همراهی در هدایت هنری و اجرایی پروژه، تدوین روایت تصویری، ضبط و اجرای نریشن و توسعهٔ کانسپت‌های بصری در مسیر تولید انیمیشن.',
   },
   {
@@ -425,7 +426,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'HB',
     imageUrl:
-      'https://s1.uploadkon.ir/1a596e04-2840-4f60-b243-9e5804365f0d/1a596e04-2840-4f60-b243-9e5804365f0d-Hilda.webp',
+      'https://my.uploadkon.ir/d/LoxHqhB40iPIVZkFIrT1eBD2LC3p1W/ODQ3ODF8cGFkZA.webp',
     bio: 'پردازش دقیق لایه‌های گرافیکی، فینیشینگ دیجیتال، کنترل گرمای رنگ و تثبیت وفاداری استایل بصری در فریم‌های نهایی.',
   },
   {
@@ -435,6 +436,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Animation Directing & Visual Art Specialist',
     department: 'animation',
     initials: 'AV',
+    hideFromHome: true,
     imageUrl:
       'https://my.uploadkon.ir/d/pmZPEPMDQUDRN7AF4XnCKRYrRJrBYJ/ODM3NzZ8cGFkZA.webp',
   },
@@ -445,6 +447,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Animation Directing & Visual Art Specialist',
     department: 'animation',
     initials: 'MM',
+    hideFromHome: true,
     imageUrl:
       'https://my.uploadkon.ir/d/gXp0Fwi25379XaL1haeU2AWpOtSG2F/ODM3NzV8cGFkZA.webp',
   },
@@ -455,6 +458,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Animation Technical Pipeline Specialist',
     department: 'animation',
     initials: 'MZ',
+    hideFromHome: true,
     imageUrl:
       'https://my.uploadkon.ir/d/JUUOT7jej04SLRqiJu9JB04MAmcedc/ODM3ODR8cGFkZA.webp',
   },
@@ -477,7 +481,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'commercial',
     initials: 'HS',
     imageUrl:
-      'https://s1.uploadkon.ir/2bd7e8c4-476a-4de2-9e70-5925159e6d5f/2bd7e8c4-476a-4de2-9e70-5925159e6d5f-Haniye.webp',
+      'https://my.uploadkon.ir/d/kXMxs66jXIh8TKTTe9Afh6RYFPUia7/ODQ4MDN8cGFkZA.webp',
     bio: 'خلق ریتم‌های گیرا در تدوین فیلم و طراحی بافت‌های صوتی هایپررئال (Foley & SFX) جهت درگیرسازی حسی مخاطب.',
   },
   {
@@ -487,6 +491,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Commercial & Creative Production Specialist',
     department: 'commercial',
     initials: 'RS',
+    hideFromHome: true,
     imageUrl:
       'https://my.uploadkon.ir/d/htwNeHjKCOsisVo4bOxSdwQkW3u0A7/ODM3MjN8cGFkZA.webp',
   },

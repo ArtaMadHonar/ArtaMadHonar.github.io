@@ -34,7 +34,7 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
   }, []);
 
   const coFounders = TEAM_MEMBERS.filter((m) => m.isCoFounder);
-  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder);
+  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome);
 
   const filterTabs = [
     { id: 'all', label: 'همه اعضای تیم تولید' },
