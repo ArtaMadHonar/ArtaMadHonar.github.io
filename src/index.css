@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-fa: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-en: 'Plus Jakarta Sans', sans-serif;
@@ -157,9 +159,11 @@ html.dark .bg-\[\#FAF8F4\]:not(.keep-light-pill) {
 html.dark .bg-\[\#F4F0E6\],
 html.dark .bg-\[\#F4F0E6\]\/85,
 html.dark .bg-\[\#F4F0E6\]\/80,
+html.dark .bg-\[\#F4F0E6\]\/75,
 html.dark .bg-\[\#F4F0E6\]\/70,
 html.dark .bg-\[\#F4F0E6\]\/65,
 html.dark .bg-\[\#F4F0E6\]\/60,
+html.dark .bg-\[\#F4F0E6\]\/50,
 html.dark .bg-\[\#F6F3EC\],
 html.dark .bg-\[\#F3EFE6\] {
   background-color: #1B2629 !important;
@@ -184,6 +188,19 @@ html.dark .border-\[\#DCD6C8\]\/60 {
 html.dark .border-\[\#E5E0D4\],
 html.dark .border-\[\#E2DDD1\] {
   border-color: #202D31 !important;
+}
+
+html.dark .border-\[\#3E777A\]:not(.keep-teal-border) {
+  border-color: #65B7B5 !important;
+}
+
+html.dark .ring-\[\#3E777A\]\/20 {
+  --tw-ring-color: rgba(101, 183, 181, 0.35) !important;
+}
+
+html.dark .ring-\[\#65B7B5\]\/30,
+html.dark .ring-\[\#65B7B5\]\/40 {
+  --tw-ring-color: rgba(101, 183, 181, 0.45) !important;
 }
 
 /* Typography */

@@ -24,7 +24,8 @@ const SHORT_ROLE_BY_ID: Record<string, string> = {
   'khorshid-khooban': 'مدیر تولید تیزر و آهنگساز',
   'hanieh-samipoor': 'تدوینگر ارشد و طراح صدا',
   'nima-nekookar': 'مدیر دپارتمان وب۳ و NFT',
-  'ali-ebrahimi': 'طراح ارشد کالکشن وب۳',
+  'mohammad-shariati': 'طراح ارشد کالکشن وب۳',
+  'arya-mohammadkhan': 'عضو دپارتمان بازی‌سازی',
 };
 
 const DEPARTMENT_TABS = [
@@ -41,7 +42,7 @@ interface TeamGalleryProps {
 export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
   const [activeDepartment, setActiveDepartment] = useState<string>('all');
   const coFounders = TEAM_MEMBERS.filter((m) => m.isCoFounder);
-  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome).slice(0, 8);
+  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome);
 
   const filteredMembers =
     activeDepartment === 'all'

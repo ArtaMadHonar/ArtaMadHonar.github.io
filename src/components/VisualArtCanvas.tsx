@@ -259,7 +259,7 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
             onError={(e) => {
               const target = e.currentTarget;
               const cdnFallback =
-                'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp';
+                'https://my.uploadkon.ir/d/8ZUbcLFR84n4O6DvYRgWFI4ebabId8/OTQ5Mzl8cGFkZA.webp';
               if (!target.src.includes('uploadkon.ir')) {
                 target.src = cdnFallback;
                 return;
@@ -349,8 +349,28 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       )}
 
       {type === 'web3-nft' && (
-        <div className="absolute inset-0 bg-[#131C1E] flex items-center justify-center">
-          <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute inset-0 bg-[#0C0F10] flex items-center justify-center overflow-hidden">
+          <img
+            src={imageUrl || '/assets/web3-nft-cover.webp'}
+            alt="وب۳، NFT و فناوری‌های نوین"
+            referrerPolicy="no-referrer"
+            loading="eager"
+            decoding="sync"
+            className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+            onError={(e) => {
+              const target = e.currentTarget;
+              const remoteFallback =
+                'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp';
+              if (!target.src.includes('uploadkon.ir')) {
+                target.src = remoteFallback;
+                return;
+              }
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }}
+          />
+          <svg className="w-full h-full object-cover hidden" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="ethGradient" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stopColor="#65B7B5" />
@@ -358,24 +378,10 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
               </linearGradient>
             </defs>
             <rect width="1200" height="675" fill="#131C1E" />
-
-            {/* Sacred Geometry Circles */}
             <circle cx="600" cy="338" r="190" stroke="#3E777A" strokeWidth="1" strokeDasharray="6 6" opacity="0.6" />
             <circle cx="600" cy="338" r="145" stroke="#65B7B5" strokeWidth="1.5" opacity="0.4" />
-            <circle cx="600" cy="338" r="95" stroke="#D6B16A" strokeWidth="1" opacity="0.5" />
-
-            {/* Ethereum Rhombus Emblem Silhouette */}
             <polygon points="600,198 670,318 600,358 530,318" fill="url(#ethGradient)" opacity="0.85" />
             <polygon points="600,373 670,333 600,428 530,333" fill="url(#ethGradient)" opacity="0.65" />
-
-            {/* Stylized 2D Collectible Character Silhouette */}
-            <circle cx="600" cy="308" r="45" fill="#EDE9DF" />
-            <path d="M 580 303 Q 600 316 620 303" stroke="#1E2424" strokeWidth="3" fill="none" strokeLinecap="round" />
-            <ellipse cx="588" cy="296" rx="4" ry="6" fill="#1E2424" />
-            <ellipse cx="612" cy="296" rx="4" ry="6" fill="#1E2424" />
-            {/* Horns / Sacred Crown */}
-            <path d="M 570 273 Q 550 218 540 198 Q 565 228 580 268" fill="#D6B16A" />
-            <path d="M 630 273 Q 650 218 660 198 Q 635 228 620 268" fill="#D6B16A" />
           </svg>
         </div>
       )}
@@ -565,14 +571,6 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10 pointer-events-none" />
       )}
 
-      {/* Poster Mode Caption for commercial-cgi */}
-      {type === 'commercial-cgi' && (
-        <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
-          <div className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white/90 text-xs font-medium font-soft">
-            <span>نمونه تولیدات تصویری و CGI</span>
-          </div>
-        </div>
-      )}
 
       {/* Interactive Video Controls Overlay */}
       {showControls && type !== 'commercial-cgi' && (

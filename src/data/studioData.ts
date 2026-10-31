@@ -39,7 +39,7 @@ export interface DomainGalleryItem {
   id: string;
   title: string;
   titleEn?: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   badge?: string;
   category?: 'AI Assisted' | 'Making of' | 'Editorial' | 'Sound Design' | '2D' | 'Showreel';
@@ -525,26 +525,41 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: 'nima-nekookar',
     name: 'نیما نکوکار',
-    role: 'مدیر ارشد دپارتمان وب۳ و سوپروایزر NFT',
-    roleEn: 'Head of Web3 & NFT Supervisor',
+    role: 'سرپرست دپارتمان وب۳، NFT و فناوری‌ها',
+    roleEn: 'Co-Lead of Web3, NFT & Smart Technologies',
     department: 'web3',
     initials: 'NN',
     imageUrl: '/assets/team/nima-nekookar.webp',
     fallbackImageUrl:
-      'https://s1.uploadkon.ir/b96458cc-d87d-4345-b703-bfe6d3615e7d/b96458cc-d87d-4345-b703-bfe6d3615e7d-Nima.webp',
-    bio: 'معماری اکوسیستم بلاکچین بر بستر اتریوم، قراردادهای هوشمند ایمن و هدایت جهان‌های دیجیتال دوبعدی.',
+      'https://my.uploadkon.ir/d/hQNGStg0AOneFfSFfJmHSxqPkJl2Lr/OTQ5MzZ8cGFkZA.webp',
+    bio: 'معماری اکوسیستم بلاکچین، قراردادهای هوشمند ایمن و هدایت جهان‌های دیجیتال و مجموعه‌های کلکسیونی NFT.',
   },
   {
-    id: 'ali-ebrahimi',
-    name: 'علی ابراهیمی',
+    id: 'mohammad-shariati',
+    name: 'محمد شریعتی',
+    nameEn: 'Mohammad Shariati',
     role: 'طراح ارشد کالکشن و تصویرساز وب۳',
     roleEn: 'Lead NFT Artist & Digital Illustrator',
     department: 'web3',
-    initials: 'AE',
-    imageUrl: '/assets/team/ali-ebrahimi.webp',
+    initials: 'MS',
+    imageUrl: '/assets/team/mohammad-shariati.webp',
     fallbackImageUrl:
-      'https://s1.uploadkon.ir/772b4b4b-c8bc-44cd-ba13-951cef7d99d5/772b4b4b-c8bc-44cd-ba13-951cef7d99d5-Ali%20Ebrahimi.webp',
+      'https://my.uploadkon.ir/d/3KB0IoO9HXO4XMO4DUUsTF2Zd5boXS/OTQ5Mzh8cGFkZA.webp',
     bio: 'خلق کاراکترها و تصویرسازی مجموعه‌های دوبعدی با لایه‌بندی هنری غنی، لور داستانی و ماندگاری بصری.',
+  },
+  {
+    id: 'arya-mohammadkhan',
+    name: 'آریا محمدخان',
+    nameEn: 'Arya Mohammadkhan',
+    role: 'عضو دپارتمان بازی‌سازی و سرگرمی تعاملی',
+    roleEn: 'Game Development Specialist',
+    department: 'animation',
+    initials: 'AM',
+    hideFromHome: true,
+    imageUrl: '/assets/team/arya-mohammadkhan.webp',
+    fallbackImageUrl:
+      'https://my.uploadkon.ir/d/SIIMZjycixdJI0oJjdBhTq2rG5KvGs/OTQ5MjV8cGFkZA.webp',
+    bio: 'طراحی مکانیک‌های بازی، توسعه تعاملی و پیاده‌سازی گیم‌پلی در پروژه‌های دیجیتال و بازی‌های استودیو.',
   },
 ];
 
@@ -725,7 +740,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'تولید تیزرهای تبلیغاتی، محتوای CGI، فیلم‌های معرفی محصول و ساخت موسیقی و صدای اختصاصی متناسب با هویت برندها.',
     imageUrl: '/assets/commercial-teaser-banner.webp',
     fallbackImageUrl:
-      'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp',
+      'https://my.uploadkon.ir/d/8ZUbcLFR84n4O6DvYRgWFI4ebabId8/OTQ5Mzl8cGFkZA.webp',
     internationalUnit: {
       name: 'BearStudio',
       roleLabel: 'International Unit · BearStudio',
@@ -753,6 +768,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'khorshid-khooban',
       'hanieh-samipoor',
       'reyhaneh-saeidi',
+      'negar-baratzadeh',
     ],
     teamGroups: [
       {
@@ -764,7 +780,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
       {
         id: 'cgi-members',
         title: 'اعضای تیم',
-        memberIds: ['khorshid-khooban', 'hanieh-samipoor', 'reyhaneh-saeidi'],
+        memberIds: ['khorshid-khooban', 'hanieh-samipoor', 'reyhaneh-saeidi', 'negar-baratzadeh'],
       },
     ],
     galleryItems: [
@@ -1002,18 +1018,25 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'بازی آموزش زبان',
     ],
     canvasType: 'game-lab',
-    relatedMemberIds: ['mehdi-mohammadian', 'lotfallah-salehi'],
+    relatedMemberIds: [
+      'mehdi-mohammadian',
+      'mahmoud-mohammadian',
+      'lotfallah-salehi',
+      'negar-baratzadeh',
+      'ali-alipour',
+      'arya-mohammadkhan',
+    ],
     teamGroups: [
       {
         id: 'game-head',
         title: 'هد دپارتمان',
         isHead: true,
-        memberIds: ['mehdi-mohammadian'],
+        memberIds: ['mehdi-mohammadian', 'mahmoud-mohammadian'],
       },
       {
         id: 'game-members',
         title: 'اعضای تیم',
-        memberIds: ['lotfallah-salehi'],
+        memberIds: ['lotfallah-salehi', 'negar-baratzadeh', 'ali-alipour', 'arya-mohammadkhan'],
       },
     ],
     galleryItems: [
@@ -1117,63 +1140,113 @@ export const SELECTED_WORKS: ProjectWork[] = [
   },
   {
     id: 'web3-nft',
-    title: 'فناوری‌های نوین، هوش مصنوعی و توسعه محصول (Web3 & AI)',
-    shortTitle: 'فناوری‌های نوین، AI و Web3',
-    categoryFa: '۴. فناوری‌های نوین و توسعه محصول',
+    title: 'وب۳، NFT و فناوری‌های نوین (Web3, NFT & Smart Tech)',
+    shortTitle: 'وب۳، NFT و تکنولوژی‌ها',
+    categoryFa: '۴. وب۳، NFT و تکنولوژی‌ها',
     categoryKey: 'web3',
-    subtitle: 'AI Automation, Creative Tech & Web3 Solutions',
+    subtitle: 'Web3 Ecosystem, NFT Collectibles & Lumindy Platform',
+    imageUrl: '/assets/web3-nft-cover.webp',
+    fallbackImageUrl:
+      'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp',
     shortSummary:
-      'به‌کارگیری هوش مصنوعی و اتوماسیون در پایپلاین‌های تولید رسانه و توسعه محصولات فناورانه و کالکشن‌های دیجیتال Web3.',
+      'توسعه پلتفرم مدیریت هوشمند پروژه‌ها (لوماندی)، اکوسیستم وب۳ و طراحی دارایی‌های دیجیتال و مجموعه‌های کلکسیونی NFT مبتنی بر شخصیت‌ها و جهان‌های داستانی.',
     description:
-      'به‌کارگیری هوش مصنوعی و اتوماسیون در فرایندهای تولید و توسعه محصولات فناورانه در حوزه رسانه و سرگرمی، از جمله راهکارهای مبتنی بر هوش مصنوعی و فناوری‌های Web3.',
+      'دپارتمان وب۳، NFT و فناوری‌های استودیو آرتا ماد هنر با تمرکز بر دو حوزه کلیدی فعالیت می‌کند: توسعه نرم‌افزارها و پلتفرم‌های هوشمند مدیریت فرآیند تولید (پروژه لوماندی) و به‌کارگیری فناوری‌های وب۳ و بلاکچین در راستای مالکیت دیجیتال، بازارپردازی و خلق مجموعه‌های کلکسیونی NFT برای گسترش ارتباط با مخاطبان.',
     secondaryDescription:
-      'این دپارتمان وظیفه تحقیق و توسعه (R&D)، مهندسی پایپلاین‌های هوشمند تصویر و ویدیو، و همچنین خلق دارایی‌های دیجیتال کلکسیونی بر بستر بلاکچین را بر عهده دارد.',
-    highlightsTitle: 'ظرفیت‌های فناورانه و نوآوری محصول:',
+      'ما فناوری‌های نوین را نه به‌عنوان ابزارهایی مجزا، بلکه در قالب زیرساختی یکپارچه برای توانمندسازی تولید، اتوماسیون گردش‌کار و توسعه پایدار دارایی‌های فکری (IP) به کار می‌گیریم.',
+    highlightsTitle: 'محورهای اصلی فناوری، نرم‌افزار و وب۳:',
     highlights: [
-      'یکپارچه‌سازی هوش مصنوعی و اتوماسیون در گردش‌کار تولید رسانه و انیمیشن',
-      'توسعه محصولات فناورانه و دارایی‌های دیجیتال مبتنی بر فناوری‌های Web3',
-      'پشتیبانی از توسعه کانسپت، پردازش تصویر و کنترل کیفیت با ابزارهای هوشمند اختصاصی',
+      'توسعه پلتفرم یکپارچه «لوماندی» جهت اتوماسیون گردش‌کار، مدیریت وظایف، نمودار گانت و مانیتورینگ پروژه‌ها',
+      'طراحی و انتشار دارایی‌های دیجیتال و مجموعه‌های کلکسیونی NFT مبتنی بر شخصیت‌ها و جهان‌های داستانی استودیو',
+      'بهره‌گیری از زیرساخت‌های بلاکچین جهت ثبت اصالت، مالکیت دارایی‌ها و توسعه بازارپردازی دیجیتال',
     ],
-    tags: ['هوش مصنوعی و اتوماسیون', 'فناوری‌های Web3', 'توسعه محصول فناورانه', 'بهینه‌سازی گردش‌کار'],
+    tags: [
+      'پلتفرم مدیریت پروژه لوماندی',
+      'فناوری‌های Web3',
+      'کالکشن‌های دیجیتال NFT',
+      'بازارپردازی دیجیتال IP',
+      'گردش‌کار و نمودار گانت',
+    ],
     canvasType: 'web3-nft',
     relatedMemberIds: [
+      'mehdi-mohammadian',
       'nima-nekookar',
-      'mohammad-rahimi',
-      'lotfallah-salehi',
-      'ali-ebrahimi',
-      'hilda-baghban',
+      'ali-alipour',
+      'mohammad-shariati',
     ],
     teamGroups: [
       {
         id: 'web3-head',
-        title: 'هد دپارتمان',
+        title: 'سرپرستان دپارتمان',
         isHead: true,
-        memberIds: ['nima-nekookar'],
+        memberIds: ['mehdi-mohammadian', 'nima-nekookar'],
       },
       {
         id: 'web3-members',
         title: 'اعضای تیم',
-        memberIds: ['mohammad-rahimi', 'lotfallah-salehi', 'ali-ebrahimi', 'hilda-baghban'],
+        memberIds: ['ali-alipour', 'mohammad-shariati'],
       },
     ],
     galleryItems: [
       {
-        id: 'web3-collections',
-        title: 'معماری اکوسیستم Web3 و کالکشن‌های هنری دیجیتال',
-        subtitle: 'Ethereum Smart Contracts & 2D Collectible Art',
-        badge: 'Web3 & NFT',
+        id: 'lumindy-overview',
+        title: 'پروژه لوماندی | مدیریت هوشمند پروژه‌ها، از برنامه‌ریزی تا اجرا',
+        titleEn: 'Lumindy · Smart Project Management Platform',
+        subtitle: 'Unified Workflow, Dynamic Task Delegation & Gantt Monitoring',
+        badge: 'پلتفرم لوماندی · نمای کلی',
         description:
-          'طراحی کاراکترها و مجموعه‌های دوبعدی کلکسیونی با لایه‌بندی هنری غنی، لور داستانی و پیاده‌سازی قراردادهای هوشمند ایمن.',
-        canvasType: 'web3-nft',
+          'لوماندی (Lumindy) یک پلتفرم هوشمند و یکپارچه مدیریت پروژه است که با هدف ساده‌سازی فرآیندها، افزایش بهره‌وری و ایجاد هماهنگی میان اعضای تیم طراحی شده است. در لوماندی، سازمان‌ها می‌توانند گردش کار (Workflow) اختصاصی شرکت و پروژه‌های خود را تعریف کرده، اعضای تیم، نقش‌ها و مسئولیت‌های هر فرد را مشخص کنند. با آغاز پروژه، وظایف به‌صورت خودکار و بر اساس گردش کار تعریف‌شده به افراد مربوطه ارجاع داده می‌شوند و پس از تکمیل هر وظیفه، فرآیند بررسی و تأیید آن توسط سرپرست مربوطه انجام می‌گیرد. این چرخه هوشمند تا پایان پروژه به‌صورت منظم ادامه می‌یابد. همچنین مدیران پروژه می‌توانند با استفاده از نمودار گانت (Gantt Chart)، زمان‌بندی فعالیت‌ها را مدیریت کرده و از طریق گزارش‌ها و نماهای متنوع، وضعیت پیشرفت پروژه را به‌صورت شفاف و دقیق پایش کنند. لوماندی، راهکاری برای مدیریت ساختاریافته، هوشمند و بدون وقفه پروژه‌هاست.',
+        imageUrl: '/assets/lumindy-1.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/I3YepF58zLAZt9pfWot3Xg8DCQOnbd/OTUxNzF8cGFkZA.webp',
       },
       {
-        id: 'ai-pipeline-arch',
-        title: 'اتوماسیون پایپلاین هوش مصنوعی و کنترل پیوستگی بصری',
-        subtitle: 'Hybrid AI Production Workflows & Consistency Tools',
-        badge: 'هوش مصنوعی در تولید',
+        id: 'lumindy-workflow',
+        title: 'موتور طراحی گردش‌کار (Workflow Designer)',
+        titleEn: 'Custom Production Workflow Designer',
+        subtitle: 'Visual Node Graph for Studio Pipelines',
+        badge: 'پلتفرم لوماندی · طراحی گردش‌کار',
         description:
-          'طراحی گردش‌کارهای ترکیبی (Sora, Veo, Kling, Midjourney) در کنار کنترل کیفی انسانی برای تثبیت استایل بصری در مقیاس سینمایی.',
-        canvasType: 'character-poopi',
+          'طراحی ساختاریافته جریان کار (Workflow) اختصاصی شرکت و پروژه‌ها، تفکیک دقیق فازهای کانسپت، استوری‌بورد، انیمیت و رندر، و تعیین خودکار مسیر حرکت داده‌ها میان اعضای تیم.',
+        imageUrl: '/assets/lumindy-3.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/fSafEP9Ptd5hgnCxowZtFZK19IJc8u/OTUxNjl8cGFkZA.webp',
+      },
+      {
+        id: 'lumindy-tasks',
+        title: 'مدیریت وظایف و چرخه بررسی سرپرست (Send for Review)',
+        titleEn: 'Dynamic Task Assignment & Approval Cycle',
+        subtitle: 'Automated Routing & Quality Sign-Off',
+        badge: 'پلتفرم لوماندی · مدیریت وظایف',
+        description:
+          'ارجاع خودکار تسک‌ها بر اساس گردش‌کار تعریف‌شده؛ دریافت شرح وظایف کارگردان (Director’s Description)، پیوست خروجی‌ها و ارسال هوشمند برای بازبینی و تأیید سرپرست مربوطه.',
+        imageUrl: '/assets/lumindy-2.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/nS6vhmxLTbf9FLN6wUZWgo5zUlkIY1/OTUxNzB8cGFkZA.webp',
+      },
+      {
+        id: 'lumindy-gantt-monitor',
+        title: 'نمودار گانت و مانیتورینگ جامع وضعیت پیشرفت',
+        titleEn: 'Gantt Chart & Production Velocity Analytics',
+        subtitle: 'Timeline Scheduling & Multi-View Status Matrix',
+        badge: 'پلتفرم لوماندی · گانت و مانیتورینگ',
+        description:
+          'مدیریت دقیق زمان‌بندی فعالیت‌ها با نمودار گانت (Gantt Chart)، تحلیل نرخ تولید و پایش لحظه‌ای درصد تکمیل سکانس‌ها و دارایی‌ها از طریق نماها و گزارش‌های شفاف.',
+        imageUrl: '/assets/lumindy-4.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/8zh0Q2YW6NNrNdAVOxGX6NBZXcgleF/OTUxNjh8cGFkZA.webp',
+      },
+      {
+        id: 'web3-nft-merchandise',
+        title: 'مجموعه‌های کلکسیونی NFT و بازارپردازی دیجیتال',
+        titleEn: 'Web3 & NFT Character Collectibles',
+        subtitle: 'Digital Provenance & Extended Fan Engagement',
+        badge: 'وب۳ و بازارپردازی دیجیتال',
+        description:
+          'وب۳ نسل جدیدی از اینترنت است که بر بستر فناوری بلاکچین، تعامل مستقیم‌تر کاربران و مالکیت دارایی‌های دیجیتال را امکان‌پذیر می‌کند. NFT نیز نوعی دارایی دیجیتال منحصربه‌فرد است که اصالت و مالکیت آن روی بلاکچین ثبت می‌شود. این فناوری‌ها ظرفیت تازه‌ای برای توسعه بازارپردازی دیجیتال فراهم می‌کنند؛ از طراحی مجموعه‌های کلکسیونی و دارایی‌های دیجیتال مبتنی بر شخصیت‌ها و جهان‌های داستانی گرفته تا ایجاد تجربه‌های جدید برای مخاطبان و طرفداران آثار.',
+        imageUrl: '/assets/web3-nft-cover.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp',
       },
     ],
   },

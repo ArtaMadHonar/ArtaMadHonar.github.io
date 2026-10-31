@@ -52,6 +52,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [activeVfxPhotoIndex, setActiveVfxPhotoIndex] = useState<number>(0);
+  const [activeLumindyIndex, setActiveLumindyIndex] = useState<number>(0);
   const modalScrollRef = useRef<HTMLDivElement | null>(null);
 
   useModalScrollLock(!!selectedItem, modalScrollRef);
@@ -61,6 +62,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
     setHoveredCardId(null);
     setSelectedItem(null);
     setActiveVfxPhotoIndex(0);
+    setActiveLumindyIndex(0);
   }, [domain.id]);
 
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
@@ -187,8 +189,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
           {/* Hero Stage: Full-Width 21:9 Banner + Minimalist International Unit Bar for Commercial-CGI */}
           {domain.id === 'commercial-cgi' && domain.internationalUnit ? (
             <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_16px_45px_rgba(30,36,36,0.07)] overflow-hidden">
-              {/* Full-Width 21:9 Widescreen Banner Stage */}
-              <div className="aspect-[21/9] w-full bg-[#121616] relative overflow-hidden">
+              {/* Real Studio Photo Hero Stage (16:9) */}
+              <div className="aspect-[16/9] w-full bg-[#121616] relative overflow-hidden">
                 <img
                   src={domain.imageUrl || '/assets/commercial-teaser-banner.webp'}
                   alt={domain.title}
@@ -199,7 +201,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     const target = e.currentTarget;
                     const fallback =
                       domain.fallbackImageUrl ||
-                      'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp';
+                      'https://my.uploadkon.ir/d/8ZUbcLFR84n4O6DvYRgWFI4ebabId8/OTQ5Mzl8cGFkZA.webp';
                     if (target.src !== fallback) {
                       target.src = fallback;
                     }
@@ -730,6 +732,133 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </div>
               </div>
             </div>
+          ) : domain.id === 'web3-nft' ? (
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] dark:border-[#27363A] shadow-[0_14px_40px_rgba(30,36,36,0.06)] dark:shadow-[0_14px_40px_rgba(0,0,0,0.5)] p-5 sm:p-7 lg:p-8 transition-colors">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                {/* Visual Cover (7 Cols) */}
+                <div
+                  onClick={() =>
+                    setSelectedItem({
+                      id: 'web3-nft-cover-preview',
+                      title: 'مجموعه‌های کلکسیونی NFT و دارایی‌های دیجیتال جهان پویو',
+                      titleEn: 'Web3 & NFT Character Collectibles',
+                      subtitle: 'Character-driven Digital Assets & On-Chain Provenance',
+                      badge: 'کاور رسمی دپارتمان وب۳ و NFT',
+                      description:
+                        'طراحی مجموعه‌های کلکسیونی و دارایی‌های دیجیتال مبتنی بر شخصیت‌ها و جهان‌های داستانی استودیو؛ ثبت اصالت و مالکیت بر بستر بلاکچین و ایجاد تجربه‌های تعاملی جدید برای مخاطبان و طرفداران آثار.',
+                      imageUrl: '/assets/web3-nft-cover.webp',
+                      fallbackImageUrl:
+                        'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp',
+                    })
+                  }
+                  className="lg:col-span-7 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] hover:border-[#3E777A] dark:border-[#27363A] dark:hover:border-[#65B7B5] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)] dark:shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all"
+                >
+                  <img
+                    src="/assets/web3-nft-cover.webp"
+                    alt={domain.title}
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="sync"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const fallback =
+                        'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp';
+                      if (target.src !== fallback) {
+                        target.src = fallback;
+                      }
+                    }}
+                    className="w-full h-full object-cover block transition-transform duration-700 group-hover:scale-103"
+                  />
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/55 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
+                    <Maximize2 className="w-4 h-4" />
+                  </div>
+                  <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-black/65 backdrop-blur-md border border-white/10 text-[#FAF8F4] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#65B7B5] animate-pulse" />
+                    <span className="text-[11px] font-bold">
+                      دارایی‌های کلکسیونی NFT · جهان داستانی پویو
+                    </span>
+                  </div>
+                </div>
+
+                {/* Narrative & 2 Pillars (5 Cols) */}
+                <div className="lg:col-span-5 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1B2629] border border-[#E5E0D4] dark:border-[#202D31] flex flex-col justify-between space-y-5 text-right transition-colors">
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] dark:border-[#27363A] pb-3">
+                      <span className="text-xs sm:text-sm font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        معرفی و رویکرد دپارتمان
+                      </span>
+                      <span
+                        dir="ltr"
+                        className="text-[10px] font-mono font-bold text-[#777A76] dark:text-[#8C9997] uppercase tracking-wider"
+                      >
+                        WEB3 & TECH SOLUTIONS
+                      </span>
+                    </div>
+
+                    <p className="text-xs sm:text-[13.5px] text-[#1E2424] dark:text-[#F2EFE9] leading-relaxed font-medium">
+                      تلاقی فناوری‌های نرم‌افزاری هوشمند، اتوماسیون پایپلاین‌های تولید رسانه و به‌کارگیری فناوری‌های وب۳ و بلاکچین در راستای مالکیت دیجیتال و گسترش بازارپردازی دارایی‌های فکری (IP).
+                    </p>
+
+                    {/* 2 Strategic Pillars */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                      <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 transition-colors space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                            01
+                          </span>
+                          <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                            LUMINDY PLATFORM
+                          </span>
+                        </div>
+                        <h3 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                          پروژه لوماندی
+                        </h3>
+                        <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                          مدیریت هوشمند پروژه‌ها، گردش‌کار (Workflow)، ارجاع وظایف و نمودار گانت
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 transition-colors space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                            02
+                          </span>
+                          <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                            WEB3 & NFT
+                          </span>
+                        </div>
+                        <h3 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                          وب۳ و بازارپردازی دیجیتال
+                        </h3>
+                        <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                          مالکیت دارایی‌های دیجیتال و مجموعه‌های کلکسیونی مبتنی بر کاراکترها و جهان‌های داستانی
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* 3 Value bullets */}
+                    <div className="pt-2 space-y-2">
+                      <div className="flex items-start gap-2 text-xs text-[#434846] dark:text-[#CED7D5]">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>گردش‌کار اختصاصی و فرآیند هوشمند ارجاع و بررسی توسط سرپرست</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-[#434846] dark:text-[#CED7D5]">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>ثبت اصالت و مالکیت بر بستر بلاکچین برای دارایی‌های دیجیتال منحصربه‌فرد</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-xs text-[#434846] dark:text-[#CED7D5]">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>ایجاد تجربه‌های جدید و ارزش‌افزا برای مخاطبان و طرفداران آثار استودیو</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3.5 border-t border-[#DCD6C8] dark:border-[#27363A] flex flex-wrap items-center gap-2 text-xs text-[#3E777A] dark:text-[#65B7B5] font-semibold">
+                    <span>{domain.tags.join(' · ')}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
@@ -1132,6 +1261,403 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               );
             })()}
           </section>
+        ) : domain.id === 'web3-nft' ? (
+          <section className="space-y-14 border-t border-[#DCD6C8] dark:border-[#27363A] pt-14 text-right">
+            {/* 1. Lumindy Smart Project Management Platform Showcase */}
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] dark:border-[#27363A] p-5 sm:p-7 lg:p-8 space-y-8 shadow-[0_12px_34px_rgba(30,36,36,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-colors">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] dark:border-[#27363A] pb-5">
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] dark:text-[#65B7B5] text-[11px] font-bold">
+                      پلتفرم نرم‌افزاری اختصاصی
+                    </span>
+                    <span
+                      dir="ltr"
+                      className="text-[11px] font-mono font-semibold text-[#777A76] dark:text-[#8C9997]"
+                    >
+                      LUMINDY · SMART WORKFLOW & PROJECT MANAGEMENT
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                    لوماندی | مدیریت هوشمند پروژه‌ها، از برنامه‌ریزی تا اجرا
+                  </h2>
+                </div>
+
+                <span className="text-xs font-semibold text-[#777A76] dark:text-[#8C9997]">
+                  برای مشاهده هر تصویر در ابعاد بزرگ، روی آن کلیک کنید
+                </span>
+              </div>
+
+              {/* Exact Lumindy Platform Descriptive Narrative */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1B2629] border border-[#E5E0D4] dark:border-[#202D31] space-y-4 transition-colors">
+                <p className="text-xs sm:text-[14px] text-[#1E2424] dark:text-[#F2EFE9] leading-[2.1] text-justify font-medium">
+                  لوماندی (Lumindy) یک پلتفرم هوشمند و یکپارچه مدیریت پروژه است که با هدف ساده‌سازی فرآیندها، افزایش بهره‌وری و ایجاد هماهنگی میان اعضای تیم طراحی شده است. در لوماندی، سازمان‌ها می‌توانند گردش کار (Workflow) اختصاصی شرکت و پروژه‌های خود را تعریف کرده، اعضای تیم، نقش‌ها و مسئولیت‌های هر فرد را مشخص کنند. با آغاز پروژه، وظایف به‌صورت خودکار و بر اساس گردش کار تعریف‌شده به افراد مربوطه ارجاع داده می‌شوند و پس از تکمیل هر وظیفه، فرآیند بررسی و تأیید آن توسط سرپرست مربوطه انجام می‌گیرد. این چرخه هوشمند تا پایان پروژه به‌صورت منظم ادامه می‌یابد. همچنین مدیران پروژه می‌توانند با استفاده از نمودار گانت (Gantt Chart)، زمان‌بندی فعالیت‌ها را مدیریت کرده و از طریق گزارش‌ها و نماهای متنوع، وضعیت پیشرفت پروژه را به‌صورت شفاف و دقیق پایش کنند. لوماندی، راهکاری برای مدیریت ساختاریافته، هوشمند و بدون وقفه پروژه‌هاست.
+                </p>
+
+                {/* 4 Feature Architecture Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-2">
+                  <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 dark:shadow-[0_4px_14px_rgba(0,0,0,0.2)] transition-all space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        01
+                      </span>
+                      <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                        WORKFLOW
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                      گردش‌کار اختصاصی
+                    </h4>
+                    <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                      طراحی بصری نمودار فرآیندها و تعیین نقش‌ها و دسترسی‌های هر فرد در سازمان
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 dark:shadow-[0_4px_14px_rgba(0,0,0,0.2)] transition-all space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        02
+                      </span>
+                      <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                        AUTO ROUTING
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                      چرخه ارجاع و تأیید
+                    </h4>
+                    <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                      ارجاع خودکار وظایف و ارسال خروجی‌ها به سرپرست مربوطه جهت بررسی نهایی
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 dark:shadow-[0_4px_14px_rgba(0,0,0,0.2)] transition-all space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        03
+                      </span>
+                      <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                        GANTT CHART
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                      نمودار گانت و زمان‌بندی
+                    </h4>
+                    <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                      مدیریت زمان‌بندی فعالیت‌ها، پیش‌بینی گلوگاه‌ها و جلوگیری از وقفه در پروژه
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#2A393D] dark:hover:border-[#65B7B5]/40 dark:shadow-[0_4px_14px_rgba(0,0,0,0.2)] transition-all space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span dir="ltr" className="text-xs font-mono font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        04
+                      </span>
+                      <span dir="ltr" className="text-[9px] font-mono uppercase text-[#777A76] dark:text-[#8C9997]">
+                        MONITORING
+                      </span>
+                    </div>
+                    <h4 className="text-xs sm:text-[13px] font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                      پایش شفاف و نماهای متنوع
+                    </h4>
+                    <p className="text-[11px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                      رصد پیشرفت، نمودارهای بازدهی و داشبورد یکپارچه برای تصمیم‌گیری دقیق
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive Multi-Screenshot Gallery for Lumindy */}
+              {(() => {
+                const lumindyScreens = [
+                  {
+                    id: 'lumindy-screen-1',
+                    title: 'پروژه لوماندی | اکوسیستم یکپارچه ابزارها و داشبورد چندگانه',
+                    titleEn: 'Lumindy Ecosystem · Multi-Device Suite',
+                    subtitle: 'Unified Workflow, Dynamic Task Delegation & Gantt Monitoring',
+                    badge: 'نمای جامع ابزارها · ۱ از ۴',
+                    description:
+                      'نمایش همزمان ابزارهای کلیدی لوماندی: طراحی گردش‌کار (Workflow)، فرم مدیریت هوشمند وظایف، نمودار گانت زمان‌بندی و مانیتورینگ نرخ پیشرفت.',
+                    imageUrl: '/assets/lumindy-1.webp',
+                    fallbackImageUrl:
+                      'https://my.uploadkon.ir/d/I3YepF58zLAZt9pfWot3Xg8DCQOnbd/OTUxNzF8cGFkZA.webp',
+                  },
+                  {
+                    id: 'lumindy-screen-2',
+                    title: 'موتور طراحی گردش‌کار اختصاصی (Workflow Designer)',
+                    titleEn: 'Workflow Engine · Node Pipeline Graph',
+                    subtitle: 'Visual Node Graph for Studio Pipelines',
+                    badge: 'طراحی گردش‌کار · ۲ از ۴',
+                    description:
+                      'طراحی گرافیکی جریان کار (Workflow) اختصاصی برای هر شرکت و پروژه با قابلیت پیوند مراحل کانسپت، استوری‌بورد، انیمیت و کامپوزیت.',
+                    imageUrl: '/assets/lumindy-3.webp',
+                    fallbackImageUrl:
+                      'https://my.uploadkon.ir/d/fSafEP9Ptd5hgnCxowZtFZK19IJc8u/OTUxNjl8cGFkZA.webp',
+                  },
+                  {
+                    id: 'lumindy-screen-3',
+                    title: 'فرم وظایف، شرح کارگردان و چرخه تأیید (Send for Review)',
+                    titleEn: 'Task Delegation & Supervisor Review Loop',
+                    subtitle: 'Automated Routing & Quality Sign-Off',
+                    badge: 'مدیریت وظایف · ۳ از ۴',
+                    description:
+                      'ارجاع خودکار تسک‌ها بر اساس گردش‌کار تعریف‌شده، همراه با دریافت دستورالعمل کارگردان (Director’s Description)، آپلود فایل و ارسال برای بازبینی سرپرست.',
+                    imageUrl: '/assets/lumindy-2.webp',
+                    fallbackImageUrl:
+                      'https://my.uploadkon.ir/d/nS6vhmxLTbf9FLN6wUZWgo5zUlkIY1/OTUxNzB8cGFkZA.webp',
+                  },
+                  {
+                    id: 'lumindy-screen-4',
+                    title: 'نمودار گانت، ماتریس وضعیت شات‌ها و تحلیل روند پیشرفت',
+                    titleEn: 'Gantt Chart & Shot Status Analytics',
+                    subtitle: 'Timeline Scheduling & Multi-View Status Matrix',
+                    badge: 'گانت و مانیتورینگ · ۴ از ۴',
+                    description:
+                      'مدیریت خط زمانی پروژه‌ها با نمودار گانت (Gantt Chart)، ماتریس وضعیت سکانس‌ها و پایش لحظه‌ای درصد تکمیل فعالیت‌های اعضای تیم.',
+                    imageUrl: '/assets/lumindy-4.webp',
+                    fallbackImageUrl:
+                      'https://my.uploadkon.ir/d/8zh0Q2YW6NNrNdAVOxGX6NBZXcgleF/OTUxNjh8cGFkZA.webp',
+                  },
+                ];
+
+                const currentScreen =
+                  lumindyScreens[activeLumindyIndex] || lumindyScreens[0];
+
+                return (
+                  <div className="space-y-5">
+                    {/* Primary Interactive Hero Screen */}
+                    <div
+                      onClick={() => setSelectedItem(currentScreen)}
+                      className="group cursor-pointer relative w-full rounded-2xl overflow-hidden border border-[#DCD6C8] hover:border-[#3E777A] dark:border-[#27363A] dark:hover:border-[#65B7B5] bg-[#121616] shadow-[0_12px_32px_rgba(30,36,36,0.1)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] transition-all duration-300"
+                    >
+                      <img
+                        src={currentScreen.imageUrl}
+                        alt={currentScreen.title}
+                        referrerPolicy="no-referrer"
+                        loading="eager"
+                        decoding="sync"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (
+                            currentScreen.fallbackImageUrl &&
+                            target.src !== currentScreen.fallbackImageUrl
+                          ) {
+                            target.src = currentScreen.fallbackImageUrl;
+                          }
+                        }}
+                        className="w-full h-auto block transition-transform duration-700 group-hover:scale-102"
+                      />
+                      <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/55 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
+                        <Maximize2 className="w-4 h-4" />
+                      </div>
+                    </div>
+
+                    {/* Active Screen Caption Box */}
+                    <div className="p-4 sm:p-5 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1B2629] border border-[#E5E0D4] dark:border-[#202D31] space-y-1.5 text-right transition-colors">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="px-2 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] dark:text-[#65B7B5] text-[11px] font-bold">
+                          {currentScreen.badge}
+                        </span>
+                        <span
+                          dir="ltr"
+                          className="text-[11px] font-mono text-[#777A76] dark:text-[#8C9997] tracking-wide"
+                        >
+                          {currentScreen.titleEn}
+                        </span>
+                      </div>
+                      <h3 className="text-xs sm:text-base font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                        {currentScreen.title}
+                      </h3>
+                      <p className="text-xs sm:text-[13px] text-[#434846] dark:text-[#BCC6C4] leading-relaxed">
+                        {currentScreen.description}
+                      </p>
+                    </div>
+
+                    {/* 4 Interactive Thumbnail Cards to Switch */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                      {lumindyScreens.map((screen, idx) => {
+                        const isSelected = activeLumindyIndex === idx;
+                        return (
+                          <div
+                            key={screen.id}
+                            onClick={() => setActiveLumindyIndex(idx)}
+                            className={`cursor-pointer rounded-2xl p-2.5 transition-all duration-300 border flex flex-col justify-between ${
+                              isSelected
+                                ? 'bg-[#FAF8F4] border-[#3E777A] shadow-md ring-2 ring-[#3E777A]/20 dark:bg-[#151E20] dark:border-[#65B7B5] dark:ring-2 dark:ring-[#65B7B5]/40 dark:shadow-[0_0_20px_rgba(101,183,181,0.22)]'
+                                : 'bg-[#F4F0E6]/60 border-[#DCD6C8] hover:border-[#3E777A]/60 hover:bg-[#FAF8F4] dark:bg-[#151E20]/60 dark:border-[#27363A] dark:hover:border-[#65B7B5]/50 dark:hover:bg-[#151E20]'
+                            }`}
+                          >
+                            <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-[#121616] mb-2 border border-[#DCD6C8]/60 dark:border-[#27363A]">
+                              <img
+                                src={screen.imageUrl}
+                                alt={screen.title}
+                                referrerPolicy="no-referrer"
+                                loading="eager"
+                                decoding="sync"
+                                onError={(e) => {
+                                  const target = e.currentTarget;
+                                  if (
+                                    screen.fallbackImageUrl &&
+                                    target.src !== screen.fallbackImageUrl
+                                  ) {
+                                    target.src = screen.fallbackImageUrl;
+                                  }
+                                }}
+                                className="w-full h-full object-cover object-center"
+                              />
+                            </div>
+                            <div className="text-right space-y-0.5">
+                              <span className="text-[10px] font-mono font-bold text-[#3E777A] dark:text-[#65B7B5] block">
+                                نمای ۰{idx + 1}
+                              </span>
+                              <h4 className="text-[11px] sm:text-xs font-bold text-[#1E2424] dark:text-[#F2EFE9] truncate">
+                                {idx === 0
+                                  ? 'اکوسیستم جامع لوماندی'
+                                  : idx === 1
+                                    ? 'موتور طراحی گردش‌کار'
+                                    : idx === 2
+                                      ? 'مدیریت و چرخه تأیید وظایف'
+                                      : 'نمودار گانت و مانیتورینگ'}
+                              </h4>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* 2. Web3, NFT & Character Universe Digital Merchandising */}
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] dark:border-[#27363A] p-5 sm:p-7 lg:p-8 space-y-8 shadow-[0_12px_34px_rgba(30,36,36,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-colors">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] dark:border-[#27363A] pb-5">
+                <div className="space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] dark:text-[#65B7B5] text-[11px] font-bold">
+                      دارایی‌های فکری و بازارپردازی دیجیتال
+                    </span>
+                    <span
+                      dir="ltr"
+                      className="text-[11px] font-mono font-semibold text-[#777A76] dark:text-[#8C9997]"
+                    >
+                      WEB3 & NFT DIGITAL MERCHANDISING
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-3xl font-black text-[#1E2424] dark:text-[#F2EFE9]">
+                    وب۳، دارایی‌های دیجیتال و افق‌های نوین بازارپردازی
+                  </h2>
+                </div>
+
+                <span className="text-xs font-semibold text-[#777A76] dark:text-[#8C9997]">
+                  مجموعه‌های کلکسیونی مبتنی بر کاراکترها و جهان‌های داستانی
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                {/* Visual NFT Collectible Showcase (7 Cols) */}
+                <div
+                  onClick={() =>
+                    setSelectedItem({
+                      id: 'web3-nft-merchandise-modal',
+                      title: 'مجموعه‌های کلکسیونی NFT و بازارپردازی دیجیتال جهان پویو',
+                      titleEn: 'Web3 & NFT Character Collectibles',
+                      subtitle: 'Digital Provenance & Extended Fan Engagement',
+                      badge: 'کالکشن‌های دیجیتال NFT',
+                      description:
+                        'وب۳ نسل جدیدی از اینترنت است که بر بستر فناوری بلاکچین، تعامل مستقیم‌تر کاربران و مالکیت دارایی‌های دیجیتال را امکان‌پذیر می‌کند. NFT نیز نوعی دارایی دیجیتال منحصربه‌فرد است که اصالت و مالکیت آن روی بلاکچین ثبت می‌شود. این فناوری‌ها ظرفیت تازه‌ای برای توسعه بازارپردازی دیجیتال فراهم می‌کنند؛ از طراحی مجموعه‌های کلکسیونی و دارایی‌های دیجیتال مبتنی بر شخصیت‌ها و جهان‌های داستانی گرفته تا ایجاد تجربه‌های جدید برای مخاطبان و طرفداران آثار.',
+                      imageUrl: '/assets/web3-nft-cover.webp',
+                      fallbackImageUrl:
+                        'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp',
+                    })
+                  }
+                  className="lg:col-span-7 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] hover:border-[#3E777A] dark:border-[#27363A] dark:hover:border-[#65B7B5] bg-[#121616] shadow-[0_12px_32px_rgba(30,36,36,0.1)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.6)] flex flex-col justify-between transition-all"
+                >
+                  <img
+                    src="/assets/web3-nft-cover.webp"
+                    alt="کالکشن NFT و دارایی‌های کلکسیونی دیجیتال پویو"
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="sync"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const fallback =
+                        'https://my.uploadkon.ir/d/D5zfgGnIPLtg5Fowg9wZUMCXbiq8nL/OTUxNjV8cGFkZA.webp';
+                      if (target.src !== fallback) {
+                        target.src = fallback;
+                      }
+                    }}
+                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-102"
+                  />
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/55 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
+                    <Maximize2 className="w-4 h-4" />
+                  </div>
+                  {/* Floating Token & Trait Badge */}
+                  <div className="absolute bottom-3 right-3 left-3 flex items-center justify-between gap-2 p-2.5 rounded-xl bg-black/70 backdrop-blur-md border border-white/10 text-[#FAF8F4]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#65B7B5] animate-pulse" />
+                      <span className="text-[11px] font-bold">
+                        کارت‌های کلکسیونی NFT: جادوگر، فضانورد، دایناسور، عکاس و اسکیت‌برد
+                      </span>
+                    </div>
+                    <span dir="ltr" className="text-[10px] font-mono text-[#DCD6C8] shrink-0">
+                      ON-CHAIN ASSETS
+                    </span>
+                  </div>
+                </div>
+
+                {/* Narrative & Strategic Value Column (5 Cols) */}
+                <div className="lg:col-span-5 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1B2629] border border-[#E5E0D4] dark:border-[#202D31] flex flex-col justify-between space-y-5 text-right transition-colors">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between border-b border-[#DCD6C8] dark:border-[#27363A] pb-3">
+                      <span className="text-xs sm:text-sm font-black text-[#3E777A] dark:text-[#65B7B5]">
+                        مفهوم و راهبرد بازارپردازی دیجیتال
+                      </span>
+                      <span
+                        dir="ltr"
+                        className="text-[10px] font-mono font-bold text-[#777A76] dark:text-[#8C9997] uppercase tracking-wider"
+                      >
+                        DIGITAL IP EXTENSION
+                      </span>
+                    </div>
+
+                    {/* Exact User Text for Web3 & NFT */}
+                    <div className="space-y-3 text-xs sm:text-[13.5px] text-[#1E2424] dark:text-[#F2EFE9] leading-[2.05] text-justify font-medium">
+                      <p>
+                        وب۳ نسل جدیدی از اینترنت است که بر بستر فناوری بلاکچین، تعامل مستقیم‌تر کاربران و مالکیت دارایی‌های دیجیتال را امکان‌پذیر می‌کند.
+                      </p>
+                      <p>
+                        NFT نیز نوعی دارایی دیجیتال منحصربه‌فرد است که اصالت و مالکیت آن روی بلاکچین ثبت می‌شود.
+                      </p>
+                      <p className="text-[#434846] dark:text-[#BCC6C4]">
+                        این فناوری‌ها ظرفیت تازه‌ای برای توسعه بازارپردازی دیجیتال فراهم می‌کنند؛ از طراحی مجموعه‌های کلکسیونی و دارایی‌های دیجیتال مبتنی بر شخصیت‌ها و جهان‌های داستانی گرفته تا ایجاد تجربه‌های جدید برای مخاطبان و طرفداران آثار.
+                      </p>
+                    </div>
+
+                    {/* 3 Strategic Merchandising Pillars */}
+                    <div className="pt-2 space-y-2.5">
+                      <div className="flex items-start gap-2.5 text-xs text-[#1E2424] dark:text-[#F2EFE9] p-2.5 rounded-xl bg-[#FAF8F4]/80 dark:bg-[#151E20] border border-[#DCD6C8]/70 dark:border-[#2A393D] transition-colors">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>اصالت و مالکیت اثبات‌پذیر بر بستر شفاف و ایمن بلاکچین</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-[#1E2424] dark:text-[#F2EFE9] p-2.5 rounded-xl bg-[#FAF8F4]/80 dark:bg-[#151E20] border border-[#DCD6C8]/70 dark:border-[#2A393D] transition-colors">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>طراحی مجموعه‌های کلکسیونی از کاراکترها و جهان داستانی پویو</span>
+                      </div>
+                      <div className="flex items-start gap-2.5 text-xs text-[#1E2424] dark:text-[#F2EFE9] p-2.5 rounded-xl bg-[#FAF8F4]/80 dark:bg-[#151E20] border border-[#DCD6C8]/70 dark:border-[#2A393D] transition-colors">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#65B7B5] shrink-0 mt-0.5" />
+                        <span>خلق تجربه‌های تعاملی و پیوند عاطفی ماندگار با هواداران و مخاطبان</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3.5 border-t border-[#DCD6C8] dark:border-[#27363A] flex flex-wrap items-center justify-between text-[11px] text-[#777A76] dark:text-[#8C9997]">
+                    <span className="font-bold text-[#1E2424] dark:text-[#F2EFE9]">حوزه فناوری:</span>
+                    <span className="font-semibold text-[#3E777A] dark:text-[#65B7B5]">بلاکچین، NFT و بازارپردازی دیجیتال</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         ) : portfolioBaseItems.length > 0 && (
           <section className="space-y-10 border-t border-[#DCD6C8] pt-14">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 text-right">
@@ -1405,11 +1931,6 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                       {/* 1. Head of Sub-Division */}
                       <div className="space-y-5">
-                        <div className="text-center">
-                          <span className="text-xs font-bold text-[#3E777A]">
-                            هد {group.title}
-                          </span>
-                        </div>
                         <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-16">
                           {group.heads.map((head) => (
                             <div
@@ -1522,20 +2043,18 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   );
                 }
 
-                // Case B: Standard Group (e.g., Commercial-CGI's هد دپارتمان / اعضای تیم)
+                // Case B: Standard Group (e.g., Commercial-CGI, Game-Lab, Web3, VFX)
                 return (
                   <div key={group.id} className="space-y-7">
-                    <div className="flex items-center justify-center gap-4">
-                      <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
-                      <span
-                        className={`text-xs sm:text-sm font-bold ${
-                          group.isHead ? 'text-[#3E777A]' : 'text-[#434846]'
-                        }`}
-                      >
-                        {group.title}
-                      </span>
-                      <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
-                    </div>
+                    {!group.isHead && (
+                      <div className="flex items-center justify-center gap-4">
+                        <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
+                        <span className="text-xs sm:text-sm font-bold text-[#434846]">
+                          {group.title}
+                        </span>
+                        <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
+                      </div>
+                    )}
 
                     <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-16">
                       {group.members.map((member) => (
