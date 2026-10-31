@@ -381,10 +381,29 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       )}
 
       {type === 'game-lab' && (
-        <div className="absolute inset-0 bg-[#11191A] flex items-center justify-center">
-          <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute inset-0 bg-[#11191A] flex items-center justify-center overflow-hidden">
+          <img
+            src={imageUrl || '/assets/game-lab/cat2-1.webp'}
+            alt="بازی‌سازی و سرگرمی تعاملی"
+            referrerPolicy="no-referrer"
+            loading="eager"
+            decoding="sync"
+            className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+            onError={(e) => {
+              const target = e.currentTarget;
+              const remoteFallback =
+                'https://my.uploadkon.ir/d/SWkDUv7gLj5IW2pfpyaXzbJrCJihMV/OTQ3OTl8cGFkZA.webp';
+              if (!target.src.includes('uploadkon.ir')) {
+                target.src = remoteFallback;
+                return;
+              }
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }}
+          />
+          <svg className="w-full h-full object-cover hidden" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="1200" height="675" fill="#11191A" />
-            {/* Game Lab Sci-Fi Portal Grid */}
             <g stroke="#65B7B5" strokeWidth="1" opacity="0.3">
               <line x1="0" y1="338" x2="1200" y2="338" />
               <line x1="600" y1="0" x2="600" y2="675" />
@@ -392,7 +411,6 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
               <circle cx="600" cy="338" r="160" strokeDasharray="8 8" />
               <circle cx="600" cy="338" r="240" />
             </g>
-            {/* Interactive Futuristic Holographic Diamond */}
             <g transform="translate(600, 338)">
               <polygon points="0,-90 90,0 0,90 -90,0" fill="#182527" stroke="#65B7B5" strokeWidth="2" />
               <polygon points="0,-60 60,0 0,60 -60,0" fill="#3E777A" fillOpacity="0.4" stroke="#D6B16A" strokeWidth="1.5" />

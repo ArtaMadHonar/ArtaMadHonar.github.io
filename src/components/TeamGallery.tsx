@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { User, ArrowLeft } from 'lucide-react';
 import { TEAM_MEMBERS, TeamMember } from '../data/studioData';
 
@@ -27,13 +27,26 @@ const SHORT_ROLE_BY_ID: Record<string, string> = {
   'ali-ebrahimi': 'طراح ارشد کالکشن وب۳',
 };
 
+const DEPARTMENT_TABS = [
+  { id: 'all', label: 'همه اعضا' },
+  { id: 'animation', label: 'انیمیشن و توسعه IP' },
+  { id: 'commercial', label: 'تبلیغات و CGI' },
+  { id: 'web3', label: 'وب۳ و NFT' },
+];
+
 interface TeamGalleryProps {
   onSelectMember: (member: TeamMember) => void;
 }
 
 export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
+  const [activeDepartment, setActiveDepartment] = useState<string>('all');
   const coFounders = TEAM_MEMBERS.filter((m) => m.isCoFounder);
   const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome).slice(0, 8);
+
+  const filteredMembers =
+    activeDepartment === 'all'
+      ? ensembleMembers
+      : ensembleMembers.filter((m) => m.department === activeDepartment);
 
   return (
     <section id="team" className="py-14 sm:py-18 border-t border-[#DCD6C8] relative scroll-mt-20">
@@ -139,27 +152,56 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
           </div>
         </div>
 
-        {/* Part 2: 8 Core Studio Specialists (Minimal Avatar + Name + Short Role, Details on Click) */}
+        {/* Part 2: 8 Core Studio Members with Interactive Department Switcher */}
         <div className="space-y-6 sm:space-y-8 pt-8 border-t border-[#DCD6C8]">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-right">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 text-right">
             <div className="space-y-1">
               <span
                 dir="ltr"
-                className="text-xs font-mono uppercase tracking-widest text-[#777A76] block"
+                className="text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold block"
               >
-                CORE STUDIO SPECIALISTS
+                STUDIO ENSEMBLE & DEPARTMENTS
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-[#1E2424]">
-                اعضای تخصصی دپارتمان‌های استودیو
+                اعضای دپارتمان‌های استودیو
               </h3>
             </div>
-            <span className="text-xs text-[#777A76]">
-              برای مشاهده سوابق و تخصص هر عضو، روی تصویر کلیک کنید
-            </span>
+
+            {/* Interactive Department Switcher Tabs */}
+            <div
+              role="tablist"
+              aria-label="فیلتر اعضای دپارتمان‌ها"
+              className="flex flex-wrap items-center gap-1.5 p-1 bg-[#EDE9DF] border border-[#DCD6C8] rounded-2xl"
+            >
+              {DEPARTMENT_TABS.map((tab) => {
+                const isActive = activeDepartment === tab.id;
+                const count =
+                  tab.id === 'all'
+                    ? ensembleMembers.length
+                    : ensembleMembers.filter((m) => m.department === tab.id).length;
+
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActiveDepartment(tab.id)}
+                    className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                      isActive
+                        ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
+                        : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E4DFD3]'
+                    }`}
+                  >
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 items-stretch">
-            {ensembleMembers.map((member) => {
+          {/* Members Grid Filtered by Department Switch */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 items-stretch transition-all duration-300">
+            {filteredMembers.map((member) => {
               const shortRole = SHORT_ROLE_BY_ID[member.id] || member.role;
               return (
                 <div
@@ -208,7 +250,7 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
                     {member.name}
                   </h4>
 
-                  {/* Short Role Only (No Bio Text or Footer Clutter) */}
+                  {/* Short Role */}
                   <div className="mt-1 text-xs font-semibold text-[#3E777A] font-soft">
                     {shortRole}
                   </div>

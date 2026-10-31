@@ -974,32 +974,35 @@ export const SELECTED_WORKS: ProjectWork[] = [
   },
   {
     id: 'game-lab',
-    title: 'بازی‌سازی و سرگرمی تعاملی (Interactive Entertainment)',
+    title: 'بازی‌سازی و سرگرمی تعاملی (Game Development & Interactive Entertainment)',
     shortTitle: 'بازی‌سازی و سرگرمی تعاملی',
     categoryFa: '۳. بازی‌سازی و سرگرمی تعاملی',
     categoryKey: 'game',
-    subtitle: 'PC, Mobile & Tabletop Game Development',
+    subtitle: 'Game Development and Interactive Entertainment',
+    imageUrl: '/assets/game-lab/cat2-1.webp',
+    fallbackImageUrl:
+      'https://my.uploadkon.ir/d/SWkDUv7gLj5IW2pfpyaXzbJrCJihMV/OTQ3OTl8cGFkZA.webp',
     shortSummary:
-      'طراحی و توسعه بازی‌های رایانه‌ای، موبایلی و رومیزی با تمرکز بر روایت‌پردازی، جهان‌سازی و گسترش زنجیره ارزش IP.',
+      'گسترش پیوند عاطفی کودک با جهان داستانی «پویو» از طریق توسعه بازی‌های موبایلی، رایانه‌ای (PC) و بازی‌های رومیزی (Board Games).',
     description:
-      'طراحی و توسعه بازی‌های رایانه‌ای، موبایلی و رومیزی با تمرکز بر روایت، جهان‌سازی و تجربه‌های تعاملی که امتداد زنجیره ارزش دارایی‌های فکری (IP) استودیو را در رسانه‌های تعاملی شکل می‌دهند.',
+      'بر اساس آمار مرکز تحقیقات بازی‌های دیجیتال (دایرک)، میانگین بازی در ایران ۹۳ دقیقه در روز است؛ زمانی که فرصتی ارزشمند برای گسترش ارتباط کودک با شخصیت‌ها و جهان‌های داستانی فراهم می‌کند. تماشای انیمیشن می‌تواند نخستین پیوند عاطفی کودک با یک شخصیت را شکل دهد، اما بازی امکان ادامه‌دادن این ارتباط را از طریق تعامل و تجربه‌های مکرر به وجود می‌آورد.',
     secondaryDescription:
-      'در استودیو آرتا ماد هنر، شخصیت‌ها و جهان‌های خلق‌شده در آثار انیمیشنی از ابتدا با قابلیت گسترش به بازی‌های ویدیویی و بردگیم‌های خانوادگی طراحی می‌شوند تا مخاطب بتواند فراتر از تماشای فیلم، در دنیای اثر زندگی و تعامل کند.',
-    highlightsTitle: 'محورهای طراحی و توسعه سرگرمی تعاملی:',
+      'ما با توسعه بازی‌های موبایلی، رایانه‌ای و رومیزی در امتداد جهان «پویو»، تلاش می‌کنیم این ارتباط را فراتر از تماشای فیلم ادامه دهیم؛ تا کودک نه فقط تماشاگر ماجراهای پویو، بلکه همراه و بخشی از دنیای او باشد.',
+    highlightsTitle: 'محورهای گسترش اکوسیستم تعاملی پویو:',
     highlights: [
-      'طراحی و توسعه بازی‌های رایانه‌ای، موبایلی و رومیزی با هویت هنری منسجم',
-      'تمرکز عمیق بر روایت‌پردازی، جهان‌سازی و خلق تجربه‌های تعاملی درگیرکننده',
-      'گسترش دارایی‌های فکری (IP) استودیو در قالب محصولات و پلتفرم‌های سرگرمی متنوع',
+      'بازی موبایلی «پازل پویو»: چالش سرعت عمل، تاس و انتخاب کارت‌های شخصیت برای پلتفرم موبایل',
+      'بازی رایانه‌ای «ماجراجویی پویو» (PC): کاوش سه‌بعدی در شهر و تجربه ماموریت‌های داستانی دنیای پویو',
+      'بازی رومیزی «روز شگفت‌انگیز» (Board Game): تجربه فیزیکی و خانوادگی با کارت‌های چالش و مهره‌های استندی شخصیت‌ها',
     ],
-    tags: ['بازی‌های رایانه‌ای و موبایلی', 'بازی‌های رومیزی', 'جهان‌سازی و روایت تعاملی', 'توسعه زنجیره ارزش IP'],
+    tags: [
+      'گیم موبایلی',
+      'بازی PC',
+      'گیم برد (بازی رومیزی)',
+      'مرچندایز و اکشن‌پز شخصیت',
+      'بازی آموزش زبان',
+    ],
     canvasType: 'game-lab',
-    isUpcoming: true,
-    relatedMemberIds: [
-      'mehdi-mohammadian',
-      'mahmoud-mohammadian',
-      'negar-baratzadeh',
-      'ali-alipour',
-    ],
+    relatedMemberIds: ['mehdi-mohammadian', 'lotfallah-salehi'],
     teamGroups: [
       {
         id: 'game-head',
@@ -1010,27 +1013,105 @@ export const SELECTED_WORKS: ProjectWork[] = [
       {
         id: 'game-members',
         title: 'اعضای تیم',
-        memberIds: ['mahmoud-mohammadian', 'negar-baratzadeh', 'ali-alipour'],
+        memberIds: ['lotfallah-salehi'],
       },
     ],
     galleryItems: [
       {
-        id: 'game-digital',
-        title: 'توسعه بازی‌های رایانه‌ای و موبایلی مبتنی بر جهان IP',
-        subtitle: 'Interactive Storytelling & Stylized Game Worlds',
-        badge: 'بازی‌های دیجیتال',
+        id: 'game-pc-adventure',
+        title: 'بازی PC «ماجراجویی پویو» — کاوش سه‌بعدی در شهر',
+        titleEn: 'Poyo PC Adventure Game',
+        subtitle: 'PC 3D Adventure & Urban Exploration Gameplay',
+        badge: 'بازی رایانه‌ای (PC)',
         description:
-          'طراحی مکانیک‌های گیم‌پلی، مراحل و دارایی‌های سه‌بعدی برای پلتفرم‌های موبایل و رایانه‌های شخصی در امتداد جهان داستانی استودیو.',
-        canvasType: 'game-lab',
+          'تجربه گیم‌پلی سه‌بعدی و ماجراجویی در خیابان‌های رنگارنگ شهر پویو؛ دوچرخه‌سواری، عبور از موانع شهری و جمع‌آوری آیتم‌ها در امتداد فضای بصری انیمیشن سینمایی «روز شگفت‌انگیز».',
+        imageUrl: '/assets/game-lab/cat2-1.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/SWkDUv7gLj5IW2pfpyaXzbJrCJihMV/OTQ3OTl8cGFkZA.webp',
       },
       {
-        id: 'game-tabletop',
-        title: 'طراحی بازی‌های رومیزی (Board Games) خانوادگی و استراتژیک',
-        subtitle: 'Tabletop Game Design & Physical IP Merchandising',
-        badge: 'بازی‌های رومیزی',
+        id: 'game-mobile-1',
+        title: 'بازی موبایلی «پازل پویو» — صفحه عنوان و شروع بازی',
+        titleEn: 'Poyo Puzzle · Title Screen',
+        subtitle: 'Mobile Casual & Puzzle Game UI',
+        badge: 'گیم موبایلی · ۱ از ۴',
         description:
-          'خلق تجربه‌های تعاملی فیزیکی، طراحی کارت‌ها، فیگورها و قوانین بازی با هدف تقویت تعامل خانواده‌ها و گسترش محصولات جانبی IP.',
-        canvasType: 'character-concept',
+          'طراحی رابط کاربری شاد و کودک‌محور برای صفحه ورود بازی موبایلی «پازل پویو» با محوریت کاراکتر پویو و فضای شیرینی‌پزی و جشن شهری.',
+        imageUrl: '/assets/game-lab/cat1-1.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/OuBPkeg0DgoBdQE7HEVNIGceKbxatt/OTQ3OTZ8cGFkZA.webp',
+      },
+      {
+        id: 'game-mobile-2',
+        title: 'بازی موبایلی «پازل پویو» — گیم‌پلی تطبیق تاس و کارت',
+        titleEn: 'Poyo Puzzle · Core Gameplay',
+        subtitle: 'Speed Matching, Dice & Character Cards',
+        badge: 'گیم موبایلی · ۲ از ۴',
+        description:
+          'مکانیک اصلی گیم‌پلی بر پایه سرعت عمل، تطبیق الگوی تاس‌ها و انتخاب کارت صحیح از میان شخصیت‌های دنیای «روز شگفت‌انگیز» در زمان محدود.',
+        imageUrl: '/assets/game-lab/cat1-2.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/x9FKDQfxgWQUnwwL0r2NqJ9OD42eiX/OTQ3OTd8cGFkZA.webp',
+      },
+      {
+        id: 'game-mobile-3',
+        title: 'بازی موبایلی «پازل پویو» — ثبت رکورد و پیروزی مرحله',
+        titleEn: 'Poyo Puzzle · Stage Victory',
+        subtitle: 'Reward Feedback & Time Record',
+        badge: 'گیم موبایلی · ۳ از ۴',
+        description:
+          'صفحه بازخورد مثبت و ثبت زمان مرحله پس از انتخاب درست کارت توسط بازیکن همراه با انیمیت تشویقی کاراکتر پویو.',
+        imageUrl: '/assets/game-lab/cat1-3.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/JOHJYhcglehZgX2ElAfOLPU1eSkiXu/OTQ4MDB8cGFkZA.webp',
+      },
+      {
+        id: 'game-mobile-4',
+        title: 'بازی موبایلی «پازل پویو» — بازخورد تعاملی انتخاب اشتباه',
+        titleEn: 'Poyo Puzzle · Try Again State',
+        subtitle: 'Interactive Character Reaction UI',
+        badge: 'گیم موبایلی · ۴ از ۴',
+        description:
+          'واکنش کارتونی و بامزه شخصیت پویو هنگام انتخاب کارت اشتباه که بدون ایجاد حس شکست، کودک را به تلاش مجدد ترغیب می‌کند.',
+        imageUrl: '/assets/game-lab/cat1-4.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/3FPEiIn7oDJUJky4l0WwHGTRxIgn82/OTQ3OTh8cGFkZA.webp',
+      },
+      {
+        id: 'game-board-card-1',
+        title: 'کارت شانس بازی رومیزی «روز شگفت‌انگیز» — تاس مجدد',
+        titleEn: 'Board Game · Lucky Roll Card',
+        subtitle: '«تو شانس آوردی میتونی دوباره تاس بندازی»',
+        badge: 'بازی رومیزی · کارت ۱',
+        description:
+          'طراحی کارت‌های اتفاق و شانس در بردگیم خانوادگی «روز شگفت‌انگیز» با تصویرسازی اختصاصی از کاراکترهای فیلم و تاثیر مستقیم بر روند حرکت در صفحه بازی.',
+        imageUrl: '/assets/game-lab/cat2-2.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/7kuvf6HUyX8Qg3JiXesi2duy2LErIQ/OTQ4MDJ8cGFkZA.webp',
+      },
+      {
+        id: 'game-board-card-2',
+        title: 'کارت چالش بازی رومیزی «روز شگفت‌انگیز» — توقف در مسیر',
+        titleEn: 'Board Game · Flour Trap Card',
+        subtitle: '«افتادی تو آردا... یک دور باید صبر کنی.»',
+        badge: 'بازی رومیزی · کارت ۲',
+        description:
+          'کارت‌های چالش و بدشانسی بامزه برگرفته از موقعیت‌های کمدی فیلم سینمایی «روز شگفت‌انگیز» و کارگاه شیرینی‌پزی خانواده میو.',
+        imageUrl: '/assets/game-lab/cat2-3.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/zbN9A1A75iulopRwpJbckx6dXi7Hb7/OTQ4MDN8cGFkZA.webp',
+      },
+      {
+        id: 'game-board-card-3',
+        title: 'کارت رقیب بازی رومیزی «روز شگفت‌انگیز» — یک دور توقف',
+        titleEn: 'Board Game · Rival Challenge Card',
+        subtitle: '«هه! خیلی فکر کردی؟ یک دور از بازی عقب میمونی!»',
+        badge: 'بازی رومیزی · کارت ۳',
+        description:
+          'کارت‌های تقابل و رقابت در بازی رومیزی «روز شگفت‌انگیز» که هیجان، کل‌کل دوستانه و تعامل جمعی اعضای خانواده را در طول بازی تقویت می‌کنند.',
+        imageUrl: '/assets/game-lab/token-1.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/MCM82zi7mqg5jYq1jJsaSTDZ0w27BZ/OTQ4MDR8cGFkZA.webp',
       },
     ],
   },
