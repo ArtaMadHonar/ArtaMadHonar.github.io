@@ -588,9 +588,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             })()
           ) : domain.id === 'game-lab' ? (
             <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#121616] border border-[#DCD6C8] dark:border-[#27363A] shadow-[0_14px_40px_rgba(30,36,36,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] p-5 sm:p-7 lg:p-8 transition-colors">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 {/* Right Column in RTL (6 Cols): 93-Minute DIRC Stat + Vision Narrative + 5 IP Expansion Pillars */}
-                <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 text-right transition-colors">
+                <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-start space-y-4 text-right transition-colors">
                   <div className="space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] dark:border-[#2E3636] pb-3">
                       <span className="text-xs sm:text-sm font-black text-[#3E777A] dark:text-[#5DB8BD]">
@@ -661,9 +661,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </div>
 
                 {/* Left Column in RTL (6 Cols): Ecosystem Signpost Visual + 3 Core Game Lines */}
-                <div className="lg:col-span-6 flex flex-col justify-between gap-4">
+                <div className="lg:col-span-6 flex flex-col justify-start gap-4">
                   {/* Top Visual: Wonderful Day Interactive Ecosystem Banner */}
-                  <div className="w-full rounded-2xl overflow-hidden border border-[#DCD6C8] dark:border-[#2E3636] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]">
+                  <div className="w-full rounded-2xl overflow-hidden bg-transparent">
                     <img
                       src="/assets/game-lab/rollercoaster-banner.webp"
                       onError={(e) => {
@@ -678,12 +678,12 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       referrerPolicy="no-referrer"
                       loading="eager"
                       decoding="sync"
-                      className="w-full h-auto block"
+                      className="w-full h-auto block rounded-2xl"
                     />
                   </div>
 
-                  {/* Bottom 3-Pillar Product Line Cards (Fills Height & Summarizes the 3 Categories Below) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-1">
+                  {/* Bottom 3-Pillar Product Line Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-2 text-right transition-colors">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-mono font-black text-[#3E777A] dark:text-[#5DB8BD]" dir="ltr">
@@ -967,9 +967,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     <article
                       key={screen.id}
                       onClick={() => setSelectedItem(screen)}
-                      className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
+                      className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-start"
                     >
-                      <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
+                      <div className="relative w-full bg-transparent overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
                         <img
                           src={screen.imageUrl}
                           alt={screen.title}
@@ -1036,7 +1036,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 {/* 3 Board Game Action Cards Grouped Together (8 Cols) */}
                 <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
                   {galleryItems
@@ -1045,9 +1045,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       <article
                         key={card.id}
                         onClick={() => setSelectedItem(card)}
-                        className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
+                        className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-start"
                       >
-                        <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
+                        <div className="relative w-full bg-transparent overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
                           <img
                             src={card.imageUrl}
                             alt={card.title}
@@ -1092,7 +1092,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </div>
 
                 {/* Board Game Mechanics & Standee Tokens Showcase (4 Cols) */}
-                <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 transition-colors">
+                <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-start space-y-4 transition-colors">
                   <div className="space-y-3.5">
                     <div className="flex items-center justify-between border-b border-[#DCD6C8] dark:border-[#2E3636] pb-2.5">
                       <span className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
@@ -1273,11 +1273,11 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Widescreen 16:9 PC Screenshot (8 Cols) */}
                     <div
                       onClick={() => setSelectedItem(pcItem)}
-                      className="lg:col-span-8 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]"
+                      className="lg:col-span-8 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] bg-transparent shadow-[0_10px_28px_rgba(30,36,36,0.08)]"
                     >
                       <img
                         src={pcItem.imageUrl}
@@ -1302,7 +1302,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     </div>
 
                     {/* PC Game Highlights & Specs Column (4 Cols) */}
-                    <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 transition-colors">
+                    <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-start space-y-4 transition-colors">
                       <div className="space-y-3.5">
                         <div className="flex items-center justify-between border-b border-[#DCD6C8] dark:border-[#2E3636] pb-2.5">
                           <span className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowLeft, Sun, Moon, ChevronLeft } from 'lucide-react';
 import { SELECTED_WORKS } from '../data/studioData';
-import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -46,8 +45,16 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Lock background scroll when mobile menu is open
-  useModalScrollLock(mobileOpen, mobileDrawerRef);
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileOpen]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileOpen(false);
@@ -174,13 +181,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Backdrop Scrim */}
           <div
             onClick={() => setMobileOpen(false)}
-            className="xl:hidden fixed inset-x-0 top-18 sm:top-22 bottom-0 h-[calc(100dvh-4.5rem)] bg-black/55 backdrop-blur-xs z-40"
+            className="xl:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-xs"
           />
 
           {/* Slide-Down Sheet */}
           <div
             ref={mobileDrawerRef}
-            className="xl:hidden absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-b border-[#DCD6C8] bg-[#FAF8F4] rounded-b-3xl px-4 sm:px-6 py-5 space-y-5 shadow-2xl"
+            className="xl:hidden fixed inset-x-0 top-18 sm:top-22 lg:top-24 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-b border-[#DCD6C8] dark:border-[#27363A] bg-[#FAF8F4] dark:bg-[#151A1A] rounded-b-3xl px-4 sm:px-6 py-5 space-y-5 shadow-2xl transition-all"
           >
             {/* Section 1: Main Page Sections */}
             <div className="space-y-2">
