@@ -29,24 +29,34 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateHome })
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#EDE9DF]/90 border-b border-[#DCD6C8] transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-8 min-w-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-8 min-w-0">
         {/* Zone 1: Brand Logo & Subtle Studio Lockup */}
         <a
           href="https://artamad.ir"
           onClick={(e) => handleLinkClick(e, '#')}
-          className="group flex items-center gap-3 shrink-0 select-none"
+          className="group flex items-center gap-3.5 shrink-0 select-none"
         >
           <img
-            src="https://my.uploadkon.ir/d/V7xEfgwAIrHufBKaVf0DjHYu2tyLfL/OTEyMzV8cGFkZA.png"
+            src={`${import.meta.env.BASE_URL}assets/logo-trimmed.png`}
             alt="استودیو آرتا ماد هنر"
-            referrerPolicy="no-referrer"
-            className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+            onError={(e) => {
+              const target = e.currentTarget;
+              const fallback =
+                'https://my.uploadkon.ir/d/V7xEfgwAIrHufBKaVf0DjHYu2tyLfL/OTEyMzV8cGFkZA.png';
+              if (target.src !== fallback) {
+                target.src = fallback;
+              }
+            }}
+            className="h-13 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
-          <div className="flex flex-col justify-center border-r border-[#DCD6C8] pr-3 text-right">
-            <span className="text-xs sm:text-sm font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-tight whitespace-nowrap">
+          <div className="flex flex-col justify-center border-r border-[#DCD6C8] pr-3.5 text-right">
+            <span className="text-sm sm:text-base font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-tight whitespace-nowrap">
               استودیو آرتا ماد هنر
             </span>
-            <span className="text-[9px] sm:text-[10px] font-en font-semibold text-[#777A76] tracking-wider uppercase leading-tight whitespace-nowrap mt-0.5">
+            <span className="text-[10px] sm:text-[11px] font-en font-semibold text-[#777A76] tracking-wider uppercase leading-tight whitespace-nowrap mt-1">
               Arta Mad Honar Studio
             </span>
           </div>

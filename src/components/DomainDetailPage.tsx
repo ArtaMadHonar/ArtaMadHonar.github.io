@@ -18,7 +18,6 @@ import {
   DomainGalleryItem,
 } from '../data/studioData';
 import { VisualArtCanvas } from './VisualArtCanvas';
-import { HeroVideoPlayer } from './HeroVideoPlayer';
 
 interface DomainDetailPageProps {
   domain: ProjectWork;
@@ -282,23 +281,84 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </a>
               </div>
             </div>
+          ) : domain.id === 'wonderful-day' ? (
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] p-5 sm:p-7 lg:p-8">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+                {/* Official Vertical Poster Column (4 Cols on Desktop) - 100% Uncropped at all zoom levels */}
+                <div className="md:col-span-5 lg:col-span-4 flex items-center justify-center">
+                  <div className="w-full max-w-[360px] md:max-w-none rounded-2xl overflow-hidden border border-[#DCD6C8] shadow-[0_12px_32px_rgba(30,36,36,0.10)] bg-[#EDE9DF]">
+                    <img
+                      src="/assets/wonderful-day-poster.webp"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        const remoteUrl =
+                          'https://my.uploadkon.ir/d/RDkpbAsQe4oJupEi0adPNECBXTa53v/OTEyNzJ8cGFkZA.webp';
+                        if (target.src !== remoteUrl) {
+                          target.src = remoteUrl;
+                        }
+                      }}
+                      alt="پوستر رسمی انیمیشن سینمایی روز شگفت‌انگیز"
+                      referrerPolicy="no-referrer"
+                      loading="eager"
+                      decoding="sync"
+                      className="w-full h-auto block"
+                    />
+                  </div>
+                </div>
+
+                {/* Narrative & Highlights Column (8 Cols on Desktop) - Balanced alongside the vertical poster */}
+                <div className="md:col-span-7 lg:col-span-8 p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#F4F0E6]/60 border border-[#E5E0D4] flex flex-col justify-between space-y-6 text-right">
+                  <div className="space-y-4">
+                    <span className="text-xs sm:text-sm font-bold text-[#3E777A] block">
+                      معرفی و رویکرد دپارتمان
+                    </span>
+
+                    <p className="text-sm sm:text-base text-[#1E2424] leading-relaxed font-medium">
+                      {domain.description}
+                    </p>
+
+                    {domain.secondaryDescription && (
+                      <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
+                        {domain.secondaryDescription}
+                      </p>
+                    )}
+
+                    <div className="pt-5 border-t border-[#DCD6C8] space-y-3">
+                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                        {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
+                      </h3>
+                      <div className="space-y-2.5">
+                        {domain.highlights.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-2.5 text-xs sm:text-[13.5px] text-[#434846] leading-relaxed"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#DCD6C8] flex flex-wrap items-center gap-2 text-xs text-[#777A76]">
+                    <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
+                    <span>{domain.tags.join(' · ')}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-                {/* Visual Column (7 Cols) - Clean & Original */}
-                <div className="lg:col-span-7 bg-[#121616] relative flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
-                  {domain.id === 'wonderful-day' ? (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <HeroVideoPlayer />
-                    </div>
-                  ) : (
-                    <VisualArtCanvas
-                      type={domain.canvasType}
-                      imageUrl={domain.imageUrl}
-                      className="w-full h-full aspect-video lg:aspect-auto"
-                      showControls={false}
-                    />
-                  )}
+                {/* Visual Column (7 Cols) */}
+                <div className="lg:col-span-7 bg-[#EDE9DF] relative overflow-hidden min-h-[260px] sm:min-h-[360px]">
+                  <VisualArtCanvas
+                    type={domain.canvasType}
+                    imageUrl={domain.imageUrl}
+                    className="w-full h-full lg:absolute lg:inset-0 aspect-video lg:aspect-auto"
+                    showControls={false}
+                  />
                 </div>
 
                 {/* Narrative & Highlights Column (5 Cols) */}
