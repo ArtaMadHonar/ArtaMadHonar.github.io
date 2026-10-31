@@ -319,8 +319,27 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       )}
 
       {type === 'vfx-mapping' && (
-        <div className="absolute inset-0 bg-[#101819] flex items-center justify-center">
-          <svg className="w-full h-full object-cover" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute inset-0 bg-[#0B0E11] flex items-center justify-center overflow-hidden">
+          <img
+            src={imageUrl || '/assets/vfx-img-1.webp'}
+            alt="ویدئو مپینگ و تجربه‌های بصری فراگیر"
+            referrerPolicy="no-referrer"
+            loading="eager"
+            className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+            onError={(e) => {
+              const target = e.currentTarget;
+              const remoteFallback =
+                'https://my.uploadkon.ir/d/qEI9yLY4BC6xhPR75WLXTP7EDMqDQw/OTEzNzN8cGFkZA.webp';
+              if (!target.src.includes('uploadkon.ir')) {
+                target.src = remoteFallback;
+                return;
+              }
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'block';
+            }}
+          />
+          <svg className="w-full h-full object-cover hidden" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="laserBeam1" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stopColor="#D6B16A" stopOpacity="0.9" />
@@ -332,30 +351,9 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
               </linearGradient>
             </defs>
             <rect width="1200" height="675" fill="#101819" />
-
-            {/* Stadium Mega Stage Architecture */}
             <polygon points="200,500 400,200 800,200 1000,500" stroke="#3E777A" strokeWidth="2" fill="#162224" />
             <polygon points="300,500 450,280 750,280 900,500" stroke="#D6B16A" strokeWidth="1.5" strokeOpacity="0.65" fill="#1C2A2C" />
             <polygon points="400,500 500,340 700,340 800,500" stroke="#65B7B5" strokeWidth="1.5" strokeOpacity="0.6" fill="#132326" />
-
-            {/* Projection Mapping Holographic Cube on Stage */}
-            <g transform="translate(600, 360)">
-              <polygon points="0,-80 70,-40 0,0 -70,-40" fill="#65B7B5" fillOpacity="0.35" stroke="#EDE9DF" strokeWidth="1.5" />
-              <polygon points="-70,-40 0,0 0,80 -70,40" fill="#3E777A" fillOpacity="0.45" stroke="#EDE9DF" strokeWidth="1.5" />
-              <polygon points="0,0 70,-40 70,40 0,80" fill="#D6B16A" fillOpacity="0.5" stroke="#EDE9DF" strokeWidth="1.5" />
-            </g>
-
-            {/* Monumental Stage Lasers */}
-            <polygon points="600,200 100,0 150,0" fill="url(#laserBeam1)" opacity="0.6" />
-            <polygon points="600,200 1050,0 1100,0" fill="url(#laserBeam1)" opacity="0.6" />
-            <polygon points="500,220 0,150 0,200" fill="url(#laserBeam2)" opacity="0.45" />
-            <polygon points="700,220 1200,150 1200,200" fill="url(#laserBeam2)" opacity="0.45" />
-
-            {/* Cheering Crowd Silhouettes */}
-            <path
-              d="M 0 675 Q 50 580 100 675 Q 150 570 200 675 Q 250 590 300 675 Q 350 560 400 675 Q 450 585 500 675 Q 550 570 600 675 Q 650 580 700 675 Q 750 565 800 675 Q 850 580 900 675 Q 950 570 1000 675 Q 1050 585 1100 675 Q 1150 570 1200 675 Z"
-              fill="#0A0F10"
-            />
           </svg>
         </div>
       )}

@@ -51,6 +51,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [isHeroVideoReady, setIsHeroVideoReady] = useState<boolean>(false);
+  const [activeVfxPhotoIndex, setActiveVfxPhotoIndex] = useState<number>(0);
+  const [playingInlineVideoId, setPlayingInlineVideoId] = useState<string | null>(null);
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -58,6 +60,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
     setHoveredCardId(null);
     setSelectedItem(null);
     setIsHeroVideoReady(false);
+    setActiveVfxPhotoIndex(0);
+    setPlayingInlineVideoId(null);
   }, [domain.id]);
 
   // Smart IntersectionObserver to pause autoplay video when scrolled out of view
@@ -348,6 +352,147 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 </div>
               </div>
             </div>
+          ) : domain.id === 'vfx-mapping' ? (
+            (() => {
+              const vfxPhotos = galleryItems.filter((item) => !item.embedUrl && item.imageUrl);
+              const currentHeroPhoto =
+                vfxPhotos[activeVfxPhotoIndex] || vfxPhotos[0] || null;
+
+              return (
+                <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.06)] p-5 sm:p-7 lg:p-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                    {/* Interactive Stage & Architectural Mapping Visual Column (7 Cols) - 100% Uncropped 16:9 */}
+                    <div className="lg:col-span-7 space-y-3.5">
+                      <div
+                        onClick={() => currentHeroPhoto && setSelectedItem(currentHeroPhoto)}
+                        className="group relative w-full rounded-2xl overflow-hidden border border-[#DCD6C8] bg-[#0B0E11] shadow-[0_12px_32px_rgba(30,36,36,0.12)] cursor-pointer"
+                      >
+                        <img
+                          src={currentHeroPhoto?.imageUrl || '/assets/vfx-img-1.webp'}
+                          alt={currentHeroPhoto?.title || domain.title}
+                          referrerPolicy="no-referrer"
+                          loading="eager"
+                          decoding="sync"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            const fallback =
+                              currentHeroPhoto?.fallbackImageUrl ||
+                              'https://my.uploadkon.ir/d/qEI9yLY4BC6xhPR75WLXTP7EDMqDQw/OTEzNzN8cGFkZA.webp';
+                            if (target.src !== fallback) {
+                              target.src = fallback;
+                            }
+                          }}
+                          className="w-full h-auto block transition-transform duration-700 group-hover:scale-102"
+                        />
+
+                        {/* Subtle Expand Button & Frame Caption Overlay */}
+                        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 bg-gradient-to-t from-black/85 via-black/35 to-transparent flex items-end justify-between gap-3">
+                          <div className="text-right">
+                            <span className="text-[11px] font-mono text-[#D6B16A] block">
+                              SA’DABAD COMPLEX · ALIREZA GHORBANI LIVE
+                            </span>
+                            <p className="text-xs sm:text-sm font-bold text-[#FAF8F4] mt-0.5">
+                              {currentHeroPhoto?.title || domain.title}
+                            </p>
+                          </div>
+                          <div className="w-9 h-9 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] flex items-center justify-center shrink-0 transition-colors shadow-md">
+                            <Maximize2 className="w-4 h-4" />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 3-Frame Interactive Thumbnail Selector Strip */}
+                      {vfxPhotos.length > 1 && (
+                        <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5">
+                          {vfxPhotos.map((photo, idx) => {
+                            const isActive = idx === activeVfxPhotoIndex;
+                            return (
+                              <button
+                                key={photo.id}
+                                type="button"
+                                onClick={() => setActiveVfxPhotoIndex(idx)}
+                                className={`group relative rounded-xl overflow-hidden border transition-all cursor-pointer text-right ${
+                                  isActive
+                                    ? 'border-[#3E777A] ring-2 ring-[#3E777A]/35 shadow-sm'
+                                    : 'border-[#DCD6C8] opacity-75 hover:opacity-100 hover:border-[#3E777A]/60'
+                                }`}
+                              >
+                                <img
+                                  src={photo.imageUrl}
+                                  alt={photo.title}
+                                  referrerPolicy="no-referrer"
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    if (
+                                      photo.fallbackImageUrl &&
+                                      target.src !== photo.fallbackImageUrl
+                                    ) {
+                                      target.src = photo.fallbackImageUrl;
+                                    }
+                                  }}
+                                  className="w-full h-auto block"
+                                />
+                                <div className="px-2.5 py-1.5 bg-[#FAF8F4] border-t border-[#DCD6C8] flex items-center justify-between gap-1">
+                                  <span className="text-[11px] font-bold text-[#1E2424] truncate">
+                                    {photo.badge || `قاب ${idx + 1}`}
+                                  </span>
+                                  <span
+                                    className={`w-2 h-2 rounded-full shrink-0 ${
+                                      isActive ? 'bg-[#3E777A]' : 'bg-[#DCD6C8]'
+                                    }`}
+                                  />
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Narrative & Highlights Column (5 Cols) */}
+                    <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 rounded-2xl bg-[#F4F0E6]/65 border border-[#E5E0D4] flex flex-col justify-between space-y-6 text-right">
+                      <div className="space-y-4">
+                        <span className="text-xs sm:text-sm font-bold text-[#3E777A] block">
+                          معرفی و رویکرد دپارتمان
+                        </span>
+
+                        <p className="text-xs sm:text-sm text-[#1E2424] leading-relaxed font-medium">
+                          {domain.description}
+                        </p>
+
+                        {domain.secondaryDescription && (
+                          <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
+                            {domain.secondaryDescription}
+                          </p>
+                        )}
+
+                        <div className="pt-4 border-t border-[#DCD6C8] space-y-2.5">
+                          <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                            {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
+                          </h3>
+                          <div className="space-y-2.5">
+                            {domain.highlights.map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2.5 text-xs sm:text-[13px] text-[#434846] leading-relaxed"
+                              >
+                                <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="pt-4 border-t border-[#DCD6C8] flex flex-wrap items-center gap-2 text-xs text-[#777A76]">
+                        <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
+                        <span>{domain.tags.join(' · ')}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()
           ) : (
             <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
@@ -406,16 +551,18 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
           )}
         </section>
 
-        {/* 3. Department Portfolio Grid (Minimal & Clean 3earstudio-style cards) */}
+        {/* 3. Department Portfolio Grid */}
         {galleryItems.length > 0 && (
-          <section className="space-y-8 border-t border-[#DCD6C8] pt-14">
+          <section className="space-y-10 border-t border-[#DCD6C8] pt-14">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 text-right">
               <div className="space-y-1">
                 <span className="text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold block">
-                  SELECTED WORKS
+                  SELECTED WORKS & LIVE ARCHIVE
                 </span>
                 <h2 className="text-xl sm:text-3xl font-black text-[#1E2424]">
-                  گزیده آثار و نمونه‌کارها
+                  {domain.id === 'vfx-mapping'
+                    ? 'گزیده ویدیوهای اجرای زنده و قاب‌های ویدئو مپینگ'
+                    : 'گزیده آثار و نمونه‌کارها'}
                 </h2>
               </div>
 
@@ -455,151 +602,340 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               )}
             </div>
 
-            {/* Clean, Concise Grid Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
-              {filteredGalleryItems.map((item) => {
-                const isHovered = hoveredCardId === item.id;
+            {domain.id === 'vfx-mapping' ? (
+              (() => {
+                const vfxVideos = galleryItems.filter((item) => Boolean(item.embedUrl));
+                const vfxPhotos = galleryItems.filter((item) => !item.embedUrl && item.imageUrl);
 
-                // Minimal 3earstudio.com-style Card for Video Works
-                if (item.embedUrl) {
+                return (
+                  <div className="space-y-12">
+                    {/* Part A: 2 Live Concert YouTube Videos (Shoushtari & Orouj) */}
+                    {vfxVideos.length > 0 && (
+                      <div className="space-y-5">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-right">
+                          <h3 className="text-base sm:text-xl font-black text-[#1E2424]">
+                            ویدیوهای اجرای زنده و کارگردانی بصری صحنه · کنسرت علیرضا قربانی (کاخ سعدآباد)
+                          </h3>
+                          <span className="text-xs font-mono text-[#3E777A] font-semibold">
+                            LIVE PERFORMANCE VIDEOS (2)
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7">
+                          {vfxVideos.map((video) => {
+                            const isPlayingInline = playingInlineVideoId === video.id;
+
+                            return (
+                              <article
+                                key={video.id}
+                                className="rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 shadow-[0_10px_30px_rgba(30,36,36,0.05)] flex flex-col justify-between"
+                              >
+                                <div>
+                                  {/* Top Bar */}
+                                  <div className="px-4 py-2.5 bg-[#F4F0E6] border-b border-[#DCD6C8] flex items-center justify-between">
+                                    <span className="text-xs font-bold text-[#3E777A]">
+                                      {video.badge || 'ویدیوی اجرای زنده'}
+                                    </span>
+                                    <span className="text-xs font-en font-semibold text-[#434846]">
+                                      {video.titleEn}
+                                    </span>
+                                  </div>
+
+                                  {/* 16:9 Stage Video Player / Thumbnail */}
+                                  <div className="aspect-video w-full bg-[#0B0E11] relative overflow-hidden border-b border-[#DCD6C8]">
+                                    {isPlayingInline && video.embedUrl ? (
+                                      <iframe
+                                        src={video.embedUrl}
+                                        title={video.title}
+                                        className="w-full h-full border-0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen
+                                      />
+                                    ) : (
+                                      <div
+                                        onClick={() => setPlayingInlineVideoId(video.id)}
+                                        className="group w-full h-full relative cursor-pointer"
+                                      >
+                                        {video.imageUrl && (
+                                          <img
+                                            src={video.imageUrl}
+                                            alt={video.title}
+                                            referrerPolicy="no-referrer"
+                                            onError={(e) => {
+                                              const target = e.currentTarget;
+                                              if (
+                                                video.fallbackImageUrl &&
+                                                target.src !== video.fallbackImageUrl
+                                              ) {
+                                                target.src = video.fallbackImageUrl;
+                                              }
+                                            }}
+                                            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-104"
+                                          />
+                                        )}
+                                        <div className="absolute inset-0 bg-black/25 group-hover:bg-black/40 transition-colors" />
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                          <div className="w-14 h-14 rounded-full bg-[#FAF8F4]/95 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] flex items-center justify-center shadow-xl transition-all duration-300 group-hover:scale-110">
+                                            <Play className="w-6 h-6 fill-current ml-0.5" />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+
+                                  {/* Video Info Body */}
+                                  <div className="p-5 sm:p-6 space-y-2.5 text-right">
+                                    <h4 className="text-base sm:text-lg font-black text-[#1E2424]">
+                                      {video.title}
+                                    </h4>
+                                    <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
+                                      {video.description}
+                                    </p>
+                                  </div>
+                                </div>
+
+                                {/* Video Card Actions: Play in Modal or Open YouTube Directly */}
+                                <div className="px-5 sm:px-6 py-3.5 bg-[#F4F0E6]/70 border-t border-[#E5E0D4] flex flex-wrap items-center justify-between gap-3">
+                                  <button
+                                    type="button"
+                                    onClick={() => setSelectedItem(video)}
+                                    className="text-xs font-bold text-[#3E777A] hover:text-[#1E2424] flex items-center gap-1.5 cursor-pointer transition-colors"
+                                  >
+                                    <Maximize2 className="w-3.5 h-3.5" />
+                                    <span>پخش در نمای سینمایی</span>
+                                  </button>
+
+                                  {video.externalUrl && (
+                                    <a
+                                      href={video.externalUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="px-3.5 py-1.5 rounded-xl bg-[#FAF8F4] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] text-xs font-bold flex items-center gap-1.5 transition-all"
+                                    >
+                                      <span>مشاهده در یوتیوب</span>
+                                      <ExternalLink className="w-3.5 h-3.5" />
+                                    </a>
+                                  )}
+                                </div>
+                              </article>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Part B: 3 Architectural & Stage Mapping Photos (Uncropped 16:9) */}
+                    {vfxPhotos.length > 0 && (
+                      <div className="space-y-5 pt-4 border-t border-[#DCD6C8]/70">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-right">
+                          <h3 className="text-base sm:text-xl font-black text-[#1E2424]">
+                            گالری قاب‌های اجرایی ویدئو مپینگ و معماری صحنه
+                          </h3>
+                          <span className="text-xs font-mono text-[#3E777A] font-semibold">
+                            STAGE & FACADE PHOTOGRAPHY (3)
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          {vfxPhotos.map((photo) => (
+                            <article
+                              key={photo.id}
+                              onClick={() => setSelectedItem(photo)}
+                              className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.07)] hover:-translate-y-0.5 flex flex-col justify-between"
+                            >
+                              <div className="w-full bg-[#0B0E11] relative overflow-hidden border-b border-[#DCD6C8]">
+                                <img
+                                  src={photo.imageUrl}
+                                  alt={photo.title}
+                                  referrerPolicy="no-referrer"
+                                  loading="lazy"
+                                  onError={(e) => {
+                                    const target = e.currentTarget;
+                                    if (
+                                      photo.fallbackImageUrl &&
+                                      target.src !== photo.fallbackImageUrl
+                                    ) {
+                                      target.src = photo.fallbackImageUrl;
+                                    }
+                                  }}
+                                  className="w-full h-auto block transition-transform duration-700 group-hover:scale-103"
+                                />
+                                <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
+                                  <Maximize2 className="w-4 h-4" />
+                                </div>
+                              </div>
+
+                              <div className="p-4 sm:p-5 space-y-2 text-right">
+                                <div className="flex items-center justify-between gap-2">
+                                  <span className="text-[11px] font-bold text-[#3E777A]">
+                                    {photo.badge}
+                                  </span>
+                                  <span className="text-[11px] font-en text-[#777A76] truncate">
+                                    {photo.titleEn}
+                                  </span>
+                                </div>
+                                <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-snug">
+                                  {photo.title}
+                                </h4>
+                                <p className="text-xs text-[#434846] leading-relaxed">
+                                  {photo.description}
+                                </p>
+                              </div>
+                            </article>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()
+            ) : (
+              /* Clean, Concise Grid Cards for other domains */
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
+                {filteredGalleryItems.map((item) => {
+                  const isHovered = hoveredCardId === item.id;
+
+                  // Minimal 3earstudio.com-style Card for Video Works
+                  if (item.embedUrl) {
+                    return (
+                      <article
+                        key={item.id}
+                        onMouseEnter={() => setHoveredCardId(item.id)}
+                        onMouseLeave={() => setHoveredCardId(null)}
+                        onClick={() => setSelectedItem(item)}
+                        className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.08)] hover:-translate-y-0.5"
+                      >
+                        {/* Top Window Bar: Category + 3 Dots (Exact 3earstudio structure) */}
+                        <div className="px-4 py-2.5 bg-[#F4F0E6] border-b border-[#DCD6C8] flex items-center justify-between">
+                          <div className="flex items-center gap-1.5" aria-hidden="true">
+                            <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#3E777A] transition-colors" />
+                            <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#65B7B5] transition-colors" />
+                            <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#D6B16A] transition-colors" />
+                          </div>
+                          <span className="text-xs font-en font-semibold text-[#434846]">
+                            {item.category}
+                          </span>
+                        </div>
+
+                        {/* 16:9 Thumbnail / Preview Stage */}
+                        <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
+                          {item.imageUrl && (
+                            <img
+                              src={item.imageUrl}
+                              alt={item.titleEn || item.title}
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                if (
+                                  item.fallbackImageUrl &&
+                                  target.src !== item.fallbackImageUrl
+                                ) {
+                                  target.src = item.fallbackImageUrl;
+                                } else if (
+                                  domain.imageUrl &&
+                                  target.src !== domain.imageUrl
+                                ) {
+                                  target.src = domain.imageUrl;
+                                }
+                              }}
+                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-104"
+                            />
+                          )}
+
+                          {isHovered && item.previewVideoUrl && (
+                            <video
+                              src={item.previewVideoUrl}
+                              poster={item.imageUrl}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              className="absolute inset-0 w-full h-full object-cover object-center z-1"
+                            />
+                          )}
+
+                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors z-2" />
+
+                          {/* Center Play Button */}
+                          <div className="absolute inset-0 z-3 flex items-center justify-center">
+                            <div className="w-13 h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+                              <Play className="w-5 h-5 fill-current ml-0.5" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Minimal Card Title Bar */}
+                        <div className="px-5 py-3.5 bg-[#FAF8F4] flex items-center justify-between gap-3">
+                          <h3 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors truncate">
+                            {item.title}
+                          </h3>
+                          {item.titleEn && (
+                            <span className="text-xs font-en font-semibold text-[#777A76] shrink-0">
+                              {item.titleEn}
+                            </span>
+                          )}
+                        </div>
+                      </article>
+                    );
+                  }
+
+                  // Standard Concise Card for other domains
                   return (
                     <article
                       key={item.id}
-                      onMouseEnter={() => setHoveredCardId(item.id)}
-                      onMouseLeave={() => setHoveredCardId(null)}
                       onClick={() => setSelectedItem(item)}
-                      className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.08)] hover:-translate-y-0.5"
+                      className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.07)] hover:-translate-y-0.5"
                     >
-                      {/* Top Window Bar: Category + 3 Dots (Exact 3earstudio structure) */}
-                      <div className="px-4 py-2.5 bg-[#F4F0E6] border-b border-[#DCD6C8] flex items-center justify-between">
-                        <div className="flex items-center gap-1.5" aria-hidden="true">
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#3E777A] transition-colors" />
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#65B7B5] transition-colors" />
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#D6B16A] transition-colors" />
-                        </div>
-                        <span className="text-xs font-en font-semibold text-[#434846]">
-                          {item.category}
-                        </span>
+                      <div className="aspect-video w-full bg-[#121616] relative overflow-hidden border-b border-[#DCD6C8]">
+                        {item.imageUrl ? (
+                          <>
+                            <img
+                              src={item.imageUrl}
+                              alt={item.title}
+                              referrerPolicy="no-referrer"
+                              loading="lazy"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                if (item.fallbackImageUrl && target.src !== item.fallbackImageUrl) {
+                                  target.src = item.fallbackImageUrl;
+                                }
+                              }}
+                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
+                            />
+                            <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/55 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
+                              <Maximize2 className="w-4 h-4" />
+                            </div>
+                          </>
+                        ) : item.canvasType ? (
+                          <VisualArtCanvas
+                            type={item.canvasType}
+                            className="w-full h-full"
+                            showControls={false}
+                          />
+                        ) : null}
                       </div>
 
-                      {/* 16:9 Thumbnail / Preview Stage */}
-                      <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
-                        {item.imageUrl && (
-                          <img
-                            src={item.imageUrl}
-                            alt={item.titleEn || item.title}
-                            referrerPolicy="no-referrer"
-                            loading="lazy"
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              if (
-                                item.fallbackImageUrl &&
-                                target.src !== item.fallbackImageUrl
-                              ) {
-                                target.src = item.fallbackImageUrl;
-                              } else if (
-                                domain.imageUrl &&
-                                target.src !== domain.imageUrl
-                              ) {
-                                target.src = domain.imageUrl;
-                              }
-                            }}
-                            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-104"
-                          />
-                        )}
-
-                        {isHovered && item.previewVideoUrl && (
-                          <video
-                            src={item.previewVideoUrl}
-                            poster={item.imageUrl}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="absolute inset-0 w-full h-full object-cover object-center z-1"
-                          />
-                        )}
-
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors z-2" />
-
-                        {/* Center Play Button */}
-                        <div className="absolute inset-0 z-3 flex items-center justify-center">
-                          <div className="w-13 h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
-                            <Play className="w-5 h-5 fill-current ml-0.5" />
-                          </div>
+                      <div className="p-5 flex items-center justify-between gap-3 text-right">
+                        <div>
+                          <h3 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors">
+                            {item.title}
+                          </h3>
+                          <span className="text-[11px] font-en text-[#777A76] block mt-0.5">
+                            {item.subtitle}
+                          </span>
                         </div>
-                      </div>
-
-                      {/* Minimal Card Title Bar */}
-                      <div className="px-5 py-3.5 bg-[#FAF8F4] flex items-center justify-between gap-3">
-                        <h3 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors truncate">
-                          {item.title}
-                        </h3>
-                        {item.titleEn && (
-                          <span className="text-xs font-en font-semibold text-[#777A76] shrink-0">
-                            {item.titleEn}
+                        {item.badge && (
+                          <span className="text-[11px] font-semibold text-[#3E777A] shrink-0">
+                            {item.badge}
                           </span>
                         )}
                       </div>
                     </article>
                   );
-                }
-
-                // Standard Concise Card for other domains
-                return (
-                  <article
-                    key={item.id}
-                    onClick={() => setSelectedItem(item)}
-                    className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.07)] hover:-translate-y-0.5"
-                  >
-                    <div className="aspect-video w-full bg-[#121616] relative overflow-hidden border-b border-[#DCD6C8]">
-                      {item.imageUrl ? (
-                        <>
-                          <img
-                            src={item.imageUrl}
-                            alt={item.title}
-                            referrerPolicy="no-referrer"
-                            loading="lazy"
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              if (item.fallbackImageUrl && target.src !== item.fallbackImageUrl) {
-                                target.src = item.fallbackImageUrl;
-                              }
-                            }}
-                            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
-                          />
-                          <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/55 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
-                            <Maximize2 className="w-4 h-4" />
-                          </div>
-                        </>
-                      ) : item.canvasType ? (
-                        <VisualArtCanvas
-                          type={item.canvasType}
-                          className="w-full h-full"
-                          showControls={false}
-                        />
-                      ) : null}
-                    </div>
-
-                    <div className="p-5 flex items-center justify-between gap-3 text-right">
-                      <div>
-                        <h3 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors">
-                          {item.title}
-                        </h3>
-                        <span className="text-[11px] font-en text-[#777A76] block mt-0.5">
-                          {item.subtitle}
-                        </span>
-                      </div>
-                      {item.badge && (
-                        <span className="text-[11px] font-semibold text-[#3E777A] shrink-0">
-                          {item.badge}
-                        </span>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
+                })}
+              </div>
+            )}
 
             {/* Upcoming IP Strip for Animation Department */}
             {domain.id === 'wonderful-day' && (
@@ -950,6 +1286,15 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (
+                      selectedItem.fallbackImageUrl &&
+                      target.src !== selectedItem.fallbackImageUrl
+                    ) {
+                      target.src = selectedItem.fallbackImageUrl;
+                    }
+                  }}
                   className="w-full h-full object-contain"
                 />
               ) : selectedItem.canvasType ? (

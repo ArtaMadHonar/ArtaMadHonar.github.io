@@ -1096,30 +1096,36 @@ export const SELECTED_WORKS: ProjectWork[] = [
   },
   {
     id: 'vfx-mapping',
-    title: 'تجربه‌های بصری فراگیر، ویدئو مپینگ و رسانه‌های نوین',
+    title: 'ویدئو مپینگ، کارگردانی بصری صحنه و تجربه‌های فراگیر',
     shortTitle: 'ویدئو مپینگ و تجربه‌های بصری فراگیر',
     categoryFa: '۵. تجربه‌های بصری و رسانه‌های نوین',
     categoryKey: 'vfx',
-    subtitle: 'Immersive Visual Experiences & Video Mapping',
+    subtitle: 'Architectural Video Mapping & Live Stage Visuals',
+    imageUrl: '/assets/vfx-img-1.webp',
     shortSummary:
-      'طراحی و اجرای ویدئو مپینگ در مقیاس کلان، جلوه‌های بصری ویژه رویدادها، کنسرت‌ها و اجراهای بزرگ صحنه‌ای و شهری.',
+      'طراحی و اجرای ویدئو مپینگ معماری، کارگردانی بصری کنسرت‌ها و خلق تجربه‌های تصویری فراگیر همگام با اجرای زنده ارکستر (نظیر کنسرت‌های علیرضا قربانی در کاخ سعدآباد).',
     description:
-      'طراحی و اجرای تجربه‌های بصری فراگیر، ویدئو مپینگ و تولیدات ویژه رویدادها با بهره‌گیری از ظرفیت‌های هنر و فناوری برای اجراهای بزرگ و فضاهای شهری و صحنه‌ای.',
+      'طراحی و اجرای ویدئو مپینگ در مقیاس معماری (Architectural Projection Mapping)، کارگردانی بصری کنسرت‌ها و خلق تجربه‌های تصویری فراگیر برای اجراهای بزرگ صحنه‌ای و فضاهای تاریخی و شهری. این دپارتمان با پیوند هنر تصویر، تدوین ریتمیک، طراحی صدا و مهندسی نمایش، بناهای شاخص و صحنه‌های اجرا را به بوم‌های زنده و همگام با موسیقی تبدیل می‌کند.',
     secondaryDescription:
-      'با تکیه بر تجربه اجرای پروژه‌های عظیم ویدئو مپینگ برای تئاترهای بزرگ و کنسرت‌های استادیومی، این بخش محیط‌های فیزیکی و معماری صحنه را به بوم‌های زنده و پویای روایی تبدیل می‌کند.',
-    highlightsTitle: 'شاخصه‌های اجرایی در رسانه‌های نوین:',
+      'از شاخص‌ترین پروژه‌های اجراشده در این دپارتمان، طراحی و اجرای ویدئو مپینگ و کارگردانی بصری صحنه در کنسرت‌های بزرگ علیرضا قربانی در مجموعه فرهنگی‌تاریخی کاخ سعدآباد (تابستان ۱۴۰۲) است؛ جایی که خطوط معماری، ایوان و ستون‌های بنای تاریخی سعدآباد در هماهنگی کامل با ارکستر و قطعاتی چون «شوشتری» و «عروج» به بخشی از روایت تصویری و حسی اجرا بدل شدند.',
+    highlightsTitle: 'محورهای تخصصی در ویدئو مپینگ و اجراهای صحنه‌ای:',
     highlights: [
-      'طراحی و اجرای ویدئو مپینگ برای اجراهای بزرگ، کنسرت‌ها و رویدادهای ویژه',
-      'خلق تجربه‌های بصری فراگیر (Immersive) با پیوند هنر تصویر و مهندسی نمایش',
-      'تولید محتوای بصری اختصاصی متناسب با معماری صحنه و فضاهای رویداد محور',
+      'طراحی و اجرای ویدئو مپینگ معماری (Architectural Mapping) منطبق بر هندسه، ستون‌ها و کالبد بناهای تاریخی و صحنه‌های بزرگ',
+      'کارگردانی بصری کنسرت و همگام‌سازی دقیق لایه‌های تصویر و نورپردازی صحنه با ریتم موسیقی زنده و اجرای ارکستر',
+      'هم‌افزایی طراحی جلوه‌های بصری (VFX)، تدوین موسیقی‌محور و مهندسی اتمسفر صوتی و تصویری برای رویدادهای کلان فرهنگی و هنری',
     ],
-    tags: ['ویدئو مپینگ', 'تجربه‌های بصری فراگیر', 'تولیدات ویژه رویدادها', 'رسانه‌های نوین'],
+    tags: [
+      'ویدئو مپینگ معماری',
+      'کارگردانی بصری کنسرت',
+      'علیرضا قربانی · کاخ سعدآباد',
+      'تجربه‌های بصری فراگیر',
+    ],
     canvasType: 'vfx-mapping',
     relatedMemberIds: [
       'mohammad-rahimi',
-      'mehdi-mohammadian',
-      'lotfallah-salehi',
       'hanieh-samipoor',
+      'khorshid-khooban',
+      'reyhaneh-saeidi',
     ],
     teamGroups: [
       {
@@ -1131,27 +1137,75 @@ export const SELECTED_WORKS: ProjectWork[] = [
       {
         id: 'vfx-members',
         title: 'اعضای تیم',
-        memberIds: ['mehdi-mohammadian', 'lotfallah-salehi', 'hanieh-samipoor'],
+        memberIds: ['hanieh-samipoor', 'khorshid-khooban', 'reyhaneh-saeidi'],
       },
     ],
     galleryItems: [
       {
-        id: 'vfx-stage-mapping',
-        title: 'ویدئو مپینگ اجراهای بزرگ صحنه‌ای و کنسرت‌های استادیومی',
-        subtitle: 'Large-Scale Architectural & Stage Projection Mapping',
-        badge: 'اجراهای صحنه‌ای و شهری',
+        id: 'vfx-video-shoushtari',
+        title: 'اجرای زنده قطعه «شوشتری» — کنسرت علیرضا قربانی در کاخ سعدآباد',
+        titleEn: 'Shoushtari · Live at Sa’dabad Complex',
+        subtitle: 'Alireza Ghorbani Live Concert · Architectural Video Mapping & Stage Visuals',
+        badge: 'ویدیوی اجرای زنده · کاخ سعدآباد',
         description:
-          'طراحی و تولید محتوای بصری با رزولوشن بالا، منطبق بر هندسه سه بعدی صحنه و هماهنگ با نورپردازی و موسیقی زنده رویداد.',
-        canvasType: 'vfx-mapping',
+          'نمونه اجرای زنده و کارگردانی بصری صحنه در قطعه «شوشتری» از کنسرت تابستان ۱۴۰۲ علیرضا قربانی در مجموعه فرهنگی‌تاریخی کاخ سعدآباد؛ تلفیق نورپردازی و مپینگ معماری ستون‌های کاخ با تکنوازی و فضای موسیقایی اثر.',
+        imageUrl: '/assets/vfx-yt-shoushtari.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/SMRroEsmD8w/hqdefault.jpg',
+        embedUrl: 'https://www.youtube.com/embed/SMRroEsmD8w?autoplay=1&rel=0',
+        externalUrl:
+          'https://www.youtube.com/watch?v=SMRroEsmD8w&list=PLev5CzGOeUFnx0jUynX8CPrtQOGOPPAhI&index=10',
+        platform: 'youtube',
       },
       {
-        id: 'vfx-immersive',
-        title: 'تجربه‌های بصری فراگیر (Immersive Environments)',
-        subtitle: 'Interactive & Spatial Media Installations',
-        badge: 'رسانه‌های نوین',
+        id: 'vfx-video-orouj',
+        title: 'اجرای زنده قطعه «عروج» — کنسرت علیرضا قربانی در کاخ سعدآباد',
+        titleEn: 'Orouj · Live at Sa’dabad Complex',
+        subtitle: 'Alireza Ghorbani Live Concert · Synchronized Stage & Facade Mapping',
+        badge: 'ویدیوی اجرای زنده · کاخ سعدآباد',
         description:
-          'ترکیب جلوه‌های ویژه بصری (VFX)، طراحی صدا و مهندسی نمایش برای خلق فضاهای غوطه‌ورکننده در نمایشگاه‌ها و رویدادهای فرهنگی و تجاری.',
-        canvasType: 'character-creature',
+          'بخشی از اجرای زنده قطعه «عروج» با صدای علیرضا قربانی در محوطه کاخ سعدآباد؛ همگام‌سازی جلوه‌های بصری، نورپردازی حجمی و ویدئو مپینگ نمای کاخ با اوج‌گیری دراماتیک ارکستر و آواز.',
+        imageUrl: '/assets/vfx-yt-orouj.jpg',
+        fallbackImageUrl: 'https://i.ytimg.com/vi/5h4KPTBcpEw/hqdefault.jpg',
+        embedUrl: 'https://www.youtube.com/embed/5h4KPTBcpEw?autoplay=1&rel=0',
+        externalUrl:
+          'https://www.youtube.com/watch?v=5h4KPTBcpEw&list=PLev5CzGOeUFnx0jUynX8CPrtQOGOPPAhI&index=14',
+        platform: 'youtube',
+      },
+      {
+        id: 'vfx-photo-sadabad-1',
+        title: 'نمای سراسری صحنه و ویدئو مپینگ کاخ سعدآباد — کنسرت علیرضا قربانی',
+        titleEn: 'Sa’dabad Complex · Summer 2023 Full Stage View',
+        subtitle: 'Monumental Outdoor Concert Stage & Palace Facade Mapping',
+        badge: 'قاب صحنه · ۱ از ۳',
+        description:
+          'نمای باز از استیج کنسرت تابستان ۱۴۰۲ علیرضا قربانی در مجموعه فرهنگی‌تاریخی سعدآباد؛ انطباق دقیق ویدئو مپینگ بر روی ستون‌ها و نمای بنا در کنار تایپوگرافی و چیدمان ارکستر.',
+        imageUrl: '/assets/vfx-img-1.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/qEI9yLY4BC6xhPR75WLXTP7EDMqDQw/OTEzNzN8cGFkZA.webp',
+      },
+      {
+        id: 'vfx-photo-sadabad-2',
+        title: 'مپینگ هندسی ستون‌ها و ایوان کاخ سعدآباد همگام با ارکستر',
+        titleEn: 'Architectural Geometry & Column Projection Mapping',
+        subtitle: 'Precision 3D Mapping on Historical Facade Architecture',
+        badge: 'قاب صحنه · ۲ از ۳',
+        description:
+          'تفکیک نوری و گرافیکی خطوط سنتوری، ستون‌ها و ورودی‌های ایوان کاخ سعدآباد با استفاده از تکنیک ویدئو مپینگ کالیبره‌شده بر روی هندسه بنا در حین اجرای زنده.',
+        imageUrl: '/assets/vfx-img-2.webp',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/EfJ05mS4kD8eQnWNuASKg1Ttb17q3v/OTEzNzR8cGFkZA.webp',
+      },
+      {
+        id: 'vfx-photo-sadabad-3',
+        title: 'نورپردازی حجمی و اتمسفر بصری ستون‌های صحنه در اجرای زنده',
+        titleEn: 'Volumetric Stage Lighting & Live Visual Atmosphere',
+        subtitle: 'Immersive Stage Environment & Real-Time Visual Direction',
+        badge: 'قاب صحنه · ۳ از ۳',
+        description:
+          'ایجاد عمق بصری و اتمسفر نوری یکپارچه بر روی ستون‌های عظیم پس‌زمینه صحنه، همسو با حس و حال قطعات موسیقایی در کنسرت کاخ سعدآباد.',
+        imageUrl: '/assets/vfx-img-3-stage.jpg',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/EfJ05mS4kD8eQnWNuASKg1Ttb17q3v/OTEzNzR8cGFkZA.webp',
       },
     ],
   },
