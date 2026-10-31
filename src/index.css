@@ -155,11 +155,18 @@ html.dark .bg-\[\#FAF8F4\]:not(.keep-light-pill) {
 }
 
 html.dark .bg-\[\#F4F0E6\],
+html.dark .bg-\[\#F4F0E6\]\/85,
+html.dark .bg-\[\#F4F0E6\]\/80,
+html.dark .bg-\[\#F4F0E6\]\/70,
 html.dark .bg-\[\#F4F0E6\]\/65,
 html.dark .bg-\[\#F4F0E6\]\/60,
 html.dark .bg-\[\#F6F3EC\],
 html.dark .bg-\[\#F3EFE6\] {
   background-color: #1B2629 !important;
+}
+
+html.dark .bg-\[\#3E777A\]\/12 {
+  background-color: rgba(101, 183, 181, 0.16) !important;
 }
 
 html.dark .from-\[\#FAF8F4\].to-\[\#F3EFE5\] {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { User, ArrowLeft } from 'lucide-react';
 import { TEAM_MEMBERS, TeamMember } from '../data/studioData';
 
@@ -16,44 +16,53 @@ if (typeof window !== 'undefined') {
   });
 }
 
+const SHORT_ROLE_BY_ID: Record<string, string> = {
+  'lotfallah-salehi': 'سوپروایزر پایپلاین ویدیو',
+  'ali-alipour': 'دستیار کارگردان انیمیشن',
+  'negar-baratzadeh': 'طراح ارشد کانسپت',
+  'hilda-baghban': 'آرتیست پردازش تصویر',
+  'khorshid-khooban': 'مدیر تولید تیزر و آهنگساز',
+  'hanieh-samipoor': 'تدوینگر ارشد و طراح صدا',
+  'nima-nekookar': 'مدیر دپارتمان وب۳ و NFT',
+  'ali-ebrahimi': 'طراح ارشد کالکشن وب۳',
+};
+
 interface TeamGalleryProps {
   onSelectMember: (member: TeamMember) => void;
 }
 
 export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
-  const [activeTab, setActiveTab] = useState<string>('all');
-
   const coFounders = TEAM_MEMBERS.filter((m) => m.isCoFounder);
-  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome);
-
-  const filterTabs = [
-    { id: 'all', label: 'همه اعضای تیم تولید' },
-    { id: 'animation', label: 'دپارتمان انیمیشن' },
-    { id: 'commercial', label: 'تیزرسازی و صدا' },
-    { id: 'web3', label: 'فناوری و وب۳' },
-  ];
+  const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome).slice(0, 8);
 
   return (
-    <section id="team" className="py-14 sm:py-20 border-t border-[#DCD6C8] relative scroll-mt-20">
+    <section id="team" className="py-14 sm:py-18 border-t border-[#DCD6C8] relative scroll-mt-20">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12 sm:space-y-14">
-        {/* Part 1: Dedicated 3 Co-Founders & Management Team Section (هم‌بنیانگذاران و تیم مدیریتی آرتا ماد هنر) */}
-        <div className="space-y-7 sm:space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-[#DCD6C8] pb-6">
-            <div className="space-y-2 text-right">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold">
-                CO-FOUNDERS & MANAGEMENT TEAM
-              </span>
+        {/* Part 1: Dedicated 3 Co-Founders & Management Team Section (Full Cards) */}
+        <div className="space-y-6 sm:space-y-7">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] pb-5">
+            <div className="space-y-1.5 text-right">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#3E777A]">
+                <span>مدیریت و کارگردانی</span>
+                <span aria-hidden="true" className="text-[#777A76]">·</span>
+                <span
+                  dir="ltr"
+                  className="font-mono text-[11px] uppercase tracking-widest text-[#777A76]"
+                >
+                  CO-FOUNDERS & MANAGEMENT
+                </span>
+              </div>
               <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424]">
-                هم‌بنیانگذاران و تیم مدیریتی آرتا ماد هنر
+                هم‌بنیانگذاران استودیو آرتا ماد هنر
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-[#434846] max-w-md text-right leading-relaxed">
-              تلاقی کارگردانی سینما و انیمیشن با معماری پایپلاین‌های هوش مصنوعی و جلوه‌های بصری؛ حاصل سال‌ها تجربه و همکاری مشترک در شکل‌گیری آرتا ماد هنر.
-            </p>
+            <span className="text-xs text-[#777A76] text-right">
+              تلاقی کارگردانی سینما و انیمیشن با معماری پایپلاین‌های هوش مصنوعی و جلوه‌های بصری
+            </span>
           </div>
 
-          {/* 3 Co-Founders Concise Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 items-stretch">
+          {/* 3 Co-Founders Full Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-7 items-stretch">
             {coFounders.map((founder) => (
               <div
                 key={founder.id}
@@ -130,111 +139,78 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
           </div>
         </div>
 
-        {/* Part 2: Studio Specialists & Artists Ensemble */}
-        <div className="space-y-7 sm:space-y-10 pt-8 border-t border-[#DCD6C8]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
-            <div className="space-y-1.5 text-right">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#777A76]">
-                STUDIO ARTISTS & SPECIALISTS
+        {/* Part 2: 8 Core Studio Specialists (Minimal Avatar + Name + Short Role, Details on Click) */}
+        <div className="space-y-6 sm:space-y-8 pt-8 border-t border-[#DCD6C8]">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-right">
+            <div className="space-y-1">
+              <span
+                dir="ltr"
+                className="text-xs font-mono uppercase tracking-widest text-[#777A76] block"
+              >
+                CORE STUDIO SPECIALISTS
               </span>
               <h3 className="text-xl sm:text-2xl font-black text-[#1E2424]">
                 اعضای تخصصی دپارتمان‌های استودیو
               </h3>
             </div>
-
-            {/* Department Filter Tabs (Wraps cleanly on mobile) */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-[#F4F0E6] border border-[#DCD6C8] rounded-2xl">
-              {filterTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`px-3 sm:px-3.5 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap cursor-pointer ${
-                    activeTab === tab.id
-                      ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
-                      : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E7E2D6]'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            <span className="text-xs text-[#777A76]">
+              برای مشاهده سوابق و تخصص هر عضو، روی تصویر کلیک کنید
+            </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 items-stretch">
             {ensembleMembers.map((member) => {
-              const isVisible = activeTab === 'all' || member.department === activeTab;
-
+              const shortRole = SHORT_ROLE_BY_ID[member.id] || member.role;
               return (
                 <div
                   key={member.id}
                   onClick={() => onSelectMember(member)}
-                  className={`group cursor-pointer rounded-2xl sm:rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] p-4 sm:p-6 text-center flex-col items-center justify-between transition-all duration-300 hover:border-[#3E777A]/60 hover:shadow-md hover:-translate-y-0.5 ${
-                    isVisible ? 'flex' : 'hidden'
-                  }`}
+                  className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] p-4 sm:p-5 text-center flex flex-col items-center justify-center transition-all duration-300 hover:border-[#3E777A] hover:shadow-md hover:-translate-y-0.5"
                 >
-                  <div className="w-full flex flex-col items-center">
-                    {/* Portrait Avatar */}
-                    <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-full border border-[#DCD6C8] mb-3 sm:mb-4 flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden bg-[#EDE9DF] shadow-2xs relative shrink-0">
-                      {member.imageUrl ? (
-                        <img
-                          src={member.imageUrl}
-                          alt={member.name}
-                          referrerPolicy="no-referrer"
-                          loading="eager"
-                          decoding="sync"
-                          className="w-full h-full object-cover object-top"
-                          onError={(e) => {
-                            const target = e.currentTarget;
-                            if (
-                              member.fallbackImageUrl &&
-                              target.src !== member.fallbackImageUrl
-                            ) {
-                              target.src = member.fallbackImageUrl;
-                              return;
-                            }
-                            target.style.display = 'none';
-                            const fallback = target.nextElementSibling as HTMLElement;
-                            if (fallback) fallback.style.display = 'flex';
-                          }}
-                        />
-                      ) : null}
-                      <div
-                        style={{ display: member.imageUrl ? 'none' : 'flex' }}
-                        className="flex-col items-center justify-center text-[#777A76] w-full h-full"
-                      >
-                        <User className="w-6 h-6 sm:w-7 sm:h-7 opacity-60 mb-0.5" />
-                        <span className="text-[10px] font-mono font-bold tracking-wider">
-                          {member.initials}
-                        </span>
-                      </div>
+                  {/* Portrait Avatar */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-[#DCD6C8] group-hover:border-[#3E777A] mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#EDE9DF] shadow-2xs relative shrink-0">
+                    {member.imageUrl ? (
+                      <img
+                        src={member.imageUrl}
+                        alt={member.name}
+                        referrerPolicy="no-referrer"
+                        loading="eager"
+                        decoding="sync"
+                        className="w-full h-full object-cover object-top"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (
+                            member.fallbackImageUrl &&
+                            target.src !== member.fallbackImageUrl
+                          ) {
+                            target.src = member.fallbackImageUrl;
+                            return;
+                          }
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                    ) : null}
+                    <div
+                      style={{ display: member.imageUrl ? 'none' : 'flex' }}
+                      className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                    >
+                      <User className="w-6 h-6 sm:w-7 sm:h-7 opacity-60 mb-0.5" />
+                      <span className="text-[10px] font-mono font-bold tracking-wider">
+                        {member.initials}
+                      </span>
                     </div>
-
-                    {/* Name */}
-                    <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
-                      {member.name}
-                    </h4>
-
-                    {/* Job Titles */}
-                    <div className="mt-1 mb-2 space-y-0.5">
-                      <div className="text-[11px] sm:text-xs font-medium text-[#3E777A] leading-snug font-soft line-clamp-2">
-                        {member.role}
-                      </div>
-                      <div className="hidden sm:block text-[10px] text-[#777A76] font-en tracking-tight">
-                        {member.roleEn}
-                      </div>
-                    </div>
-
-                    {/* Role Summary */}
-                    {member.bio && (
-                      <p className="hidden sm:line-clamp-2 text-xs text-[#434846] leading-relaxed mt-1 font-soft">
-                        {member.bio}
-                      </p>
-                    )}
                   </div>
 
-                  {/* View Details Kicker */}
-                  <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 w-full border-t border-[#E5E0D4] text-[10px] sm:text-[11px] text-[#777A76] group-hover:text-[#3E777A] transition-colors flex items-center justify-center gap-1">
-                    <span>مشاهده مشخصات</span>
+                  {/* Name */}
+                  <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
+                    {member.name}
+                  </h4>
+
+                  {/* Short Role Only (No Bio Text or Footer Clutter) */}
+                  <div className="mt-1 text-xs font-semibold text-[#3E777A] font-soft">
+                    {shortRole}
                   </div>
                 </div>
               );
@@ -245,4 +221,5 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
     </section>
   );
 };
+
 

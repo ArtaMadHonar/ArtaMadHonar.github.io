@@ -10,7 +10,6 @@ import { FlagshipSpotlight } from './components/FlagshipSpotlight';
 import { InteractiveShowcase } from './components/InteractiveShowcase';
 import { EditorialPhilosophy } from './components/EditorialPhilosophy';
 import { TeamGallery } from './components/TeamGallery';
-import { IdentityStory } from './components/IdentityStory';
 import { FooterSection } from './components/FooterSection';
 import { DomainDetailPage } from './components/DomainDetailPage';
 import { ShowreelModal } from './components/ShowreelModal';
@@ -227,6 +226,7 @@ export default function App() {
                   btn?.click();
                 }
               }}
+              onOpenDomain={() => handleOpenDomainPage('wonderful-day')}
             />
 
             {/* 4. Interactive Showcase & 5 Studio Domains (Bento Grid -> Enters Dedicated Page) */}
@@ -241,15 +241,15 @@ export default function App() {
             <TeamGallery
               onSelectMember={(member) => setActiveMember(member)}
             />
-
-            {/* 7. Identity & Story of Arta Mad Honar */}
-            <IdentityStory />
           </>
         )}
       </main>
 
       {/* 8. Contact & Footer */}
-      <FooterSection onOpenContact={() => handleOpenContact(activeDomain?.id)} />
+      <FooterSection
+        onOpenContact={() => handleOpenContact(activeDomain?.id)}
+        onNavigateHome={(href) => handleBackToHome(href || '#')}
+      />
 
       {/* Interactive Modals */}
       <ShowreelModal

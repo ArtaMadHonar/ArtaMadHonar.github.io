@@ -256,7 +256,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                 {/* Official Vertical Poster Column (4 Cols on Desktop) - 100% Uncropped at all zoom levels */}
                 <div className="md:col-span-5 lg:col-span-4 flex items-center justify-center">
-                  <div className="w-full rounded-2xl overflow-hidden border border-[#DCD6C8] shadow-[0_12px_32px_rgba(30,36,36,0.10)] bg-[#EDE9DF]">
+                  <div className="w-full h-full rounded-2xl overflow-hidden border border-[#DCD6C8] shadow-[0_12px_32px_rgba(30,36,36,0.10)] bg-[#EDE9DF] flex items-center justify-center">
                     <img
                       src="/assets/wonderful-day-poster.webp"
                       onError={(e) => {
@@ -276,44 +276,144 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   </div>
                 </div>
 
-                {/* Narrative & Highlights Column (8 Cols on Desktop) - Balanced alongside the vertical poster */}
-                <div className="md:col-span-7 lg:col-span-8 p-6 sm:p-8 lg:p-10 rounded-2xl bg-[#F4F0E6]/60 border border-[#E5E0D4] flex flex-col justify-between space-y-6 text-right">
-                  <div className="space-y-4">
-                    <span className="text-xs sm:text-sm font-bold text-[#3E777A] block">
-                      معرفی و رویکرد دپارتمان
-                    </span>
+                {/* Engaging, Non-Essay IP Creation & Flagship Film Column (8 Cols on Desktop) */}
+                <div className="md:col-span-7 lg:col-span-8 flex flex-col justify-between gap-4 sm:gap-5 text-right">
+                  {/* Block 1: IP Creation & Development Architecture */}
+                  <div className="p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] pb-3">
+                      <div className="space-y-0.5">
+                        <span className="text-[11px] font-bold text-[#3E777A] block">
+                          فلسفه و ماموریت دپارتمان انیمیشن
+                        </span>
+                        <h2 className="text-base sm:text-xl font-black text-[#1E2424]">
+                          خلق و توسعه دارایی‌های فکری اورجینال (IP Development)
+                        </h2>
+                      </div>
+                      <span
+                        dir="ltr"
+                        className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#777A76]"
+                      >
+                        ORIGINAL IP STUDIO
+                      </span>
+                    </div>
 
-                    <p className="text-sm sm:text-base text-[#1E2424] leading-relaxed font-medium">
-                      {domain.description}
+                    <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
+                      در آرتا ماد هنر، انیمیشن تنها یک محصول تک‌بعدی نیست؛ بلکه نقطه آغاز خلق یک «دارایی فکری ماندگار» با هویت فرهنگی بومی و استاندارد روایت جهانی است.
                     </p>
 
-                    {domain.secondaryDescription && (
-                      <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
-                        {domain.secondaryDescription}
-                      </p>
-                    )}
-
-                    <div className="pt-5 border-t border-[#DCD6C8] space-y-3">
-                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
-                        {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
-                      </h3>
-                      <div className="space-y-2.5">
-                        {domain.highlights.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-2.5 text-xs sm:text-[13.5px] text-[#434846] leading-relaxed"
+                    {/* 3 Visual & Scannable IP Pillars (Instead of long essay paragraphs) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                      <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span
+                            dir="ltr"
+                            className="text-xs font-mono font-black text-[#3E777A]"
                           >
-                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
+                            01
+                          </span>
+                          <span
+                            dir="ltr"
+                            className="text-[9px] font-mono uppercase text-[#777A76]"
+                          >
+                            WORLDBUILDING
+                          </span>
+                        </div>
+                        <h3 className="text-xs sm:text-[13px] font-black text-[#1E2424]">
+                          جهان‌سازی و کاراکتر
+                        </h3>
+                        <p className="text-[11px] text-[#434846] leading-relaxed">
+                          خلق شخصیت‌های متمایز و دنیاهای فانتزی با قابلیت هم‌ذات‌پنداری جهانی
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span
+                            dir="ltr"
+                            className="text-xs font-mono font-black text-[#3E777A]"
+                          >
+                            02
+                          </span>
+                          <span
+                            dir="ltr"
+                            className="text-[9px] font-mono uppercase text-[#777A76]"
+                          >
+                            HYBRID PIPELINE
+                          </span>
+                        </div>
+                        <h3 className="text-xs sm:text-[13px] font-black text-[#1E2424]">
+                          پایپلاین سه‌بعدی و AI
+                        </h3>
+                        <p className="text-[11px] text-[#434846] leading-relaxed">
+                          تلفیق انیمیشن 3D استایلایز با هوش مصنوعی برای ارتقای کیفیت و سرعت تولید
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span
+                            dir="ltr"
+                            className="text-xs font-mono font-black text-[#3E777A]"
+                          >
+                            03
+                          </span>
+                          <span
+                            dir="ltr"
+                            className="text-[9px] font-mono uppercase text-[#777A76]"
+                          >
+                            360° VALUE CHAIN
+                          </span>
+                        </div>
+                        <h3 className="text-xs sm:text-[13px] font-black text-[#1E2424]">
+                          زنجیره ارزش میان‌رسانه‌ای
+                        </h3>
+                        <p className="text-[11px] text-[#434846] leading-relaxed">
+                          گسترش IP از اکران سینمایی به دنباله‌ها، سریال، بازی و محصولات جانبی
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-[#DCD6C8] flex flex-wrap items-center gap-2 text-xs text-[#777A76]">
-                    <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
-                    <span>{domain.tags.join(' · ')}</span>
+                  {/* Block 2: Flagship Feature Film Story & Specs (Matches Bottom of Poster) */}
+                  <div className="p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex-1 flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] pb-2.5">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs sm:text-sm font-black text-[#1E2424]">
+                            اثر شاخص: انیمیشن سینمایی «روز شگفت‌انگیز»
+                          </span>
+                          <span className="text-[11px] font-semibold text-[#3E777A]">
+                            (به تهیه‌کنندگی فیلمیران)
+                          </span>
+                        </div>
+                        <span
+                          dir="ltr"
+                          className="text-[10px] font-mono font-bold text-[#3E777A] uppercase"
+                        >
+                          A WONDERFUL DAY · FEATURE FILM
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-[13.5px] text-[#1E2424] font-medium leading-[1.9] text-justify">
+                        <strong className="text-[#3E777A]">انیمیشن سینمایی روز شگفت‌انگیز : </strong>
+                        پویو یه بچه‌ی بدشانسه که توی خانواده‌ای زندگی می‌کنه که اعضاش اونقدر خوش‌شانس و بی‌نقصن که نامزدِ «خانواده‌ی شایسته» شدن! پویو روز تولدش آرزو می‌کنه که بقیه هم بتونن درکش کنن؛ غافل از اینکه برای اولین بار، قراره همه به اندازه‌ی خودش بدشانس بشن!
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-[#DCD6C8] flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs">
+                      <div className="flex flex-wrap items-center gap-2 text-[#434846]">
+                        <span>
+                          ژانر: <strong className="text-[#1E2424]">کمدی، ماجراجویی و خانوادگی</strong>
+                        </span>
+                        <span aria-hidden="true" className="text-[#777A76]">·</span>
+                        <span>
+                          تکنیک: <strong className="text-[#1E2424]">سه‌بعدی استایلایز</strong>
+                        </span>
+                      </div>
+                      <span className="font-semibold text-[#3E777A]">
+                        {domain.tags.join(' · ')}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -420,43 +520,63 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       )}
                     </div>
 
-                    {/* Narrative & Highlights Column (5 Cols) */}
-                    <div className="lg:col-span-5 p-6 sm:p-7 lg:p-8 rounded-2xl bg-[#F4F0E6]/65 border border-[#E5E0D4] flex flex-col justify-between space-y-6 text-right">
+                    {/* Concise, Keyword-Focused Narrative & Highlights Column (5 Cols) */}
+                    <div className="lg:col-span-5 p-5 sm:p-7 rounded-2xl bg-[#F4F0E6]/65 border border-[#E5E0D4] flex flex-col justify-between space-y-5 text-right">
                       <div className="space-y-4">
-                        <span className="text-xs sm:text-sm font-bold text-[#3E777A] block">
-                          معرفی و رویکرد دپارتمان
-                        </span>
+                        <div className="flex items-center justify-between border-b border-[#DCD6C8] pb-3">
+                          <span className="text-xs sm:text-sm font-black text-[#3E777A]">
+                            معرفی و رویکرد دپارتمان
+                          </span>
+                          <span
+                            dir="ltr"
+                            className="text-[10px] font-mono font-semibold text-[#777A76] uppercase"
+                          >
+                            STAGE & PROJECTION
+                          </span>
+                        </div>
 
                         <p className="text-xs sm:text-sm text-[#1E2424] leading-relaxed font-medium">
-                          {domain.description}
+                          طراحی و اجرای ویدئو مپینگ معماری (Architectural Mapping)، کارگردانی بصری کنسرت‌ها و خلق تجربه‌های تصویری فراگیر؛ تبدیل بناهای شاخص و صحنه‌های اجرا به بوم‌های زنده و همگام با موسیقی.
                         </p>
 
-                        {domain.secondaryDescription && (
-                          <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
-                            {domain.secondaryDescription}
+                        {/* Compact Flagship Case Study Box */}
+                        <div className="p-3.5 sm:p-4 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-1.5">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-[#1E2424]">
+                              اثر شاخص: کنسرت علیرضا قربانی · کاخ سعدآباد
+                            </span>
+                            <span className="text-[10px] font-semibold text-[#3E777A]">
+                              تابستان ۱۴۰۲
+                            </span>
+                          </div>
+                          <p className="text-[11px] sm:text-xs text-[#434846] leading-relaxed">
+                            کارگردانی بصری صحنه و مپینگ کالیبره‌شده بر روی ایوان و ستون‌های کاخ سعدآباد در هماهنگی کامل با ارکستر (قطعات «شوشتری» و «عروج»).
                           </p>
-                        )}
+                        </div>
 
-                        <div className="pt-4 border-t border-[#DCD6C8] space-y-2.5">
-                          <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
-                            {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
+                        {/* Concise 3 Pillars */}
+                        <div className="pt-2 space-y-2.5">
+                          <h3 className="text-xs font-black text-[#1E2424]">
+                            محورهای تخصصی این حوزه:
                           </h3>
-                          <div className="space-y-2.5">
-                            {domain.highlights.map((item, idx) => (
-                              <div
-                                key={idx}
-                                className="flex items-start gap-2.5 text-xs sm:text-[13px] text-[#434846] leading-relaxed"
-                              >
-                                <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </div>
-                            ))}
+                          <div className="space-y-2">
+                            <div className="flex items-start gap-2 text-xs text-[#434846]">
+                              <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                              <span>ویدئو مپینگ معماری منطبق بر هندسه بناهای تاریخی و شهری</span>
+                            </div>
+                            <div className="flex items-start gap-2 text-xs text-[#434846]">
+                              <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                              <span>کارگردانی بصری کنسرت و همگام‌سازی تصویر و نور با ارکستر زنده</span>
+                            </div>
+                            <div className="flex items-start gap-2 text-xs text-[#434846]">
+                              <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                              <span>طراحی جلوه‌های بصری (VFX) و مهندسی اتمسفر صحنه‌ای رویدادها</span>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-4 border-t border-[#DCD6C8] flex flex-wrap items-center gap-2 text-xs text-[#777A76]">
-                        <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
+                      <div className="pt-3.5 border-t border-[#DCD6C8] flex flex-wrap items-center gap-2 text-xs text-[#3E777A] font-semibold">
                         <span>{domain.tags.join(' · ')}</span>
                       </div>
                     </div>
@@ -719,41 +839,41 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 })}
               </div>
 
-            {/* Upcoming IP Strip for Animation Department */}
+            {/* Compact Upcoming IP Strip for Animation Department */}
             {domain.id === 'wonderful-day' && (
-              <div className="p-6 sm:p-8 rounded-3xl bg-[#F4F0E6] border border-[#DCD6C8] space-y-5 text-right">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#DCD6C8] pb-4">
-                  <div>
-                    <h3 className="text-base sm:text-lg font-black text-[#1E2424]">
-                      آثار و دارایی‌های فکری (IP) در دست توسعه در دپارتمان انیمیشن
-                    </h3>
-                    <p className="text-xs text-[#434846] mt-0.5">
-                      گسترش زنجیره ارزش و خلق جهان‌های داستانی جدید در استودیو آرتا ماد هنر
-                    </p>
-                  </div>
-                  <span className="text-[11px] font-mono text-[#3E777A] font-semibold uppercase">
+              <div className="px-4 sm:px-6 py-4 rounded-2xl bg-[#F4F0E6]/85 border border-[#DCD6C8] flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 text-right">
+                <div className="flex items-center gap-2.5 shrink-0">
+                  <span className="text-xs sm:text-sm font-black text-[#1E2424]">
+                    آثار و IPهای در دست توسعه:
+                  </span>
+                  <span
+                    dir="ltr"
+                    className="text-[10px] font-mono text-[#3E777A] font-semibold uppercase"
+                  >
                     UPCOMING IP SLATE
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 lg:max-w-3xl">
                   {WONDERFUL_DAY_CATALOG.upcomingProjects.map((up, idx) => (
                     <div
                       key={idx}
-                      className="p-5 rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] space-y-2"
+                      className="px-4 py-2.5 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] flex items-center justify-between gap-2"
                     >
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-sm sm:text-base font-black text-[#1E2424]">
-                          {up.titleFa} |{' '}
-                          <span className="font-en text-xs text-[#3E777A] font-bold">
-                            {up.titleEn}
-                          </span>
+                      <div className="flex items-center gap-2 min-w-0">
+                        <h4 className="text-xs sm:text-sm font-black text-[#1E2424] truncate">
+                          {up.titleFa}
                         </h4>
-                        <span className="text-xs font-semibold text-[#3E777A]">{up.badge}</span>
+                        <span
+                          dir="ltr"
+                          className="font-en text-[11px] text-[#777A76] font-semibold shrink-0"
+                        >
+                          {up.titleEn}
+                        </span>
                       </div>
-                      <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
-                        {up.description}
-                      </p>
+                      <span className="text-[11px] font-bold text-[#3E777A] shrink-0">
+                        {up.badge}
+                      </span>
                     </div>
                   ))}
                 </div>

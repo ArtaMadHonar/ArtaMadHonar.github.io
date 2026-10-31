@@ -1,21 +1,41 @@
 import React from 'react';
-import { Mail, ArrowUp, MapPin, ArrowLeft } from 'lucide-react';
+import { Mail, ArrowUp, MapPin, ArrowLeft, ExternalLink } from 'lucide-react';
 import { STUDIO_CATALOG_INFO } from '../data/studioData';
 
 interface FooterSectionProps {
   onOpenContact: () => void;
+  onNavigateHome?: (sectionHref?: string) => void;
 }
 
-export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) => {
+export const FooterSection: React.FC<FooterSectionProps> = ({
+  onOpenContact,
+  onNavigateHome,
+}) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const socialLinks = [
-    { label: 'اینستاگرام', href: '#contact' },
-    { label: 'تلگرام', href: '#contact' },
-    { label: 'لینکدین', href: '#contact' },
-    { label: 'یوتیوب', href: '#contact' },
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    if (onNavigateHome) {
+      onNavigateHome(href);
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
+  const quickNavLinks = [
+    { label: 'معرفی استودیو', href: '#about-studio' },
+    { label: 'انیمیشن سینمایی «روز شگفت‌انگیز»', href: '#flagship' },
+    { label: 'حوزه‌های فعالیت استودیو', href: '#works' },
+    { label: 'توانمندی‌های کلیدی', href: '#philosophy' },
+    { label: 'هم‌بنیانگذاران و اعضای تیم', href: '#team' },
   ];
 
   return (
@@ -53,7 +73,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
         {/* Studio Info Columns */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-6 pb-12 border-b border-[#DCD6C8]">
           {/* Monogram and Description */}
-          <div className="md:col-span-5 space-y-4 text-right">
+          <div className="md:col-span-4 space-y-4 text-right">
             <div className="flex flex-col">
               <span className="text-2xl font-black text-[#1E2424] font-soft">
                 آرتا ماد هنر
@@ -67,66 +87,104 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
             </p>
           </div>
 
-          {/* Quick Nav Anchors */}
+          {/* Quick Nav Anchors with functional scrolling */}
           <div className="md:col-span-3 space-y-3 text-right">
             <span className="text-xs font-bold text-[#1E2424] block">
               دسترسی سریع
             </span>
             <div className="flex flex-col space-y-2.5 text-xs text-[#434846]">
-              <a href="#about-studio" className="hover:text-[#3E777A] transition-colors">
-                معرفی استودیو و چشم‌انداز
-              </a>
-              <a href="#flagship" className="hover:text-[#3E777A] transition-colors">
-                انیمیشن سینمایی «روز شگفت‌انگیز»
-              </a>
-              <a href="#works" className="hover:text-[#3E777A] transition-colors">
-                حوزه‌های فعالیت ۵گانه
-              </a>
-              <a href="#philosophy" className="hover:text-[#3E777A] transition-colors">
-                توانمندی‌های کلیدی
-              </a>
-              <a href="#team" className="hover:text-[#3E777A] transition-colors">
-                هم‌بنیانگذاران و اعضای تیم
-              </a>
+              {quickNavLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="hover:text-[#3E777A] transition-colors cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Contact Details & Social Links */}
-          <div className="md:col-span-4 space-y-4 text-right">
+          {/* Contact Details, Direct Location Map & Social Links */}
+          <div className="md:col-span-5 space-y-4 text-right">
             <span className="text-xs font-bold text-[#1E2424] block">
               راه‌های ارتباط مستقیم
             </span>
-            <div className="space-y-2.5 text-xs text-[#434846]">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#3E777A] shrink-0" />
-                <span>مشهد، بلوار کوثر، جنب میدان پژوهش، کارخانه نوآوری</span>
-              </div>
-              <div className="flex items-center gap-2">
+
+            <div className="space-y-3 text-xs text-[#434846]">
+              {/* Address with Direct Google Maps Link */}
+              <a
+                href="https://maps.app.goo.gl/SQPRkju5jTvMjdGMA"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="مشاهده موقعیت در گوگل مپ"
+                className="group flex items-start gap-2.5 hover:text-[#3E777A] transition-colors"
+              >
+                <MapPin className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <span className="text-[#1E2424] group-hover:text-[#3E777A] font-medium leading-relaxed transition-colors">
+                  مشهد، بلوار کوثر، میدان پژوهش، کارخانه نوآوری مشهد، واحد 16
+                </span>
+              </a>
+
+              {/* Direct Email */}
+              <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#3E777A] shrink-0" />
-                <span className="font-mono dir-ltr">info@artamad.ir</span>
+                <a
+                  href="mailto:dso552na@gmail.com"
+                  dir="ltr"
+                  className="font-mono text-xs text-[#1E2424] hover:text-[#3E777A] font-semibold transition-colors"
+                >
+                  dso552na@gmail.com
+                </a>
               </div>
             </div>
 
-            <div className="pt-2">
+            {/* Social Links */}
+            <div className="pt-1 px-1">
               <span className="text-[11px] text-[#777A76] block mb-2">شبکه‌های ارتباطی:</span>
               <div className="flex flex-wrap items-center gap-3 text-xs text-[#434846]">
-                {socialLinks.map((item, idx) => (
-                  <React.Fragment key={idx}>
-                    <a
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onOpenContact();
-                      }}
-                      className="hover:text-[#3E777A] font-medium transition-colors"
-                    >
-                      {item.label}
-                    </a>
-                    {idx < socialLinks.length - 1 && (
-                      <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
-                    )}
-                  </React.Fragment>
-                ))}
+                <a
+                  href="https://www.instagram.com/artamad_honar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#3E777A] font-medium transition-colors"
+                >
+                  اینستاگرام
+                </a>
+                <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpenContact();
+                  }}
+                  className="hover:text-[#3E777A] font-medium transition-colors"
+                >
+                  تلگرام
+                </a>
+                <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpenContact();
+                  }}
+                  className="hover:text-[#3E777A] font-medium transition-colors"
+                >
+                  لینکدین
+                </a>
+                <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpenContact();
+                  }}
+                  className="hover:text-[#3E777A] font-medium transition-colors"
+                >
+                  یوتیوب
+                </a>
               </div>
             </div>
           </div>

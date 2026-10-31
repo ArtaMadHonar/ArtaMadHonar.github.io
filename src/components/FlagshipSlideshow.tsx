@@ -7,7 +7,7 @@ export interface FlagshipImageSlide {
   alt: string;
 }
 
-const SLIDES: FlagshipImageSlide[] = [
+export const SLIDES: FlagshipImageSlide[] = [
   {
     id: 'slide-1',
     url: 'https://s1.uploadkon.ir/b1225488-41b4-4176-a55d-78b6678dd761/b1225488-41b4-4176-a55d-78b6678dd761-babyham.webp',
@@ -33,11 +33,32 @@ const SLIDES: FlagshipImageSlide[] = [
 const AUTO_SWITCH_DELAY = 5000;
 const USER_SWITCH_DELAY = 8000;
 
-export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className = '' }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+interface FlagshipSlideshowProps {
+  className?: string;
+  activeIndex?: number;
+  onIndexChange?: (index: number) => void;
+}
+
+export const FlagshipSlideshow: React.FC<FlagshipSlideshowProps> = ({
+  className = '',
+  activeIndex,
+  onIndexChange,
+}) => {
+  const [internalIndex, setInternalIndex] = useState(0);
+  const currentIndex = activeIndex !== undefined ? activeIndex : internalIndex;
   const [currentDelay, setCurrentDelay] = useState(AUTO_SWITCH_DELAY);
   const [resetToken, setResetToken] = useState(0);
   const touchStartX = useRef<number | null>(null);
+
+  const setSlideIndex = useCallback(
+    (nextIndexOrFn: number | ((prev: number) => number)) => {
+      const nextVal =
+        typeof nextIndexOrFn === 'function' ? nextIndexOrFn(currentIndex) : nextIndexOrFn;
+      setInternalIndex(nextVal);
+      onIndexChange?.(nextVal);
+    },
+    [currentIndex, onIndexChange]
+  );
 
   // Preload all slides on mount so switching is instant
   useEffect(() => {
@@ -49,20 +70,23 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
+      setSlideIndex((prev) => (prev + 1) % SLIDES.length);
       setCurrentDelay(AUTO_SWITCH_DELAY);
     }, currentDelay);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [currentIndex, currentDelay, resetToken]);
+  }, [currentIndex, currentDelay, resetToken, setSlideIndex]);
 
-  const handleUserChange = useCallback((nextIndexOrFn: number | ((prev: number) => number)) => {
-    setCurrentDelay(USER_SWITCH_DELAY);
-    setResetToken((t) => t + 1);
-    setCurrentIndex(nextIndexOrFn);
-  }, []);
+  const handleUserChange = useCallback(
+    (nextIndexOrFn: number | ((prev: number) => number)) => {
+      setCurrentDelay(USER_SWITCH_DELAY);
+      setResetToken((t) => t + 1);
+      setSlideIndex(nextIndexOrFn);
+    },
+    [setSlideIndex]
+  );
 
   const handleNext = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -97,10 +121,7 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
     touchStartX.current = null;
   };
 
-  const toPersianNum = (num: number) => {
-    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    return String(num).replace(/[0-9]/g, (w) => persianDigits[+w]);
-  };
+  const formatEnglishNum = (num: number) => String(num).padStart(2, '0');
 
   return (
     <div
@@ -159,10 +180,13 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
         <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
       </button>
 
-      {/* Bottom Rail: Slide Counter & Dots */}
+      {/* Bottom Rail: Slide Counter (English Numerals) & Dots */}
       <div className="absolute bottom-2.5 sm:bottom-4 inset-x-2.5 sm:inset-x-4 z-20 flex items-center justify-between pointer-events-auto">
-        <div className="text-[10px] sm:text-xs font-mono font-bold text-white/95 bg-black/60 px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-md border border-white/15 tabular-nums">
-          {toPersianNum(currentIndex + 1)} / {toPersianNum(SLIDES.length)}
+        <div
+          dir="ltr"
+          className="text-[11px] sm:text-xs font-mono font-bold text-white/95 bg-black/65 px-3 py-1 rounded-full backdrop-blur-md border border-white/15 tabular-nums tracking-wider"
+        >
+          {formatEnglishNum(currentIndex + 1)} / {formatEnglishNum(SLIDES.length)}
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-2 bg-black/50 px-2.5 sm:px-3 py-1.5 rounded-full backdrop-blur-md border border-white/15">
@@ -177,7 +201,7 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
                     ? 'w-5 sm:w-6 h-1.5 sm:h-2 bg-[#D6B16A]'
                     : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/40 hover:bg-white/80'
                 }`}
-                aria-label={`اسلاید ${idx + 1}`}
+                aria-label={`Slide ${idx + 1}`}
               />
             );
           })}
