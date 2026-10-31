@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ArrowRight,
   ArrowLeft,
@@ -51,12 +51,39 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   const [selectedItem, setSelectedItem] = useState<DomainGalleryItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
+  const [isHeroVideoReady, setIsHeroVideoReady] = useState<boolean>(false);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     setActiveCategory('All');
     setHoveredCardId(null);
     setSelectedItem(null);
+    setIsHeroVideoReady(false);
   }, [domain.id]);
+
+  // Smart IntersectionObserver to pause autoplay video when scrolled out of view
+  useEffect(() => {
+    const videoEl = heroVideoRef.current;
+    if (!videoEl || !domain.internationalUnit || !domain.videoUrl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoEl.play().catch(() => {});
+          } else {
+            videoEl.pause();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(videoEl);
+    return () => {
+      observer.disconnect();
+    };
+  }, [domain.id, domain.internationalUnit, domain.videoUrl]);
 
   // Lock body scroll when detail modal is open
   useEffect(() => {
@@ -182,67 +209,141 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             </button>
           </div>
 
-          {/* Clean 12-Column Overview Card */}
-          <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
-              {/* Visual Column (7 Cols) - Clean & Original */}
-              <div className="lg:col-span-7 bg-[#121616] relative flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
-                {domain.id === 'wonderful-day' ? (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <HeroVideoPlayer />
-                  </div>
-                ) : (
-                  <VisualArtCanvas
-                    type={domain.canvasType}
-                    imageUrl={domain.imageUrl}
-                    className="w-full h-full aspect-video lg:aspect-auto"
-                    showControls={false}
+          {/* Hero Stage: Full-Width Autoplay Video + Minimalist International Unit Bar for Commercial-CGI, or 12-Col Overview for other domains */}
+          {domain.internationalUnit && domain.videoUrl ? (
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_16px_45px_rgba(30,36,36,0.07)] overflow-hidden">
+              {/* Full-Width Continuous Autoplay Video Stage */}
+              <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
+                {domain.imageUrl && (
+                  <img
+                    src={domain.imageUrl}
+                    alt={domain.title}
+                    referrerPolicy="no-referrer"
+                    className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
+                      isHeroVideoReady ? 'opacity-0' : 'opacity-90'
+                    }`}
                   />
                 )}
+                <video
+                  ref={heroVideoRef}
+                  key={domain.videoUrl}
+                  src={domain.videoUrl}
+                  poster={domain.imageUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onLoadedData={() => setIsHeroVideoReady(true)}
+                  className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
+                    isHeroVideoReady ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
               </div>
 
-              {/* Narrative & Highlights Column (5 Cols) */}
-              <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 text-right border-t lg:border-t-0 lg:border-r border-[#DCD6C8]">
-                <div className="space-y-4">
-                  <span className="text-xs font-bold text-[#3E777A] block">
-                    معرفی و رویکرد دپارتمان
-                  </span>
-
-                  <p className="text-xs sm:text-sm text-[#1E2424] leading-relaxed font-medium">
-                    {domain.description}
-                  </p>
-
-                  {domain.secondaryDescription && (
-                    <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
-                      {domain.secondaryDescription}
-                    </p>
-                  )}
-
-                  <div className="pt-4 border-t border-[#E5E0D4] space-y-2.5">
-                    <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
-                      {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
-                    </h3>
-                    <div className="space-y-2">
-                      {domain.highlights.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-2.5 text-xs text-[#434846] leading-relaxed"
-                        >
-                          <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
+              {/* Minimalist Signature Bar: Concise Keywords + BearStudio (3earstudio.com) */}
+              <div className="px-5 sm:px-8 py-4 sm:py-5 bg-[#FAF8F4] border-t border-[#DCD6C8] flex flex-col md:flex-row md:items-center justify-between gap-4">
+                {/* Concise Keywords Only (No cluttered paragraphs) */}
+                <div className="space-y-1 text-right">
+                  <div className="text-xs sm:text-sm font-bold text-[#1E2424]">
+                    {domain.internationalUnit.keywordsFa.join(' · ')}
+                  </div>
+                  <div className="text-[11px] sm:text-xs font-en text-[#777A76] tracking-wide">
+                    {domain.internationalUnit.keywordsEn.join(' · ')}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#E5E0D4] flex flex-wrap items-center gap-2 text-[11px] text-[#777A76]">
-                  <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
-                  <span>{domain.tags.join(' · ')}</span>
+                {/* Subtle International Unit Signature Link (BearStudio · 3earstudio.com) */}
+                <a
+                  href={domain.internationalUnit.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  dir="ltr"
+                  className="group self-start md:self-auto flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-[#F4F0E6] hover:bg-[#1E2424] border border-[#DCD6C8] hover:border-[#1E2424] transition-all duration-300"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#181D1D] flex items-center justify-center p-1.5 shrink-0 border border-white/10">
+                    <img
+                      src={domain.internationalUnit.logoUrl}
+                      alt={domain.internationalUnit.name}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div className="text-left">
+                    <div className="text-xs font-en font-bold text-[#1E2424] group-hover:text-[#FAF8F4] transition-colors flex items-center gap-1.5">
+                      <span>{domain.internationalUnit.roleLabel}</span>
+                    </div>
+                    <div className="text-[11px] font-mono text-[#3E777A] group-hover:text-[#65B7B5] transition-colors flex items-center gap-1">
+                      <span>{domain.internationalUnit.websiteLabel}</span>
+                      <ExternalLink className="w-3 h-3 opacity-80" />
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
+                {/* Visual Column (7 Cols) - Clean & Original */}
+                <div className="lg:col-span-7 bg-[#121616] relative flex items-center justify-center min-h-[260px] sm:min-h-[380px]">
+                  {domain.id === 'wonderful-day' ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <HeroVideoPlayer />
+                    </div>
+                  ) : (
+                    <VisualArtCanvas
+                      type={domain.canvasType}
+                      imageUrl={domain.imageUrl}
+                      className="w-full h-full aspect-video lg:aspect-auto"
+                      showControls={false}
+                    />
+                  )}
+                </div>
+
+                {/* Narrative & Highlights Column (5 Cols) */}
+                <div className="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 text-right border-t lg:border-t-0 lg:border-r border-[#DCD6C8]">
+                  <div className="space-y-4">
+                    <span className="text-xs font-bold text-[#3E777A] block">
+                      معرفی و رویکرد دپارتمان
+                    </span>
+
+                    <p className="text-xs sm:text-sm text-[#1E2424] leading-relaxed font-medium">
+                      {domain.description}
+                    </p>
+
+                    {domain.secondaryDescription && (
+                      <p className="text-xs sm:text-[13.5px] text-[#434846] leading-relaxed">
+                        {domain.secondaryDescription}
+                      </p>
+                    )}
+
+                    <div className="pt-4 border-t border-[#E5E0D4] space-y-2.5">
+                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                        {domain.highlightsTitle || 'محورهای تخصصی این حوزه:'}
+                      </h3>
+                      <div className="space-y-2">
+                        {domain.highlights.map((item, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-2.5 text-xs text-[#434846] leading-relaxed"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-[#E5E0D4] flex flex-wrap items-center gap-2 text-[11px] text-[#777A76]">
+                    <span className="font-bold text-[#1E2424]">کلیدواژه‌ها:</span>
+                    <span>{domain.tags.join(' · ')}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </section>
 
         {/* 3. Department Portfolio Grid (Minimal & Clean 3earstudio-style cards) */}

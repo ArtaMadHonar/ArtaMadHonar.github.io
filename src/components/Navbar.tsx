@@ -30,13 +30,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onNavigateHome })
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#EDE9DF]/90 border-b border-[#DCD6C8] transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-8 min-w-0">
-        {/* Zone 1: Single-line Brand Wordmark */}
+        {/* Zone 1: Brand Logo & Subtle Studio Lockup */}
         <a
-          href="#"
+          href="https://artamad.ir"
           onClick={(e) => handleLinkClick(e, '#')}
-          className="text-lg sm:text-xl font-black text-[#1E2424] tracking-tight hover:text-[#3E777A] transition-colors font-fa whitespace-nowrap shrink-0 select-none"
+          className="group flex items-center gap-3 shrink-0 select-none"
         >
-          آرتا ماد هنر
+          <img
+            src="https://my.uploadkon.ir/d/V7xEfgwAIrHufBKaVf0DjHYu2tyLfL/OTEyMzV8cGFkZA.png"
+            alt="استودیو آرتا ماد هنر"
+            referrerPolicy="no-referrer"
+            className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="flex flex-col justify-center border-r border-[#DCD6C8] pr-3 text-right">
+            <span className="text-xs sm:text-sm font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-tight whitespace-nowrap">
+              استودیو آرتا ماد هنر
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-en font-semibold text-[#777A76] tracking-wider uppercase leading-tight whitespace-nowrap mt-0.5">
+              Arta Mad Honar Studio
+            </span>
+          </div>
         </a>
 
         {/* Zone 2: 5 Concise Single-Line Navigation Links */}

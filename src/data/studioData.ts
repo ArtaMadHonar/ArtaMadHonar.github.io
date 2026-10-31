@@ -71,6 +71,16 @@ export interface DepartmentTeamGroup {
   memberIds: string[];
 }
 
+export interface InternationalUnitInfo {
+  name: string;
+  roleLabel: string;
+  logoUrl: string;
+  websiteUrl: string;
+  websiteLabel: string;
+  keywordsFa: string[];
+  keywordsEn: string[];
+}
+
 export interface ProjectWork {
   id: string;
   title: string;
@@ -87,6 +97,7 @@ export interface ProjectWork {
   canvasType: 'wonderful-day' | 'commercial-cgi' | 'vfx-mapping' | 'web3-nft' | 'game-lab';
   imageUrl?: string;
   videoUrl?: string;
+  internationalUnit?: InternationalUnitInfo;
   isUpcoming?: boolean;
   relatedMemberIds?: string[];
   teamGroups?: DepartmentTeamGroup[];
@@ -415,7 +426,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'NB',
     imageUrl:
-      'https://s1.uploadkon.ir/cc81ebc2-2d6d-450e-aeda-21f19236decb/cc81ebc2-2d6d-450e-aeda-21f19236decb-Negar.webp',
+      'https://my.uploadkon.ir/d/GUX3vH8B5POK7XoQ8iZaFJVkXkxKH9/OTEyMTN8cGFkZA.webp',
     bio: 'خلق دنیاهای مسحورکننده بصری، توسعه کانسپت کاراکترها و تصویرسازی کلیدفریم‌های احساسی و سینمایی.',
   },
   {
@@ -470,7 +481,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'commercial',
     initials: 'KK',
     imageUrl:
-      'https://my.uploadkon.ir/d/2MSL7qprCqhrn17cm69Gd5K9HkhQze/ODM4NDJ8cGFkZA.webp',
+      'https://my.uploadkon.ir/d/LhNfjPKHcjpckgv7U06eY3WiQgeMOI/OTEyMTd8cGFkZA.webp',
     bio: 'مدیریت دقیق زمان‌بندی دپارتمان تیزر همگام با ساخت موسیقی متن و معماری اتمسفر صوتی اختصاصی برندها.',
   },
   {
@@ -704,6 +715,18 @@ export const SELECTED_WORKS: ProjectWork[] = [
       'تولید تیزرهای تبلیغاتی، محتوای CGI، فیلم‌های معرفی محصول و ساخت موسیقی و صدای اختصاصی متناسب با هویت برندها.',
     imageUrl:
       'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp',
+    videoUrl:
+      'https://my.uploadkon.ir/d/yOFhG8YkIB2z4ztU8zQr6xtJUlavWs/OTEyMTJ8cGFkZA.mp4',
+    internationalUnit: {
+      name: 'BearStudio',
+      roleLabel: 'International Unit · BearStudio',
+      logoUrl:
+        'https://my.uploadkon.ir/d/3GN7OmzrJVMaTWQ12tk0FKTBw8L7iR/OTEyMTh8cGFkZA.png',
+      websiteUrl: 'https://3earstudio.com/',
+      websiteLabel: '3earstudio.com',
+      keywordsFa: ['تیزرهای تبلیغاتی', 'تولیدات تصویری CGI', 'هوش مصنوعی', 'طراحی صدا'],
+      keywordsEn: ['Commercials', 'Creative CGI', 'AI Assisted', '2D Motion', 'Sound Design'],
+    },
     description:
       'آرتا ماد هنر با بهره‌گیری از ظرفیت‌های انیمیشن سه‌بعدی، جلوه‌های بصری و هوش مصنوعی، در زمینه تولید تیزرهای تبلیغاتی، محتوای CGI، فیلم‌های معرفی محصول و تولیدات تصویری خلاقانه متناسب با نیاز برندها و کسب‌وکارها فعالیت می‌کند.',
     secondaryDescription:
