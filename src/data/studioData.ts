@@ -1136,6 +1136,30 @@ export const SELECTED_WORKS: ProjectWork[] = [
         fallbackImageUrl:
           'https://my.uploadkon.ir/d/MCM82zi7mqg5jYq1jJsaSTDZ0w27BZ/OTQ4MDR8cGFkZA.webp',
       },
+      {
+        id: 'game-token-poyo',
+        title: 'مهره استندی کاراکتر «پویو» — بازی رومیزی «روز شگفت‌انگیز»',
+        titleEn: 'Poyo Standee Character Token',
+        subtitle: 'مهره اختصاصی شخصیت اصلی برای حرکت روی صفحه بازی',
+        badge: 'مهره استندی بازی',
+        description:
+          'استند اختصاصی و برش‌خورده کاراکتر «پویو» برای حرکت روی خانه‌های نقشه بازی رومیزی «روز شگفت‌انگیز»، طراحی‌شده با جزئیات کامل و کیفیت بالا برای تجربه تعاملی و ملموس کودکان.',
+        imageUrl: '/assets/game-lab/token-2.png',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/7Cr5fPAT3qX0sknuvbSJMZy3EqxhHX/OTQ4MDZ8cGFkZA.png',
+      },
+      {
+        id: 'game-token-grandfather',
+        title: 'مهره استندی کاراکتر «پدربزرگ» — بازی رومیزی «روز شگفت‌انگیز»',
+        titleEn: 'Grandfather Standee Character Token',
+        subtitle: 'مهره اختصاصی شخصیت پدربزرگ با جزئیات دقیق و عینک نمادین',
+        badge: 'مهره استندی بازی',
+        description:
+          'استند کاراکتر «پدربزرگ» به عنوان یکی از مهره‌های اصلی بازیکنان در بردگیم «روز شگفت‌انگیز»، مکمل مهره پویو در مسیر رقابت‌های پرهیجان و دورهمی‌های خانوادگی.',
+        imageUrl: '/assets/game-lab/token-grandfather.png',
+        fallbackImageUrl:
+          'https://my.uploadkon.ir/d/LcoX3RvbvVul093yF7Vio4NSAJaPsg/OTQ4MDV8cGFkZA.png',
+      },
     ],
   },
   {

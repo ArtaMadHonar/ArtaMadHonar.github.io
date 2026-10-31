@@ -587,58 +587,58 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               );
             })()
           ) : domain.id === 'game-lab' ? (
-            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.06)] p-5 sm:p-7 lg:p-8">
+            <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#121616] border border-[#DCD6C8] dark:border-[#27363A] shadow-[0_14px_40px_rgba(30,36,36,0.06)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] p-5 sm:p-7 lg:p-8 transition-colors">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                 {/* Right Column in RTL (6 Cols): 93-Minute DIRC Stat + Vision Narrative + 5 IP Expansion Pillars */}
-                <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-5 text-right">
+                <div className="lg:col-span-6 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 text-right transition-colors">
                   <div className="space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] pb-3">
-                      <span className="text-xs sm:text-sm font-black text-[#3E777A]">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DCD6C8] dark:border-[#2E3636] pb-3">
+                      <span className="text-xs sm:text-sm font-black text-[#3E777A] dark:text-[#5DB8BD]">
                         معرفی و رویکرد دپارتمان بازی‌سازی
                       </span>
                       <span
                         dir="ltr"
-                        className="text-[10px] font-mono font-bold text-[#777A76] uppercase tracking-wider"
+                        className="text-[10px] font-mono font-bold text-[#777A76] dark:text-[#889290] uppercase tracking-wider"
                       >
                         GAME DEV & INTERACTIVE IP
                       </span>
                     </div>
 
                     {/* Prominent 93-Minute Daily Playtime Highlight Box (Exact Data from Slide) */}
-                    <div className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F4] dark:bg-[#151A1A] border border-[#DCD6C8] dark:border-[#2A3232] flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-colors">
                       <div className="flex items-baseline gap-2.5 shrink-0">
-                        <span className="text-4xl sm:text-5xl font-black text-[#3E777A] leading-none farsi-nums">
+                        <span className="text-4xl sm:text-5xl font-black text-[#3E777A] dark:text-[#5DB8BD] leading-none farsi-nums">
                           ۹۳
                         </span>
-                        <span className="text-base sm:text-lg font-black text-[#1E2424]">
+                        <span className="text-base sm:text-lg font-black text-[#1E2424] dark:text-[#E8F1F2]">
                           دقیقه
                         </span>
                       </div>
 
-                      <div className="space-y-1 text-right sm:border-r sm:border-[#DCD6C8] sm:pr-4 flex-1">
-                        <div className="text-xs sm:text-sm font-black text-[#1E2424]">
+                      <div className="space-y-1 text-right sm:border-r sm:border-[#DCD6C8] dark:sm:border-[#2E3636] sm:pr-4 flex-1">
+                        <div className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                           میانگین بازی در ایران در روز
                         </div>
-                        <div className="text-[11px] sm:text-xs font-medium text-[#777A76]">
+                        <div className="text-[11px] sm:text-xs font-medium text-[#777A76] dark:text-[#889290]">
                           منبع: مرکز تحقیقات بازی‌های دیجیتال (دایرک)
                         </div>
                       </div>
                     </div>
 
                     {/* Exact Philosophy & Vision Narrative from Reference Slide */}
-                    <div className="space-y-3 text-xs sm:text-[13.5px] text-[#1E2424] leading-[1.95] text-justify font-medium">
+                    <div className="space-y-3 text-xs sm:text-[13.5px] text-[#1E2424] dark:text-[#D1DDD8] leading-[1.95] text-justify font-medium">
                       <p>
                         این زمان، فرصتی برای گسترش ارتباط کودک با شخصیت‌ها و جهان‌های داستانی است. تماشای انیمیشن می‌تواند نخستین پیوند عاطفی کودک با یک شخصیت را شکل دهد؛ اما بازی، امکان ادامه‌دادن این ارتباط را از طریق تعامل و تجربه‌های مکرر فراهم می‌کند.
                       </p>
-                      <p className="text-[#434846]">
+                      <p className="text-[#434846] dark:text-[#A8B2B0]">
                         ما با توسعه بازی‌های موبایلی، رایانه‌ای و رومیزی در امتداد جهان پویو، تلاش می‌کنیم این ارتباط را فراتر از تماشای فیلم ادامه دهیم؛ تا کودک نه فقط تماشاگر ماجراهای پویو، بلکه همراه و بخشی از دنیای او باشد.
                       </p>
                     </div>
                   </div>
 
                   {/* 5 IP Ecosystem Signposts Strip */}
-                  <div className="pt-3.5 border-t border-[#DCD6C8] space-y-2">
-                    <span className="text-[11px] font-bold text-[#777A76] block">
+                  <div className="pt-3.5 border-t border-[#DCD6C8] dark:border-[#2E3636] space-y-2">
+                    <span className="text-[11px] font-bold text-[#777A76] dark:text-[#889290] block">
                       زنجیره گسترش تعاملی جهان «روز شگفت‌انگیز»:
                     </span>
                     <div className="flex flex-wrap items-center gap-2">
@@ -651,7 +651,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       ].map((pillar) => (
                         <span
                           key={pillar}
-                          className="px-3 py-1 rounded-xl bg-[#FAF8F4] border border-[#DCD6C8] text-[11px] sm:text-xs font-bold text-[#1E2424]"
+                          className="px-3 py-1 rounded-xl bg-[#FAF8F4] dark:bg-[#161B1B] border border-[#DCD6C8] dark:border-[#2E3636] text-[11px] sm:text-xs font-bold text-[#1E2424] dark:text-[#E8F1F2]"
                         >
                           {pillar}
                         </span>
@@ -663,13 +663,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 {/* Left Column in RTL (6 Cols): Ecosystem Signpost Visual + 3 Core Game Lines */}
                 <div className="lg:col-span-6 flex flex-col justify-between gap-4">
                   {/* Top Visual: Wonderful Day Interactive Ecosystem Banner */}
-                  <div className="w-full rounded-2xl overflow-hidden border border-[#DCD6C8] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]">
+                  <div className="w-full rounded-2xl overflow-hidden border border-[#DCD6C8] dark:border-[#2E3636] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]">
                     <img
-                      src="/assets/game-lab/ip-ecosystem-banner.webp"
+                      src="/assets/game-lab/rollercoaster-banner.webp"
                       onError={(e) => {
                         const target = e.currentTarget;
                         const fallback =
-                          'https://my.uploadkon.ir/d/SWkDUv7gLj5IW2pfpyaXzbJrCJihMV/OTQ3OTl8cGFkZA.webp';
+                          'https://my.uploadkon.ir/d/OOrFtYqpxnk7dUtWNacvwQB0G4KHsZ/OTQ4MDd8cGFkZA.webp';
                         if (target.src !== fallback) {
                           target.src = fallback;
                         }
@@ -684,47 +684,47 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                   {/* Bottom 3-Pillar Product Line Cards (Fills Height & Summarizes the 3 Categories Below) */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-1">
-                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-2 text-right">
+                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-2 text-right transition-colors">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-black text-[#3E777A]" dir="ltr">
+                        <span className="text-xs font-mono font-black text-[#3E777A] dark:text-[#5DB8BD]" dir="ltr">
                           01 · MOBILE
                         </span>
-                        <span className="text-[10px] font-bold text-[#777A76]">دسته اول</span>
+                        <span className="text-[10px] font-bold text-[#777A76] dark:text-[#889290]">دسته اول</span>
                       </div>
-                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                         بازی موبایلی «پازل پویو»
                       </h3>
-                      <p className="text-[11px] text-[#434846] leading-relaxed">
+                      <p className="text-[11px] text-[#434846] dark:text-[#A8B2B0] leading-relaxed">
                         چالش سرعت عمل، تطبیق تاس و انتخاب کارت‌های شخصیت برای پلتفرم موبایل
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-2 text-right">
+                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-2 text-right transition-colors">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-black text-[#3E777A]" dir="ltr">
+                        <span className="text-xs font-mono font-black text-[#3E777A] dark:text-[#5DB8BD]" dir="ltr">
                           02 · BOARD GAME
                         </span>
-                        <span className="text-[10px] font-bold text-[#777A76]">دسته دوم</span>
+                        <span className="text-[10px] font-bold text-[#777A76] dark:text-[#889290]">دسته دوم</span>
                       </div>
-                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                         بازی رومیزی «روز شگفت‌انگیز»
                       </h3>
-                      <p className="text-[11px] text-[#434846] leading-relaxed">
+                      <p className="text-[11px] text-[#434846] dark:text-[#A8B2B0] leading-relaxed">
                         بردگیم خانوادگی با کارت‌های شانس و چالش به همراه مهره‌های استندی کاراکترها
                       </p>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-2 text-right">
+                    <div className="p-4 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-2 text-right transition-colors">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-black text-[#3E777A]" dir="ltr">
+                        <span className="text-xs font-mono font-black text-[#3E777A] dark:text-[#5DB8BD]" dir="ltr">
                           03 · PC GAME
                         </span>
-                        <span className="text-[10px] font-bold text-[#777A76]">دسته سوم</span>
+                        <span className="text-[10px] font-bold text-[#777A76] dark:text-[#889290]">دسته سوم</span>
                       </div>
-                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424]">
+                      <h3 className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                         بازی PC «ماجراجویی پویو»
                       </h3>
-                      <p className="text-[11px] text-[#434846] leading-relaxed">
+                      <p className="text-[11px] text-[#434846] dark:text-[#A8B2B0] leading-relaxed">
                         گیم‌پلی سه‌بعدی، دوچرخه‌سواری در شهر و جمع‌آوری آیتم‌ها در دنیای پویو
                       </p>
                     </div>
@@ -935,26 +935,26 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             </div>
 
             {/* Category 1: Mobile Game "Poyo Puzzle" — 4 Vertical (9:16) Screenshots Grouped Together */}
-            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)]">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] pb-4">
+            <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#121616] border border-[#DCD6C8] dark:border-[#27363A] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] dark:border-[#27363A] pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] text-[11px] font-bold">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 dark:bg-[#5DB8BD]/15 text-[#2E5A5C] dark:text-[#78CCD0] text-[11px] font-bold">
                       دسته اول · گیم موبایلی
                     </span>
                     <span
                       dir="ltr"
-                      className="text-[11px] font-mono font-semibold text-[#777A76]"
+                      className="text-[11px] font-mono font-semibold text-[#777A76] dark:text-[#889290]"
                     >
                       POYO PUZZLE · MOBILE GAME
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-2xl font-black text-[#1E2424]">
+                  <h3 className="text-lg sm:text-2xl font-black text-[#1E2424] dark:text-[#E8F1F2]">
                     بازی موبایلی «پازل پویو»
                   </h3>
                 </div>
 
-                <p className="text-xs sm:text-[13px] text-[#434846] md:max-w-md leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-[#434846] dark:text-[#A8B2B0] md:max-w-md leading-relaxed">
                   طراحی‌شده برای پلتفرم موبایل با محوریت سرعت عمل، تطبیق تاس‌ها و انتخاب کارت درست از میان شخصیت‌های دنیای پویو در زمان محدود.
                 </p>
               </div>
@@ -967,9 +967,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     <article
                       key={screen.id}
                       onClick={() => setSelectedItem(screen)}
-                      className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
+                      className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
                     >
-                      <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8]">
+                      <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
                         <img
                           src={screen.imageUrl}
                           alt={screen.title}
@@ -993,7 +993,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       </div>
 
                       <div className="p-3 sm:p-3.5 flex items-center justify-between gap-2">
-                        <span className="text-[11px] sm:text-xs font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors truncate">
+                        <span className="text-[11px] sm:text-xs font-bold text-[#1E2424] dark:text-[#E8F1F2] group-hover:text-[#3E777A] dark:group-hover:text-[#5DB8BD] transition-colors truncate">
                           {idx === 0
                             ? 'صفحه شروع بازی'
                             : idx === 1
@@ -1002,7 +1002,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                 ? 'ثبت رکورد پیروزی'
                                 : 'واکنش انتخاب اشتباه'}
                         </span>
-                        <span className="text-[10px] font-mono font-bold text-[#3E777A] shrink-0 farsi-nums">
+                        <span className="text-[10px] font-mono font-bold text-[#3E777A] dark:text-[#5DB8BD] shrink-0 farsi-nums">
                           ۰{idx + 1}
                         </span>
                       </div>
@@ -1011,27 +1011,27 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               </div>
             </div>
 
-            {/* Category 2: Board Game "Wonderful Day" — 3 Action Cards Side-by-Side + Small Character Standee Token */}
-            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)]">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] pb-4">
+            {/* Category 2: Board Game "Wonderful Day" — 3 Action Cards Side-by-Side + Standee Tokens Showcase */}
+            <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#121616] border border-[#DCD6C8] dark:border-[#27363A] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-colors">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] dark:border-[#27363A] pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] text-[11px] font-bold">
+                    <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 dark:bg-[#5DB8BD]/15 text-[#2E5A5C] dark:text-[#78CCD0] text-[11px] font-bold">
                       دسته دوم · گیم برد (بازی رومیزی)
                     </span>
                     <span
                       dir="ltr"
-                      className="text-[11px] font-mono font-semibold text-[#777A76]"
+                      className="text-[11px] font-mono font-semibold text-[#777A76] dark:text-[#889290]"
                     >
                       WONDERFUL DAY · BOARD GAME
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-2xl font-black text-[#1E2424]">
+                  <h3 className="text-lg sm:text-2xl font-black text-[#1E2424] dark:text-[#E8F1F2]">
                     بازی رومیزی «روز شگفت‌انگیز»
                   </h3>
                 </div>
 
-                <p className="text-xs sm:text-[13px] text-[#434846] md:max-w-md leading-relaxed">
+                <p className="text-xs sm:text-[13px] text-[#434846] dark:text-[#A8B2B0] md:max-w-md leading-relaxed">
                   تجربه تعاملی و فیزیکی برای دورهمی‌های خانوادگی؛ ترکیبی از صفحه بازی، کارت‌های اتفاق و شانس و مهره‌های استندی شخصیت‌های فیلم.
                 </p>
               </div>
@@ -1045,9 +1045,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       <article
                         key={card.id}
                         onClick={() => setSelectedItem(card)}
-                        className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
+                        className="group cursor-pointer rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(30,36,36,0.08)] flex flex-col justify-between"
                       >
-                        <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8]">
+                        <div className="relative w-full bg-[#121616] overflow-hidden border-b border-[#DCD6C8] dark:border-[#2E3636]">
                           <img
                             src={card.imageUrl}
                             alt={card.title}
@@ -1072,18 +1072,18 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                         <div className="p-3.5 space-y-1 text-right">
                           <div className="flex items-center justify-between gap-2">
-                            <span className="text-xs font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors">
+                            <span className="text-xs font-black text-[#1E2424] dark:text-[#E8F1F2] group-hover:text-[#3E777A] dark:group-hover:text-[#5DB8BD] transition-colors">
                               {idx === 0
                                 ? 'کارت شانس · تاس مجدد'
                                 : idx === 1
                                   ? 'کارت چالش · توقف در آرد'
                                   : 'کارت رقیب · یک دور توقف'}
                             </span>
-                            <span className="text-[10px] font-mono font-bold text-[#3E777A] shrink-0">
+                            <span className="text-[10px] font-mono font-bold text-[#3E777A] dark:text-[#5DB8BD] shrink-0">
                               CARD 0{idx + 1}
                             </span>
                           </div>
-                          <p className="text-[11px] text-[#434846] truncate">
+                          <p className="text-[11px] text-[#434846] dark:text-[#A8B2B0] truncate">
                             {card.subtitle}
                           </p>
                         </div>
@@ -1091,69 +1091,154 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     ))}
                 </div>
 
-                {/* Board Game Mechanics & Small-Size PNG Standee Token Showcase (4 Cols) */}
-                <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-5">
+                {/* Board Game Mechanics & Standee Tokens Showcase (4 Cols) */}
+                <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 transition-colors">
                   <div className="space-y-3.5">
-                    <div className="flex items-center justify-between border-b border-[#DCD6C8] pb-2.5">
-                      <span className="text-xs sm:text-sm font-black text-[#1E2424]">
+                    <div className="flex items-center justify-between border-b border-[#DCD6C8] dark:border-[#2E3636] pb-2.5">
+                      <span className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                         اجزا و قوانین بازی رومیزی
                       </span>
                       <span
                         dir="ltr"
-                        className="text-[10px] font-mono font-bold text-[#3E777A]"
+                        className="text-[10px] font-mono font-bold text-[#3E777A] dark:text-[#5DB8BD]"
                       >
                         TABLETOP SET
                       </span>
                     </div>
 
-                    <p className="text-xs text-[#434846] leading-relaxed">
+                    <p className="text-xs text-[#434846] dark:text-[#A8B2B0] leading-relaxed">
                       در این بردگیم خانوادگی، بازیکنان با انداختن تاس در مسیر شهری «روز شگفت‌انگیز» حرکت می‌کنند و با کشیدن کارت‌های اتفاق، همان چالش‌های خوش‌شانسی و بدبیاری‌های بامزه فیلم را در کنار خانواده تجربه می‌کنند.
                     </p>
 
                     <div className="space-y-2 pt-1">
-                      <div className="flex items-start gap-2 text-xs text-[#1E2424]">
-                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                      <div className="flex items-start gap-2 text-xs text-[#1E2424] dark:text-[#D1DDD8]">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#5DB8BD] shrink-0 mt-0.5" />
                         <span>کارت‌های شانس، تله‌های شیرینی‌پزی و رقابت دوستانه</span>
                       </div>
-                      <div className="flex items-start gap-2 text-xs text-[#1E2424]">
-                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                      <div className="flex items-start gap-2 text-xs text-[#1E2424] dark:text-[#D1DDD8]">
+                        <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#5DB8BD] shrink-0 mt-0.5" />
                         <span>مناسب برای تقویت تعامل کودکان و والدین در فضای فیزیکی</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Small-Size PNG Character Standee Token Box (Deliberately compact so low-res PNG looks crisp) */}
-                  <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] flex items-center gap-3.5">
-                    <div className="w-16 h-22 sm:w-18 sm:h-24 rounded-xl bg-[#F4F0E6] border border-[#DCD6C8] flex items-center justify-center p-1.5 shrink-0">
-                      <img
-                        src="/assets/game-lab/token-2.png"
-                        alt="مهره استندی شخصیت پویو"
-                        referrerPolicy="no-referrer"
-                        loading="eager"
-                        decoding="sync"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          const fallback =
-                            'https://my.uploadkon.ir/d/7Cr5fPAT3qX0sknuvbSJMZy3EqxhHX/OTQ4MDZ8cGFkZA.png';
-                          if (target.src !== fallback) {
-                            target.src = fallback;
-                          }
-                        }}
-                        className="max-h-full w-auto object-contain block drop-shadow-xs"
-                      />
+                  {/* Character Standee Tokens Showcase Box (Pouyo & Grandfather Standees) */}
+                  <div className="p-3.5 sm:p-4 rounded-2xl bg-[#FAF8F4] dark:bg-[#151A1A] border border-[#DCD6C8] dark:border-[#2A3232] space-y-3">
+                    <div className="flex items-center justify-between gap-2 border-b border-[#DCD6C8]/60 dark:border-[#2E3636] pb-2">
+                      <span className="inline-block px-2 py-0.5 rounded-md bg-[#3E777A]/12 dark:bg-[#5DB8BD]/15 text-[#2E5A5C] dark:text-[#78CCD0] text-[10.5px] font-bold">
+                        مهره‌های استندی کاراکترها
+                      </span>
+                      <span className="text-[10px] text-[#777A76] dark:text-[#889290]">
+                        برای بزرگنمایی کلیک کنید
+                      </span>
                     </div>
 
-                    <div className="space-y-1 text-right min-w-0">
-                      <span className="inline-block px-2 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] text-[10px] font-bold">
-                        مهره استندی بازی (PNG)
-                      </span>
-                      <h4 className="text-xs sm:text-sm font-black text-[#1E2424]">
-                        استند کاراکتر «پویو»
-                      </h4>
-                      <p className="text-[11px] text-[#434846] leading-snug">
-                        مهره‌های فیزیکی شخصیت‌های فیلم برای حرکت روی خانه‌های صفحه بازی رومیزی
-                      </p>
+                    {/* Both Tokens Displayed Side by Side */}
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {/* Standee 1: Pouyo */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const item = galleryItems.find((i) => i.id === 'game-token-poyo') || {
+                            id: 'game-token-poyo',
+                            title: 'مهره استندی کاراکتر «پویو» — بازی رومیزی «روز شگفت‌انگیز»',
+                            titleEn: 'Poyo Standee Character Token',
+                            subtitle: 'مهره اختصاصی شخصیت اصلی برای حرکت روی صفحه بازی',
+                            badge: 'مهره استندی بازی',
+                            description:
+                              'استند اختصاصی و برش‌خورده کاراکتر «پویو» برای حرکت روی خانه‌های نقشه بازی رومیزی «روز شگفت‌انگیز»، طراحی‌شده با جزئیات کامل و کیفیت بالا برای تجربه تعاملی و ملموس کودکان.',
+                            imageUrl: '/assets/game-lab/token-2.png',
+                            fallbackImageUrl:
+                              'https://my.uploadkon.ir/d/7Cr5fPAT3qX0sknuvbSJMZy3EqxhHX/OTQ4MDZ8cGFkZA.png',
+                          };
+                          setSelectedItem(item);
+                        }}
+                        className="group text-right cursor-pointer rounded-xl bg-[#F4F0E6] dark:bg-[#1E2424] border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] p-2 sm:p-2.5 flex flex-col items-center justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm"
+                      >
+                        <div className="h-24 sm:h-28 w-full flex items-center justify-center p-1">
+                          <img
+                            src="/assets/game-lab/token-2.png"
+                            alt="مهره استندی کاراکتر پویو"
+                            referrerPolicy="no-referrer"
+                            loading="eager"
+                            decoding="sync"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              const fallback =
+                                'https://my.uploadkon.ir/d/7Cr5fPAT3qX0sknuvbSJMZy3EqxhHX/OTQ4MDZ8cGFkZA.png';
+                              if (target.src !== fallback) {
+                                target.src = fallback;
+                              }
+                            }}
+                            className="max-h-full w-auto object-contain block drop-shadow-xs group-hover:scale-106 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="w-full text-center pt-1.5 border-t border-[#DCD6C8]/60 dark:border-[#2E3636]">
+                          <span className="text-xs font-black text-[#1E2424] dark:text-[#E8F1F2] group-hover:text-[#3E777A] dark:group-hover:text-[#5DB8BD] transition-colors block">
+                            مهره «پویو»
+                          </span>
+                          <span className="text-[10px] text-[#777A76] dark:text-[#889290] block">
+                            شخصیت اصلی
+                          </span>
+                        </div>
+                      </button>
+
+                      {/* Standee 2: Grandfather */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const item = galleryItems.find(
+                            (i) => i.id === 'game-token-grandfather'
+                          ) || {
+                            id: 'game-token-grandfather',
+                            title:
+                              'مهره استندی کاراکتر «پدربزرگ» — بازی رومیزی «روز شگفت‌انگیز»',
+                            titleEn: 'Grandfather Standee Character Token',
+                            subtitle:
+                              'مهره اختصاصی شخصیت پدربزرگ با جزئیات دقیق و عینک نمادین',
+                            badge: 'مهره استندی بازی',
+                            description:
+                              'استند کاراکتر «پدربزرگ» به عنوان یکی از مهره‌های اصلی بازیکنان در بردگیم «روز شگفت‌انگیز»، مکمل مهره پویو در مسیر رقابت‌های پرهیجان و دورهمی‌های خانوادگی.',
+                            imageUrl: '/assets/game-lab/token-grandfather.png',
+                            fallbackImageUrl:
+                              'https://my.uploadkon.ir/d/LcoX3RvbvVul093yF7Vio4NSAJaPsg/OTQ4MDV8cGFkZA.png',
+                          };
+                          setSelectedItem(item);
+                        }}
+                        className="group text-right cursor-pointer rounded-xl bg-[#F4F0E6] dark:bg-[#1E2424] border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] p-2 sm:p-2.5 flex flex-col items-center justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm"
+                      >
+                        <div className="h-24 sm:h-28 w-full flex items-center justify-center p-1">
+                          <img
+                            src="/assets/game-lab/token-grandfather.png"
+                            alt="مهره استندی کاراکتر پدربزرگ"
+                            referrerPolicy="no-referrer"
+                            loading="eager"
+                            decoding="sync"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              const fallback =
+                                'https://my.uploadkon.ir/d/LcoX3RvbvVul093yF7Vio4NSAJaPsg/OTQ4MDV8cGFkZA.png';
+                              if (target.src !== fallback) {
+                                target.src = fallback;
+                              }
+                            }}
+                            className="max-h-full w-auto object-contain block drop-shadow-xs group-hover:scale-106 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="w-full text-center pt-1.5 border-t border-[#DCD6C8]/60 dark:border-[#2E3636]">
+                          <span className="text-xs font-black text-[#1E2424] dark:text-[#E8F1F2] group-hover:text-[#3E777A] dark:group-hover:text-[#5DB8BD] transition-colors block">
+                            مهره «پدربزرگ»
+                          </span>
+                          <span className="text-[10px] text-[#777A76] dark:text-[#889290] block">
+                            شخصیت مکمل
+                          </span>
+                        </div>
+                      </button>
                     </div>
+
+                    <p className="text-[11px] text-[#434846] dark:text-[#A8B2B0] leading-snug text-center">
+                      مهره‌های ایستاده فیزیکی شخصیت‌های فیلم با پایه رومیزی برای هدایت مسیر بازی
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1164,26 +1249,26 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               const pcItem = galleryItems.find((item) => item.id === 'game-pc-adventure');
               if (!pcItem) return null;
               return (
-                <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)]">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] pb-4">
+                <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#121616] border border-[#DCD6C8] dark:border-[#27363A] p-5 sm:p-7 lg:p-8 space-y-6 shadow-[0_12px_34px_rgba(30,36,36,0.05)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] transition-colors">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#DCD6C8] dark:border-[#27363A] pb-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 text-[#2E5A5C] text-[11px] font-bold">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#3E777A]/12 dark:bg-[#5DB8BD]/15 text-[#2E5A5C] dark:text-[#78CCD0] text-[11px] font-bold">
                           دسته سوم · بازی رایانه‌ای (PC)
                         </span>
                         <span
                           dir="ltr"
-                          className="text-[11px] font-mono font-semibold text-[#777A76]"
+                          className="text-[11px] font-mono font-semibold text-[#777A76] dark:text-[#889290]"
                         >
                           POYO ADVENTURE · PC 3D GAME
                         </span>
                       </div>
-                      <h3 className="text-lg sm:text-2xl font-black text-[#1E2424]">
+                      <h3 className="text-lg sm:text-2xl font-black text-[#1E2424] dark:text-[#E8F1F2]">
                         بازی PC «ماجراجویی پویو»
                       </h3>
                     </div>
 
-                    <p className="text-xs sm:text-[13px] text-[#434846] md:max-w-md leading-relaxed">
+                    <p className="text-xs sm:text-[13px] text-[#434846] dark:text-[#A8B2B0] md:max-w-md leading-relaxed">
                       تجربه گیم‌پلی سه‌بعدی در خیابان‌های شهر؛ همراهی مستقیم کودک با کاراکتر پویو در مسیرهای شهری و جمع‌آوری امتیازها.
                     </p>
                   </div>
@@ -1192,7 +1277,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     {/* Widescreen 16:9 PC Screenshot (8 Cols) */}
                     <div
                       onClick={() => setSelectedItem(pcItem)}
-                      className="lg:col-span-8 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] hover:border-[#3E777A] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]"
+                      className="lg:col-span-8 group cursor-pointer relative rounded-2xl overflow-hidden border border-[#DCD6C8] dark:border-[#2E3636] hover:border-[#3E777A] dark:hover:border-[#5DB8BD] bg-[#121616] shadow-[0_10px_28px_rgba(30,36,36,0.08)]"
                     >
                       <img
                         src={pcItem.imageUrl}
@@ -1217,43 +1302,43 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     </div>
 
                     {/* PC Game Highlights & Specs Column (4 Cols) */}
-                    <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 border border-[#E5E0D4] flex flex-col justify-between space-y-5">
+                    <div className="lg:col-span-4 p-5 sm:p-6 rounded-2xl bg-[#F4F0E6]/70 dark:bg-[#1A2020]/80 border border-[#E5E0D4] dark:border-[#2E3636] flex flex-col justify-between space-y-5 transition-colors">
                       <div className="space-y-3.5">
-                        <div className="flex items-center justify-between border-b border-[#DCD6C8] pb-2.5">
-                          <span className="text-xs sm:text-sm font-black text-[#1E2424]">
+                        <div className="flex items-center justify-between border-b border-[#DCD6C8] dark:border-[#2E3636] pb-2.5">
+                          <span className="text-xs sm:text-sm font-black text-[#1E2424] dark:text-[#E8F1F2]">
                             ویژگی‌های نسخه رایانه‌ای
                           </span>
                           <span
                             dir="ltr"
-                            className="text-[10px] font-mono font-bold text-[#3E777A]"
+                            className="text-[10px] font-mono font-bold text-[#3E777A] dark:text-[#5DB8BD]"
                           >
                             3D ACTION & RUNNER
                           </span>
                         </div>
 
-                        <p className="text-xs text-[#434846] leading-relaxed">
+                        <p className="text-xs text-[#434846] dark:text-[#A8B2B0] leading-relaxed">
                           در نسخه PC «ماجراجویی پویو»، معماری شهری، نورپردازی گرم و فضاسازی فانتزی انیمیشن سینمایی «روز شگفت‌انگیز» به یک محیط سه‌بعدی قابل کاوش تبدیل شده است تا کودک بتواند در خیابان‌های شهر دوچرخه‌سواری کند و ماموریت‌های بازی را پشت سر بگذارد.
                         </p>
 
                         <div className="space-y-2.5 pt-1">
-                          <div className="flex items-start gap-2 text-xs text-[#1E2424]">
-                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2 text-xs text-[#1E2424] dark:text-[#D1DDD8]">
+                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#5DB8BD] shrink-0 mt-0.5" />
                             <span>طراحی محیط سه‌بعدی منطبق بر جهان بصری فیلم سینمایی</span>
                           </div>
-                          <div className="flex items-start gap-2 text-xs text-[#1E2424]">
-                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2 text-xs text-[#1E2424] dark:text-[#D1DDD8]">
+                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#5DB8BD] shrink-0 mt-0.5" />
                             <span>مکانیک دوچرخه‌سواری، مسیریابی با نقشه (Minimap) و جمع‌آوری کاپ‌کیک‌ها</span>
                           </div>
-                          <div className="flex items-start gap-2 text-xs text-[#1E2424]">
-                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] shrink-0 mt-0.5" />
+                          <div className="flex items-start gap-2 text-xs text-[#1E2424] dark:text-[#D1DDD8]">
+                            <CheckCircle2 className="w-4 h-4 text-[#3E777A] dark:text-[#5DB8BD] shrink-0 mt-0.5" />
                             <span>رابط کاربری (HUD) ساده و خوانا متناسب با گروه سنی کودک و نوجوان</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-[#DCD6C8] flex items-center justify-between text-[11px] text-[#777A76]">
-                        <span className="font-bold text-[#1E2424]">پلتفرم هدف:</span>
-                        <span className="font-semibold text-[#3E777A]">رایانه‌های شخصی (PC)</span>
+                      <div className="pt-3 border-t border-[#DCD6C8] dark:border-[#2E3636] flex items-center justify-between text-[11px] text-[#777A76] dark:text-[#889290]">
+                        <span className="font-bold text-[#1E2424] dark:text-[#E8F1F2]">پلتفرم هدف:</span>
+                        <span className="font-semibold text-[#3E777A] dark:text-[#5DB8BD]">رایانه‌های شخصی (PC)</span>
                       </div>
                     </div>
                   </div>
@@ -2238,8 +2323,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     }}
                     className={
                       selectedItem.id.startsWith('game-mobile-') ||
-                      selectedItem.id.startsWith('game-board-card-')
-                        ? 'max-h-[65vh] w-auto mx-auto block object-contain py-4'
+                      selectedItem.id.startsWith('game-board-card-') ||
+                      selectedItem.id.startsWith('game-token-')
+                        ? 'max-h-[65vh] w-auto mx-auto block object-contain py-4 drop-shadow-md'
                         : 'w-full h-auto block'
                     }
                   />
