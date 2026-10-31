@@ -68,7 +68,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                 controls
                 autoPlay
                 playsInline
-                className="w-full h-full object-contain bg-black"
+                className="w-full h-full object-cover bg-black"
                 poster={work.imageUrl}
               />
             ) : (

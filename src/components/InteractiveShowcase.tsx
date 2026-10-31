@@ -52,7 +52,7 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
     <section id="works" className="py-14 sm:py-20 relative scroll-mt-20">
       <div id="departments" className="absolute -top-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-12">
         {/* Section Header: Two-Tier Editorial Architecture */}
         <div className="space-y-5 sm:space-y-6 border-b border-[#DCD6C8] pb-6 sm:pb-7">
           {/* Tier 1: Title & Lead Copy */}
@@ -65,7 +65,7 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
                 <span aria-hidden="true" className="text-[#777A76]">·</span>
                 <span>۵ محور تخصصی خلق و تولید</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424]">
                 حوزه‌های فعالیت و آثار منتخب استودیو
               </h2>
             </div>

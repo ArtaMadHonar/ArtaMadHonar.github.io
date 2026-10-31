@@ -15,7 +15,7 @@ export const FlagshipSpotlight: React.FC<FlagshipSpotlightProps> = ({ onOpenTeas
       id="flagship"
       className="py-16 sm:py-20 bg-[#F4F0E6]/65 border-y border-[#DCD6C8] relative scroll-mt-20"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-10">
         {/* 1. Refined Editorial Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-[#DCD6C8]">
           <div className="space-y-2 text-right">
@@ -28,7 +28,7 @@ export const FlagshipSpotlight: React.FC<FlagshipSpotlightProps> = ({ onOpenTeas
             </div>
 
             <div className="flex flex-wrap items-baseline gap-3">
-              <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424]">
                 انیمیشن سینمایی «{WONDERFUL_DAY_CATALOG.titleFa}»
               </h2>
               <span className="text-lg sm:text-2xl font-en font-bold text-[#3E777A]">

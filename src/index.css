@@ -68,6 +68,7 @@
 .font-fa {
   font-family: var(--font-fa);
   font-feature-settings: "ss01" 1, "locl" 1;
+  letter-spacing: 0;
 }
 
 .font-en {
@@ -78,6 +79,7 @@
 .font-soft {
   font-family: var(--font-fa);
   font-feature-settings: "ss01" 1, "locl" 1;
+  letter-spacing: 0;
 }
 
 .latin-soft {

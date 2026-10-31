@@ -250,14 +250,20 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
       {type === 'commercial-cgi' && (
         <div className="absolute inset-0 bg-[#0C0B0A] flex items-center justify-center overflow-hidden">
           <img
-            src={imageUrl || 'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp'}
-            alt="تیزرسازی تبلیغاتی سطح بالا"
+            src={imageUrl || '/assets/commercial-teaser-banner.webp'}
+            alt="تبلیغات، تیزرهای تجاری و تولیدات تصویری CGI"
             referrerPolicy="no-referrer"
             loading="eager"
             decoding="sync"
-            className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-101"
+            className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
             onError={(e) => {
               const target = e.currentTarget;
+              const cdnFallback =
+                'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp';
+              if (!target.src.includes('uploadkon.ir')) {
+                target.src = cdnFallback;
+                return;
+              }
               target.style.display = 'none';
               const fallback = target.nextElementSibling as HTMLElement;
               if (fallback) fallback.style.display = 'block';

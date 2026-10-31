@@ -32,7 +32,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         className="pointer-events-none absolute top-40 -left-24 w-[28rem] h-[28rem] rounded-full bg-[#D6B16A]/15 blur-3xl"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 relative z-10">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-8 sm:space-y-12 relative z-10">
         {/* Full-Width Balanced Editorial Hero Header Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-10 items-end border-b border-[#DCD6C8] pb-7 sm:pb-8 text-right">
           <div className="lg:col-span-8 space-y-3.5 sm:space-y-4">
@@ -46,7 +46,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Dignified Display Headline */}
-            <h1 className="text-xl sm:text-4xl lg:text-[2.6rem] font-black text-[#1E2424] tracking-tight leading-[1.4] sm:leading-[1.35]">
+            <h1 className="text-xl sm:text-4xl lg:text-[2.6rem] font-black text-[#1E2424] leading-[1.4] sm:leading-[1.35]">
               مجموعه‌ای خلاق در تلاقی هنر و فناوری؛ تبدیل ایده‌ها به تجربه‌های تصویری و متمایز
             </h1>
           </div>

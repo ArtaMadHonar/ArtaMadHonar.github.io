@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#EDE9DF]/90 border-b border-[#DCD6C8] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-18 sm:h-22 lg:h-24 flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 min-w-0">
+      <div className="w-full mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-18 sm:h-22 lg:h-24 flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 min-w-0">
         {/* Zone 1: Brand Logo & Subtle Studio Lockup */}
         <a
           href="https://artamad.ir"

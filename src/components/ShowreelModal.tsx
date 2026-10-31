@@ -9,8 +9,7 @@ interface ShowreelModalProps {
 
 const WONDERFUL_DAY_VIDEO =
   'https://s1.uploadkon.ir/749db110-5043-4619-b4b0-1b2734e7fdea/749db110-5043-4619-b4b0-1b2734e7fdea-Wonderful%20Day%20-%20Trailer_%20Telegram%20.mp4';
-const WONDERFUL_DAY_POSTER =
-  'https://s1.uploadkon.ir/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6-WonderfulDay.webp';
+const WONDERFUL_DAY_POSTER = '/assets/wonderful-day-hero.webp';
 
 function formatTime(seconds: number): string {
   if (isNaN(seconds) || seconds < 0) return '00:00';
@@ -161,7 +160,7 @@ export const ShowreelModal: React.FC<ShowreelModalProps> = ({ isOpen, onClose })
             poster={WONDERFUL_DAY_POSTER}
             playsInline
             preload="metadata"
-            className="w-full h-full object-contain cursor-pointer"
+            className="w-full h-full object-cover cursor-pointer"
             onClick={togglePlay}
             onPlay={() => {
               setIsPlaying(true);

@@ -4,14 +4,14 @@ import { NAME_PILLARS } from '../data/studioData';
 export const IdentityStory: React.FC = () => {
   return (
     <section className="py-14 sm:py-20 border-t border-[#DCD6C8] relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-10">
         {/* Full-Width Balanced Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#DCD6C8] pb-6 text-right">
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold">
               ORIGIN & STUDIO IDENTITY
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424] tracking-tight font-fa">
+            <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424] font-fa">
               ریشه و هویت نام «آرتا ماد هنر»
             </h2>
           </div>

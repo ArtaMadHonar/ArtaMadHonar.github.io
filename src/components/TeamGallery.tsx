@@ -35,7 +35,7 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
 
   return (
     <section id="team" className="py-14 sm:py-20 border-t border-[#DCD6C8] relative scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-14">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12 sm:space-y-14">
         {/* Part 1: Dedicated 3 Co-Founders & Management Team Section (هم‌بنیانگذاران و تیم مدیریتی آرتا ماد هنر) */}
         <div className="space-y-7 sm:space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-[#DCD6C8] pb-6">

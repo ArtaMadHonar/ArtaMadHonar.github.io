@@ -98,6 +98,7 @@ export interface ProjectWork {
   tags: string[];
   canvasType: 'wonderful-day' | 'commercial-cgi' | 'vfx-mapping' | 'web3-nft' | 'game-lab';
   imageUrl?: string;
+  fallbackImageUrl?: string;
   videoUrl?: string;
   internationalUnit?: InternationalUnitInfo;
   isUpcoming?: boolean;
@@ -722,10 +723,9 @@ export const SELECTED_WORKS: ProjectWork[] = [
     subtitle: 'Commercials, Product Films & Creative CGI',
     shortSummary:
       'تولید تیزرهای تبلیغاتی، محتوای CGI، فیلم‌های معرفی محصول و ساخت موسیقی و صدای اختصاصی متناسب با هویت برندها.',
-    imageUrl:
-      'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp',
-    videoUrl:
-      'https://my.uploadkon.ir/d/yOFhG8YkIB2z4ztU8zQr6xtJUlavWs/OTEyMTJ8cGFkZA.mp4',
+    imageUrl: '/assets/commercial-teaser-banner.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp',
     internationalUnit: {
       name: 'BearStudio',
       roleLabel: 'International Unit · BearStudio',

@@ -51,9 +51,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   const [selectedItem, setSelectedItem] = useState<DomainGalleryItem | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
-  const [isHeroVideoReady, setIsHeroVideoReady] = useState<boolean>(false);
   const [activeVfxPhotoIndex, setActiveVfxPhotoIndex] = useState<number>(0);
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const modalScrollRef = useRef<HTMLDivElement | null>(null);
 
   useModalScrollLock(!!selectedItem, modalScrollRef);
@@ -62,33 +60,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
     setActiveCategory('All');
     setHoveredCardId(null);
     setSelectedItem(null);
-    setIsHeroVideoReady(false);
     setActiveVfxPhotoIndex(0);
   }, [domain.id]);
-
-  // Smart IntersectionObserver to pause autoplay video when scrolled out of view
-  useEffect(() => {
-    const videoEl = heroVideoRef.current;
-    if (!videoEl || !domain.internationalUnit || !domain.videoUrl) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            videoEl.play().catch(() => {});
-          } else {
-            videoEl.pause();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(videoEl);
-    return () => {
-      observer.disconnect();
-    };
-  }, [domain.id, domain.internationalUnit, domain.videoUrl]);
 
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
   const toPersianNum = (num: number) =>
@@ -147,8 +120,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   return (
     <div className="min-h-screen bg-[#EDE9DF] text-[#1E2424] pb-20">
       {/* 1. Sub-Header Bar: Back to Home + Quick Switcher Between 5 Domains */}
-      <div className="bg-[#F4F0E6] border-b border-[#DCD6C8] py-3 sm:py-3.5 px-3 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 sm:gap-3.5">
+      <div className="bg-[#F4F0E6] border-b border-[#DCD6C8] py-3 sm:py-3.5 px-3 sm:px-6 lg:px-8 xl:px-10">
+        <div className="w-full mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 sm:gap-3.5">
           <div className="flex items-center justify-between lg:justify-start gap-3">
             <button
               onClick={onBackToHome}
@@ -186,7 +159,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
       </div>
 
       {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14 space-y-16 sm:space-y-20">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 pt-10 sm:pt-14 space-y-16 sm:space-y-20">
         {/* 2. Domain Hero & Overview */}
         <section className="space-y-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-[#DCD6C8] pb-7 text-right">
@@ -211,35 +184,27 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             </button>
           </div>
 
-          {/* Hero Stage: Full-Width Autoplay Video + Minimalist International Unit Bar for Commercial-CGI, or 12-Col Overview for other domains */}
-          {domain.internationalUnit && domain.videoUrl ? (
+          {/* Hero Stage: Full-Width 21:9 Banner + Minimalist International Unit Bar for Commercial-CGI */}
+          {domain.id === 'commercial-cgi' && domain.internationalUnit ? (
             <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_16px_45px_rgba(30,36,36,0.07)] overflow-hidden">
-              {/* Full-Width Continuous Autoplay Video Stage */}
-              <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
-                {domain.imageUrl && (
-                  <img
-                    src={domain.imageUrl}
-                    alt={domain.title}
-                    referrerPolicy="no-referrer"
-                    className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
-                      isHeroVideoReady ? 'opacity-0' : 'opacity-90'
-                    }`}
-                  />
-                )}
-                <video
-                  ref={heroVideoRef}
-                  key={domain.videoUrl}
-                  src={domain.videoUrl}
-                  poster={domain.imageUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  onLoadedData={() => setIsHeroVideoReady(true)}
-                  className={`w-full h-full object-cover object-center transition-opacity duration-700 ${
-                    isHeroVideoReady ? 'opacity-100' : 'opacity-0'
-                  }`}
+              {/* Full-Width 21:9 Widescreen Banner Stage */}
+              <div className="aspect-[21/9] w-full bg-[#121616] relative overflow-hidden">
+                <img
+                  src={domain.imageUrl || '/assets/commercial-teaser-banner.webp'}
+                  alt={domain.title}
+                  referrerPolicy="no-referrer"
+                  loading="eager"
+                  decoding="sync"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    const fallback =
+                      domain.fallbackImageUrl ||
+                      'https://s1.uploadkon.ir/de56bd6b-1e23-4a57-823e-47f2af166cdf/de56bd6b-1e23-4a57-823e-47f2af166cdf-TeaserSection.webp';
+                    if (target.src !== fallback) {
+                      target.src = fallback;
+                    }
+                  }}
+                  className="w-full h-full object-cover object-center block"
                 />
               </div>
 
@@ -291,7 +256,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                 {/* Official Vertical Poster Column (4 Cols on Desktop) - 100% Uncropped at all zoom levels */}
                 <div className="md:col-span-5 lg:col-span-4 flex items-center justify-center">
-                  <div className="w-full max-w-[360px] md:max-w-none rounded-2xl overflow-hidden border border-[#DCD6C8] shadow-[0_12px_32px_rgba(30,36,36,0.10)] bg-[#EDE9DF]">
+                  <div className="w-full rounded-2xl overflow-hidden border border-[#DCD6C8] shadow-[0_12px_32px_rgba(30,36,36,0.10)] bg-[#EDE9DF]">
                     <img
                       src="/assets/wonderful-day-poster.webp"
                       onError={(e) => {
@@ -1103,8 +1068,14 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
             {/* Scrollable Modal Body */}
             <div ref={modalScrollRef} className="overflow-y-auto flex-1 overscroll-contain">
-              {/* 16:9 Embedded Player or Image */}
-              <div className="aspect-video w-full bg-[#121616] flex items-center justify-center overflow-hidden border-b border-[#DCD6C8] shrink-0">
+              {/* Full-Width Embedded Player or Image Without Side Margins */}
+              <div
+                className={`w-full bg-[#121616] flex items-center justify-center overflow-hidden border-b border-[#DCD6C8] shrink-0 ${
+                  selectedItem.embedUrl || selectedItem.videoUrl || selectedItem.canvasType
+                    ? 'aspect-video'
+                    : ''
+                }`}
+              >
                 {selectedItem.embedUrl ? (
                   <iframe
                     src={selectedItem.embedUrl}
@@ -1119,7 +1090,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                     poster={selectedItem.imageUrl}
                     controls
                     autoPlay
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 ) : selectedItem.imageUrl ? (
                   <img
@@ -1137,7 +1108,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                         target.src = selectedItem.fallbackImageUrl;
                       }
                     }}
-                    className="w-full h-full object-contain"
+                    className="w-full h-auto block"
                   />
                 ) : selectedItem.canvasType ? (
                   <VisualArtCanvas

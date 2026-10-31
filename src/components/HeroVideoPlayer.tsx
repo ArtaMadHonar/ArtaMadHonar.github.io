@@ -15,7 +15,8 @@ export interface HeroVideoPlayerHandle {
 
 const WONDERFUL_DAY_VIDEO =
   'https://s1.uploadkon.ir/749db110-5043-4619-b4b0-1b2734e7fdea/749db110-5043-4619-b4b0-1b2734e7fdea-Wonderful%20Day%20-%20Trailer_%20Telegram%20.mp4';
-const WONDERFUL_DAY_POSTER =
+const WONDERFUL_DAY_POSTER = '/assets/wonderful-day-hero.webp';
+const WONDERFUL_DAY_POSTER_FALLBACK =
   'https://s1.uploadkon.ir/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6-WonderfulDay.webp';
 
 function formatTime(seconds: number): string {
@@ -140,7 +141,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
         id="hero-video-player"
         onMouseMove={resetHideTimer}
         onMouseLeave={() => isPlaying && setShowControls(false)}
-        className={`relative aspect-video lg:aspect-[21/9] w-full bg-[#121616] overflow-hidden select-none group ${className}`}
+        className={`relative aspect-video w-full bg-[#121616] overflow-hidden select-none group ${className}`}
       >
         {/* HTML5 Video element */}
         <video
@@ -149,7 +150,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
           poster={WONDERFUL_DAY_POSTER}
           playsInline
           preload="none"
-          className={`w-full h-full object-contain cursor-pointer transition-opacity duration-300 ${
+          className={`w-full h-full object-cover cursor-pointer transition-opacity duration-300 ${
             hasStarted ? 'opacity-100' : 'opacity-0 absolute'
           }`}
           onClick={togglePlay}
@@ -174,19 +175,20 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
             onClick={playVideo}
             className="absolute inset-0 cursor-pointer flex items-center justify-center overflow-hidden"
           >
-            {/* Ambient blurred backdrop on desktop 21:9 */}
-            <img
-              src={WONDERFUL_DAY_POSTER}
-              alt=""
-              aria-hidden="true"
-              className="hidden lg:block absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-125 pointer-events-none"
-            />
-
-            {/* Crisp 16:9 / 21:9 Poster Artwork */}
+            {/* Full-bleed 16:9 Poster Artwork without side margins */}
             <img
               src={WONDERFUL_DAY_POSTER}
               alt="پوستر انیمیشن سینمایی روز شگفت‌انگیز"
-              className="w-full h-full object-cover lg:object-contain relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
+              referrerPolicy="no-referrer"
+              loading="eager"
+              decoding="sync"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (target.src !== WONDERFUL_DAY_POSTER_FALLBACK) {
+                  target.src = WONDERFUL_DAY_POSTER_FALLBACK;
+                }
+              }}
+              className="w-full h-full object-cover relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
             />
 
             {/* Subtle soft dark vignette on hover */}

@@ -20,7 +20,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
 
   return (
     <footer id="contact" className="border-t border-[#DCD6C8] bg-[#EDE9DF] pt-14 pb-12 sm:pt-20 sm:pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12 sm:space-y-16">
         {/* Contact Banner Card in Poyo Deep Teal & Warm Ochre */}
         <div className="p-6 sm:p-10 lg:p-14 rounded-3xl bg-[#274D50] text-[#FAF8F4] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_20px_50px_rgba(39,77,80,0.18)] border border-[#3E777A]">
           {/* Subtle Poyo Palette Ambient Glow */}

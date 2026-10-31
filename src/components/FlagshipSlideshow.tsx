@@ -10,22 +10,22 @@ export interface FlagshipImageSlide {
 const SLIDES: FlagshipImageSlide[] = [
   {
     id: 'slide-1',
-    url: 'https://my.uploadkon.ir/d/s5m1gGTGtQHGTXoNJbqbODjCBDlp0C/NTM0NjV8cGFkZA.webp',
+    url: 'https://s1.uploadkon.ir/b1225488-41b4-4176-a55d-78b6678dd761/b1225488-41b4-4176-a55d-78b6678dd761-babyham.webp',
     alt: 'روز شگفت‌انگیز - کانسپت‌آرت و شخصیت کودک',
   },
   {
     id: 'slide-2',
-    url: 'https://my.uploadkon.ir/d/738azeYo1haWym8RKQkuAhD9a4mKkv/NTM0NjZ8cGFkZA.webp',
+    url: 'https://s1.uploadkon.ir/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f-hamsters2.webp',
     alt: 'روز شگفت‌انگیز - همسترها و شخصیت‌های مکمل',
   },
   {
     id: 'slide-3',
-    url: 'https://my.uploadkon.ir/d/YJHLUj7EHxpdPffT3TkF4Iv7QR7Ulq/NTM0NjR8cGFkZA.webp',
+    url: 'https://s1.uploadkon.ir/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2-Poyogran.webp',
     alt: 'روز شگفت‌انگیز - شات سینمایی پویو و پدربزرگ',
   },
   {
     id: 'slide-4',
-    url: 'https://my.uploadkon.ir/d/pT94wdX9g1Ii0z0tQbng2CSiIA0neX/NTM0NjN8cGFkZA.webp',
+    url: 'https://s1.uploadkon.ir/907a66af-e858-475b-866d-a2c491cead48/907a66af-e858-475b-866d-a2c491cead48-poyocactus.webp',
     alt: 'روز شگفت‌انگیز - شات ۳D پویو و کاکتوس',
   },
 ];
@@ -129,14 +129,6 @@ export const FlagshipSlideshow: React.FC<{ className?: string }> = ({ className 
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
           >
-            {/* Ambient Background Blur Layer */}
-            <img
-              src={slide.url}
-              alt=""
-              aria-hidden="true"
-              referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-full object-cover scale-110 blur-xl opacity-45 pointer-events-none"
-            />
             {/* Main Crisp Image */}
             <img
               src={slide.url}
