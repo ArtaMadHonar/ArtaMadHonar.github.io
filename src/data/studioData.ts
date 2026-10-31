@@ -449,7 +449,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MM',
     hideFromHome: true,
     imageUrl:
-      'https://my.uploadkon.ir/d/gXp0Fwi25379XaL1haeU2AWpOtSG2F/ODM3NzV8cGFkZA.webp',
+      'https://my.uploadkon.ir/d/wenlbbYKE9AWaKQ0Mt2MaIZXuFuBiI/OTEyMTF8cGFkZA.webp',
   },
   {
     id: 'mohammad-amin-zafari',
