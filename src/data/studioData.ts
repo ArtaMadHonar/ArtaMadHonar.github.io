@@ -1143,8 +1143,8 @@ export const SELECTED_WORKS: ProjectWork[] = [
     galleryItems: [
       {
         id: 'vfx-video-shoushtari',
-        title: 'اجرای زنده قطعه «شوشتری» — کنسرت علیرضا قربانی در کاخ سعدآباد',
-        titleEn: 'Shoushtari · Live at Sa’dabad Complex',
+        title: 'قطعه «شوشتری» — کنسرت علیرضا قربانی (کاخ سعدآباد)',
+        titleEn: 'Shoushtari · Live Mapping',
         subtitle: 'Alireza Ghorbani Live Concert · Architectural Video Mapping & Stage Visuals',
         badge: 'ویدیوی اجرای زنده · کاخ سعدآباد',
         description:
@@ -1158,8 +1158,8 @@ export const SELECTED_WORKS: ProjectWork[] = [
       },
       {
         id: 'vfx-video-orouj',
-        title: 'اجرای زنده قطعه «عروج» — کنسرت علیرضا قربانی در کاخ سعدآباد',
-        titleEn: 'Orouj · Live at Sa’dabad Complex',
+        title: 'قطعه «عروج» — کنسرت علیرضا قربانی (کاخ سعدآباد)',
+        titleEn: 'Orouj · Live Mapping',
         subtitle: 'Alireza Ghorbani Live Concert · Synchronized Stage & Facade Mapping',
         badge: 'ویدیوی اجرای زنده · کاخ سعدآباد',
         description:
