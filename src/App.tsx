@@ -17,7 +17,21 @@ import { ShowreelModal } from './components/ShowreelModal';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { TeamMemberModal } from './components/TeamMemberModal';
 import { ProjectInquiryModal } from './components/ProjectInquiryModal';
-import { SELECTED_WORKS, ProjectWork, TeamMember } from './data/studioData';
+import { SELECTED_WORKS, TEAM_MEMBERS, ProjectWork, TeamMember } from './data/studioData';
+
+// Persistent module-level reference array so browser GC never evicts decoded portrait bitmaps
+const PERSISTENT_PORTRAIT_CACHE: HTMLImageElement[] = [];
+if (typeof window !== 'undefined') {
+  TEAM_MEMBERS.forEach((member) => {
+    if (member.imageUrl) {
+      const img = new Image();
+      img.decoding = 'sync';
+      img.src = member.imageUrl;
+      img.decode?.().catch(() => {});
+      PERSISTENT_PORTRAIT_CACHE.push(img);
+    }
+  });
+}
 
 const parseDomainFromLocation = (): string | null => {
   if (typeof window === 'undefined') return null;
@@ -90,7 +104,7 @@ export default function App() {
       const domainId = parseDomainFromLocation();
       setActiveDomainId(domainId);
       if (domainId) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo(0, 0);
       }
     };
 
@@ -109,7 +123,7 @@ export default function App() {
       // Fallback in restricted iframe environments if pushState is blocked
     }
     setActiveDomainId(domainId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, []);
 
   const handleBackToHome = useCallback((targetSelector = '#works') => {
@@ -145,6 +159,26 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#EDE9DF] text-[#1E2424] flex flex-col font-fa selection:bg-[#3E777A] selection:text-[#FAF8F4] transition-colors duration-300">
+      {/* Persistent Offscreen Decoded Portrait Keeper: keeps all team member bitmaps hot in GPU/RAM so opening any card/modal is 100% instant */}
+      <div
+        aria-hidden="true"
+        className="fixed -left-[9999px] -top-[9999px] w-px h-px overflow-hidden opacity-0 pointer-events-none select-none"
+      >
+        {TEAM_MEMBERS.map((member) =>
+          member.imageUrl ? (
+            <img
+              key={member.id}
+              src={member.imageUrl}
+              alt=""
+              loading="eager"
+              decoding="sync"
+              width={64}
+              height={64}
+            />
+          ) : null
+        )}
+      </div>
+
       {/* 1. Refined Top Navigation Bar with Theme Switch & Overhauled Mobile Menu */}
       <Navbar
         onOpenContact={() => handleOpenContact(activeDomain?.id)}

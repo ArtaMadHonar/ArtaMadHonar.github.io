@@ -18,6 +18,7 @@ import {
   DomainGalleryItem,
 } from '../data/studioData';
 import { VisualArtCanvas } from './VisualArtCanvas';
+import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface DomainDetailPageProps {
   domain: ProjectWork;
@@ -53,6 +54,9 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   const [isHeroVideoReady, setIsHeroVideoReady] = useState<boolean>(false);
   const [activeVfxPhotoIndex, setActiveVfxPhotoIndex] = useState<number>(0);
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const modalScrollRef = useRef<HTMLDivElement | null>(null);
+
+  useModalScrollLock(!!selectedItem, modalScrollRef);
 
   useEffect(() => {
     setActiveCategory('All');
@@ -85,18 +89,6 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
       observer.disconnect();
     };
   }, [domain.id, domain.internationalUnit, domain.videoUrl]);
-
-  // Lock body scroll when detail modal is open
-  useEffect(() => {
-    if (selectedItem) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedItem]);
 
   const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
   const toPersianNum = (num: number) =>
@@ -862,6 +854,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                     className="w-full h-full object-cover object-top"
                                     onError={(e) => {
                                       const target = e.currentTarget;
+                                      if (
+                                        head.fallbackImageUrl &&
+                                        target.src !== head.fallbackImageUrl
+                                      ) {
+                                        target.src = head.fallbackImageUrl;
+                                        return;
+                                      }
                                       target.style.display = 'none';
                                       const fallback = target.nextElementSibling as HTMLElement;
                                       if (fallback) fallback.style.display = 'flex';
@@ -913,6 +912,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                       className="w-full h-full object-cover object-top"
                                       onError={(e) => {
                                         const target = e.currentTarget;
+                                        if (
+                                          member.fallbackImageUrl &&
+                                          target.src !== member.fallbackImageUrl
+                                        ) {
+                                          target.src = member.fallbackImageUrl;
+                                          return;
+                                        }
                                         target.style.display = 'none';
                                         const fallback = target.nextElementSibling as HTMLElement;
                                         if (fallback) fallback.style.display = 'flex';
@@ -983,6 +989,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                 className="w-full h-full object-cover object-top"
                                 onError={(e) => {
                                   const target = e.currentTarget;
+                                  if (
+                                    member.fallbackImageUrl &&
+                                    target.src !== member.fallbackImageUrl
+                                  ) {
+                                    target.src = member.fallbackImageUrl;
+                                    return;
+                                  }
                                   target.style.display = 'none';
                                   const fallback = target.nextElementSibling as HTMLElement;
                                   if (fallback) fallback.style.display = 'flex';
@@ -1058,14 +1071,14 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
       {selectedItem && (
         <div
           onClick={() => setSelectedItem(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overscroll-none"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-[#FAF8F4] border border-[#DCD6C8] rounded-3xl overflow-hidden shadow-2xl my-auto"
+            className="relative max-w-4xl w-full bg-[#FAF8F4] border border-[#DCD6C8] rounded-3xl overflow-hidden shadow-2xl my-auto flex flex-col max-h-[90dvh] sm:max-h-[92vh]"
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-[#F4F0E6] border-b border-[#DCD6C8]">
+            <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-[#F4F0E6] border-b border-[#DCD6C8] shrink-0">
               <div className="flex items-center gap-2.5 text-right">
                 {selectedItem.category && (
                   <span className="px-2.5 py-1 rounded-lg bg-[#3E777A] text-[#FAF8F4] text-xs font-en font-semibold">
@@ -1088,81 +1101,86 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               </button>
             </div>
 
-            {/* 16:9 Embedded Player or Image */}
-            <div className="aspect-video w-full bg-[#121616] flex items-center justify-center overflow-hidden border-b border-[#DCD6C8]">
-              {selectedItem.embedUrl ? (
-                <iframe
-                  src={selectedItem.embedUrl}
-                  title={selectedItem.title}
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              ) : selectedItem.videoUrl ? (
-                <video
-                  src={selectedItem.videoUrl}
-                  poster={selectedItem.imageUrl}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
-                />
-              ) : selectedItem.imageUrl ? (
-                <img
-                  src={selectedItem.imageUrl}
-                  alt={selectedItem.title}
-                  referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (
-                      selectedItem.fallbackImageUrl &&
-                      target.src !== selectedItem.fallbackImageUrl
-                    ) {
-                      target.src = selectedItem.fallbackImageUrl;
-                    }
-                  }}
-                  className="w-full h-full object-contain"
-                />
-              ) : selectedItem.canvasType ? (
-                <VisualArtCanvas
-                  type={selectedItem.canvasType}
-                  className="w-full h-full"
-                  showControls={false}
-                />
-              ) : null}
-            </div>
-
-            {/* Project Details & Description Inside Modal Card */}
-            <div className="p-6 sm:p-8 space-y-4 text-right bg-[#FAF8F4]">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E0D4] pb-4">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black text-[#1E2424]">
-                    {selectedItem.title}
-                  </h3>
-                  <span className="text-xs font-en text-[#777A76] block mt-0.5">
-                    {selectedItem.subtitle}
-                  </span>
-                </div>
-
-                {selectedItem.externalUrl && (
-                  <a
-                    href={selectedItem.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="self-start sm:self-auto px-4 py-2 rounded-xl bg-[#EDE9DF] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] text-xs font-bold flex items-center gap-2 transition-colors shrink-0"
-                  >
-                    <span>مشاهده در پلتفرم اصلی</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                )}
+            {/* Scrollable Modal Body */}
+            <div ref={modalScrollRef} className="overflow-y-auto flex-1 overscroll-contain">
+              {/* 16:9 Embedded Player or Image */}
+              <div className="aspect-video w-full bg-[#121616] flex items-center justify-center overflow-hidden border-b border-[#DCD6C8] shrink-0">
+                {selectedItem.embedUrl ? (
+                  <iframe
+                    src={selectedItem.embedUrl}
+                    title={selectedItem.title}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : selectedItem.videoUrl ? (
+                  <video
+                    src={selectedItem.videoUrl}
+                    poster={selectedItem.imageUrl}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-contain"
+                  />
+                ) : selectedItem.imageUrl ? (
+                  <img
+                    src={selectedItem.imageUrl}
+                    alt={selectedItem.title}
+                    referrerPolicy="no-referrer"
+                    loading="eager"
+                    decoding="sync"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (
+                        selectedItem.fallbackImageUrl &&
+                        target.src !== selectedItem.fallbackImageUrl
+                      ) {
+                        target.src = selectedItem.fallbackImageUrl;
+                      }
+                    }}
+                    className="w-full h-full object-contain"
+                  />
+                ) : selectedItem.canvasType ? (
+                  <VisualArtCanvas
+                    type={selectedItem.canvasType}
+                    className="w-full h-full"
+                    showControls={false}
+                  />
+                ) : null}
               </div>
 
-              <div className="space-y-1.5">
-                <span className="text-xs font-bold text-[#3E777A] block">
-                  درباره این اثر:
-                </span>
-                <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
-                  {selectedItem.description}
-                </p>
+              {/* Project Details & Description Inside Modal Card */}
+              <div className="p-6 sm:p-8 space-y-4 text-right bg-[#FAF8F4]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E0D4] pb-4">
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-black text-[#1E2424]">
+                      {selectedItem.title}
+                    </h3>
+                    <span className="text-xs font-en text-[#777A76] block mt-0.5">
+                      {selectedItem.subtitle}
+                    </span>
+                  </div>
+
+                  {selectedItem.externalUrl && (
+                    <a
+                      href={selectedItem.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="self-start sm:self-auto px-4 py-2 rounded-xl bg-[#EDE9DF] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] text-xs font-bold flex items-center gap-2 transition-colors shrink-0"
+                    >
+                      <span>مشاهده در پلتفرم اصلی</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                </div>
+
+                <div className="space-y-1.5">
+                  <span className="text-xs font-bold text-[#3E777A] block">
+                    درباره این اثر:
+                  </span>
+                  <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
+                    {selectedItem.description}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

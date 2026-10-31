@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { User, ArrowLeft } from 'lucide-react';
 import { TEAM_MEMBERS, TeamMember } from '../data/studioData';
 
-// Preload all team member portraits once at module load time so tab switching is instant
+// Preload all team member portraits once at module load time and retain references so GC never evicts them
+const TEAM_GALLERY_PRELOAD: HTMLImageElement[] = [];
 if (typeof window !== 'undefined') {
   TEAM_MEMBERS.forEach((member) => {
     if (member.imageUrl) {
       const img = new Image();
-      img.referrerPolicy = 'no-referrer';
+      img.decoding = 'sync';
       img.src = member.imageUrl;
+      img.decode?.().catch(() => {});
+      TEAM_GALLERY_PRELOAD.push(img);
     }
   });
 }
@@ -70,6 +73,13 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
                         className="w-full h-full object-cover object-top"
                         onError={(e) => {
                           const target = e.currentTarget;
+                          if (
+                            founder.fallbackImageUrl &&
+                            target.src !== founder.fallbackImageUrl
+                          ) {
+                            target.src = founder.fallbackImageUrl;
+                            return;
+                          }
                           target.style.display = 'none';
                           const fallback = target.nextElementSibling as HTMLElement;
                           if (fallback) fallback.style.display = 'flex';
@@ -175,6 +185,13 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
                           className="w-full h-full object-cover object-top"
                           onError={(e) => {
                             const target = e.currentTarget;
+                            if (
+                              member.fallbackImageUrl &&
+                              target.src !== member.fallbackImageUrl
+                            ) {
+                              target.src = member.fallbackImageUrl;
+                              return;
+                            }
                             target.style.display = 'none';
                             const fallback = target.nextElementSibling as HTMLElement;
                             if (fallback) fallback.style.display = 'flex';

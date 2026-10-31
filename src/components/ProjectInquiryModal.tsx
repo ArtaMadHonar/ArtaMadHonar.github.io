@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { X, CheckCircle2 } from 'lucide-react';
 import { SELECTED_WORKS } from '../data/studioData';
+import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface ProjectInquiryModalProps {
   isOpen: boolean;
@@ -19,6 +20,9 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
   const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  useModalScrollLock(isOpen, scrollContainerRef);
 
   if (!isOpen) return null;
 
@@ -47,10 +51,10 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/65 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/65 backdrop-blur-sm overscroll-none"
     >
       <div
-        className="relative w-full max-w-xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[92vh] my-auto"
+        className="relative w-full max-w-xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[90dvh] sm:max-h-[92vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -73,7 +77,7 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 sm:p-8 overflow-y-auto flex-1">
+        <div ref={scrollContainerRef} className="p-5 sm:p-8 overflow-y-auto flex-1 overscroll-contain">
           {submittedCode ? (
             <div className="text-center py-6 space-y-4">
               <div className="w-12 h-12 mx-auto rounded-full bg-[#65B7B5]/20 text-[#3E777A] flex items-center justify-center">

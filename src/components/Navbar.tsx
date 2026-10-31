@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowLeft, Sun, Moon, ChevronLeft } from 'lucide-react';
 import { SELECTED_WORKS } from '../data/studioData';
+import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -20,6 +21,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleTheme,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
 
   const navItems = [
     { label: 'معرفی استودیو', href: '#about-studio' },
@@ -45,16 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   // Lock background scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileOpen]);
+  useModalScrollLock(mobileOpen, mobileDrawerRef);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMobileOpen(false);
@@ -185,7 +178,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           />
 
           {/* Slide-Down Sheet */}
-          <div className="xl:hidden absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-[#DCD6C8] bg-[#FAF8F4] rounded-b-3xl px-4 sm:px-6 py-5 space-y-5 shadow-2xl">
+          <div
+            ref={mobileDrawerRef}
+            className="xl:hidden absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain border-b border-[#DCD6C8] bg-[#FAF8F4] rounded-b-3xl px-4 sm:px-6 py-5 space-y-5 shadow-2xl"
+          >
             {/* Section 1: Main Page Sections */}
             <div className="space-y-2">
               <div className="flex items-center justify-between px-1">

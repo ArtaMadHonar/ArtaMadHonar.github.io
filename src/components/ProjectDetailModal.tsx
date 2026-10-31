@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { X, Play } from 'lucide-react';
 import { ProjectWork } from '../data/studioData';
 import { VisualArtCanvas } from './VisualArtCanvas';
+import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface ProjectDetailModalProps {
   work: ProjectWork | null;
@@ -17,6 +18,9 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   onOpenInquiry,
 }) => {
   const [isPlayingVideo, setIsPlayingVideo] = React.useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  useModalScrollLock(isOpen && !!work, scrollContainerRef);
 
   React.useEffect(() => {
     setIsPlayingVideo(false);
@@ -27,10 +31,10 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/75 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/75 backdrop-blur-sm overscroll-none"
     >
       <div
-        className="relative w-full max-w-3xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[92vh] my-auto"
+        className="relative w-full max-w-3xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[90dvh] sm:max-h-[92vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -51,7 +55,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
         </div>
 
         {/* Scrollable Modal Body */}
-        <div className="overflow-y-auto flex-1 overscroll-contain">
+        <div ref={scrollContainerRef} className="overflow-y-auto flex-1 overscroll-contain">
           {/* Visual Media - 16:9 */}
           <div
             dir="ltr"

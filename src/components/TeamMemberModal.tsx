@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { X, User, Briefcase, GraduationCap } from 'lucide-react';
 import { TeamMember } from '../data/studioData';
+import { useModalScrollLock } from '../hooks/useModalScrollLock';
 
 interface TeamMemberModalProps {
   member: TeamMember | null;
@@ -13,15 +14,18 @@ export const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  useModalScrollLock(isOpen && !!member, scrollContainerRef);
+
   if (!isOpen || !member) return null;
 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/65 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/65 backdrop-blur-sm overscroll-none"
     >
       <div
-        className="relative w-full max-w-2xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[92vh] my-auto"
+        className="relative w-full max-w-2xl bg-[#EDE9DF] text-[#1E2424] rounded-3xl overflow-hidden border border-[#DCD6C8] shadow-2xl flex flex-col max-h-[90dvh] sm:max-h-[92vh] my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -39,7 +43,10 @@ export const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
         </div>
 
         {/* Content */}
-        <div className="p-5 sm:p-8 space-y-6 overflow-y-auto flex-1 text-right">
+        <div
+          ref={scrollContainerRef}
+          className="p-5 sm:p-8 space-y-6 overflow-y-auto flex-1 overscroll-contain text-right"
+        >
           {/* Top Identity Row */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-right pb-5 border-b border-[#DCD6C8]">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-[#DCD6C8] flex items-center justify-center overflow-hidden bg-[#FAF8F4] shadow-sm relative shrink-0">
@@ -53,6 +60,13 @@ export const TeamMemberModal: React.FC<TeamMemberModalProps> = ({
                   className="w-full h-full object-cover object-top"
                   onError={(e) => {
                     const target = e.currentTarget;
+                    if (
+                      member.fallbackImageUrl &&
+                      target.src !== member.fallbackImageUrl
+                    ) {
+                      target.src = member.fallbackImageUrl;
+                      return;
+                    }
                     target.style.display = 'none';
                     const fallback = target.nextElementSibling as HTMLElement;
                     if (fallback) fallback.style.display = 'flex';

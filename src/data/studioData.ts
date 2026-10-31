@@ -217,7 +217,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MM',
     isCoFounder: true,
     education: 'کارشناس سینما — دانشگاه هنر تهران',
-    imageUrl: 'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
+    imageUrl: '/assets/team/mahmoud-mohammadian.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/6da9e3c0-3a20-4f44-ab3a-67f359f394de/6da9e3c0-3a20-4f44-ab3a-67f359f394de-Mr-Mohammadia-Mahmoud.webp',
     bio: 'کارگردان و نویسنده سینما و انیمیشن؛ دانش‌آموخته دانشگاه هنر تهران و کارگردان فیلم سینمایی «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران.',
     fullBio:
       'محمود محمدیان، دانش‌آموخته رشته سینما از دانشگاه هنر تهران، کارگردان و نویسنده‌ای با پیشینه متنوع در سینمای داستانی، انیمیشن بلند، مستند و تبلیغات تلویزیونی است. تجربه مستقیم او در مدیریت تصویربرداری، انیماتوری و کارگردانی، نگاهی دقیق به دکوپاژ، نورپردازی، ریتم روایی و هدایت بازیگران به آثار استودیو بخشیده و محور هدایت هنری فیلم سینمایی «روز شگفت‌انگیز» را شکل داده است.',
@@ -276,7 +278,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MM',
     isCoFounder: true,
     education: 'کارشناس سینما (گرایش کارگردانی) — دانشگاه هنر تهران',
-    imageUrl:
+    imageUrl: '/assets/team/mehdi-mohammadian.webp',
+    fallbackImageUrl:
       'https://s1.uploadkon.ir/d5e8b4cb-60eb-4baf-a48f-cde7211b5759/d5e8b4cb-60eb-4baf-a48f-cde7211b5759-Mr-Mohammadian-Mahdi.webp',
     bio: 'کارگردان، فیلمنامه‌نویس و کارگردان فنی انیمیشن؛ دانش‌آموخته کارگردانی سینما از دانشگاه هنر تهران با کارنامه‌ای از آثار شاخص ملی و بین‌المللی.',
     fullBio:
@@ -354,7 +357,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MR',
     isCoFounder: true,
     education: 'کارشناس علوم اجتماعی (۱۳۷۸ – ۱۳۸۱)',
-    imageUrl: 'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
+    imageUrl: '/assets/team/mohammad-rahimi.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/cc11826b-445d-47de-a31a-08878aee2c2b/cc11826b-445d-47de-a31a-08878aee2c2b-Mr.Rahimi.webp',
     bio: 'معمار پایپلاین تولید و مدیر فنی هوش مصنوعی با بیش از ۲۲ سال سابقه در جلوه‌های بصری (VFX)، پس‌ازتولید سینمایی و تیزرهای تجاری.',
     fullBio:
       'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
@@ -403,7 +408,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Cinematic Video & Animation Pipeline Specialist',
     department: 'animation',
     initials: 'LS',
-    imageUrl: 'https://my.uploadkon.ir/d/om6pMwbv2FUcHz3ohLceOskORFgESe/ODM4NDF8cGFkZA.webp',
+    imageUrl: '/assets/team/lotfallah-salehi.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/2cc4e820-1299-47c8-8943-9e0d4ce9c498/2cc4e820-1299-47c8-8943-9e0d4ce9c498-Salehi2.webp',
     bio: 'معماری و اتوماسیون جریان داده‌های رندرینگ، بهینه‌سازی موتورهای گرافیکی و یکپارچه‌سازی پایپلاین تولید.',
   },
   {
@@ -413,7 +420,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Animation Assistant Director & Multimedia Artist',
     department: 'animation',
     initials: 'AA',
-    imageUrl: 'https://my.uploadkon.ir/d/N9Ez8PuuRPcfiBHfsAH9i5aXLi1mut/ODQ3ODJ8cGFkZA.webp',
+    imageUrl: '/assets/team/ali-alipour.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/98b0c5c9-9a34-4149-9652-a401d33bc47d/98b0c5c9-9a34-4149-9652-a401d33bc47d-Ali2.webp',
     bio: 'همراهی در هدایت هنری و اجرایی پروژه، تدوین روایت تصویری، ضبط و اجرای نریشن و توسعهٔ کانسپت‌های بصری در مسیر تولید انیمیشن.',
   },
   {
@@ -423,7 +432,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Senior Visual Development & Concept Frame Artist',
     department: 'animation',
     initials: 'NB',
-    imageUrl: 'https://my.uploadkon.ir/d/GUX3vH8B5POK7XoQ8iZaFJVkXkxKH9/OTEyMTN8cGFkZA.webp',
+    imageUrl: '/assets/team/negar-baratzadeh.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/1bc592dc-72c2-4814-a2a6-33e7ce5f4758/1bc592dc-72c2-4814-a2a6-33e7ce5f4758-Negar2.webp',
     bio: 'خلق دنیاهای مسحورکننده بصری، توسعه کانسپت کاراکترها و تصویرسازی کلیدفریم‌های احساسی و سینمایی.',
   },
   {
@@ -433,7 +444,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Digital Image & Visual Finishing Artist',
     department: 'animation',
     initials: 'HB',
-    imageUrl: 'https://my.uploadkon.ir/d/LoxHqhB40iPIVZkFIrT1eBD2LC3p1W/ODQ3ODF8cGFkZA.webp',
+    imageUrl: '/assets/team/hilda-baghban.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/b5441acf-dba7-4e58-a067-6f5d4209dd14/b5441acf-dba7-4e58-a067-6f5d4209dd14-Hilda2.webp',
     bio: 'پردازش دقیق لایه‌های گرافیکی، فینیشینگ دیجیتال، کنترل گرمای رنگ و تثبیت وفاداری استایل بصری در فریم‌های نهایی.',
   },
   {
@@ -444,7 +457,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'AV',
     hideFromHome: true,
-    imageUrl: 'https://my.uploadkon.ir/d/pmZPEPMDQUDRN7AF4XnCKRYrRJrBYJ/ODM3NzZ8cGFkZA.webp',
+    imageUrl: '/assets/team/aida-varasteh.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/ee0b984a-0bd0-4ad7-945b-c34a4f16b68b/ee0b984a-0bd0-4ad7-945b-c34a4f16b68b-Ida.webp',
   },
   {
     id: 'mahla-moein',
@@ -454,7 +469,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'MM',
     hideFromHome: true,
-    imageUrl: 'https://my.uploadkon.ir/d/wenlbbYKE9AWaKQ0Mt2MaIZXuFuBiI/OTEyMTF8cGFkZA.webp',
+    imageUrl: '/assets/team/mahla-moein.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/f00b90e5-4dc8-479c-ada9-946395520acf/f00b90e5-4dc8-479c-ada9-946395520acf-Mahla2.webp',
   },
   {
     id: 'mohammad-amin-zafari',
@@ -464,7 +481,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'MZ',
     hideFromHome: true,
-    imageUrl: 'https://my.uploadkon.ir/d/JUUOT7jej04SLRqiJu9JB04MAmcedc/ODM3ODR8cGFkZA.webp',
+    imageUrl: '/assets/team/mohammad-amin-zafari.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/686410fc-abcb-4e9b-a9ba-c865f77c425e/686410fc-abcb-4e9b-a9ba-c865f77c425e-Amin.webp',
   },
   {
     id: 'khorshid-khooban',
@@ -473,7 +492,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Teaser Product Manager | Music Composer & Audio Producer',
     department: 'commercial',
     initials: 'KK',
-    imageUrl: 'https://my.uploadkon.ir/d/LhNfjPKHcjpckgv7U06eY3WiQgeMOI/OTEyMTd8cGFkZA.webp',
+    imageUrl: '/assets/team/khorshid-khooban.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/cf59011d-a461-4870-bfbf-eba2a170e5f3/cf59011d-a461-4870-bfbf-eba2a170e5f3-Khorshid3.webp',
     bio: 'مدیریت دقیق زمان‌بندی دپارتمان تیزر همگام با ساخت موسیقی متن و معماری اتمسفر صوتی اختصاصی برندها.',
   },
   {
@@ -483,7 +504,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Lead Video Editor & Sound Designer - SFX',
     department: 'commercial',
     initials: 'HS',
-    imageUrl: 'https://my.uploadkon.ir/d/kXMxs66jXIh8TKTTe9Afh6RYFPUia7/ODQ4MDN8cGFkZA.webp',
+    imageUrl: '/assets/team/hanieh-samipoor.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/340f0b90-08f8-4ffc-8ec2-4f739970e205/340f0b90-08f8-4ffc-8ec2-4f739970e205-Haniye.webp',
     bio: 'خلق ریتم‌های گیرا در تدوین فیلم و طراحی بافت‌های صوتی هایپررئال (Foley & SFX) جهت درگیرسازی حسی مخاطب.',
   },
   {
@@ -494,7 +517,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'commercial',
     initials: 'RS',
     hideFromHome: true,
-    imageUrl: 'https://my.uploadkon.ir/d/htwNeHjKCOsisVo4bOxSdwQkW3u0A7/ODM3MjN8cGFkZA.webp',
+    imageUrl: '/assets/team/reyhaneh-saeidi.webp',
+    fallbackImageUrl:
+      'https://s1.uploadkon.ir/6f421555-2851-4464-bedd-d13cc5d94cb5/6f421555-2851-4464-bedd-d13cc5d94cb5-Reyhane.webp',
   },
   {
     id: 'nima-nekookar',
@@ -503,7 +528,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Head of Web3 & NFT Supervisor',
     department: 'web3',
     initials: 'NN',
-    imageUrl:
+    imageUrl: '/assets/team/nima-nekookar.webp',
+    fallbackImageUrl:
       'https://s1.uploadkon.ir/b96458cc-d87d-4345-b703-bfe6d3615e7d/b96458cc-d87d-4345-b703-bfe6d3615e7d-Nima.webp',
     bio: 'معماری اکوسیستم بلاکچین بر بستر اتریوم، قراردادهای هوشمند ایمن و هدایت جهان‌های دیجیتال دوبعدی.',
   },
@@ -514,7 +540,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Lead NFT Artist & Digital Illustrator',
     department: 'web3',
     initials: 'AE',
-    imageUrl:
+    imageUrl: '/assets/team/ali-ebrahimi.webp',
+    fallbackImageUrl:
       'https://s1.uploadkon.ir/772b4b4b-c8bc-44cd-ba13-951cef7d99d5/772b4b4b-c8bc-44cd-ba13-951cef7d99d5-Ali%20Ebrahimi.webp',
     bio: 'خلق کاراکترها و تصویرسازی مجموعه‌های دوبعدی با لایه‌بندی هنری غنی، لور داستانی و ماندگاری بصری.',
   },
@@ -652,7 +679,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'جزئیات بافت خز، لباس، نورپردازی گرم و ارتباط عاطفی پویو با پدربزرگ بازیگوش خانواده میو.',
         imageUrl:
-          'https://my.uploadkon.ir/d/YJHLUj7EHxpdPffT3TkF4Iv7QR7Ulq/NTM0NjR8cGFkZA.webp',
+          'https://s1.uploadkon.ir/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2-Poyogran.webp',
       },
       {
         id: 'wd-shot-2',
@@ -662,7 +689,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'اکتینگ چهره و بدن، تناسبات استایلایز و زمان‌بندی کمدی در مواجهه با اتفاقات پیش‌بینی‌ناپذیر داستان.',
         imageUrl:
-          'https://my.uploadkon.ir/d/pT94wdX9g1Ii0z0tQbng2CSiIA0neX/NTM0NjN8cGFkZA.webp',
+          'https://s1.uploadkon.ir/907a66af-e858-475b-866d-a2c491cead48/907a66af-e858-475b-866d-a2c491cead48-poyocactus.webp',
       },
       {
         id: 'wd-shot-3',
@@ -672,7 +699,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'تنوع سیلوئت‌ها و شخصیت‌پردازی شهروندان شهر در کنار پالت رنگی زنده و معماری فانتزی محیط.',
         imageUrl:
-          'https://my.uploadkon.ir/d/738azeYo1haWym8RKQkuAhD9a4mKkv/NTM0NjZ8cGFkZA.webp',
+          'https://s1.uploadkon.ir/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f-hamsters2.webp',
       },
       {
         id: 'wd-shot-4',
@@ -682,7 +709,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'توسعه استایل بصری، کنترل گرمای رنگ و ظرافت پردازش مو و چشم‌ها در پایپلاین تولید استودیو.',
         imageUrl:
-          'https://my.uploadkon.ir/d/s5m1gGTGtQHGTXoNJbqbODjCBDlp0C/NTM0NjV8cGFkZA.webp',
+          'https://s1.uploadkon.ir/b1225488-41b4-4176-a55d-78b6678dd761/b1225488-41b4-4176-a55d-78b6678dd761-babyham.webp',
       },
     ],
   },
@@ -702,7 +729,8 @@ export const SELECTED_WORKS: ProjectWork[] = [
     internationalUnit: {
       name: 'BearStudio',
       roleLabel: 'International Unit · BearStudio',
-      logoUrl: 'https://my.uploadkon.ir/d/3GN7OmzrJVMaTWQ12tk0FKTBw8L7iR/OTEyMTh8cGFkZA.png',
+      logoUrl:
+        'https://s1.uploadkon.ir/823af67f-3f44-4f1d-a041-96a831aae368/823af67f-3f44-4f1d-a041-96a831aae368-BearStudio-Logo.png',
       websiteUrl: 'https://3earstudio.com/',
       websiteLabel: '3earstudio.com',
       keywordsFa: ['تیزرهای تبلیغاتی', 'تولیدات تصویری CGI', 'هوش مصنوعی', 'طراحی صدا'],
