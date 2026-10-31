@@ -3,17 +3,19 @@ import { ArrowLeft } from 'lucide-react';
 import { SELECTED_WORKS, ProjectWork } from '../data/studioData';
 import { VisualArtCanvas } from './VisualArtCanvas';
 
-interface InteractiveShowcaseProps {
-  onSelectProject: (project: ProjectWork) => void;
-}
-
+// Preload all project cover images at module load so tab switching is instant
 if (typeof window !== 'undefined') {
-  SELECTED_WORKS.forEach((w) => {
-    if (w.imageUrl) {
+  SELECTED_WORKS.forEach((work) => {
+    if (work.imageUrl) {
       const img = new Image();
-      img.src = w.imageUrl;
+      img.referrerPolicy = 'no-referrer';
+      img.src = work.imageUrl;
     }
   });
+}
+
+interface InteractiveShowcaseProps {
+  onSelectProject: (project: ProjectWork) => void;
 }
 
 export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
@@ -47,12 +49,12 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
   };
 
   return (
-    <section id="works" className="py-16 sm:py-20 relative scroll-mt-20">
+    <section id="works" className="py-14 sm:py-20 relative scroll-mt-20">
       <div id="departments" className="absolute -top-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-12">
         {/* Section Header: Two-Tier Editorial Architecture */}
-        <div className="space-y-6 border-b border-[#DCD6C8] pb-7">
+        <div className="space-y-5 sm:space-y-6 border-b border-[#DCD6C8] pb-6 sm:pb-7">
           {/* Tier 1: Title & Lead Copy */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 text-right">
             <div className="space-y-2">
@@ -73,14 +75,14 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
             </p>
           </div>
 
-          {/* Tier 2: Dedicated Filter Bar */}
-          <div className="flex items-center justify-between gap-4 pt-1">
-            <div className="flex items-center gap-1.5 p-1.5 bg-[#F4F0E6] border border-[#DCD6C8] rounded-2xl overflow-x-auto max-w-full scrollbar-none">
+          {/* Tier 2: Dedicated Filter Bar (Wraps cleanly on mobile, inline on desktop) */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-[#F4F0E6] border border-[#DCD6C8] rounded-2xl">
               {filterTabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-3.5 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`px-3 sm:px-4 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap cursor-pointer ${
                     activeTab === tab.id
                       ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
                       : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E7E2D6]'
@@ -91,7 +93,7 @@ export const InteractiveShowcase: React.FC<InteractiveShowcaseProps> = ({
               ))}
             </div>
 
-            <span className="hidden md:inline-block text-xs text-[#777A76] whitespace-nowrap shrink-0">
+            <span className="hidden lg:inline-block text-xs text-[#777A76] whitespace-nowrap shrink-0">
               برای ورود به صفحه اختصاصی هر دپارتمان، روی کارت کلیک کنید
             </span>
           </div>

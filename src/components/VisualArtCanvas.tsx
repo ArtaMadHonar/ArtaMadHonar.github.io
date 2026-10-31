@@ -167,15 +167,6 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
         <div className="absolute inset-0 bg-[#0C0B0A] flex items-center justify-center overflow-hidden">
           {imageUrl ? (
             <>
-              {/* Ambient blurred backdrop to prevent harsh black borders */}
-              <img
-                src={imageUrl}
-                alt=""
-                aria-hidden="true"
-                referrerPolicy="no-referrer"
-                className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-40 scale-125 pointer-events-none"
-              />
-              {/* Main uncropped artwork poster */}
               <img
                 src={imageUrl}
                 alt="انیمیشن سینمایی روز شگفت‌انگیز"
@@ -258,20 +249,12 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
 
       {type === 'commercial-cgi' && (
         <div className="absolute inset-0 bg-[#0C0B0A] flex items-center justify-center overflow-hidden">
-          {/* Ambient blurred backdrop to prevent harsh black borders */}
-          <img
-            src={imageUrl || 'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp'}
-            alt=""
-            aria-hidden="true"
-            referrerPolicy="no-referrer"
-            className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-40 scale-125 pointer-events-none"
-          />
-          {/* Main uncropped artwork */}
           <img
             src={imageUrl || 'https://s1.uploadkon.ir/94160ee8-99c8-4a18-996e-9ceb72a0da45/94160ee8-99c8-4a18-996e-9ceb72a0da45-Moeini%20Teaser%202.webp'}
             alt="تیزرسازی تبلیغاتی سطح بالا"
             referrerPolicy="no-referrer"
             loading="eager"
+            decoding="sync"
             className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-101"
             onError={(e) => {
               const target = e.currentTarget;
@@ -325,6 +308,7 @@ export const VisualArtCanvas: React.FC<VisualArtCanvasProps> = ({
             alt="ویدئو مپینگ و تجربه‌های بصری فراگیر"
             referrerPolicy="no-referrer"
             loading="eager"
+            decoding="sync"
             className="relative z-10 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-103"
             onError={(e) => {
               const target = e.currentTarget;

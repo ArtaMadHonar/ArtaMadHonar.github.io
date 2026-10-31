@@ -155,12 +155,12 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
   return (
     <div className="min-h-screen bg-[#EDE9DF] text-[#1E2424] pb-20">
       {/* 1. Sub-Header Bar: Back to Home + Quick Switcher Between 5 Domains */}
-      <div className="bg-[#F4F0E6] border-b border-[#DCD6C8] py-3.5 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-3.5">
+      <div className="bg-[#F4F0E6] border-b border-[#DCD6C8] py-3 sm:py-3.5 px-3 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 sm:gap-3.5">
           <div className="flex items-center justify-between lg:justify-start gap-3">
             <button
               onClick={onBackToHome}
-              className="px-4 py-2 rounded-xl bg-[#FAF8F4] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
+              className="px-3.5 sm:px-4 py-2 rounded-xl bg-[#FAF8F4] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-2xs whitespace-nowrap shrink-0"
             >
               <ArrowRight className="w-3.5 h-3.5" />
               <span>بازگشت به صفحه اصلی</span>
@@ -171,14 +171,14 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 p-1 bg-[#EDE9DF] border border-[#DCD6C8] rounded-2xl overflow-x-auto max-w-full scrollbar-none">
+          <div className="flex flex-wrap lg:flex-nowrap items-center gap-1.5 p-1 bg-[#EDE9DF] border border-[#DCD6C8] rounded-2xl max-w-full">
             {SELECTED_WORKS.map((item, idx) => {
               const isActive = item.id === domain.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => onSelectDomain(item.id)}
-                  className={`px-3.5 py-2 text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold rounded-xl transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                     isActive
                       ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
                       : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E4DFD3]'
@@ -269,13 +269,15 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   dir="ltr"
-                  className="group self-start md:self-auto flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-[#F4F0E6] hover:bg-[#1E2424] border border-[#DCD6C8] hover:border-[#1E2424] transition-all duration-300"
+                  className="group w-full md:w-auto justify-between md:justify-start flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-[#F4F0E6] hover:bg-[#1E2424] border border-[#DCD6C8] hover:border-[#1E2424] transition-all duration-300"
                 >
                   <div className="w-9 h-9 rounded-xl bg-[#181D1D] flex items-center justify-center p-1.5 shrink-0 border border-white/10">
                     <img
                       src={domain.internationalUnit.logoUrl}
                       alt={domain.internationalUnit.name}
                       referrerPolicy="no-referrer"
+                      loading="eager"
+                      decoding="sync"
                       className="w-full h-full object-contain"
                     />
                   </div>
@@ -646,7 +648,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                               src={item.imageUrl}
                               alt={item.titleEn || item.title}
                               referrerPolicy="no-referrer"
-                              loading="lazy"
+                              loading="eager"
+                              decoding="sync"
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 if (
@@ -681,7 +684,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                           {/* Center Play Button */}
                           <div className="absolute inset-0 z-3 flex items-center justify-center">
-                            <div className="w-13 h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+                            <div className="w-13 h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] keep-light-pill flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
                               <Play className="w-5 h-5 fill-current ml-0.5" />
                             </div>
                           </div>
@@ -716,7 +719,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                               src={item.imageUrl}
                               alt={item.title}
                               referrerPolicy="no-referrer"
-                              loading="lazy"
+                              loading="eager"
+                              decoding="sync"
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 if (item.fallbackImageUrl && target.src !== item.fallbackImageUrl) {
@@ -840,14 +844,14 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                             هد {group.title}
                           </span>
                         </div>
-                        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+                        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-16">
                           {group.heads.map((head) => (
                             <div
                               key={`${group.id}-head-${head.id}`}
                               onClick={() => onSelectMember(head)}
                               className="group cursor-pointer flex flex-col items-center text-center"
                             >
-                              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-[#3E777A] group-hover:border-[#65B7B5] mb-3.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
+                              <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-[#3E777A] group-hover:border-[#65B7B5] mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
                                 {head.imageUrl ? (
                                   <img
                                     src={head.imageUrl}
@@ -875,7 +879,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                 </div>
                               </div>
 
-                              <h4 className="text-base sm:text-lg font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
+                              <h4 className="text-sm sm:text-lg font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
                                 {head.name}
                               </h4>
                             </div>
@@ -891,14 +895,14 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                               اعضای تیم
                             </span>
                           </div>
-                          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14">
+                          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-14">
                             {group.members.map((member) => (
                               <div
                                 key={`${group.id}-member-${member.id}`}
                                 onClick={() => onSelectMember(member)}
                                 className="group cursor-pointer flex flex-col items-center text-center"
                               >
-                                <div className="w-24 h-24 sm:w-26 sm:h-26 rounded-full border-2 border-[#DCD6C8] group-hover:border-[#3E777A] mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
+                                <div className="w-20 h-20 sm:w-26 sm:h-26 rounded-full border-2 border-[#DCD6C8] group-hover:border-[#3E777A] mb-2.5 sm:mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0">
                                   {member.imageUrl ? (
                                     <img
                                       src={member.imageUrl}
@@ -926,7 +930,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                                   </div>
                                 </div>
 
-                                <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
+                                <h4 className="text-xs sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
                                   {member.name}
                                 </h4>
                               </div>
@@ -953,7 +957,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       <span className="h-px w-12 sm:w-20 bg-[#DCD6C8]" />
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+                    <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-16">
                       {group.members.map((member) => (
                         <div
                           key={`${group.id}-${member.id}`}
@@ -962,12 +966,12 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                         >
                           <div
                             className={`${
-                              group.isHead ? 'w-28 h-28 sm:w-32 sm:h-32' : 'w-24 h-24 sm:w-26 sm:h-26'
+                              group.isHead ? 'w-24 h-24 sm:w-32 sm:h-32' : 'w-20 h-20 sm:w-26 sm:h-26'
                             } rounded-full border-2 ${
                               group.isHead
                                 ? 'border-[#3E777A] group-hover:border-[#65B7B5]'
                                 : 'border-[#DCD6C8] group-hover:border-[#3E777A]'
-                            } mb-3.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0`}
+                            } mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#FAF8F4] shadow-xs relative shrink-0`}
                           >
                             {member.imageUrl ? (
                               <img
@@ -998,7 +1002,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                           <h4
                             className={`${
-                              group.isHead ? 'text-base sm:text-lg font-black' : 'text-sm sm:text-base font-bold'
+                              group.isHead ? 'text-sm sm:text-lg font-black' : 'text-xs sm:text-base font-bold'
                             } text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft`}
                           >
                             {member.name}

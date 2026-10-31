@@ -19,10 +19,10 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
   ];
 
   return (
-    <footer id="contact" className="border-t border-[#DCD6C8] bg-[#EDE9DF] pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <footer id="contact" className="border-t border-[#DCD6C8] bg-[#EDE9DF] pt-14 pb-12 sm:pt-20 sm:pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
         {/* Contact Banner Card in Poyo Deep Teal & Warm Ochre */}
-        <div className="p-7 sm:p-10 lg:p-14 rounded-3xl bg-[#274D50] text-[#FAF8F4] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_20px_50px_rgba(39,77,80,0.18)] border border-[#3E777A]">
+        <div className="p-6 sm:p-10 lg:p-14 rounded-3xl bg-[#274D50] text-[#FAF8F4] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 shadow-[0_20px_50px_rgba(39,77,80,0.18)] border border-[#3E777A]">
           {/* Subtle Poyo Palette Ambient Glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,#65B7B5_0%,transparent_55%)] opacity-25 pointer-events-none" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_80%,#D6B16A_0%,transparent_50%)] opacity-20 pointer-events-none" />
@@ -42,7 +42,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({ onOpenContact }) =
           <div className="z-10 shrink-0 w-full md:w-auto flex justify-center md:justify-start">
             <button
               onClick={onOpenContact}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#FAF8F4] hover:bg-[#EDE9DF] text-[#1E2424] text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 font-soft cursor-pointer whitespace-nowrap"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#FAF8F4] hover:bg-[#EDE9DF] text-[#1E2424] keep-light-pill text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 font-soft cursor-pointer whitespace-nowrap"
             >
               <span>ثبت درخواست همکاری</span>
               <ArrowLeft className="w-4 h-4 rotate-180 text-[#3E777A]" />

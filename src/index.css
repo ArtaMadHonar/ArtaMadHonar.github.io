@@ -114,3 +114,116 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ==========================================================================
+   Dark Mode Theme System (Architectural Obsidian & Poyo Turquoise)
+   ========================================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0E1415;
+  color: #F2EFE9;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #0E1415;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2A393D;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #65B7B5;
+}
+
+/* Surfaces */
+html.dark .bg-\[\#EDE9DF\] {
+  background-color: #0E1415 !important;
+}
+
+html.dark .bg-\[\#EDE9DF\]\/90 {
+  background-color: rgba(14, 20, 21, 0.90) !important;
+}
+
+html.dark .bg-\[\#FAF8F4\]:not(.keep-light-pill) {
+  background-color: #151E20 !important;
+}
+
+html.dark .bg-\[\#F4F0E6\],
+html.dark .bg-\[\#F4F0E6\]\/65,
+html.dark .bg-\[\#F4F0E6\]\/60,
+html.dark .bg-\[\#F6F3EC\],
+html.dark .bg-\[\#F3EFE6\] {
+  background-color: #1B2629 !important;
+}
+
+html.dark .from-\[\#FAF8F4\].to-\[\#F3EFE5\] {
+  background-image: linear-gradient(to bottom right, #151E20, #1D2B2F) !important;
+}
+
+/* Borders */
+html.dark .border-\[\#DCD6C8\],
+html.dark .border-\[\#D5CFC0\],
+html.dark .border-\[\#DCD6C8\]\/80,
+html.dark .border-\[\#DCD6C8\]\/60 {
+  border-color: #27363A !important;
+}
+
+html.dark .border-\[\#E5E0D4\],
+html.dark .border-\[\#E2DDD1\] {
+  border-color: #202D31 !important;
+}
+
+/* Typography */
+html.dark .text-\[\#1E2424\]:not(.keep-light-pill) {
+  color: #F2EFE9 !important;
+}
+
+html.dark .text-\[\#434846\] {
+  color: #BCC6C4 !important;
+}
+
+html.dark .text-\[\#777A76\] {
+  color: #8C9997 !important;
+}
+
+html.dark .text-\[\#3E777A\]:not(.keep-light-icon),
+html.dark .text-\[\#2E5A5C\] {
+  color: #65B7B5 !important;
+}
+
+html.dark .bg-\[\#1E2424\]\/20 {
+  background-color: rgba(242, 239, 233, 0.22) !important;
+}
+
+/* Interactive Hover Adjustments in Dark Mode */
+html.dark .hover\:bg-\[\#E7E2D6\]:hover,
+html.dark .hover\:bg-\[\#E4DFD3\]:hover,
+html.dark .hover\:bg-\[\#E2DDD1\]:hover,
+html.dark .hover\:bg-\[\#E5E0D4\]:hover,
+html.dark .hover\:bg-\[\#F3EFE6\]:hover,
+html.dark .hover\:bg-\[\#F4F0E6\]:hover {
+  background-color: #233136 !important;
+}
+
+html.dark .hover\:text-\[\#1E2424\]:hover {
+  color: #F2EFE9 !important;
+}
+
+html.dark .hover\:text-\[\#3E777A\]:hover,
+html.dark .group:hover .group-hover\:text-\[\#3E777A\] {
+  color: #65B7B5 !important;
+}
+
+html.dark .hover\:border-\[\#3E777A\]:hover {
+  border-color: #65B7B5 !important;
+}
+
+/* Header Brand Emblem clarity in Dark Mode */
+html.dark .brand-logo-img {
+  filter: drop-shadow(0 0 1.5px rgba(242, 239, 233, 0.75)) brightness(1.12);
+}
+

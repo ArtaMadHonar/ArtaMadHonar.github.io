@@ -47,6 +47,37 @@ export default function App() {
     parseDomainFromLocation()
   );
 
+  // Light / Dark theme state (persisted in localStorage)
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return (
+        localStorage.getItem('amh-theme') === 'dark' ||
+        document.documentElement.classList.contains('dark')
+      );
+    } catch {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('amh-theme', isDark ? 'dark' : 'light');
+    } catch {
+      // Ignore storage errors in restricted environments
+    }
+  }, [isDark]);
+
+  const handleToggleTheme = useCallback(() => {
+    setIsDark((prev) => !prev);
+  }, []);
+
   // Modal states
   const [showreelOpen, setShowreelOpen] = useState(false);
   const [inquiryOpen, setInquiryOpen] = useState(false);
@@ -113,13 +144,17 @@ export default function App() {
     : null;
 
   return (
-    <div className="min-h-screen bg-[#EDE9DF] text-[#1E2424] flex flex-col font-fa selection:bg-[#3E777A] selection:text-[#FAF8F4]">
-      {/* 1. Refined Top Navigation Bar */}
+    <div className="min-h-screen bg-[#EDE9DF] text-[#1E2424] flex flex-col font-fa selection:bg-[#3E777A] selection:text-[#FAF8F4] transition-colors duration-300">
+      {/* 1. Refined Top Navigation Bar with Theme Switch & Overhauled Mobile Menu */}
       <Navbar
         onOpenContact={() => handleOpenContact(activeDomain?.id)}
         onNavigateHome={
           activeDomain ? (href) => handleBackToHome(href || '#') : undefined
         }
+        onSelectDomain={(domainId) => handleOpenDomainPage(domainId)}
+        activeDomainId={activeDomain?.id || null}
+        isDark={isDark}
+        onToggleTheme={handleToggleTheme}
       />
 
       <main className="flex-1">

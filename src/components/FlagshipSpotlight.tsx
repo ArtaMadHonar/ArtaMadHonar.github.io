@@ -56,21 +56,21 @@ export const FlagshipSpotlight: React.FC<FlagshipSpotlightProps> = ({ onOpenTeas
         </div>
 
         {/* 2. Balanced Main Showcase Card (16:9 Slideshow + Concise Core Synopsis) */}
-        <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
+        <div className="rounded-2xl sm:rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_14px_40px_rgba(30,36,36,0.05)] overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
             {/* Visual Column (7 cols): Full-height Slideshow without extra box underneath */}
-            <div className="lg:col-span-7 relative w-full bg-[#121616] min-h-[260px] sm:min-h-[380px] lg:min-h-[420px] flex">
+            <div className="lg:col-span-7 relative w-full bg-[#121616] aspect-video lg:aspect-auto lg:min-h-[420px] flex">
               <FlagshipSlideshow className="w-full h-full object-cover" />
             </div>
 
             {/* Narrative Column (5 cols): Perfectly proportioned to match the 16:9 slideshow height */}
-            <div className="lg:col-span-5 p-6 sm:p-8 lg:p-9 flex flex-col justify-between text-right bg-[#FAF8F4] border-t lg:border-t-0 lg:border-r border-[#DCD6C8] space-y-6">
-              <div className="space-y-4">
+            <div className="lg:col-span-5 p-5 sm:p-8 lg:p-9 flex flex-col justify-between text-right bg-[#FAF8F4] border-t lg:border-t-0 lg:border-r border-[#DCD6C8] space-y-5 sm:space-y-6">
+              <div className="space-y-3.5 sm:space-y-4">
                 <div className="space-y-1">
                   <span className="text-[11px] font-bold text-[#3E777A] block">
                     خلاصه داستان و درون‌مایه اثر
                   </span>
-                  <h3 className="text-lg sm:text-xl font-black text-[#1E2424] leading-snug">
+                  <h3 className="text-base sm:text-xl font-black text-[#1E2424] leading-snug">
                     آیا برای داشتن یک روز خوب، باید همه‌چیز بی‌نقص باشد؟
                   </h3>
                 </div>
@@ -103,50 +103,50 @@ export const FlagshipSpotlight: React.FC<FlagshipSpotlightProps> = ({ onOpenTeas
           </div>
 
           {/* 3. Full-Width Interactive Production Dossier Bar Below the Split */}
-          <div className="border-t border-[#DCD6C8] bg-[#F4F0E6]/60 p-5 sm:p-8 space-y-6">
+          <div className="border-t border-[#DCD6C8] bg-[#F4F0E6]/60 p-4 sm:p-8 space-y-5 sm:space-y-6">
             {/* Segmented Navigation Bar */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DCD6C8] pb-4">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 sm:gap-4 border-b border-[#DCD6C8] pb-4">
               <div className="text-right">
                 <h4 className="text-sm sm:text-base font-black text-[#1E2424]">
                   ابعاد هنری، هویت بصری و پایپلاین تولید «روز شگفت‌انگیز»
                 </h4>
               </div>
 
-              <div className="flex items-center gap-1.5 p-1 bg-[#EDE9DF] border border-[#DCD6C8] rounded-xl overflow-x-auto scrollbar-none shrink-0">
+              <div className="grid grid-cols-1 sm:flex items-center gap-1.5 p-1.5 bg-[#EDE9DF] border border-[#DCD6C8] rounded-xl shrink-0">
                 <button
                   type="button"
                   onClick={() => setActiveTab('world')}
-                  className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2.5 sm:py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center justify-center sm:justify-start gap-1.5 ${
                     activeTab === 'world'
                       ? 'bg-[#3E777A] text-[#FAF8F4] shadow-2xs'
                       : 'text-[#434846] hover:text-[#1E2424]'
                   }`}
                 >
-                  <Film className="w-3.5 h-3.5" />
+                  <Film className="w-3.5 h-3.5 shrink-0" />
                   <span>جهان داستان و ارزش فرهنگی</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab('visual')}
-                  className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2.5 sm:py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center justify-center sm:justify-start gap-1.5 ${
                     activeTab === 'visual'
                       ? 'bg-[#3E777A] text-[#FAF8F4] shadow-2xs'
                       : 'text-[#434846] hover:text-[#1E2424]'
                   }`}
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5 shrink-0" />
                   <span>۵ رکن هویت بصری و کیفیت</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab('pipeline')}
-                  className={`px-3.5 py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
+                  className={`px-3.5 py-2.5 sm:py-2 text-xs font-semibold rounded-lg transition-all whitespace-nowrap cursor-pointer flex items-center justify-center sm:justify-start gap-1.5 ${
                     activeTab === 'pipeline'
                       ? 'bg-[#3E777A] text-[#FAF8F4] shadow-2xs'
                       : 'text-[#434846] hover:text-[#1E2424]'
                   }`}
                 >
-                  <Layers className="w-3.5 h-3.5" />
+                  <Layers className="w-3.5 h-3.5 shrink-0" />
                   <span>فناوری تولید و توسعه IP</span>
                 </button>
               </div>

@@ -14,6 +14,7 @@ export interface TeamMember {
   department: 'leadership' | 'animation' | 'commercial' | 'web3' | 'mystery';
   initials: string;
   imageUrl?: string;
+  fallbackImageUrl?: string;
   bio?: string;
   fullBio?: string;
   workHistory?: WorkHistoryItem[];
@@ -75,6 +76,7 @@ export interface InternationalUnitInfo {
   name: string;
   roleLabel: string;
   logoUrl: string;
+  fallbackLogoUrl?: string;
   websiteUrl: string;
   websiteLabel: string;
   keywordsFa: string[];
@@ -215,8 +217,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MM',
     isCoFounder: true,
     education: 'کارشناس سینما — دانشگاه هنر تهران',
-    imageUrl:
-      'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/T3DmMjncRhs9hYn07UmywDZWCAqcrs/ODM3OTd8cGFkZA.webp',
     bio: 'کارگردان و نویسنده سینما و انیمیشن؛ دانش‌آموخته دانشگاه هنر تهران و کارگردان فیلم سینمایی «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران.',
     fullBio:
       'محمود محمدیان، دانش‌آموخته رشته سینما از دانشگاه هنر تهران، کارگردان و نویسنده‌ای با پیشینه متنوع در سینمای داستانی، انیمیشن بلند، مستند و تبلیغات تلویزیونی است. تجربه مستقیم او در مدیریت تصویربرداری، انیماتوری و کارگردانی، نگاهی دقیق به دکوپاژ، نورپردازی، ریتم روایی و هدایت بازیگران به آثار استودیو بخشیده و محور هدایت هنری فیلم سینمایی «روز شگفت‌انگیز» را شکل داده است.',
@@ -353,8 +354,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     initials: 'MR',
     isCoFounder: true,
     education: 'کارشناس علوم اجتماعی (۱۳۷۸ – ۱۳۸۱)',
-    imageUrl:
-      'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/iBenH7dpsFXFByrg9oBp1cJYF1PZ3g/ODM4MTR8cGFkZA.webp',
     bio: 'معمار پایپلاین تولید و مدیر فنی هوش مصنوعی با بیش از ۲۲ سال سابقه در جلوه‌های بصری (VFX)، پس‌ازتولید سینمایی و تیزرهای تجاری.',
     fullBio:
       'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
@@ -403,8 +403,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Cinematic Video & Animation Pipeline Specialist',
     department: 'animation',
     initials: 'LS',
-    imageUrl:
-      'https://my.uploadkon.ir/d/om6pMwbv2FUcHz3ohLceOskORFgESe/ODM4NDF8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/om6pMwbv2FUcHz3ohLceOskORFgESe/ODM4NDF8cGFkZA.webp',
     bio: 'معماری و اتوماسیون جریان داده‌های رندرینگ، بهینه‌سازی موتورهای گرافیکی و یکپارچه‌سازی پایپلاین تولید.',
   },
   {
@@ -414,8 +413,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Animation Assistant Director & Multimedia Artist',
     department: 'animation',
     initials: 'AA',
-    imageUrl:
-      'https://my.uploadkon.ir/d/N9Ez8PuuRPcfiBHfsAH9i5aXLi1mut/ODQ3ODJ8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/N9Ez8PuuRPcfiBHfsAH9i5aXLi1mut/ODQ3ODJ8cGFkZA.webp',
     bio: 'همراهی در هدایت هنری و اجرایی پروژه، تدوین روایت تصویری، ضبط و اجرای نریشن و توسعهٔ کانسپت‌های بصری در مسیر تولید انیمیشن.',
   },
   {
@@ -425,8 +423,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Senior Visual Development & Concept Frame Artist',
     department: 'animation',
     initials: 'NB',
-    imageUrl:
-      'https://my.uploadkon.ir/d/GUX3vH8B5POK7XoQ8iZaFJVkXkxKH9/OTEyMTN8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/GUX3vH8B5POK7XoQ8iZaFJVkXkxKH9/OTEyMTN8cGFkZA.webp',
     bio: 'خلق دنیاهای مسحورکننده بصری، توسعه کانسپت کاراکترها و تصویرسازی کلیدفریم‌های احساسی و سینمایی.',
   },
   {
@@ -436,8 +433,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Digital Image & Visual Finishing Artist',
     department: 'animation',
     initials: 'HB',
-    imageUrl:
-      'https://my.uploadkon.ir/d/LoxHqhB40iPIVZkFIrT1eBD2LC3p1W/ODQ3ODF8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/LoxHqhB40iPIVZkFIrT1eBD2LC3p1W/ODQ3ODF8cGFkZA.webp',
     bio: 'پردازش دقیق لایه‌های گرافیکی، فینیشینگ دیجیتال، کنترل گرمای رنگ و تثبیت وفاداری استایل بصری در فریم‌های نهایی.',
   },
   {
@@ -448,8 +444,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'AV',
     hideFromHome: true,
-    imageUrl:
-      'https://my.uploadkon.ir/d/pmZPEPMDQUDRN7AF4XnCKRYrRJrBYJ/ODM3NzZ8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/pmZPEPMDQUDRN7AF4XnCKRYrRJrBYJ/ODM3NzZ8cGFkZA.webp',
   },
   {
     id: 'mahla-moein',
@@ -459,8 +454,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'MM',
     hideFromHome: true,
-    imageUrl:
-      'https://my.uploadkon.ir/d/wenlbbYKE9AWaKQ0Mt2MaIZXuFuBiI/OTEyMTF8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/wenlbbYKE9AWaKQ0Mt2MaIZXuFuBiI/OTEyMTF8cGFkZA.webp',
   },
   {
     id: 'mohammad-amin-zafari',
@@ -470,8 +464,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'animation',
     initials: 'MZ',
     hideFromHome: true,
-    imageUrl:
-      'https://my.uploadkon.ir/d/JUUOT7jej04SLRqiJu9JB04MAmcedc/ODM3ODR8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/JUUOT7jej04SLRqiJu9JB04MAmcedc/ODM3ODR8cGFkZA.webp',
   },
   {
     id: 'khorshid-khooban',
@@ -480,8 +473,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Teaser Product Manager | Music Composer & Audio Producer',
     department: 'commercial',
     initials: 'KK',
-    imageUrl:
-      'https://my.uploadkon.ir/d/LhNfjPKHcjpckgv7U06eY3WiQgeMOI/OTEyMTd8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/LhNfjPKHcjpckgv7U06eY3WiQgeMOI/OTEyMTd8cGFkZA.webp',
     bio: 'مدیریت دقیق زمان‌بندی دپارتمان تیزر همگام با ساخت موسیقی متن و معماری اتمسفر صوتی اختصاصی برندها.',
   },
   {
@@ -491,8 +483,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     roleEn: 'Lead Video Editor & Sound Designer - SFX',
     department: 'commercial',
     initials: 'HS',
-    imageUrl:
-      'https://my.uploadkon.ir/d/kXMxs66jXIh8TKTTe9Afh6RYFPUia7/ODQ4MDN8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/kXMxs66jXIh8TKTTe9Afh6RYFPUia7/ODQ4MDN8cGFkZA.webp',
     bio: 'خلق ریتم‌های گیرا در تدوین فیلم و طراحی بافت‌های صوتی هایپررئال (Foley & SFX) جهت درگیرسازی حسی مخاطب.',
   },
   {
@@ -503,8 +494,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     department: 'commercial',
     initials: 'RS',
     hideFromHome: true,
-    imageUrl:
-      'https://my.uploadkon.ir/d/htwNeHjKCOsisVo4bOxSdwQkW3u0A7/ODM3MjN8cGFkZA.webp',
+    imageUrl: 'https://my.uploadkon.ir/d/htwNeHjKCOsisVo4bOxSdwQkW3u0A7/ODM3MjN8cGFkZA.webp',
   },
   {
     id: 'nima-nekookar',
@@ -662,8 +652,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'جزئیات بافت خز، لباس، نورپردازی گرم و ارتباط عاطفی پویو با پدربزرگ بازیگوش خانواده میو.',
         imageUrl:
-          'https://s1.uploadkon.ir/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2/e14fa7ac-1b24-4d1a-ac3b-06e5be9dc7e2-Poyogran.webp',
-        fallbackImageUrl:
           'https://my.uploadkon.ir/d/YJHLUj7EHxpdPffT3TkF4Iv7QR7Ulq/NTM0NjR8cGFkZA.webp',
       },
       {
@@ -674,8 +662,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'اکتینگ چهره و بدن، تناسبات استایلایز و زمان‌بندی کمدی در مواجهه با اتفاقات پیش‌بینی‌ناپذیر داستان.',
         imageUrl:
-          'https://s1.uploadkon.ir/907a66af-e858-475b-866d-a2c491cead48/907a66af-e858-475b-866d-a2c491cead48-poyocactus.webp',
-        fallbackImageUrl:
           'https://my.uploadkon.ir/d/pT94wdX9g1Ii0z0tQbng2CSiIA0neX/NTM0NjN8cGFkZA.webp',
       },
       {
@@ -686,8 +672,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'تنوع سیلوئت‌ها و شخصیت‌پردازی شهروندان شهر در کنار پالت رنگی زنده و معماری فانتزی محیط.',
         imageUrl:
-          'https://s1.uploadkon.ir/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f/22f0d12f-8b58-4c91-b4c6-3ad99b3d694f-hamsters2.webp',
-        fallbackImageUrl:
           'https://my.uploadkon.ir/d/738azeYo1haWym8RKQkuAhD9a4mKkv/NTM0NjZ8cGFkZA.webp',
       },
       {
@@ -698,8 +682,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'توسعه استایل بصری، کنترل گرمای رنگ و ظرافت پردازش مو و چشم‌ها در پایپلاین تولید استودیو.',
         imageUrl:
-          'https://s1.uploadkon.ir/b1225488-41b4-4176-a55d-78b6678dd761/b1225488-41b4-4176-a55d-78b6678dd761-babyham.webp',
-        fallbackImageUrl:
           'https://my.uploadkon.ir/d/s5m1gGTGtQHGTXoNJbqbODjCBDlp0C/NTM0NjV8cGFkZA.webp',
       },
     ],
@@ -720,8 +702,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
     internationalUnit: {
       name: 'BearStudio',
       roleLabel: 'International Unit · BearStudio',
-      logoUrl:
-        'https://my.uploadkon.ir/d/3GN7OmzrJVMaTWQ12tk0FKTBw8L7iR/OTEyMTh8cGFkZA.png',
+      logoUrl: 'https://my.uploadkon.ir/d/3GN7OmzrJVMaTWQ12tk0FKTBw8L7iR/OTEyMTh8cGFkZA.png',
       websiteUrl: 'https://3earstudio.com/',
       websiteLabel: '3earstudio.com',
       keywordsFa: ['تیزرهای تبلیغاتی', 'تولیدات تصویری CGI', 'هوش مصنوعی', 'طراحی صدا'],
@@ -769,7 +750,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'تیزر سینمایی معرفی خودرو KMC Shadow با کارگردانی هنری نور و سایه، شبیه‌سازی محیط و یکپارچه‌سازی پایپلاین هوش مصنوعی مولد با کامپوزیت حرفه‌ای.',
         imageUrl: 'https://3earstudio.com/thumbnails/kmc-shadow.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/JI81cPnvoFU/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/kmc-shadow-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/JI81cPnvoFU?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/JI81cPnvoFU',
@@ -785,7 +765,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'روایت تصویری و تیزر تبلیغاتی برند صدرا (SADRA) با بهره‌گیری از گردش‌کار ترکیبی هوش مصنوعی، اصلاح رنگ سینمایی و طراحی فضای بصری متمایز.',
         imageUrl: 'https://3earstudio.com/thumbnails/sadra.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/7UYXnPXlpSY/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/sadra-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/7UYXnPXlpSY?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/7UYXnPXlpSY',
@@ -818,7 +797,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'نمایش لایه‌به‌لایه مراحل ساخت، کامپوزیت، جلوه‌های بصری و فرآیند پس‌ازتولید موزیک‌ویدیو «سرفه» از ایده اولیه تا خروجی نهایی.',
         imageUrl: 'https://3earstudio.com/thumbnails/sorfe.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/Zm9FOwcllmI/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/sorfe-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/Zm9FOwcllmI?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/Zm9FOwcllmI',
@@ -834,7 +812,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'تدوین ریتمیک، ضرباهنگ بصری پویا و پرداخت رنگ و نور برای معرفی کالکشن برند اکسسوری مردمک متناسب با رسانه‌های دیجیتال.',
         imageUrl: 'https://3earstudio.com/thumbnails/mardomak.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/YA57qZWrIrA/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/mardomak-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/YA57qZWrIrA?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/YA57qZWrIrA',
@@ -866,7 +843,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'خلق اتمسفر صوتی پرانرژی، لایه‌بندی افکت‌های محیطی استادیوم و ضرباهنگ سینمایی برای القای هیجان و آینده‌نگری در تصویر.',
         imageUrl: 'https://3earstudio.com/thumbnails/football-future.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/HVu-3mx592c/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/football-future-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/HVu-3mx592c?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/HVu-3mx592c',
@@ -882,7 +858,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'طراحی بافت‌های صوتی مکانیکی، غرش موتور، افکت‌های سایبرنتیک و میکس استریو برای شبیه‌سازی حس سرعت و فناوری در فضای سه‌بعدی.',
         imageUrl: 'https://3earstudio.com/thumbnails/cyber-car.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/eV7RHSN40Y0/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/cyber-car-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/eV7RHSN40Y0?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/eV7RHSN40Y0',
@@ -898,7 +873,6 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'ساختار صوتی دراماتیک، کنترل پویایی صدا (Dynamics) و ترکیب موسیقی و افکت‌های محیطی برای تقویت تعلیق و روایت بصری اثر.',
         imageUrl: 'https://3earstudio.com/thumbnails/no-way-back.jpg',
-        fallbackImageUrl: 'https://i.ytimg.com/vi/4oBniNGSixA/hqdefault.jpg',
         previewVideoUrl: 'https://3earstudio.com/videos/no-way-back-preview.mp4',
         embedUrl: 'https://www.youtube.com/embed/4oBniNGSixA?autoplay=1&rel=0',
         externalUrl: 'https://youtu.be/4oBniNGSixA',

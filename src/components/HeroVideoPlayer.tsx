@@ -140,7 +140,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
         id="hero-video-player"
         onMouseMove={resetHideTimer}
         onMouseLeave={() => isPlaying && setShowControls(false)}
-        className={`relative aspect-[16/10] sm:aspect-video lg:aspect-[21/9] w-full bg-[#121616] overflow-hidden select-none group ${className}`}
+        className={`relative aspect-video lg:aspect-[21/9] w-full bg-[#121616] overflow-hidden select-none group ${className}`}
       >
         {/* HTML5 Video element */}
         <video
@@ -148,7 +148,7 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
           src={WONDERFUL_DAY_VIDEO}
           poster={WONDERFUL_DAY_POSTER}
           playsInline
-          preload="metadata"
+          preload="none"
           className={`w-full h-full object-contain cursor-pointer transition-opacity duration-300 ${
             hasStarted ? 'opacity-100' : 'opacity-0 absolute'
           }`}
@@ -174,21 +174,19 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
             onClick={playVideo}
             className="absolute inset-0 cursor-pointer flex items-center justify-center overflow-hidden"
           >
-            {/* Ambient blurred backdrop to prevent harsh black borders on ultra-wide */}
+            {/* Ambient blurred backdrop on desktop 21:9 */}
             <img
               src={WONDERFUL_DAY_POSTER}
               alt=""
               aria-hidden="true"
-              referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-125 pointer-events-none"
+              className="hidden lg:block absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-125 pointer-events-none"
             />
 
             {/* Crisp 16:9 / 21:9 Poster Artwork */}
             <img
               src={WONDERFUL_DAY_POSTER}
               alt="پوستر انیمیشن سینمایی روز شگفت‌انگیز"
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-contain relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
+              className="w-full h-full object-cover lg:object-contain relative z-10 transition-transform duration-700 group-hover:scale-[1.02]"
             />
 
             {/* Subtle soft dark vignette on hover */}
@@ -201,9 +199,9 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
                 <button
                   type="button"
                   aria-label="پخش تیزر سینمایی روز شگفت‌انگیز"
-                  className="relative w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-[0_10px_35px_rgba(0,0,0,0.45)] transition-all duration-300 group-hover:scale-110 active:scale-95 border border-white/50"
+                  className="keep-light-pill relative w-13 h-13 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-[0_10px_35px_rgba(0,0,0,0.45)] transition-all duration-300 group-hover:scale-110 active:scale-95 border border-white/50"
                 >
-                  <Play className="w-6 h-6 sm:w-8 sm:h-8 lg:w-9 lg:h-9 translate-x-0.5 fill-current text-[#3E777A]" />
+                  <Play className="keep-light-icon w-6 h-6 sm:w-8 sm:h-8 lg:w-9 lg:h-9 translate-x-0.5 fill-current text-[#3E777A]" />
                 </button>
               </div>
             </div>
@@ -228,12 +226,12 @@ export const HeroVideoPlayer = forwardRef<HeroVideoPlayerHandle, { className?: s
               <button
                 type="button"
                 aria-label="ادامه پخش"
-                className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-2xl transition-transform group-hover/resume:scale-110 active:scale-95"
+                className="keep-light-pill relative w-15 h-15 sm:w-20 sm:h-20 rounded-full bg-[#FAF8F4] text-[#1E2424] flex items-center justify-center shadow-2xl transition-transform group-hover/resume:scale-110 active:scale-95"
               >
                 {currentTime >= duration - 0.5 ? (
-                  <RotateCcw className="w-7 h-7 sm:w-8 sm:h-8 text-[#3E777A]" />
+                  <RotateCcw className="keep-light-icon w-7 h-7 sm:w-8 sm:h-8 text-[#3E777A]" />
                 ) : (
-                  <Play className="w-7 h-7 sm:w-8 sm:h-8 translate-x-0.5 fill-current text-[#3E777A]" />
+                  <Play className="keep-light-icon w-7 h-7 sm:w-8 sm:h-8 translate-x-0.5 fill-current text-[#3E777A]" />
                 )}
               </button>
             </div>
