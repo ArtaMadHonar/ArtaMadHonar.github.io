@@ -33,7 +33,7 @@ const PORTFOLIO_CATEGORIES: {
   label: string;
 }[] = [
   { id: 'All', label: 'All' },
-  { id: 'Showreel', label: 'Showreel' },
+  { id: 'Demoreel', label: 'Demoreel' },
   { id: '2D', label: '2D' },
   { id: 'Sound Design', label: 'Sound Design' },
   { id: 'Editorial', label: 'Editorial' },
@@ -188,7 +188,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
           {/* Hero Stage: Full-Width 21:9 Banner + Minimalist International Unit Bar for Commercial-CGI */}
           {domain.id === 'commercial-cgi' && domain.internationalUnit ? (
-            <div className="rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] shadow-[0_16px_45px_rgba(30,36,36,0.07)] overflow-hidden">
+            <div className="rounded-3xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#27363A] shadow-[0_16px_45px_rgba(30,36,36,0.07)] dark:shadow-[0_18px_45px_rgba(0,0,0,0.35)] overflow-hidden">
               {/* Real Studio Photo Hero Stage (16:9) */}
               <div className="aspect-[16/9] w-full bg-[#121616] relative overflow-hidden">
                 <img
@@ -211,13 +211,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               </div>
 
               {/* Minimalist Signature Bar: Concise Keywords + BearStudio (3earstudio.com) */}
-              <div className="px-5 sm:px-8 py-4 sm:py-5 bg-[#FAF8F4] border-t border-[#DCD6C8] flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="px-4 sm:px-8 py-4 sm:py-5 bg-[#FAF8F4] dark:bg-[#151E20] border-t border-[#DCD6C8] dark:border-[#27363A] flex flex-col md:flex-row md:items-center justify-between gap-4">
                 {/* Concise Keywords Only (No cluttered paragraphs) */}
                 <div className="space-y-1 text-right">
-                  <div className="text-xs sm:text-sm font-bold text-[#1E2424]">
+                  <div className="text-xs sm:text-sm font-bold text-[#1E2424] dark:text-[#F2EFE9]">
                     {domain.internationalUnit.keywordsFa.join(' · ')}
                   </div>
-                  <div className="text-[11px] sm:text-xs font-en text-[#777A76] tracking-wide">
+                  <div className="text-[11px] sm:text-xs font-en text-[#777A76] dark:text-[#96A7A7] tracking-wide">
                     {domain.internationalUnit.keywordsEn.join(' · ')}
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   dir="ltr"
-                  className="group w-full md:w-auto justify-between md:justify-start flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-[#F4F0E6] hover:bg-[#1E2424] border border-[#DCD6C8] hover:border-[#1E2424] transition-all duration-300"
+                  className="group w-full md:w-auto justify-between md:justify-start flex items-center gap-3.5 px-4 py-2.5 rounded-2xl bg-[#F4F0E6] dark:bg-[#1B2629] hover:bg-[#1E2424] dark:hover:bg-[#243337] border border-[#DCD6C8] dark:border-[#2C3E42] hover:border-[#1E2424] dark:hover:border-[#65B7B5] transition-all duration-300"
                 >
                   <div className="w-9 h-9 rounded-xl bg-[#181D1D] flex items-center justify-center p-1.5 shrink-0 border border-white/10">
                     <img
@@ -242,10 +242,10 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                   </div>
 
                   <div className="text-left">
-                    <div className="text-xs font-en font-bold text-[#1E2424] group-hover:text-[#FAF8F4] transition-colors flex items-center gap-1.5">
+                    <div className="text-xs font-en font-bold text-[#1E2424] dark:text-[#F2EFE9] group-hover:text-[#FAF8F4] transition-colors flex items-center gap-1.5">
                       <span>{domain.internationalUnit.roleLabel}</span>
                     </div>
-                    <div className="text-[11px] font-mono text-[#3E777A] group-hover:text-[#65B7B5] transition-colors flex items-center gap-1">
+                    <div className="text-[11px] font-mono text-[#3E777A] dark:text-[#65B7B5] group-hover:text-[#65B7B5] transition-colors flex items-center gap-1">
                       <span>{domain.internationalUnit.websiteLabel}</span>
                       <ExternalLink className="w-3 h-3 opacity-80" />
                     </div>
@@ -1760,7 +1760,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                 <div
                   role="tablist"
                   aria-label="فیلتر نمونه‌کارها"
-                  className="flex flex-wrap items-center gap-1.5"
+                  className="flex flex-wrap items-center gap-1.5 sm:gap-2"
                 >
                   {PORTFOLIO_CATEGORIES.map((cat) => {
                     const count =
@@ -1777,10 +1777,10 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                         role="tab"
                         aria-selected={isSelected}
                         onClick={() => setActiveCategory(cat.id)}
-                        className={`px-3.5 py-1.5 rounded-full text-xs font-en font-semibold transition-all cursor-pointer ${
+                        className={`px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-en font-semibold transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-[#3E777A] text-[#FAF8F4]'
-                            : 'bg-[#FAF8F4] hover:bg-[#E4DFD3] text-[#434846] hover:text-[#1E2424] border border-[#DCD6C8]'
+                            ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
+                            : 'bg-[#FAF8F4] dark:bg-[#151E20] hover:bg-[#E4DFD3] dark:hover:bg-[#1E2B2E] text-[#434846] dark:text-[#CBD5D5] hover:text-[#1E2424] dark:hover:text-[#F2EFE9] border border-[#DCD6C8] dark:border-[#27363A]'
                         }`}
                       >
                         {cat.label}
@@ -1792,7 +1792,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
             </div>
 
             {/* Clean, Concise Grid Cards (Unified across Teaser & Video Mapping) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
               {filteredGalleryItems.map((item) => {
                 const isHovered = hoveredCardId === item.id;
 
@@ -1804,83 +1804,86 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                       onMouseEnter={() => setHoveredCardId(item.id)}
                       onMouseLeave={() => setHoveredCardId(null)}
                       onClick={() => setSelectedItem(item)}
-                      className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] hover:border-[#3E777A] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.08)] hover:-translate-y-0.5"
+                      className="group cursor-pointer rounded-2xl bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#27363A] hover:border-[#3E777A] dark:hover:border-[#65B7B5] overflow-hidden transition-all duration-300 hover:shadow-[0_14px_35px_rgba(30,36,36,0.08)] dark:hover:shadow-[0_14px_35px_rgba(0,0,0,0.4)] hover:-translate-y-0.5"
                     >
                       {/* Top Window Bar: Category + 3 Dots (Exact 3earstudio structure) */}
-                      <div className="px-4 py-2.5 bg-[#F4F0E6] border-b border-[#DCD6C8] flex items-center justify-between">
+                      <div className="px-4 py-2.5 bg-[#F4F0E6] dark:bg-[#1B2629] border-b border-[#DCD6C8] dark:border-[#27363A] flex items-center justify-between">
                         <div className="flex items-center gap-1.5" aria-hidden="true">
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#3E777A] transition-colors" />
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#65B7B5] transition-colors" />
-                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 group-hover:bg-[#D6B16A] transition-colors" />
+                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 dark:bg-white/20 group-hover:bg-[#3E777A] transition-colors" />
+                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 dark:bg-white/20 group-hover:bg-[#65B7B5] transition-colors" />
+                          <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 dark:bg-white/20 group-hover:bg-[#D6B16A] transition-colors" />
                         </div>
-                        <span className="text-xs font-en font-semibold text-[#434846]">
+                        <span className="text-xs font-en font-semibold text-[#434846] dark:text-[#CBD5D5]">
                           {item.category || 'Live Video Mapping'}
                         </span>
                       </div>
 
-                        {/* 16:9 Thumbnail / Preview Stage */}
-                        <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
-                          {item.imageUrl && (
-                            <img
-                              src={item.imageUrl}
-                              alt={item.titleEn || item.title}
-                              referrerPolicy="no-referrer"
-                              loading="eager"
-                              decoding="sync"
-                              onError={(e) => {
-                                const target = e.currentTarget;
-                                if (
-                                  item.fallbackImageUrl &&
-                                  target.src !== item.fallbackImageUrl
-                                ) {
-                                  target.src = item.fallbackImageUrl;
-                                } else if (
-                                  domain.imageUrl &&
-                                  target.src !== domain.imageUrl
-                                ) {
-                                  target.src = domain.imageUrl;
-                                }
-                              }}
-                              className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-104"
-                            />
-                          )}
+                      {/* 16:9 Thumbnail / Preview Stage */}
+                      <div className="aspect-video w-full bg-[#121616] relative overflow-hidden">
+                        {item.imageUrl && (
+                          <img
+                            src={item.imageUrl}
+                            alt={item.titleEn || item.title}
+                            referrerPolicy="no-referrer"
+                            loading="eager"
+                            decoding="sync"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              if (
+                                item.fallbackImageUrl &&
+                                target.src !== item.fallbackImageUrl
+                              ) {
+                                target.src = item.fallbackImageUrl;
+                              } else if (
+                                domain.imageUrl &&
+                                target.src !== domain.imageUrl
+                              ) {
+                                target.src = domain.imageUrl;
+                              }
+                            }}
+                            className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-104"
+                          />
+                        )}
 
-                          {isHovered && item.previewVideoUrl && (
-                            <video
-                              src={item.previewVideoUrl}
-                              poster={item.imageUrl}
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              className="absolute inset-0 w-full h-full object-cover object-center z-1"
-                            />
-                          )}
+                        {isHovered && item.previewVideoUrl && (
+                          <video
+                            src={item.previewVideoUrl}
+                            poster={item.imageUrl}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="absolute inset-0 w-full h-full object-cover object-center z-1"
+                          />
+                        )}
 
-                          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors z-2" />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors z-2" />
 
-                          {/* Center Play Button */}
-                          <div className="absolute inset-0 z-3 flex items-center justify-center">
-                            <div className="w-13 h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] keep-light-pill flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
-                              <Play className="w-5 h-5 fill-current ml-0.5" />
-                            </div>
+                        {/* Center Play Button */}
+                        <div className="absolute inset-0 z-3 flex items-center justify-center">
+                          <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] keep-light-pill flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
+                            <Play className="w-5 h-5 fill-current ml-0.5" />
                           </div>
                         </div>
+                      </div>
 
-                        {/* Minimal Card Title Bar */}
-                        <div className="px-5 py-3.5 bg-[#FAF8F4] flex items-center justify-between gap-3">
-                          <h3 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors truncate">
-                            {item.title}
-                          </h3>
-                          {item.titleEn && (
-                            <span className="text-xs font-en font-semibold text-[#777A76] shrink-0">
-                              {item.titleEn}
-                            </span>
-                          )}
-                        </div>
-                      </article>
-                    );
-                  }
+                      {/* Minimal Card Title Bar */}
+                      <div className="px-4 sm:px-5 py-3.5 bg-[#FAF8F4] dark:bg-[#151E20] flex items-center justify-between gap-3">
+                        <h3
+                          dir={item.title === item.titleEn ? 'ltr' : 'rtl'}
+                          className="text-sm sm:text-base font-bold text-[#1E2424] dark:text-[#F2EFE9] group-hover:text-[#3E777A] dark:group-hover:text-[#65B7B5] transition-colors truncate"
+                        >
+                          {item.title}
+                        </h3>
+                        {item.titleEn && item.titleEn !== item.title && (
+                          <span className="text-xs font-en font-semibold text-[#777A76] dark:text-[#96A7A7] shrink-0">
+                            {item.titleEn}
+                          </span>
+                        )}
+                      </div>
+                    </article>
+                  );
+                }
 
                   // Standard Concise Card for other domains
                   return (
@@ -2246,136 +2249,171 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
       </div>
 
       {/* Dedicated Project Detail Card Modal (Opens when clicking Play/Card) */}
-      {selectedItem && (
-        <div
-          onClick={() => setSelectedItem(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overscroll-none"
-        >
+      {selectedItem && (() => {
+        const isCompactModal =
+          selectedItem.aspectRatio === '9:16' || selectedItem.aspectRatio === '1:1';
+        return (
           <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-[#FAF8F4] border border-[#DCD6C8] rounded-3xl overflow-hidden shadow-2xl my-auto flex flex-col max-h-[90dvh] sm:max-h-[92vh]"
+            onClick={() => setSelectedItem(null)}
+            className="fixed inset-0 z-50 bg-black/80 dark:bg-black/85 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-5 overscroll-none"
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-[#F4F0E6] border-b border-[#DCD6C8] shrink-0">
-              <div className="flex items-center gap-2.5 text-right">
-                {selectedItem.category && (
-                  <span className="px-2.5 py-1 rounded-lg bg-[#3E777A] text-[#FAF8F4] text-xs font-en font-semibold">
-                    {selectedItem.category}
-                  </span>
-                )}
-                {selectedItem.badge && (
-                  <span className="text-xs font-bold text-[#3E777A]">
-                    {selectedItem.badge}
-                  </span>
-                )}
-              </div>
-
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="p-2 rounded-full bg-[#EDE9DF] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] transition-colors cursor-pointer"
-                aria-label="بستن"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Scrollable Modal Body */}
-            <div ref={modalScrollRef} className="overflow-y-auto flex-1 overscroll-contain">
-              {/* Full-Width Embedded Player or Image Without Side Margins */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`relative w-full ${
+                selectedItem.aspectRatio === '9:16'
+                  ? 'max-w-[min(92vw,360px)] sm:max-w-[min(390px,45dvh)]'
+                  : selectedItem.aspectRatio === '1:1'
+                    ? 'max-w-[min(92vw,440px)] sm:max-w-[min(460px,56dvh)]'
+                    : 'max-w-4xl'
+              } bg-[#FAF8F4] dark:bg-[#151E20] border border-[#DCD6C8] dark:border-[#27363A] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl my-auto flex flex-col max-h-[92dvh]`}
+            >
+              {/* Modal Header */}
               <div
-                className={`w-full bg-[#121616] flex items-center justify-center overflow-hidden border-b border-[#DCD6C8] shrink-0 ${
-                  selectedItem.embedUrl || selectedItem.videoUrl || selectedItem.canvasType
-                    ? 'aspect-video'
-                    : ''
-                }`}
+                className={`flex items-center justify-between ${
+                  isCompactModal ? 'px-4 py-3' : 'px-4 sm:px-6 py-3.5 sm:py-4'
+                } bg-[#F4F0E6] dark:bg-[#1B2629] border-b border-[#DCD6C8] dark:border-[#27363A] shrink-0 gap-2`}
               >
-                {selectedItem.embedUrl ? (
-                  <iframe
-                    src={selectedItem.embedUrl}
-                    title={selectedItem.title}
-                    className="w-full h-full border-0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                ) : selectedItem.videoUrl ? (
-                  <video
-                    src={selectedItem.videoUrl}
-                    poster={selectedItem.imageUrl}
-                    controls
-                    autoPlay
-                    className="w-full h-full object-cover"
-                  />
-                ) : selectedItem.imageUrl ? (
-                  <img
-                    src={selectedItem.imageUrl}
-                    alt={selectedItem.title}
-                    referrerPolicy="no-referrer"
-                    loading="eager"
-                    decoding="sync"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      if (
-                        selectedItem.fallbackImageUrl &&
-                        target.src !== selectedItem.fallbackImageUrl
-                      ) {
-                        target.src = selectedItem.fallbackImageUrl;
-                      }
-                    }}
-                    className={
-                      selectedItem.id.startsWith('game-mobile-') ||
-                      selectedItem.id.startsWith('game-board-card-') ||
-                      selectedItem.id.startsWith('game-token-')
-                        ? 'max-h-[65vh] w-auto mx-auto block object-contain py-4 drop-shadow-md'
-                        : 'w-full h-auto block'
-                    }
-                  />
-                ) : selectedItem.canvasType ? (
-                  <VisualArtCanvas
-                    type={selectedItem.canvasType}
-                    className="w-full h-full"
-                    showControls={false}
-                  />
-                ) : null}
-              </div>
-
-              {/* Project Details & Description Inside Modal Card */}
-              <div className="p-6 sm:p-8 space-y-4 text-right bg-[#FAF8F4]">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E0D4] pb-4">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-black text-[#1E2424]">
-                      {selectedItem.title}
-                    </h3>
-                    <span className="text-xs font-en text-[#777A76] block mt-0.5">
-                      {selectedItem.subtitle}
+                <div className="flex flex-wrap items-center gap-2 text-right min-w-0">
+                  {selectedItem.category && (
+                    <span className="px-2.5 py-0.5 sm:py-1 rounded-lg bg-[#3E777A] text-[#FAF8F4] text-[11px] sm:text-xs font-en font-semibold shrink-0">
+                      {selectedItem.category}
                     </span>
-                  </div>
-
-                  {selectedItem.externalUrl && (
-                    <a
-                      href={selectedItem.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="self-start sm:self-auto px-4 py-2 rounded-xl bg-[#EDE9DF] hover:bg-[#3E777A] text-[#1E2424] hover:text-[#FAF8F4] text-xs font-bold flex items-center gap-2 transition-colors shrink-0"
-                    >
-                      <span>مشاهده در پلتفرم اصلی</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                  )}
+                  {selectedItem.badge && (
+                    <span className="text-[11px] sm:text-xs font-bold text-[#3E777A] dark:text-[#65B7B5] truncate">
+                      {selectedItem.badge}
+                    </span>
                   )}
                 </div>
 
-                <div className="space-y-1.5">
-                  <span className="text-xs font-bold text-[#3E777A] block">
-                    درباره این اثر:
-                  </span>
-                  <p className="text-xs sm:text-sm text-[#434846] leading-relaxed">
-                    {selectedItem.description}
-                  </p>
+                <button
+                  onClick={() => setSelectedItem(null)}
+                  className="p-1.5 sm:p-2 rounded-full bg-[#EDE9DF] dark:bg-[#243337] hover:bg-[#3E777A] dark:hover:bg-[#3E777A] text-[#1E2424] dark:text-[#F2EFE9] hover:text-[#FAF8F4] transition-colors cursor-pointer shrink-0"
+                  aria-label="بستن"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Scrollable Modal Body */}
+              <div ref={modalScrollRef} className="overflow-y-auto flex-1 overscroll-contain">
+                {/* Embedded Player or Image Matched to Native Aspect Ratio (Zero Extra Margins) */}
+                <div
+                  className={`w-full bg-black flex items-center justify-center overflow-hidden border-b border-[#DCD6C8] dark:border-[#27363A] shrink-0 ${
+                    selectedItem.embedUrl || selectedItem.videoUrl || selectedItem.canvasType
+                      ? selectedItem.aspectRatio === '9:16'
+                        ? 'aspect-[9/16]'
+                        : selectedItem.aspectRatio === '1:1'
+                          ? 'aspect-square'
+                          : 'aspect-video'
+                      : ''
+                  }`}
+                >
+                  {selectedItem.embedUrl ? (
+                    <iframe
+                      src={selectedItem.embedUrl}
+                      title={selectedItem.title}
+                      className="w-full h-full border-0 block"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  ) : selectedItem.videoUrl ? (
+                    <video
+                      src={selectedItem.videoUrl}
+                      poster={selectedItem.imageUrl}
+                      controls
+                      autoPlay
+                      className="w-full h-full object-cover block"
+                    />
+                  ) : selectedItem.imageUrl ? (
+                    <img
+                      src={selectedItem.imageUrl}
+                      alt={selectedItem.title}
+                      referrerPolicy="no-referrer"
+                      loading="eager"
+                      decoding="sync"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (
+                          selectedItem.fallbackImageUrl &&
+                          target.src !== selectedItem.fallbackImageUrl
+                        ) {
+                          target.src = selectedItem.fallbackImageUrl;
+                        }
+                      }}
+                      className={
+                        selectedItem.id.startsWith('game-mobile-') ||
+                        selectedItem.id.startsWith('game-board-card-') ||
+                        selectedItem.id.startsWith('game-token-')
+                          ? 'max-h-[65vh] w-auto mx-auto block object-contain py-4 drop-shadow-md'
+                          : 'w-full h-auto block'
+                      }
+                    />
+                  ) : selectedItem.canvasType ? (
+                    <VisualArtCanvas
+                      type={selectedItem.canvasType}
+                      className="w-full h-full"
+                      showControls={false}
+                    />
+                  ) : null}
+                </div>
+
+                {/* Project Details & Description Inside Modal Card */}
+                <div
+                  className={`${
+                    isCompactModal ? 'p-4 sm:p-5 space-y-3' : 'p-5 sm:p-8 space-y-4'
+                  } text-right bg-[#FAF8F4] dark:bg-[#151E20]`}
+                >
+                  <div
+                    className={`flex ${
+                      isCompactModal
+                        ? 'flex-col items-start gap-2.5'
+                        : 'flex-col sm:flex-row sm:items-center justify-between gap-3'
+                    } border-b border-[#E5E0D4] dark:border-[#27363A] pb-3.5`}
+                  >
+                    <div className={isCompactModal ? 'w-full' : 'min-w-0 flex-1'}>
+                      <h3
+                        dir={selectedItem.title === selectedItem.titleEn ? 'ltr' : 'rtl'}
+                        className={`${
+                          isCompactModal ? 'text-sm sm:text-base' : 'text-base sm:text-xl'
+                        } font-black text-[#1E2424] dark:text-[#F2EFE9] leading-snug`}
+                      >
+                        {selectedItem.title}
+                      </h3>
+                      <span className="text-[11px] sm:text-xs font-en text-[#777A76] dark:text-[#96A7A7] block mt-0.5">
+                        {selectedItem.subtitle}
+                      </span>
+                    </div>
+
+                    {selectedItem.externalUrl && (
+                      <a
+                        href={selectedItem.externalUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${
+                          isCompactModal ? 'self-start' : 'self-start sm:self-auto'
+                        } px-3.5 py-2 rounded-xl bg-[#EDE9DF] dark:bg-[#1E2B2E] hover:bg-[#3E777A] dark:hover:bg-[#3E777A] text-[#1E2424] dark:text-[#F2EFE9] hover:text-[#FAF8F4] text-xs font-bold flex items-center gap-2 transition-colors shrink-0 border border-transparent dark:border-[#2C3E42]`}
+                      >
+                        <span>مشاهده در پلتفرم اصلی</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <span className="text-xs font-bold text-[#3E777A] dark:text-[#65B7B5] block">
+                      درباره این اثر:
+                    </span>
+                    <p className="text-xs sm:text-sm text-[#434846] dark:text-[#CBD5D5] leading-relaxed">
+                      {selectedItem.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 };

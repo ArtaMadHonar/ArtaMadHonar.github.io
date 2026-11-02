@@ -42,7 +42,8 @@ export interface DomainGalleryItem {
   subtitle?: string;
   description: string;
   badge?: string;
-  category?: 'AI Assisted' | 'Making of' | 'Editorial' | 'Sound Design' | '2D' | 'Showreel';
+  category?: 'AI Assisted' | 'Making of' | 'Editorial' | 'Sound Design' | '2D' | 'Demoreel';
+  aspectRatio?: '16:9' | '9:16' | '1:1';
   imageUrl?: string;
   fallbackImageUrl?: string;
   videoUrl?: string;
@@ -212,7 +213,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: 'mahmoud-mohammadian',
     name: 'محمود محمدیان',
     nameEn: 'Mahmoud Mohammadian',
-    role: 'هم‌بنیانگذار | کارگردان و نویسنده انیمیشن',
+    role: 'بنیان‌گذار | کارگردان و نویسنده انیمیشن',
     roleEn: 'Co-Founder | Animation Director & Screenwriter',
     department: 'leadership',
     initials: 'MM',
@@ -273,7 +274,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: 'mohammad-rahimi',
     name: 'محمد رحیمی',
     nameEn: 'Mohamad Rahimi',
-    role: 'هم‌بنیانگذار | مدیر فنی هوش مصنوعی و معمار پایپلاین تولید',
+    role: 'بنیان‌گذار | مدیر فنی هوش مصنوعی و معمار پایپ‌لاین تولید',
     roleEn: 'Co-Founder | AI Technical Director & Production Pipeline Architect',
     department: 'leadership',
     initials: 'MR',
@@ -287,7 +288,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       'محمد رحیمی با بیش از دو دهه فعالیت پیوسته در جلوه‌های بصری کلاسیک (VFX)، تدوین، کامپوزیت و تولید تیزرهای تبلیغاتی، هدایت فنی و معماری پایپلاین هوش مصنوعی استودیو را بر عهده دارد. تمرکز اصلی او بر پیوند استانداردهای سینمایی پس‌ازتولید با گردش‌کارهای نوین مبتنی بر هوش مصنوعی است؛ رویکردی که در پروژه سینمایی «روز شگفت‌انگیز» امکان دستیابی به کیفیتی رقابتی و یکپارچه را در کنار بهینه‌سازی چشمگیر زمان و منابع تولید فراهم کرده است.',
     workHistory: [
       {
-        role: 'هم‌بنیانگذار و مدیر فنی هوش مصنوعی',
+        role: 'بنیان‌گذار و مدیر فنی هوش مصنوعی',
         projectOrOrg: 'استودیو آرتا ماد هنر (Arta Mad Honar Studio)',
         year: '۱۴۰۱ تاکنون',
         detail:
@@ -327,7 +328,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: 'mehdi-mohammadian',
     name: 'مهدی محمدیان',
     nameEn: 'Mehdi Mohammadian',
-    role: 'هم‌بنیانگذار | کارگردان و نویسنده انیمیشن',
+    role: 'بنیان‌گذار | کارگردان و نویسنده انیمیشن',
     roleEn: 'Co-Founder | Animation Director & Screenwriter',
     department: 'leadership',
     initials: 'MM',
@@ -615,7 +616,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
     imageUrl:
       'https://s1.uploadkon.ir/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6-WonderfulDay.webp',
     videoUrl:
-      'https://my.uploadkon.ir/d/kTietQDzNP9HG0g6en6svEr0bdejyd/NTM1NDZ8cGFkZA.mp4',
+      'https://my.uploadkon.ir/d/YA3wusaJ06XWF9R1yDFHf9nPpntKTf/MTA3MDg5fHBhZA.mp4',
     description:
       'توسعه و تولید انیمیشن، خلق شخصیت‌ها و جهان‌های داستانی و گسترش دارایی‌های فکری (IP) با هویت هنری و فرهنگی متمایز. محور اصلی این دپارتمان، انیمیشن سه‌بعدی سینمایی بلند «روز شگفت‌انگیز» به تهیه‌کنندگی فیلمیران درباره پویو و خانواده میو در شهری خیال‌پردازانه است.',
     secondaryDescription:
@@ -677,15 +678,15 @@ export const SELECTED_WORKS: ProjectWork[] = [
     galleryItems: [
       {
         id: 'wd-showreel',
-        title: 'تیزر و شوریل سینمایی «روز شگفت‌انگیز»',
-        subtitle: 'Official Cinematic Showreel · A Wonderful Day',
+        title: 'تیزر و دموریل سینمایی «روز شگفت‌انگیز»',
+        subtitle: 'Official Cinematic Demoreel · A Wonderful Day',
         badge: 'ویدیوی رسمی اثر',
         description:
           'نمایشی از فضای شهری رنگارنگ، کاراکترهای پویو و خانواده میو، نورپردازی سینمایی و کیفیت بصری انیمیشن بلند «روز شگفت‌انگیز».',
         imageUrl:
           'https://s1.uploadkon.ir/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6/9e2cf738-3ac0-4cf6-ae0d-d021a84546c6-WonderfulDay.webp',
         videoUrl:
-          'https://my.uploadkon.ir/d/kTietQDzNP9HG0g6en6svEr0bdejyd/NTM1NDZ8cGFkZA.mp4',
+          'https://my.uploadkon.ir/d/YA3wusaJ06XWF9R1yDFHf9nPpntKTf/MTA3MDg5fHBhZA.mp4',
       },
       {
         id: 'wd-shot-1',
@@ -801,7 +802,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
       },
       {
         id: 'cgi-02-sadra',
-        title: 'فیلم تبلیغاتی و هویت بصری SADRA',
+        title: 'SADRA',
         titleEn: 'SADRA',
         subtitle: 'AI Assisted Brand Film & Visual Storytelling',
         category: 'AI Assisted',
@@ -867,6 +868,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         titleEn: 'Burux Magicbox Sound Design',
         subtitle: 'Bespoke Sound Design, Foley & Audio Architecture',
         category: 'Sound Design',
+        aspectRatio: '1:1',
         badge: 'طراحی صدا و SFX',
         description:
           'معماری صوتی اختصاصی، افکت‌های صوتی دقیق (SFX & Foley) و همگام‌سازی بافت‌های شنیداری با حرکات سه‌بعدی و موشن‌گرافیک محصول.',
@@ -944,6 +946,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         titleEn: 'The Evolution of Freemasonry',
         subtitle: '2D Animated Documentary & Visual Narrative',
         category: '2D',
+        aspectRatio: '9:16',
         badge: 'انیمیشن و روایت ۲D',
         description:
           'تصویرسازی اختصاصی، کارگردانی هنری دوبعدی، کامپوزیت لایه‌های نوری و حرکت دوربین در فضای ۲.۵ بعدی برای روایت مستند تاریخی.',
@@ -956,11 +959,12 @@ export const SELECTED_WORKS: ProjectWork[] = [
       },
       {
         id: 'cgi-12-social-media-showreel',
-        title: 'شوریل تولیدات دیجیتال و شبکه‌های اجتماعی (Social Media Showreel)',
-        titleEn: 'Social Media Showreel',
-        subtitle: 'Showreel · Short-Form Commercials & Digital Content',
-        category: 'Showreel',
-        badge: 'شوریل رسمی (Showreel)',
+        title: 'دموریل تولیدات دیجیتال و شبکه‌های اجتماعی (Social Media Demoreel)',
+        titleEn: 'Social Media Demoreel',
+        subtitle: 'Demoreel · Short-Form Commercials & Digital Content',
+        category: 'Demoreel',
+        aspectRatio: '9:16',
+        badge: 'دموریل رسمی (Demoreel)',
         description:
           'گزیده‌ای از تیزرها، ویدیوهای خلاقانه و کمپین‌های تولیدشده ویژه پلتفرم‌های دیجیتال و شبکه‌های اجتماعی با ریتم تند و هویت بصری متنوع.',
         imageUrl: 'https://3earstudio.com/thumbnails/social-media.jpg',
@@ -972,11 +976,12 @@ export const SELECTED_WORKS: ProjectWork[] = [
       },
       {
         id: 'cgi-13-commercial-showreel',
-        title: 'شوریل جامع تیزرهای تبلیغاتی و تولیدات تجاری (Commercial Showreel)',
-        titleEn: 'Commercial Showreel',
-        subtitle: 'Showreel · Flagship Broadcast & CGI Commercials',
-        category: 'Showreel',
-        badge: 'شوریل رسمی (Showreel)',
+        title: 'دموریل جامع تیزرهای تبلیغاتی و تولیدات تجاری (Commercial Demoreel)',
+        titleEn: 'Commercial Demoreel',
+        subtitle: 'Demoreel · Flagship Broadcast & CGI Commercials',
+        category: 'Demoreel',
+        aspectRatio: '16:9',
+        badge: 'دموریل رسمی (Demoreel)',
         description:
           'مروری بر شاخص‌ترین تیزرهای تبلیغاتی، فیلم‌های معرفی محصول، جلوه‌های ویژه بصری و تولیدات CGI استودیو برای برندها و کسب‌وکارها.',
         imageUrl: 'https://3earstudio.com/thumbnails/commercial.jpg',

@@ -67,7 +67,7 @@ export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
                 </span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-black text-[#1E2424]">
-                هم‌بنیانگذاران استودیو آرتا ماد هنر
+                بنیان‌گذاران استودیو آرتا ماد هنر
               </h2>
             </div>
             <span className="text-xs text-[#777A76] text-right">

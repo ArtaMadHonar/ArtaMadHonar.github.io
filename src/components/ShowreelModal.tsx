@@ -8,7 +8,7 @@ interface ShowreelModalProps {
 }
 
 const WONDERFUL_DAY_VIDEO =
-  'https://s1.uploadkon.ir/749db110-5043-4619-b4b0-1b2734e7fdea/749db110-5043-4619-b4b0-1b2734e7fdea-Wonderful%20Day%20-%20Trailer_%20Telegram%20.mp4';
+  'https://my.uploadkon.ir/d/YA3wusaJ06XWF9R1yDFHf9nPpntKTf/MTA3MDg5fHBhZA.mp4';
 const WONDERFUL_DAY_POSTER = '/assets/wonderful-day-hero.webp';
 
 function formatTime(seconds: number): string {
