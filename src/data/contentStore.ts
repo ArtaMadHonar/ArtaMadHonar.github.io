@@ -1,5 +1,5 @@
 import defaultData from './studioContent.json';
-import type { ProjectWork, TeamMember, WonderfulDayCatalog } from './studioData';
+import type { ProjectWork, TeamMember } from './studioData';
 
 export interface StudioSeoSettings {
   siteTitle: string;
@@ -10,8 +10,77 @@ export interface StudioSeoSettings {
   siteUrl: string;
 }
 
+export interface HeroContent {
+  titleFa: string;
+  titleEn: string;
+  badges: string[];
+  teaserTitle: string;
+  teaserGenre: string;
+  teaserPipeline: string;
+  videoUrl: string;
+  posterUrl: string;
+}
+
+export interface ConceptSlide {
+  id: string;
+  url: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface FlagshipSpotlightContent {
+  titleFa: string;
+  titleEn: string;
+  subBadge: string;
+  genre: string;
+  audience: string;
+  logline: string;
+  slides: ConceptSlide[];
+}
+
+export interface CapabilityPillar {
+  num: string;
+  title: string;
+  en: string;
+  keywords: string[];
+}
+
+export interface FooterContent {
+  address: string;
+  email: string;
+  googleMapsUrl: string;
+  copyrightText: string;
+  socials: {
+    instagram: string;
+    linkedin: string;
+    youtube: string;
+    telegram: string;
+  };
+}
+
+export interface HomeContent {
+  hero: HeroContent;
+  flagshipSpotlight: FlagshipSpotlightContent;
+  capabilities: CapabilityPillar[];
+  footer: FooterContent;
+}
+
+export interface GameLabHighlights {
+  dailyPlaytimeMinutes: string;
+  dailyPlaytimeLabel: string;
+  dailyPlaytimeSub: string;
+  mobileGameTitle: string;
+  mobileGameSubtitle: string;
+  mobileGameDescription: string;
+  pcGameTitle: string;
+  pcGameSubtitle: string;
+  pcGameDescription: string;
+}
+
 export interface StudioContent {
   seo: StudioSeoSettings;
+  home: HomeContent;
+  gameLabHighlights: GameLabHighlights;
   selectedWorks: ProjectWork[];
   teamMembers: TeamMember[];
   wonderfulDayCatalog: typeof defaultData.wonderfulDayCatalog;
@@ -29,7 +98,10 @@ export function getStudioContent(): StudioContent {
       if (cached) {
         const parsed = JSON.parse(cached);
         if (parsed && parsed.selectedWorks && parsed.teamMembers) {
-          return parsed as StudioContent;
+          return {
+            ...defaultData,
+            ...parsed,
+          } as StudioContent;
         }
       }
     } catch {
