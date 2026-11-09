@@ -5,7 +5,7 @@ import React, {
   useImperativeHandle,
   forwardRef,
 } from 'react';
-import { Play, Pause, Volume2, VolumeX, Maximize2, RotateCcw } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react';
 
 export interface HeroVideoPlayerHandle {
   play: () => void;

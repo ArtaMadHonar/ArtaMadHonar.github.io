@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, ArrowUp, MapPin, ArrowLeft, ExternalLink, Instagram } from 'lucide-react';
+import { Mail, ArrowUp, ArrowLeft, ExternalLink, Instagram } from 'lucide-react';
 import { STUDIO_CATALOG_INFO, SELECTED_WORKS } from '../data/studioData';
 import { openInquiryModal } from '../utils/modalEvents';
 

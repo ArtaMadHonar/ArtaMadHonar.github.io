@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Pause, Sparkles, Eye, Film, Volume2, VolumeX, Maximize2, ShieldCheck, Cpu } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 interface VisualArtCanvasProps {
   type:
