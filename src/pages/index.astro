@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { HeroSection } from '@/components/HeroSection';
+import { FlagshipSpotlight } from '@/components/FlagshipSpotlight';
+import { InteractiveShowcase } from '@/components/InteractiveShowcase';
+import { EditorialPhilosophy } from '@/components/EditorialPhilosophy';
+import { TeamGallery } from '@/components/TeamGallery';
+---
+
+<BaseLayout
+  title="استودیو آرتا ماد هنر | Arta Mad Honar Studio"
+  description="وب‌سایت رسمی استودیو آرتا ماد هنر؛ پیشرو در تولید انیمیشن‌های سینمایی، خلق و توسعه IP، تیزرهای تبلیغاتی، ویدئو مپینگ و بازی‌سازی با تلفیق هنر و هوش مصنوعی."
+  ogImage="/assets/wonderful-day-hero.webp"
+>
+  {/* 1. Grand Hero Canvas & Video Player */}
+  <HeroSection client:load />
+
+  {/* 2. Flagship Feature Spotlight: «روز شگفت‌انگیز» */}
+  <FlagshipSpotlight client:visible />
+
+  {/* 3. 5 Studio Domains & Interactive Bento Grid */}
+  <InteractiveShowcase client:visible />
+
+  {/* 4. Core Strategic Capabilities */}
+  <EditorialPhilosophy client:visible />
+
+  {/* 5. Co-Founders & Studio Ensemble */}
+  <TeamGallery client:visible />
+</BaseLayout>

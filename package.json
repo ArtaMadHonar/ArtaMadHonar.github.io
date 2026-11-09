@@ -1,0 +1,31 @@
+{
+  "name": "artamad-studio",
+  "version": "1.0.0",
+  "description": "وب‌سایت رسمی استودیو آرتا ماد هنر | Arta Mad Honar Studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview --host"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@fontsource/vazirmatn": "^5.3.0",
+    "@tailwindcss/vite": "^4.0.9",
+    "astro": "^5.4.0",
+    "lucide-react": "^0.475.0",
+    "motion": "^12.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.9"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "typescript": "^5.7.3"
+  }
+}

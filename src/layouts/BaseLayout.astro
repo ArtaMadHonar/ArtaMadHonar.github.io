@@ -1,0 +1,102 @@
+---
+import '@/styles/global.css';
+import { Navbar } from '@/components/Navbar';
+import { FooterSection } from '@/components/FooterSection';
+import { GlobalModals } from '@/components/GlobalModals';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  activeDomainId?: string | null;
+}
+
+const {
+  title = 'استودیو آرتا ماد هنر | Arta Mad Honar Studio',
+  description = 'استودیو انیمیشن، خلق و توسعه IP، تیزرهای تبلیغاتی CGI، ویدئو مپینگ، بازی‌سازی و فناوری‌های نوین با بهره‌گیری از هوش مصنوعی.',
+  ogImage = '/assets/logo.png',
+  activeDomainId = null,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://artamad.ir');
+---
+
+<!doctype html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    {/* Favicon & Icons */}
+    <link rel="icon" type="image/png" href="/assets/favicon-square.png" />
+    <link rel="apple-touch-icon" href="/assets/favicon-square.png" />
+    <link rel="preload" as="image" href="/assets/logo-trimmed.png" />
+
+    {/* SEO Meta Tags */}
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site || 'https://artamad.ir')} />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site || 'https://artamad.ir')} />
+
+    {/* Schema.org Structured Data */}
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "استودیو آرتا ماد هنر",
+        "alternateName": "Arta Mad Honar Studio",
+        "url": "https://artamad.ir",
+        "logo": "https://artamad.ir/assets/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/artamad_honar/"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@artamad.ir",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+
+    {/* Inline Theme Detection (Prevents FOUT / Color Flickering) */}
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('amh-theme');
+          var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && systemDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#EDE9DF] dark:bg-[#0E1415] text-[#1E2424] dark:text-[#F2EFE9] antialiased selection:bg-[#3E777A] selection:text-[#FAF8F4] transition-colors duration-300 min-h-screen flex flex-col font-fa">
+    <Navbar client:load activeDomainId={activeDomainId} />
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <FooterSection client:visible />
+
+    {/* Interactive Modals Island */}
+    <GlobalModals client:idle />
+  </body>
+</html>

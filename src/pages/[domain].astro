@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DomainDetailPage } from '@/components/DomainDetailPage';
+import { SELECTED_WORKS, type ProjectWork } from '@/data/studioData';
+
+export function getStaticPaths() {
+  return SELECTED_WORKS.map((work) => ({
+    params: { domain: work.id },
+    props: { domain: work },
+  }));
+}
+
+interface Props {
+  domain: ProjectWork;
+}
+
+const { domain } = Astro.props;
+---
+
+<BaseLayout
+  title={`${domain.title} | استودیو آرتا ماد هنر`}
+  description={domain.description}
+  ogImage={domain.imageUrl || '/assets/logo.png'}
+  activeDomainId={domain.id}
+>
+  <DomainDetailPage client:load domain={domain} />
+</BaseLayout>
