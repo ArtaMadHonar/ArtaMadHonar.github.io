@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AdminApp } from '../components/admin/AdminApp';
+---
+
+<BaseLayout
+  title="پنل مدیریت محتوای استودیو آرتا ماد هنر | Arta Mad Honar Admin"
+  description="سامانه مدیریت دپارتمان‌ها، گالری آثار، اعضای تیم و تنظیمات سئوی وب‌سایت آرتا ماد هنر."
+  canonicalUrl="https://artamad.ir/admin"
+>
+  <AdminApp client:only="react" />
+</BaseLayout>

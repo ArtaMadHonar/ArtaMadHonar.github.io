@@ -98,6 +98,24 @@ export const ProjectInquiryModal: React.FC<ProjectInquiryModalProps> = ({
       }
     }
 
+    // 4. Save to dev server API and inquiries inbox
+    try {
+      await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: Date.now().toString(), code, ...inquiryPayload, message: description }),
+      });
+    } catch {
+      // Fallback
+    }
+    try {
+      const existing = JSON.parse(localStorage.getItem('amh-inquiries') || '[]');
+      existing.unshift({ id: Date.now().toString(), code, ...inquiryPayload, message: description });
+      localStorage.setItem('amh-inquiries', JSON.stringify(existing));
+    } catch {
+      // Ignore
+    }
+
     setIsSubmitting(false);
     setSubmittedCode(code);
   };

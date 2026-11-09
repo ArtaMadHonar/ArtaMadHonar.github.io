@@ -192,8 +192,16 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
         {/* Bottom Copyright & Back to Top */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777A76]">
-          <div>
-            © آرتا ماد هنر (Arta Mad Honar) · تمامی حقوق محفوظ است.
+          <div className="flex items-center gap-2">
+            <span>© آرتا ماد هنر (Arta Mad Honar) · تمامی حقوق محفوظ است.</span>
+            <span aria-hidden="true" className="text-[#C7C2B6]">·</span>
+            <a
+              href="/admin"
+              className="text-[#777A76] hover:text-[#3E777A] dark:hover:text-[#65B7B5] transition-colors"
+              title="ورود به پنل مدیریت"
+            >
+              پنل مدیریت
+            </a>
           </div>
 
           <button
