@@ -1,4 +1,4 @@
-﻿export interface WorkHistoryItem {
+export interface WorkHistoryItem {
   role: string;
   projectOrOrg: string;
   year?: string;
@@ -614,7 +614,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
     shortSummary:
       'توسعه و تولید انیمیشن‌های سه‌بعدی سینمایی، خلق شخصیت‌ها و جهان‌های داستانی با محوریت «روز شگفت‌انگیز»، «روز شگفت‌انگیز ۲» و «داستان نوروز».',
     imageUrl:
-      '/assets/wonderful-day-poster.webp',
+      '/assets/wonderful-day-hero.webp',
     videoUrl:
       'https://my.uploadkon.ir/d/YA3wusaJ06XWF9R1yDFHf9nPpntKTf/MTA3MDg5fHBhZA.mp4',
     description:
@@ -684,7 +684,7 @@ export const SELECTED_WORKS: ProjectWork[] = [
         description:
           'نمایشی از فضای شهری رنگارنگ، کاراکترهای پویو و خانواده میو، نورپردازی سینمایی و کیفیت بصری انیمیشن بلند «روز شگفت‌انگیز».',
         imageUrl:
-          '/assets/wonderful-day-poster.webp',
+          '/assets/wonderful-day-hero.webp',
         videoUrl:
           'https://my.uploadkon.ir/d/YA3wusaJ06XWF9R1yDFHf9nPpntKTf/MTA3MDg5fHBhZA.mp4',
       },

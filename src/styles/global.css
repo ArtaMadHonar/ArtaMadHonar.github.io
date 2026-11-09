@@ -28,6 +28,10 @@
   --color-ochre: #D6B16A;
   --color-graphite: #777A76;
   --color-ink: #1E2424;
+  --spacing-13: 3.25rem;
+  --spacing-15: 3.75rem;
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
 }
 
 :root {
@@ -266,3 +270,15 @@ html.dark .hover\:border-\[\#3E777A\]:hover {
 html.dark .brand-logo-img {
   filter: drop-shadow(0 0 1.5px rgba(242, 239, 233, 0.75)) brightness(1.12);
 }
+
+/* Explicit Light-Retention Utilities for Media Controls */
+.keep-light-pill {
+  background-color: #FAF8F4 !important;
+  color: #1E2424 !important;
+}
+
+.keep-light-icon {
+  color: #3E777A !important;
+  fill: #3E777A !important;
+}
+

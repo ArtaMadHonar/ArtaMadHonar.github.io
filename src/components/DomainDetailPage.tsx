@@ -1797,8 +1797,8 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
               {filteredGalleryItems.map((item) => {
                 const isHovered = hoveredCardId === item.id;
 
-                // Minimal 3earstudio.com-style Card for Video Works
-                if (item.embedUrl) {
+                // Minimal 3earstudio.com-style Card for Video Works (Teasers & Video Mapping)
+                if (item.embedUrl || item.videoUrl) {
                   return (
                     <article
                       key={item.id}
@@ -1815,7 +1815,7 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
                           <span className="w-2 h-2 rounded-full bg-[#1E2424]/20 dark:bg-white/20 group-hover:bg-[#D6B16A] transition-colors" />
                         </div>
                         <span className="text-xs font-en font-semibold text-[#434846] dark:text-[#CBD5D5]">
-                          {item.category || 'Live Video Mapping'}
+                          {item.category || item.badge || 'Official Cinematic Teaser'}
                         </span>
                       </div>
 
@@ -1860,10 +1860,13 @@ export const DomainDetailPage: React.FC<DomainDetailPageProps> = ({
 
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors z-2" />
 
-                        {/* Center Play Button */}
-                        <div className="absolute inset-0 z-3 flex items-center justify-center">
-                          <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#FAF8F4]/90 group-hover:bg-[#3E777A] text-[#1E2424] group-hover:text-[#FAF8F4] keep-light-pill flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110">
-                            <Play className="w-5 h-5 fill-current ml-0.5" />
+                        {/* Center Play Button with Ochre Glow */}
+                        <div className="absolute inset-0 z-3 flex items-center justify-center pointer-events-none">
+                          <div className="relative group/playbtn flex items-center justify-center">
+                            <div className="absolute -inset-3 rounded-full bg-[#D6B16A]/35 blur-lg group-hover:scale-125 transition-all duration-300" />
+                            <div className="keep-light-pill relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#FAF8F4] group-hover:bg-[#3E777A] text-[#3E777A] group-hover:text-[#FAF8F4] flex items-center justify-center shadow-[0_8px_25px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-110 active:scale-95 border border-white/50">
+                              <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current translate-x-0.5 ml-0.5 transition-colors" />
+                            </div>
                           </div>
                         </div>
                       </div>
