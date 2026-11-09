@@ -1,44 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowLeft, Sun, Moon, ChevronLeft } from 'lucide-react';
 import { SELECTED_WORKS } from '../data/studioData';
-import { openInquiryModal } from '../utils/modalEvents';
 
 interface NavbarProps {
+  onOpenContact: () => void;
+  onNavigateHome?: (sectionHref?: string) => void;
+  onSelectDomain?: (domainId: string) => void;
   activeDomainId?: string | null;
+  isDark: boolean;
+  onToggleTheme: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeDomainId }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenContact,
+  onNavigateHome,
+  onSelectDomain,
+  activeDomainId,
+  isDark,
+  onToggleTheme,
+}) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    // Check initial theme from DOM or localStorage
-    const isDarkTheme =
-      document.documentElement.classList.contains('dark') ||
-      localStorage.getItem('amh-theme') === 'dark';
-    setIsDark(isDarkTheme);
-  }, []);
-
-  const handleToggleTheme = () => {
-    const nextDark = !isDark;
-    setIsDark(nextDark);
-    if (nextDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('amh-theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('amh-theme', 'light');
-    }
-  };
-
   const navItems = [
-    { label: 'معرفی استودیو', href: '/#about-studio' },
-    { label: 'روز شگفت‌انگیز', href: '/wonderful-day' },
-    { label: 'حوزه‌های فعالیت', href: '/#works' },
-    { label: 'توانمندی‌های کلیدی', href: '/#philosophy' },
-    { label: 'هم‌بنیانگذاران و تیم', href: '/#team' },
+    { label: 'معرفی استودیو', href: '#about-studio' },
+    { label: 'روز شگفت‌انگیز', href: '#flagship' },
+    { label: 'حوزه‌های فعالیت', href: '#works' },
+    { label: 'توانمندی‌های کلیدی', href: '#philosophy' },
+    { label: 'هم‌بنیانگذاران و تیم', href: '#team' },
   ];
+
+  // Close mobile menu when switching domains or resizing to desktop
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [activeDomainId]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,22 +45,59 @@ export const Navbar: React.FC<NavbarProps> = ({ activeDomainId }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileOpen]);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMobileOpen(false);
+    if (onNavigateHome) {
+      e.preventDefault();
+      onNavigateHome(href);
+    }
+  };
+
+  const handleDomainSelect = (domainId: string) => {
+    setMobileOpen(false);
+    if (onSelectDomain) {
+      onSelectDomain(domainId);
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#EDE9DF]/90 dark:bg-[#0E1415]/90 border-b border-[#DCD6C8] dark:border-[#27363A] transition-colors duration-300">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#EDE9DF]/90 border-b border-[#DCD6C8] transition-colors duration-300">
       <div className="w-full mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 h-18 sm:h-22 lg:h-24 flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 min-w-0">
-        {/* Zone 1: Brand Logo */}
+        {/* Zone 1: Brand Logo & Subtle Studio Lockup */}
         <a
-          href="/"
+          href="https://artamad.ir"
+          onClick={(e) => handleLinkClick(e, '#')}
           className="group flex items-center gap-2.5 sm:gap-3.5 shrink-0 select-none min-w-0"
         >
           <img
-            src="/assets/logo-trimmed.png"
+            src={`${import.meta.env.BASE_URL}assets/logo-trimmed.png`}
             alt="استودیو آرتا ماد هنر"
             loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+            onError={(e) => {
+              const target = e.currentTarget;
+              const remoteFallback =
+                'https://my.uploadkon.ir/d/V7xEfgwAIrHufBKaVf0DjHYu2tyLfL/OTEyMzV8cGFkZA.png';
+              if (target.src !== remoteFallback) {
+                target.src = remoteFallback;
+              }
+            }}
             className="brand-logo-img h-11 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 shrink-0"
           />
-          <div className="flex flex-col justify-center border-r border-[#DCD6C8] dark:border-[#27363A] pr-2.5 sm:pr-3.5 text-right min-w-0">
-            <span className="text-[13px] sm:text-base font-black text-[#1E2424] dark:text-[#F2EFE9] group-hover:text-[#3E777A] dark:group-hover:text-[#65B7B5] transition-colors leading-tight whitespace-nowrap truncate">
+          <div className="flex flex-col justify-center border-r border-[#DCD6C8] pr-2.5 sm:pr-3.5 text-right min-w-0">
+            <span className="text-[13px] sm:text-base font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors leading-tight whitespace-nowrap truncate">
               استودیو آرتا ماد هنر
             </span>
             <span className="text-[9px] sm:text-[11px] font-en font-semibold text-[#777A76] tracking-wider uppercase leading-tight whitespace-nowrap mt-0.5 sm:mt-1 truncate">
@@ -74,33 +106,34 @@ export const Navbar: React.FC<NavbarProps> = ({ activeDomainId }) => {
           </div>
         </a>
 
-        {/* Zone 2: Navigation Links (Desktop) */}
-        <nav className="hidden xl:flex items-center gap-6 2xl:gap-7 text-xs sm:text-sm font-medium text-[#434846] dark:text-[#BCC6C4]">
+        {/* Zone 2: 5 Concise Single-Line Navigation Links (Desktop) */}
+        <nav className="hidden xl:flex items-center gap-6 2xl:gap-7 text-xs sm:text-sm font-medium text-[#434846]">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hover:text-[#3E777A] dark:hover:text-[#65B7B5] transition-colors whitespace-nowrap shrink-0 py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#3E777A] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
+              onClick={(e) => handleLinkClick(e, item.href)}
+              className="hover:text-[#3E777A] transition-colors whitespace-nowrap shrink-0 py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#3E777A] after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* Zone 3: Theme Switch + Action + Mobile Menu */}
+        {/* Zone 3: Theme Switch + Primary Action + Mobile Menu Toggle */}
         <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           {/* Light / Dark Mode Switch */}
           <button
             type="button"
-            onClick={handleToggleTheme}
-            aria-label={isDark ? 'تغییر به حالت روز' : 'تغییر به حالت شب'}
+            onClick={onToggleTheme}
+            aria-label={isDark ? 'تغییر به حالت روز (روشن)' : 'تغییر به حالت شب (تاریک)'}
             title={isDark ? 'حالت روز (Light Mode)' : 'حالت شب (Dark Mode)'}
-            className="h-10 px-2.5 sm:px-3 rounded-full bg-[#FAF8F4] dark:bg-[#151E20] hover:bg-[#F4F0E6] dark:hover:bg-[#233136] border border-[#DCD6C8] dark:border-[#27363A] hover:border-[#3E777A] text-[#1E2424] dark:text-[#F2EFE9] flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 shrink-0"
+            className="h-10 px-2.5 sm:px-3 rounded-full bg-[#FAF8F4] hover:bg-[#F4F0E6] border border-[#DCD6C8] hover:border-[#3E777A] text-[#1E2424] flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95 shrink-0"
           >
             {isDark ? (
               <>
                 <Sun className="w-4 h-4 text-[#D6B16A] shrink-0" />
-                <span className="hidden md:inline text-[11px] font-bold text-[#F2EFE9]">
+                <span className="hidden md:inline text-[11px] font-bold text-[#1E2424]">
                   روز
                 </span>
               </>
@@ -114,64 +147,153 @@ export const Navbar: React.FC<NavbarProps> = ({ activeDomainId }) => {
             )}
           </button>
 
-          {/* Inquiry Action */}
+          {/* Primary Collaboration CTA (Visible on >= sm, and inside drawer on phones) */}
           <button
             type="button"
-            onClick={() => openInquiryModal()}
-            className="h-10 px-4 sm:px-5 rounded-full bg-[#3E777A] hover:bg-[#326265] text-[#FAF8F4] text-xs sm:text-sm font-semibold transition-all active:scale-95 shadow-xs flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+            onClick={onOpenContact}
+            className="hidden sm:flex px-4 lg:px-5 py-2.5 rounded-full bg-[#3E777A] hover:bg-[#326265] text-[#FAF8F4] text-xs font-semibold active:scale-95 transition-all shadow-xs items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 cursor-pointer"
           >
-            <span>شروع همکاری</span>
-            <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-90 hidden sm:inline" />
+            <span>درخواست همکاری</span>
+            <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-80 shrink-0" />
           </button>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile & Tablet Hamburger Toggle */}
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden h-10 w-10 rounded-full bg-[#FAF8F4] dark:bg-[#151E20] hover:bg-[#F4F0E6] border border-[#DCD6C8] dark:border-[#27363A] text-[#1E2424] dark:text-[#F2EFE9] flex items-center justify-center transition-colors cursor-pointer shrink-0"
-            aria-label="منوی سایت"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? 'بستن منو' : 'باز کردن منو'}
+            className={`xl:hidden h-10 px-3 rounded-full border transition-all flex items-center gap-1.5 shrink-0 cursor-pointer ${
+              mobileOpen
+                ? 'bg-[#3E777A] text-[#FAF8F4] border-[#3E777A]'
+                : 'bg-[#FAF8F4] text-[#1E2424] border-[#DCD6C8] hover:border-[#3E777A]'
+            }`}
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            <span className="text-xs font-bold">{mobileOpen ? 'بستن' : 'منو'}</span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Overhauled Mobile & Tablet Drawer with Scrim Backdrop */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-[#DCD6C8] dark:border-[#27363A] bg-[#FAF8F4] dark:bg-[#151E20] px-4 py-6 space-y-5 animate-in fade-in duration-200">
-          <div className="space-y-1">
-            <span className="text-[10px] font-mono uppercase text-[#777A76] block mb-2 px-2">
-              بخش‌های سایت
-            </span>
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 rounded-xl hover:bg-[#EDE9DF] dark:hover:bg-[#1B2629] text-xs font-bold text-[#1E2424] dark:text-[#F2EFE9] transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
+        <>
+          {/* Backdrop Scrim */}
+          <div
+            onClick={() => setMobileOpen(false)}
+            className="xl:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-xs"
+          />
 
-          <div className="pt-3 border-t border-[#DCD6C8] dark:border-[#27363A] space-y-1">
-            <span className="text-[10px] font-mono uppercase text-[#777A76] block mb-2 px-2">
-              دپارتمان‌های تخصصی
-            </span>
-            {SELECTED_WORKS.map((work) => (
-              <a
-                key={work.id}
-                href={`/${work.id}`}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-[#EDE9DF] dark:hover:bg-[#1B2629] text-xs font-semibold text-[#434846] dark:text-[#BCC6C4] transition-colors"
+          {/* Slide-Down Sheet */}
+          <div
+            ref={mobileDrawerRef}
+            className="xl:hidden fixed inset-x-0 top-18 sm:top-22 lg:top-24 z-50 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-b border-[#DCD6C8] dark:border-[#27363A] bg-[#FAF8F4] dark:bg-[#151A1A] rounded-b-3xl px-4 sm:px-6 py-5 space-y-5 shadow-2xl transition-all"
+          >
+            {/* Section 1: Main Page Sections */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between px-1">
+                <span className="text-[11px] font-bold text-[#3E777A]">
+                  بخش‌های صفحه اصلی
+                </span>
+                <span className="text-[10px] font-mono text-[#777A76] uppercase">
+                  NAVIGATION
+                </span>
+              </div>
+
+              <nav className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(e, item.href)}
+                    className="px-3.5 py-2.5 rounded-xl bg-[#F4F0E6] hover:bg-[#E7E2D6] border border-[#E5E0D4] text-xs font-bold text-[#1E2424] flex items-center justify-between transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <ChevronLeft className="w-3.5 h-3.5 text-[#3E777A] shrink-0" />
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* Section 2: Quick Direct Access to the 5 Specialized Departments */}
+            {onSelectDomain && (
+              <div className="space-y-2 pt-3 border-t border-[#DCD6C8]">
+                <div className="flex items-center justify-between px-1">
+                  <span className="text-[11px] font-bold text-[#3E777A]">
+                    دسترسی مستقیم به ۵ دپارتمان تخصصی
+                  </span>
+                  <span className="text-[10px] font-mono text-[#777A76] uppercase">
+                    5 DEPARTMENTS
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {SELECTED_WORKS.map((work, idx) => {
+                    const isCurrent = activeDomainId === work.id;
+                    return (
+                      <button
+                        key={work.id}
+                        type="button"
+                        onClick={() => handleDomainSelect(work.id)}
+                        className={`px-3.5 py-2.5 rounded-xl border text-right text-xs font-semibold flex items-center justify-between gap-2 transition-all cursor-pointer ${
+                          isCurrent
+                            ? 'bg-[#3E777A] text-[#FAF8F4] border-[#3E777A]'
+                            : 'bg-[#EDE9DF] hover:bg-[#E4DFD3] text-[#1E2424] border-[#DCD6C8]'
+                        }`}
+                      >
+                        <span className="truncate">
+                          <span className="farsi-nums font-bold">{idx + 1}. </span>
+                          {work.shortTitle || work.categoryFa}
+                        </span>
+                        <ChevronLeft
+                          className={`w-3.5 h-3.5 shrink-0 ${
+                            isCurrent ? 'text-[#FAF8F4]' : 'text-[#3E777A]'
+                          }`}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Section 3: Theme Toggle Row & Primary Collaboration Button */}
+            <div className="pt-3 border-t border-[#DCD6C8] flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className="py-2.5 px-4 rounded-xl bg-[#F4F0E6] border border-[#DCD6C8] text-xs font-bold text-[#1E2424] flex items-center justify-between sm:justify-center gap-2 cursor-pointer"
               >
-                <span>{work.shortTitle || work.title}</span>
-                <ChevronLeft className="w-3.5 h-3.5 text-[#777A76]" />
-              </a>
-            ))}
+                <span>حالت نمایش سایت:</span>
+                <span className="inline-flex items-center gap-1.5 text-[#3E777A]">
+                  {isDark ? (
+                    <>
+                      <Sun className="w-4 h-4 text-[#D6B16A]" />
+                      <span>حالت شب (تغییر به روز)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-4 h-4 text-[#3E777A]" />
+                      <span>حالت روز (تغییر به شب)</span>
+                    </>
+                  )}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  onOpenContact();
+                }}
+                className="flex-1 py-3 px-4 rounded-xl bg-[#3E777A] hover:bg-[#326265] text-[#FAF8F4] text-xs font-bold flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+              >
+                <span>ثبت درخواست همکاری و ارتباط با استودیو</span>
+                <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-85" />
+              </button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

@@ -1,13 +1,20 @@
-import React from 'react';
-import { HeroVideoPlayer } from './HeroVideoPlayer';
+import React, { useRef } from 'react';
+import { HeroVideoPlayer, type HeroVideoPlayerHandle } from './HeroVideoPlayer';
 
-export const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  onOpenShowreel?: () => void;
+  onOpenContact?: () => void;
+}
+
+export const HeroSection: React.FC<HeroSectionProps> = () => {
+  const playerRef = useRef<HeroVideoPlayerHandle>(null);
+
   return (
     <section
       id="about-studio"
       className="pt-7 pb-12 sm:pt-10 sm:pb-16 overflow-hidden relative scroll-mt-20"
     >
-      {/* Subtle Watercolor & Ambient Background */}
+      {/* Subtle Watercolor & Architectural Ambient Touches from Poyo Palette */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 right-0 w-[32rem] h-[32rem] rounded-full bg-[#82B9D8]/15 blur-3xl"
@@ -18,7 +25,7 @@ export const HeroSection: React.FC = () => {
       />
 
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-6 sm:space-y-8 relative z-10">
-        {/* Header: Studio Title & Creative Domains */}
+        {/* Clean Hero Header: Studio Title & Creative Domains */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] pb-6 sm:pb-7 text-right">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-[#3E777A]">
@@ -53,10 +60,10 @@ export const HeroSection: React.FC = () => {
         {/* The Grand Hero Video Showcase (Full-Width 21:9 Teaser) */}
         <div className="space-y-2.5">
           <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#D5CFC0] bg-[#141818] shadow-[0_18px_50px_rgba(30,36,36,0.08)] transition-all duration-500">
-            <HeroVideoPlayer className="w-full h-full" />
+            <HeroVideoPlayer ref={playerRef} className="w-full h-full" />
           </div>
 
-          {/* Clean Metadata Bar */}
+          {/* Clean Unboxed Metadata Bar */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-2 text-xs text-[#777A76] px-1 sm:px-2 font-fa text-right">
             <div className="flex flex-wrap items-center justify-start gap-1.5 sm:gap-2.5">
               <span className="font-bold text-[#1E2424]">
@@ -76,3 +83,4 @@ export const HeroSection: React.FC = () => {
     </section>
   );
 };
+

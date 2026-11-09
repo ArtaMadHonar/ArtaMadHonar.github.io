@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { DomainDetailPage } from '@/components/DomainDetailPage';
+import App from '@/App';
 import { SELECTED_WORKS, type ProjectWork } from '@/data/studioData';
 
 export function getStaticPaths() {
@@ -21,7 +21,6 @@ const { domain } = Astro.props;
   title={`${domain.title} | استودیو آرتا ماد هنر`}
   description={domain.description}
   ogImage={domain.imageUrl || '/assets/logo.png'}
-  activeDomainId={domain.id}
 >
-  <DomainDetailPage client:load domain={domain} />
+  <App client:load />
 </BaseLayout>

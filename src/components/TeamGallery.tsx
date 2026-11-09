@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
-import { User } from 'lucide-react';
+import { User, ArrowLeft } from 'lucide-react';
 import { TEAM_MEMBERS, type TeamMember } from '../data/studioData';
-import { openTeamMemberModal } from '../utils/modalEvents';
+
+// Preload all team member portraits once at module load time and retain references so GC never evicts them
+const TEAM_GALLERY_PRELOAD: HTMLImageElement[] = [];
+if (typeof window !== 'undefined') {
+  TEAM_MEMBERS.forEach((member) => {
+    if (member.imageUrl) {
+      const img = new Image();
+      img.decoding = 'sync';
+      img.src = member.imageUrl;
+      img.decode?.().catch(() => {});
+      TEAM_GALLERY_PRELOAD.push(img);
+    }
+  });
+}
 
 const SHORT_ROLE_BY_ID: Record<string, string> = {
   'lotfallah-salehi': 'سوپروایزر پایپلاین ویدیو',
@@ -22,7 +35,11 @@ const DEPARTMENT_TABS = [
   { id: 'web3', label: 'وب۳ و NFT' },
 ];
 
-export const TeamGallery: React.FC = () => {
+interface TeamGalleryProps {
+  onSelectMember: (member: TeamMember) => void;
+}
+
+export const TeamGallery: React.FC<TeamGalleryProps> = ({ onSelectMember }) => {
   const [activeDepartment, setActiveDepartment] = useState<string>('all');
   const coFounders = TEAM_MEMBERS.filter((m) => m.isCoFounder);
   const ensembleMembers = TEAM_MEMBERS.filter((m) => !m.isCoFounder && !m.hideFromHome);
@@ -35,7 +52,7 @@ export const TeamGallery: React.FC = () => {
   return (
     <section id="team" className="py-14 sm:py-18 border-t border-[#DCD6C8] relative scroll-mt-20">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 space-y-12 sm:space-y-14">
-        {/* Part 1: Co-Founders & Management Team */}
+        {/* Part 1: Dedicated 3 Co-Founders & Management Team Section (Full Cards) */}
         <div className="space-y-6 sm:space-y-7">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] pb-5">
             <div className="space-y-1.5 text-right">
@@ -63,7 +80,7 @@ export const TeamGallery: React.FC = () => {
             {coFounders.map((founder) => (
               <div
                 key={founder.id}
-                onClick={() => openTeamMemberModal(founder)}
+                onClick={() => onSelectMember(founder)}
                 className="group cursor-pointer rounded-2xl sm:rounded-3xl bg-[#FAF8F4] border border-[#DCD6C8] p-5 sm:p-7 text-center flex flex-col items-center justify-between transition-all duration-300 hover:border-[#3E777A] hover:shadow-[0_16px_40px_rgba(30,36,36,0.08)] hover:-translate-y-1"
               >
                 <div className="w-full flex flex-col items-center">
@@ -73,109 +90,179 @@ export const TeamGallery: React.FC = () => {
                       <img
                         src={founder.imageUrl}
                         alt={founder.name}
-                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        loading="eager"
+                        decoding="sync"
                         className="w-full h-full object-cover object-top"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (
+                            founder.fallbackImageUrl &&
+                            target.src !== founder.fallbackImageUrl
+                          ) {
+                            target.src = founder.fallbackImageUrl;
+                            return;
+                          }
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
                       />
-                    ) : (
-                      <User className="w-10 h-10 text-[#777A76]" />
-                    )}
+                    ) : null}
+                    <div
+                      style={{ display: founder.imageUrl ? 'none' : 'flex' }}
+                      className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                    >
+                      <User className="w-7 h-7 opacity-60 mb-0.5" />
+                      <span className="text-[10px] font-mono font-bold tracking-wider">
+                        {founder.initials}
+                      </span>
+                    </div>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-black text-[#1E2424] group-hover:text-[#3E777A] transition-colors">
+                  {/* Name */}
+                  <h3 className="text-base sm:text-lg font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
                     {founder.name}
                   </h3>
 
-                  <span className="text-xs font-bold text-[#3E777A] mt-1 block">
-                    {founder.role}
-                  </span>
+                  {/* Job Titles */}
+                  <div className="mt-1 mb-2 space-y-0.5">
+                    <div className="text-xs font-bold text-[#3E777A] leading-snug font-soft">
+                      {founder.role}
+                    </div>
+                    <div className="text-[10px] text-[#777A76] font-en tracking-tight">
+                      {founder.roleEn}
+                    </div>
+                  </div>
 
-                  <p className="text-xs text-[#434846] mt-3 line-clamp-3 leading-relaxed text-center">
-                    {founder.bio}
-                  </p>
+                  {/* Concise Summary */}
+                  {founder.bio && (
+                    <p className="text-xs text-[#434846] leading-relaxed line-clamp-2 mt-1 font-soft">
+                      {founder.bio}
+                    </p>
+                  )}
                 </div>
 
-                <div className="w-full pt-4 mt-4 border-t border-[#E5E0D4] flex items-center justify-center">
-                  <span className="text-[11px] font-semibold text-[#777A76] group-hover:text-[#3E777A] transition-colors">
-                    مشاهده سوابق و رزومه تخصصی ←
-                  </span>
+                {/* View Full Resume Kicker */}
+                <div className="mt-4 sm:mt-5 pt-3.5 w-full border-t border-[#E5E0D4] text-[11px] font-semibold text-[#3E777A] flex items-center justify-center gap-1.5">
+                  <span>مشاهده خلاصه سوابق کاری و جزئیات</span>
+                  <ArrowLeft className="w-3.5 h-3.5 rotate-180 opacity-80 group-hover:-translate-x-1 transition-transform" />
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Part 2: Specialized Ensemble Members */}
-        <div className="space-y-6 sm:space-y-7">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#DCD6C8] pb-5">
-            <div className="space-y-1.5 text-right">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#3E777A]">
-                <span>تیم تخصصی</span>
-                <span aria-hidden="true" className="text-[#777A76]">·</span>
-                <span
-                  dir="ltr"
-                  className="font-mono text-[11px] uppercase tracking-widest text-[#777A76]"
-                >
-                  STUDIO ENSEMBLE
-                </span>
-              </div>
-              <h2 className="text-xl sm:text-3xl font-black text-[#1E2424]">
-                اعضای برگزیده تیم استودیو
-              </h2>
+        {/* Part 2: 8 Core Studio Members with Interactive Department Switcher */}
+        <div className="space-y-6 sm:space-y-8 pt-8 border-t border-[#DCD6C8]">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 text-right">
+            <div className="space-y-1">
+              <span
+                dir="ltr"
+                className="text-xs font-mono uppercase tracking-widest text-[#3E777A] font-semibold block"
+              >
+                STUDIO ENSEMBLE & DEPARTMENTS
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#1E2424]">
+                اعضای دپارتمان‌های استودیو
+              </h3>
             </div>
 
-            {/* Department Filter Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 bg-[#FAF8F4] p-1 rounded-full border border-[#DCD6C8]">
-              {DEPARTMENT_TABS.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveDepartment(tab.id)}
-                  className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    activeDepartment === tab.id
-                      ? 'bg-[#3E777A] text-[#FAF8F4]'
-                      : 'text-[#434846] hover:text-[#1E2424]'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            {/* Interactive Department Switcher Tabs */}
+            <div
+              role="tablist"
+              aria-label="فیلتر اعضای دپارتمان‌ها"
+              className="flex flex-wrap items-center gap-1.5 p-1 bg-[#EDE9DF] border border-[#DCD6C8] rounded-2xl"
+            >
+              {DEPARTMENT_TABS.map((tab) => {
+                const isActive = activeDepartment === tab.id;
+                const count =
+                  tab.id === 'all'
+                    ? ensembleMembers.length
+                    : ensembleMembers.filter((m) => m.department === tab.id).length;
+
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActiveDepartment(tab.id)}
+                    className={`px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                      isActive
+                        ? 'bg-[#3E777A] text-[#FAF8F4] shadow-xs'
+                        : 'text-[#434846] hover:text-[#1E2424] hover:bg-[#E4DFD3]'
+                    }`}
+                  >
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Symmetrical Grid for Ensemble */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 sm:gap-5">
-            {filteredMembers.map((member) => (
-              <div
-                key={member.id}
-                onClick={() => openTeamMemberModal(member)}
-                className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] p-4 text-center flex flex-col items-center justify-between transition-all duration-300 hover:border-[#3E777A] hover:shadow-md hover:-translate-y-0.5"
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#DCD6C8] group-hover:border-[#65B7B5] mb-2.5 flex items-center justify-center transition-all overflow-hidden bg-[#EDE9DF] shrink-0">
+          {/* Members Grid Filtered by Department Switch */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5 items-stretch transition-all duration-300">
+            {filteredMembers.map((member) => {
+              const shortRole = SHORT_ROLE_BY_ID[member.id] || member.role;
+              return (
+                <div
+                  key={member.id}
+                  onClick={() => onSelectMember(member)}
+                  className="group cursor-pointer rounded-2xl bg-[#FAF8F4] border border-[#DCD6C8] p-4 sm:p-5 text-center flex flex-col items-center justify-center transition-all duration-300 hover:border-[#3E777A] hover:shadow-md hover:-translate-y-0.5"
+                >
+                  {/* Portrait Avatar */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-[#DCD6C8] group-hover:border-[#3E777A] mb-3 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 overflow-hidden bg-[#EDE9DF] shadow-2xs relative shrink-0">
                     {member.imageUrl ? (
                       <img
                         src={member.imageUrl}
                         alt={member.name}
-                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        loading="eager"
+                        decoding="sync"
                         className="w-full h-full object-cover object-top"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (
+                            member.fallbackImageUrl &&
+                            target.src !== member.fallbackImageUrl
+                          ) {
+                            target.src = member.fallbackImageUrl;
+                            return;
+                          }
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
                       />
-                    ) : (
-                      <User className="w-8 h-8 text-[#777A76]" />
-                    )}
+                    ) : null}
+                    <div
+                      style={{ display: member.imageUrl ? 'none' : 'flex' }}
+                      className="flex-col items-center justify-center text-[#777A76] w-full h-full"
+                    >
+                      <User className="w-6 h-6 sm:w-7 sm:h-7 opacity-60 mb-0.5" />
+                      <span className="text-[10px] font-mono font-bold tracking-wider">
+                        {member.initials}
+                      </span>
+                    </div>
                   </div>
 
-                  <h4 className="text-xs sm:text-sm font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors">
+                  {/* Name */}
+                  <h4 className="text-sm sm:text-base font-bold text-[#1E2424] group-hover:text-[#3E777A] transition-colors font-soft">
                     {member.name}
                   </h4>
 
-                  <span className="text-[10px] sm:text-xs text-[#777A76] mt-0.5 block line-clamp-1">
-                    {SHORT_ROLE_BY_ID[member.id] || member.role}
-                  </span>
+                  {/* Short Role */}
+                  <div className="mt-1 text-xs font-semibold text-[#3E777A] font-soft">
+                    {shortRole}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
     </section>
   );
 };
+
+

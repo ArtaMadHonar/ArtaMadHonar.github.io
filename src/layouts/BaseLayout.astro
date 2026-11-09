@@ -1,21 +1,16 @@
 ---
 import '@/styles/global.css';
-import { Navbar } from '@/components/Navbar';
-import { FooterSection } from '@/components/FooterSection';
-import { GlobalModals } from '@/components/GlobalModals';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
-  activeDomainId?: string | null;
 }
 
 const {
   title = 'استودیو آرتا ماد هنر | Arta Mad Honar Studio',
   description = 'استودیو انیمیشن، خلق و توسعه IP، تیزرهای تبلیغاتی CGI، ویدئو مپینگ، بازی‌سازی و فناوری‌های نوین با بهره‌گیری از هوش مصنوعی.',
   ogImage = '/assets/logo.png',
-  activeDomainId = null,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://artamad.ir');
@@ -32,6 +27,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://artamad.
     <link rel="icon" type="image/png" href="/assets/favicon-square.png" />
     <link rel="apple-touch-icon" href="/assets/favicon-square.png" />
     <link rel="preload" as="image" href="/assets/logo-trimmed.png" />
+
+    {/* Typography Fonts: Google Fonts with all weights + Local offline fallbacks */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     {/* SEO Meta Tags */}
     <meta name="description" content={description} />
@@ -87,16 +87,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://artamad.
       })();
     </script>
   </head>
-  <body class="bg-[#EDE9DF] dark:bg-[#0E1415] text-[#1E2424] dark:text-[#F2EFE9] antialiased selection:bg-[#3E777A] selection:text-[#FAF8F4] transition-colors duration-300 min-h-screen flex flex-col font-fa">
-    <Navbar client:load activeDomainId={activeDomainId} />
-
-    <main class="flex-1">
-      <slot />
-    </main>
-
-    <FooterSection client:visible />
-
-    {/* Interactive Modals Island */}
-    <GlobalModals client:idle />
+  <body class="bg-[#EDE9DF] text-[#1E2424] antialiased selection:bg-[#3E777A] selection:text-[#FAF8F4] transition-colors duration-300 min-h-screen flex flex-col font-fa">
+    <slot />
   </body>
 </html>

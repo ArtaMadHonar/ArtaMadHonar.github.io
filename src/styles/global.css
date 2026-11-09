@@ -1,11 +1,16 @@
+@import "@fontsource/vazirmatn/300.css";
 @import "@fontsource/vazirmatn/400.css";
 @import "@fontsource/vazirmatn/500.css";
 @import "@fontsource/vazirmatn/600.css";
 @import "@fontsource/vazirmatn/700.css";
 @import "@fontsource/vazirmatn/800.css";
+@import "@fontsource/vazirmatn/900.css";
+@import "@fontsource/plus-jakarta-sans/300.css";
 @import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
 @import "@fontsource/plus-jakarta-sans/600.css";
 @import "@fontsource/plus-jakarta-sans/700.css";
+@import "@fontsource/plus-jakarta-sans/800.css";
 
 @import "tailwindcss";
 
@@ -56,7 +61,7 @@
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle scrollbar harmonized with Warm Ivory & Graphite/Teal */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -129,7 +134,7 @@
 }
 
 /* ==========================================================================
-   Dark Mode Theme System
+   Dark Mode Theme System (Architectural Obsidian & Poyo Turquoise)
    ========================================================================== */
 html.dark {
   color-scheme: dark;
